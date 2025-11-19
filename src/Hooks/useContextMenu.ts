@@ -3,16 +3,15 @@ import { useState } from "react";
 import { DEFAULT_DESKTOP_CONTEXT_MENU_WIDTH } from "Constants/Desktop";
 import { RIGHT_MOUSE_BUTTON_CODE, ZERO_POSITION } from "Constants/System";
 
-type Position = {
-    x: number;
-    y: number;
-};
+type Position = { x: number; y: number };
+type ContextType = "file" | "desktop" | null;
 
 export const useContextMenu = () => {
     const [contextMenuVisible, setContextMenuVisible] = useState(false);
     const [contextMenuPosition, setContextMenuPosition] =
         useState<Position>(ZERO_POSITION);
-    const [isFile, setIsFile] = useState(false);
+
+    const [clickedType, setClickedType] = useState<ContextType>(null);
 
     const handleContextMenu = (
         e: React.MouseEvent<HTMLDivElement, MouseEvent>,
@@ -21,9 +20,14 @@ export const useContextMenu = () => {
             e.preventDefault();
 
             const target = e.target as HTMLElement;
-            const isFileClicked = target.closest('[data-file="true"]') !== null;
 
-            setIsFile(isFileClicked);
+            // шукаємо найближчий елемент з data-context
+            const contextEl = target.closest("[data-context]") as HTMLElement;
+
+            const type = contextEl?.dataset.context ?? "desktop";
+            // або "none" / null — на ваш вибір
+
+            setClickedType(type as ContextType);
 
             const menuWidth = DEFAULT_DESKTOP_CONTEXT_MENU_WIDTH;
 
@@ -42,7 +46,7 @@ export const useContextMenu = () => {
     return {
         contextMenuVisible,
         contextMenuPosition,
-        isFile,
+        clickedType,
         handleContextMenu,
         setContextMenuVisible,
     };

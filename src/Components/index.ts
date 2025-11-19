@@ -1,4 +1,4 @@
-import DesktopContextMenu from "./DesktopContextMenu/DesktopContextMenu";
+import ContextMenu from "Components/ContextMenu/ContextMenu";
 import DraggableDesktopFile from "./DraggableDesktopFile/DraggableDesktopFile";
 import File from "./File/File";
 import Icon from "./Icon/Icon";
@@ -7,7 +7,7 @@ import TaskPanelSearch from "./TaskPanelSearch/TaskPanelSearch";
 import TaskPanelSideBar from "./TaskPanelSideBar/TaskPanelSideBar";
 
 export {
-    DesktopContextMenu,
+    ContextMenu,
     DraggableDesktopFile,
     File,
     Icon,

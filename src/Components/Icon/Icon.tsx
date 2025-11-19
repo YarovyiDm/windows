@@ -26,6 +26,8 @@ import { ReactComponent as SquareInSquare } from "Icons/squareOnSquare.svg";
 import { ReactComponent as SquareOutline } from "Icons/squareOutline.svg";
 import { ReactComponent as Line } from "Icons/line.svg";
 import { ReactComponent as FullArrow } from "Icons/fullArrow.svg";
+import { ReactComponent as Edit } from "Icons/edit.svg";
+import { ReactComponent as Stash } from "Icons/delete.svg";
 import {
     TELEGRAM,
     SKYPE,
@@ -56,6 +58,8 @@ import {
     VIEW_BOXES,
     WINDOWS,
     FULL_ARROW,
+    EDIT,
+    STASH,
 } from "Constants/System";
 
 type IProps = {
@@ -94,6 +98,8 @@ const Icons = {
     [SQUARE_OUTLINE]: SquareOutline,
     [LINE]: Line,
     [FULL_ARROW]: FullArrow,
+    [EDIT]: Edit,
+    [STASH]: Stash,
 };
 
 const Icon = (props: IProps) => {

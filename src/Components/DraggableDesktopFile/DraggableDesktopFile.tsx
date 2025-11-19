@@ -189,9 +189,10 @@ const DraggableDesktopFile = ({
             }}
             onDoubleClick={openFile}
             ref={fileRef}
-            data-file={type}
-            data-id={id}
-            data-name={name}
+            // data-file={type}
+            data-context='file'
+            // data-id={id}
+            // data-name={name}
             onContextMenu={onContextMenu}
             className={cn(styles.file, "prevent-selecting")}
             style={{

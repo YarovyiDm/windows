@@ -19,3 +19,13 @@ export type SystemType = {
     selectionStyles: { borderColor: string; areaColor: string };
     fileSelectionColor: string;
 };
+
+export type BasicCoordinates = {
+    x: number;
+    y: number;
+}
+
+export type BasicSize = {
+    height: number;
+    width: number;
+}

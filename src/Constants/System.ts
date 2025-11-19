@@ -27,7 +27,9 @@ export const DOT: string = "Dot";
 export const SQUARE_IN_SQUARE: string = "SquareInSquare";
 export const SQUARE_OUTLINE: string = "SquareOutline";
 export const LINE: string = "Line";
+export const EDIT: string = "Edit";
 export const FULL_ARROW: string = "FullArrow";
+export const STASH: string = "Stash";
 
 export const WALLPAPERS = [
     wallpaper,

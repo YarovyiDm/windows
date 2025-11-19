@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { DraggableDesktopFile, DesktopContextMenu } from "Components";
+import { DraggableDesktopFile, ContextMenu } from "Components";
 import { DESKTOP_FILE_SIZE } from "Constants/File";
 import {
     CLICK_EVENT,
@@ -43,7 +43,7 @@ const Desktop = () => {
     const {
         contextMenuVisible,
         contextMenuPosition,
-        isFile,
+        clickedType,
         handleContextMenu,
         setContextMenuVisible,
     } = useContextMenu();
@@ -162,8 +162,8 @@ const Desktop = () => {
         >
             <Notification text={translate("fullscreenAdvice")} />
             {contextMenuVisible && (
-                <DesktopContextMenu
-                    isFileMenu={isFile}
+                <ContextMenu
+                    clickedType={clickedType}
                     contextMenuPosition={contextMenuPosition}
                     setContextMenuVisible={setContextMenuVisible}
                 />

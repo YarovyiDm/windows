@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import styles from "./DateTimeDisplay.module.scss";
-
-type IProps = {
-    format?: "en" | "eu";
-    containerClassName?: string;
-    timeClassName?: string;
-    dateClassName?: string;
-};
+import { IProps } from ".//DateTimeDisplay.types";
 
 const DateTimeDisplay = ({
     format = "en",

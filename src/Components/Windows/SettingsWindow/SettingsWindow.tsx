@@ -145,7 +145,7 @@ const SettingsWindow = () => {
     };
 
     return (
-        <WindowBasic name='Settings' id='sdsdsdss' wishSidePadding>
+        <WindowBasic name='Settings' id='sdsdsdss'>
             <BlockBasic header='Wallpapers'>
                 {WALLPAPERS.map(wallpaper => {
                     return (

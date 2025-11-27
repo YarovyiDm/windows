@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 import { DEFAULT_DESKTOP_CONTEXT_MENU_WIDTH } from "Constants/Desktop";
 import { RIGHT_MOUSE_BUTTON_CODE, ZERO_POSITION } from "Constants/System";
@@ -12,6 +12,7 @@ export const useContextMenu = () => {
         useState<Position>(ZERO_POSITION);
 
     const [clickedType, setClickedType] = useState<ContextType>(null);
+    const [targetId, setTargetId] = useState<string | null>(null);
 
     const handleContextMenu = (
         e: React.MouseEvent<HTMLDivElement, MouseEvent>,
@@ -23,9 +24,11 @@ export const useContextMenu = () => {
 
             // шукаємо найближчий елемент з data-context
             const contextEl = target.closest("[data-context]") as HTMLElement;
+            const id = contextEl?.dataset.id ?? null;
+
+            setTargetId(id);
 
             const type = contextEl?.dataset.context ?? "desktop";
-            // або "none" / null — на ваш вибір
 
             setClickedType(type as ContextType);
 
@@ -49,5 +52,6 @@ export const useContextMenu = () => {
         clickedType,
         handleContextMenu,
         setContextMenuVisible,
+        targetId,
     };
 };

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { ChangeEvent, Dispatch, SetStateAction, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import cn from "classnames";
 import { Icon } from "Components";
 import {
@@ -23,15 +23,18 @@ import {
 } from "Store/selectors/System";
 import { IFile } from "Types/Desktop";
 
-import styles from "./DraggableDesktopFile.module.scss";
+import styles from "./DraggableFile.module.scss";
 import useLanguage from "Hooks/useLanguage";
+import { checkDropTarget } from "Components/DraggableFile/DraggableFile.helpers";
 
 interface IProps extends IFile {
     setIsSelecting: (isSelecting: boolean) => void;
     onContextMenu: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+    renameFileId: string;
+    setRenameFileId: Dispatch<SetStateAction<string>>;
 }
 
-const DraggableDesktopFile = ({
+const DraggableFile = ({
     name,
     icon,
     position: filePosition,
@@ -42,12 +45,15 @@ const DraggableDesktopFile = ({
     innerContent,
     id,
     type,
+    renameFileId,
+    setRenameFileId,
 }: IProps) => {
     const [isFileSelected, setIsFileSelected] = useState<boolean>(isSelected);
     const [targetFolderName, setTargetFolderName] = useState<string>("");
     const [isDragging, setIsDragging] = useState<boolean>(false);
     const fileRef = useRef<HTMLDivElement | null>(null);
     const fileSelectionColor = useAppSelector(selectFileSelectionColor);
+    const [fileName, setFileName] = useState<string>(name);
 
     const selectedSize = useAppSelector(selectFileSize);
     const dispatch = useAppDispatch();
@@ -57,16 +63,7 @@ const DraggableDesktopFile = ({
     const handleClickFileOutside = (e: MouseEvent) => {
         if (fileRef.current && !fileRef.current.contains(e.target as Node)) {
             setIsFileSelected(false);
-        }
-    };
-
-    const detectKeyDown = (e: KeyboardEvent) => {
-        if (e.code === DELETE_KEY_CODE) {
-            dispatch(removeFile(name));
-        }
-        if (e.key === ENTER_KEY_CODE && isFileSelected) {
-            openFile();
-            setIsFileSelected(false);
+            setRenameFileId('');
         }
     };
 
@@ -89,52 +86,21 @@ const DraggableDesktopFile = ({
     }, [position]);
 
     useEffect(() => {
-        if (isFileSelected) {
-            document.addEventListener(
-                KEY_DOWN_EVENT,
-                detectKeyDown as EventListener,
-            );
-        }
+        if (!isFileSelected) return;
 
-        return () => {
-            document.removeEventListener(
-                KEY_DOWN_EVENT,
-                detectKeyDown as EventListener,
-            );
-        };
-    }, [isFileSelected]);
-
-    const checkDropTarget = () => {
-        const file = fileRef.current;
-
-        if (!file) return;
-
-        const folders = document.querySelectorAll<HTMLDivElement>(
-            "[data-file='folder']",
-        );
-
-        let folderFound = false;
-
-        folders.forEach(folder => {
-            const folderRect = folder.getBoundingClientRect();
-            const fileRect = file.getBoundingClientRect();
-
-            if (
-                fileRect.left < folderRect.right &&
-                fileRect.right > folderRect.left &&
-                fileRect.top < folderRect.bottom &&
-                fileRect.bottom > folderRect.top &&
-                id !== folder.dataset.id
-            ) {
-                setTargetFolderName(folder.dataset.name || "");
-                folderFound = true;
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.code === DELETE_KEY_CODE) {
+                dispatch(removeFile(id));
             }
-        });
+            if (e.key === ENTER_KEY_CODE && isFileSelected) {
+                openFile();
+                setIsFileSelected(false);
+            }
+        };
 
-        if (!folderFound) {
-            setTargetFolderName("");
-        }
-    };
+        document.addEventListener(KEY_DOWN_EVENT, handleKeyDown as EventListener);
+        return () => document.removeEventListener(KEY_DOWN_EVENT, handleKeyDown as EventListener);
+    }, [isFileSelected]);
 
     useEffect(() => {
         if (targetFolderName && !isDragging) {
@@ -154,10 +120,14 @@ const DraggableDesktopFile = ({
         }
     };
 
+    const handleMouseMove = useCallback(() => {
+        checkDropTarget({ fileRef, id, setTargetFolderName });
+    }, [fileRef, id, setTargetFolderName]);
+
     useEffect(() => {
         if (isDragging) {
             document.addEventListener(MOUSE_UP_EVENT, handleMouseUp);
-            document.addEventListener(MOUSE_MOVE_EVENT, checkDropTarget);
+            document.addEventListener(MOUSE_MOVE_EVENT, handleMouseMove);
         }
 
         document.addEventListener(
@@ -167,7 +137,7 @@ const DraggableDesktopFile = ({
 
         return () => {
             document.removeEventListener(MOUSE_UP_EVENT, handleMouseUp);
-            document.removeEventListener(MOUSE_MOVE_EVENT, checkDropTarget);
+            document.removeEventListener(MOUSE_MOVE_EVENT, handleMouseMove);
             document.removeEventListener(
                 MOUSE_DOWN_EVENT,
                 handleClickFileOutside as EventListener,
@@ -179,6 +149,12 @@ const DraggableDesktopFile = ({
         setIsFileSelected(isSelected);
     }, [isSelected]);
 
+    const onFileNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setFileName(e.target.value);
+    };
+
+    const isRename = useMemo(() => renameFileId === id, [renameFileId, id]);
+
     return (
         <div
             onMouseDown={e => {
@@ -189,10 +165,8 @@ const DraggableDesktopFile = ({
             }}
             onDoubleClick={openFile}
             ref={fileRef}
-            // data-file={type}
             data-context='file'
-            // data-id={id}
-            // data-name={name}
+            data-id={id}
             onContextMenu={onContextMenu}
             className={cn(styles.file, "prevent-selecting")}
             style={{
@@ -215,7 +189,7 @@ const DraggableDesktopFile = ({
                     height: selectedSize.height / 2,
                 }}
             />
-            <div className={styles.fileName}>{name}</div>
+            {isRename ? <input value={fileName} autoFocus onChange={(e) => onFileNameChange(e)}/> : <div className={styles.fileName}>{fileName}</div>}
             {isDragging && targetFolderName && (
                 <div className={styles.tooltip}>
                     {translate("moveTo")} {targetFolderName}
@@ -225,4 +199,4 @@ const DraggableDesktopFile = ({
     );
 };
 
-export default DraggableDesktopFile;
+export default DraggableFile;

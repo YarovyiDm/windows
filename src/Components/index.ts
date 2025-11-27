@@ -1,5 +1,5 @@
 import ContextMenu from "Components/ContextMenu/ContextMenu";
-import DraggableDesktopFile from "./DraggableDesktopFile/DraggableDesktopFile";
+import DraggableFile from "Components/DraggableFile/DraggableFile";
 import File from "./File/File";
 import Icon from "./Icon/Icon";
 import PinnedApps from "./PinnedApps/PinnedApps";
@@ -8,7 +8,7 @@ import TaskPanelSideBar from "./TaskPanelSideBar/TaskPanelSideBar";
 
 export {
     ContextMenu,
-    DraggableDesktopFile,
+    DraggableFile,
     File,
     Icon,
     PinnedApps,

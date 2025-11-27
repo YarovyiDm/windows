@@ -13,6 +13,8 @@ const ContextMenu = ({
     contextMenuPosition,
     setContextMenuVisible,
     clickedType,
+    targetId,
+    setRenameFileId,
 }: IProps) => {
     const dispatch = useAppDispatch();
 
@@ -56,6 +58,8 @@ const ContextMenu = ({
             style={{ top: contextMenuPosition.y, left: contextMenuPosition.x }}
         >
             <MenuProvider
+                setRenameFileId={setRenameFileId}
+                targetId={targetId}
                 onDesktopFileSizeChange={onDesktopFileSizeChange}
                 contextMenuPosition={contextMenuPosition}
                 clickedType={clickedType}

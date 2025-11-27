@@ -2,7 +2,7 @@ import { IProps } from "./MenuProvider.types";
 import DesktopMenu from "Components/ContextMenu/components/DesktopMenu/DesktopMenu";
 import FileMenu from "Components/ContextMenu/components/FileMenu/FileMenu";
 
-const MenuProvider = ({ contextMenuPosition, setContextMenuVisible, clickedType, onDesktopFileSizeChange }: IProps)  => {
+const MenuProvider = ({ contextMenuPosition, setContextMenuVisible, clickedType, onDesktopFileSizeChange, targetId, setRenameFileId }: IProps)  => {
     if(!clickedType) { return null; }
 
     const MenuMap = {
@@ -13,7 +13,7 @@ const MenuProvider = ({ contextMenuPosition, setContextMenuVisible, clickedType,
                 onDesktopFileSizeChange={onDesktopFileSizeChange}
                 clickedType={clickedType}
             />,
-        file: <FileMenu />,
+        file: <FileMenu targetId={targetId} setRenameFileId={setRenameFileId}/>,
     };
 
     return (

@@ -128,7 +128,9 @@ const WindowBasic = ({
                     </div>
                 </div>
             </div>
-            {children}
+            <div className={styles.content}>
+                {children}
+            </div>
             {DIRECTIONS_RESIZE_MAP.map(direction => {
                 return (
                     <div

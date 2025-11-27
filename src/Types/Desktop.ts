@@ -10,6 +10,7 @@ export type IFile = {
     innerContent: Array<IFile> | string;
     isOpened: boolean;
     id: string;
+    size: number;
 };
 
 export type Desktop = {

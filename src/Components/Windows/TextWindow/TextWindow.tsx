@@ -9,9 +9,9 @@ import { useAppDispatch } from "Store/index";
 import { closeWindow, updateFile } from "Store/slices/Desktop";
 
 import styles from "./TextWindow.module.scss";
-import { IFile } from "Types/Desktop";
 import ConfirmationWithoutSaveModal from "Components/Modals/ConfirmationWithoutSaveModal/ConfirmationWithoutSaveModal";
 import useLanguage from "Hooks/useLanguage";
+import { getTextSize } from "../../../utils/getTextSize";
 
 const TextWindow = ({
     name,
@@ -19,7 +19,7 @@ const TextWindow = ({
     id,
 }: {
     name: string;
-    content: Array<IFile> | string;
+    content: string;
     id: string;
 }) => {
     const [fileValue, setFileValue] = useState(content);
@@ -42,7 +42,7 @@ const TextWindow = ({
     const handleSave = () => {
         if (isFileChanged) {
             setPrevFileValue(fileValue);
-            dispatch(updateFile({ id, newValue: fileValue }));
+            dispatch(updateFile({ id, newValue: fileValue, size: getTextSize(fileValue) }));
             showConfirmationModal && unsaveExit();
 
             setShowSaveMessage(true);

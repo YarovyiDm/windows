@@ -36,11 +36,9 @@ function App() {
     useEffect(() => {
         if (windowsRef.current) {
             if (isNightMode) {
-                // Нічний режим: знижуємо яскравість та контраст
                 windowsRef.current.style.filter =
                     "sepia(0.3) brightness(0.6) contrast(1.2)";
             } else {
-                // Денні налаштування (якщо потрібно)
                 windowsRef.current.style.filter = `brightness(${brightness})`;
             }
         }
@@ -79,7 +77,7 @@ function App() {
                 {systemScenario
                     ? SCENARIOS_MAP[
                           systemScenario as keyof typeof SCENARIOS_MAP
-                      ]
+                    ]
                     : [<Desktop />, <TaskPanel />]}
             </div>
         </ErrorBoundary>

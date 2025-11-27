@@ -29,6 +29,7 @@ const DesktopMenu = ({ contextMenuPosition, setContextMenuVisible, onDesktopFile
                     id: fileId,
                     type,
                     innerContent: [],
+                    size: 1,
                 };
 
                 dispatch(addDesktopFile(newFile));

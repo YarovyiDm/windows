@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { DraggableDesktopFile, ContextMenu } from "Components";
+import { DraggableFile, ContextMenu } from "Components";
 import { DESKTOP_FILE_SIZE } from "Constants/File";
 import {
     CLICK_EVENT,
@@ -25,6 +25,8 @@ import FolderWindow from "Components/Windows/FolderWindow/FolderWindow";
 import Notification from "Components/Notification/Notification";
 import useLanguage from "Hooks/useLanguage";
 import SettingsWindow from "Components/Windows/SettingsWindow/SettingsWindow";
+import { size } from "lodash";
+import { getTextSize } from "../../utils/getTextSize";
 
 type Position = {
     x: number;
@@ -37,6 +39,7 @@ const Desktop = () => {
     const [currentPosition, setCurrentPosition] =
         useState<Position>(ZERO_POSITION);
     const selectionRef = useRef<HTMLDivElement>(null);
+    const [renameFileId, setRenameFileId] = useState<string>('');
     const selectionStyles = useAppSelector(selectSelectionStyles);
 
     const dispatch = useAppDispatch();
@@ -46,6 +49,7 @@ const Desktop = () => {
         clickedType,
         handleContextMenu,
         setContextMenuVisible,
+        targetId,
     } = useContextMenu();
     const { translate } = useLanguage();
 
@@ -166,6 +170,8 @@ const Desktop = () => {
                     clickedType={clickedType}
                     contextMenuPosition={contextMenuPosition}
                     setContextMenuVisible={setContextMenuVisible}
+                    targetId={targetId}
+                    setRenameFileId={setRenameFileId}
                 />
             )}
             {openedWindows.map(window => {
@@ -177,13 +183,18 @@ const Desktop = () => {
                         <TextWindow
                             key={window.id}
                             name={window.fileName}
-                            content={window.content}
+                            content={window.content as string}
                             id={window.id}
                         />
                     );
                 }
                 return (
                     <FolderWindow
+                        renameFileId={renameFileId}
+                        setIsSelecting={setIsSelecting}
+                        onContextMenu={handleContextMenu}
+                        selectedFiles={selectedFiles}
+                        setRenameFileId={setRenameFileId}
                         name={window.fileName}
                         id={window.id}
                         key={window.id}
@@ -211,9 +222,12 @@ const Desktop = () => {
                     innerContent,
                     id,
                     type,
+                    size,
                 }) => (
-                    <DraggableDesktopFile
+                    <DraggableFile
+                        renameFileId={renameFileId}
                         key={name}
+                        size={size}
                         name={name}
                         icon={icon}
                         position={position}
@@ -224,6 +238,7 @@ const Desktop = () => {
                         onContextMenu={handleContextMenu}
                         id={id}
                         type={type}
+                        setRenameFileId={setRenameFileId}
                     />
                 ),
             )}

@@ -14,6 +14,7 @@ const initialDesktopState = {
             type: TEXT_FILE,
             innerContent: "Hello from text file, looks like it's work",
             id: ":2d",
+            size: 12,
         },
         {
             name: "Check what I have",
@@ -24,6 +25,7 @@ const initialDesktopState = {
             isOpened: false,
             innerContent: [],
             id: "223/",
+            size: 12,
         },
         {
             name: "Кошик",
@@ -34,6 +36,7 @@ const initialDesktopState = {
             type: "folder",
             innerContent: [],
             id: "ds5",
+            size: 12,
         },
     ],
     selectedFiles: [],
@@ -47,12 +50,12 @@ const desktopSlice = createSlice({
     reducers: {
         removeFile(state: Desktop, action: PayloadAction<string>) {
             const fileToRemove = state.desktopFiles.find(
-                item => item.name === action.payload,
+                item => item.id === action.payload,
             );
 
             if (fileToRemove) {
                 state.desktopFiles = state.desktopFiles.filter(
-                    item => item.name !== action.payload,
+                    item => item.id !== action.payload,
                 );
                 state.bin.push(fileToRemove);
             }
@@ -145,14 +148,19 @@ const desktopSlice = createSlice({
             action: PayloadAction<{
                 id: string;
                 newValue: Array<IFile> | string;
+                size?: number;
             }>,
         ) {
-            const { id, newValue } = action.payload;
+            const { id, newValue, size } = action.payload;
             const currentFile = state.desktopFiles.filter(
                 item => item.id === id,
             )[0];
 
             currentFile.innerContent = newValue;
+
+            if(size){
+                currentFile.size = size;
+            }
         },
         dragFileToFolder(
             state: Desktop,

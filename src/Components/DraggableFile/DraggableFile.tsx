@@ -1,5 +1,4 @@
-import React, { ChangeEvent, Dispatch, SetStateAction, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import cn from "classnames";
+import React, { ChangeEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Icon } from "Components";
 import {
     DELETE_KEY_CODE,
@@ -21,18 +20,11 @@ import {
     selectFileSelectionColor,
     selectFileSize,
 } from "Store/selectors/System";
-import { IFile } from "Types/Desktop";
 
-import styles from "./DraggableFile.module.scss";
 import useLanguage from "Hooks/useLanguage";
 import { checkDropTarget } from "Components/DraggableFile/DraggableFile.helpers";
-
-interface IProps extends IFile {
-    setIsSelecting: (isSelecting: boolean) => void;
-    onContextMenu: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-    renameFileId: string;
-    setRenameFileId: Dispatch<SetStateAction<string>>;
-}
+import { DraggableFileProps } from "./DraggableFile.types";
+import { File, FileName, TooltipStyled } from "Components/DraggableFile/DraggableFile.styled";
 
 const DraggableFile = ({
     name,
@@ -47,7 +39,7 @@ const DraggableFile = ({
     type,
     renameFileId,
     setRenameFileId,
-}: IProps) => {
+}: DraggableFileProps) => {
     const [isFileSelected, setIsFileSelected] = useState<boolean>(isSelected);
     const [targetFolderName, setTargetFolderName] = useState<string>("");
     const [isDragging, setIsDragging] = useState<boolean>(false);
@@ -156,7 +148,7 @@ const DraggableFile = ({
     const isRename = useMemo(() => renameFileId === id, [renameFileId, id]);
 
     return (
-        <div
+        <File
             onMouseDown={e => {
                 handleMouseDown(e);
                 setIsFileSelected(true);
@@ -168,7 +160,7 @@ const DraggableFile = ({
             data-context='file'
             data-id={id}
             onContextMenu={onContextMenu}
-            className={cn(styles.file, "prevent-selecting")}
+            className='prevent-selecting'
             style={{
                 width: selectedSize?.width,
                 height: selectedSize?.height,
@@ -189,13 +181,13 @@ const DraggableFile = ({
                     height: selectedSize.height / 2,
                 }}
             />
-            {isRename ? <input value={fileName} autoFocus onChange={(e) => onFileNameChange(e)}/> : <div className={styles.fileName}>{fileName}</div>}
+            {isRename ? <input value={fileName} autoFocus onChange={(e) => onFileNameChange(e)}/> : <FileName>{fileName}</FileName>}
             {isDragging && targetFolderName && (
-                <div className={styles.tooltip}>
+                <TooltipStyled>
                     {translate("moveTo")} {targetFolderName}
-                </div>
+                </TooltipStyled>
             )}
-        </div>
+        </File>
     );
 };
 

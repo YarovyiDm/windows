@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from "react";
 
-import { IProps } from ".//DateTimeDisplay.types";
+import { DateTimeDisplayProps } from "./DateTimeDisplay.types";
 
 const DateTimeDisplay = ({
     format = "en",
-    containerClassName,
-    timeClassName,
-    dateClassName,
-}: IProps) => {
-    const [dateTime, setDateTime] = useState({
-        time: "",
-        date: "",
-    });
+    Container = "div",
+    TimeWrapper = "div",
+    DateWrapper = "div",
+}: DateTimeDisplayProps) => {
+    const [dateTime, setDateTime] = useState({ time: "", date: "" });
 
     const updateDateTime = () => {
         const now = new Date();
@@ -52,13 +49,10 @@ const DateTimeDisplay = ({
     }, [format]);
 
     return (
-        <div
-            className={containerClassName}
-            style={{ fontSize: "2em", textAlign: "center" }}
-        >
-            <div className={timeClassName}>{dateTime.time}</div>
-            <div className={dateClassName}>{dateTime.date}</div>
-        </div>
+        <Container>
+            <TimeWrapper>{dateTime.time}</TimeWrapper>
+            <DateWrapper>{dateTime.date}</DateWrapper>
+        </Container>
     );
 };
 

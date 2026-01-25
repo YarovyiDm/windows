@@ -1,22 +1,21 @@
 import React from "react";
 
-import styles from "./SystemQuitScreen.module.scss";
 import Loader from "Components/Loader/Loader";
 import useLanguage from "Hooks/useLanguage";
-import translations from "Components/I18n/translations";
+import { SystemQuitScreenProps } from "./SystemQuitScreen.types";
+import {
+    SystemQuitScreenStatus,
+    SystemQuitScreenWrapper,
+} from "Components/Screens/SystemQuitScreen/SystemQuitScreen.styled";
 
-type IProps = {
-    type: keyof typeof translations.en;
-};
-
-const SystemQuitScreen = ({ type }: IProps) => {
+const SystemQuitScreen = ({ type }: SystemQuitScreenProps) => {
     const { translate } = useLanguage();
 
     return (
-        <div className={styles.wrapper}>
+        <SystemQuitScreenWrapper>
             <Loader />
-            <div className={styles.status}>{translate(type)}</div>
-        </div>
+            <SystemQuitScreenStatus>{translate(type)}</SystemQuitScreenStatus>
+        </SystemQuitScreenWrapper>
     );
 };
 

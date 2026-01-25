@@ -6,10 +6,11 @@ import {
     TASK_PANEL_HEIGHT,
     ZERO_POSITION,
 } from "Constants/System";
+import { BasicCoordinates, BasicSize } from "Types/System";
 
 const useDrag = (
-    initialPosition: { x: number; y: number },
-    objectSize: { width: number; height: number },
+    initialPosition: BasicCoordinates,
+    objectSize: BasicSize,
 ) => {
     const [position, setPosition] = useState(initialPosition);
     const [isDragging, setIsDragging] = useState(false);

@@ -1,17 +1,13 @@
-import { Icon } from "Components";
 import { useAppDispatch, useAppSelector } from "Store/index";
 import { handleCloseAllModals } from "Store/slices/TaskPanelSlice";
+import { Icon } from "Components";
 
 import styles from "./File.module.scss";
 import { openWindow } from "Store/slices/Desktop";
 import { selectIsWindowOpen } from "Store/selectors/Desktop";
+import { FileProps } from "./FIle.types";
 
-type IFile = {
-    name: string;
-    text: string;
-};
-
-const File = ({ name, text }: IFile) => {
+const File = ({ name, text }: FileProps) => {
     const dispatch = useAppDispatch();
     const isSettingsWindowOpen = useAppSelector(selectIsWindowOpen("Settings"));
 

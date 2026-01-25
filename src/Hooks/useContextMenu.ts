@@ -1,15 +1,15 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 
 import { DEFAULT_DESKTOP_CONTEXT_MENU_WIDTH } from "Constants/Desktop";
 import { RIGHT_MOUSE_BUTTON_CODE, ZERO_POSITION } from "Constants/System";
+import { BasicCoordinates } from "Types/System";
 
-type Position = { x: number; y: number };
 type ContextType = "file" | "desktop" | null;
 
 export const useContextMenu = () => {
     const [contextMenuVisible, setContextMenuVisible] = useState(false);
     const [contextMenuPosition, setContextMenuPosition] =
-        useState<Position>(ZERO_POSITION);
+        useState<BasicCoordinates>(ZERO_POSITION);
 
     const [clickedType, setClickedType] = useState<ContextType>(null);
     const [targetId, setTargetId] = useState<string | null>(null);

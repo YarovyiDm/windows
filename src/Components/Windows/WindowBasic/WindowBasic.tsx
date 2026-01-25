@@ -18,14 +18,8 @@ import { changeWindowZindex, closeWindow } from "Store/slices/Desktop";
 import { selectWindowZindex } from "Store/selectors/Desktop";
 
 import styles from "./WindowBasic.module.scss";
-
-type IProps = {
-    name: string;
-    id: string;
-    onCloseCallback?: false | (() => void);
-    system?: boolean;
-    wishSidePadding?: boolean;
-} & React.HTMLAttributes<HTMLDivElement>;
+import { WindowBasicProps } from "./WindowBasic.types";
+import { BasicSize } from "Types/System";
 
 const WindowBasic = ({
     children,
@@ -35,11 +29,8 @@ const WindowBasic = ({
     system,
     wishSidePadding,
     ...rest
-}: IProps) => {
-    const [newSize, setNewSize] = useState<{
-        width: number;
-        height: number;
-    } | null>(null);
+}: WindowBasicProps) => {
+    const [newSize, setNewSize] = useState<BasicSize | null>(null);
 
     const { position, handleMouseDown, setPosition } = useDrag(
         getRandomCenterCoordinates(),

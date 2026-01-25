@@ -1,19 +1,9 @@
-import React, { ReactNode } from "react";
-import styles from "./ErrorBoundary.module.scss";
+import React from "react";
 import { connect } from "react-redux";
 import { updateSystemScenario } from "Store/slices/System";
 import { Dispatch } from "redux";
-
-interface ProgressBarState {
-    progress: number;
-    stepIndex: number;
-    hasError: boolean;
-}
-
-interface ErrorBoundaryProps {
-    children: ReactNode;
-    dispatchScenarioAction: () => void;
-}
+import { ErrorBoundaryProps, ProgressBarState } from "./ErrorBoundary.types";
+import { ErrorContent, ErrorIcon, ErrorProgress, ErrorWrapper } from "Components/ErrorBoundary/ErrorBoundary.styled";
 
 class ErrorBoundary extends React.Component<
     ErrorBoundaryProps,
@@ -88,17 +78,17 @@ class ErrorBoundary extends React.Component<
     render() {
         if (this.state.hasError) {
             return (
-                <div className={styles.wrapper}>
-                    <div className={styles.sadSmile}>:(</div>
-                    <div className={styles.errorMessage}>
+                <ErrorWrapper>
+                    <ErrorIcon>:(</ErrorIcon>
+                    <ErrorContent>
                         Your device ran into a problem and needs to restart.
                         We're just collecting some error info, and then we'll
                         restart for you.
-                    </div>
-                    <div className={styles.progress}>
+                    </ErrorContent>
+                    <ErrorProgress>
                         {this.state.progress}% complete
-                    </div>
-                </div>
+                    </ErrorProgress>
+                </ErrorWrapper>
             );
         }
 

@@ -1,17 +1,18 @@
-import { ReactNode } from "react";
-import styles from "./BlockBasic.module.scss";
+import { BlockBasicProps } from "./BlockBasic.types";
+import {
+    BlockChildren,
+    BlockHeader,
+    BlockWrapper,
+} from "Components/Windows/SettingsWindow/Components/BlockBasic/BlockBasic.styled";
 
 export const BlockBasic = ({
-    header,
+    title,
     children,
-}: {
-    header: string;
-    children: ReactNode;
-}) => {
+}: BlockBasicProps) => {
     return (
-        <div className={styles.wrapper}>
-            <div className={styles.header}>{header}</div>
-            <div className={styles.main}>{children}</div>
-        </div>
+        <BlockWrapper>
+            <BlockHeader>{title}</BlockHeader>
+            <BlockChildren>{children}</BlockChildren>
+        </BlockWrapper>
     );
 };

@@ -12,16 +12,13 @@ import styles from "./TextWindow.module.scss";
 import ConfirmationWithoutSaveModal from "Components/Modals/ConfirmationWithoutSaveModal/ConfirmationWithoutSaveModal";
 import useLanguage from "Hooks/useLanguage";
 import { getTextSize } from "../../../utils/getTextSize";
+import { TextWindowProps } from "./TextWindow.types";
 
 const TextWindow = ({
     name,
     content,
     id,
-}: {
-    name: string;
-    content: string;
-    id: string;
-}) => {
+}: TextWindowProps) => {
     const [fileValue, setFileValue] = useState(content);
     const [prevFileValue, setPrevFileValue] = useState(content);
     const [showSaveMessage, setShowSaveMessage] = useState(false);
@@ -96,7 +93,7 @@ const TextWindow = ({
                 )}
 
                 <textarea
-                    value={typeof fileValue === "string" ? fileValue : ""}
+                    value={fileValue}
                     onChange={e => onTextAreaChange(e)}
                 />
                 {showSaveMessage && (

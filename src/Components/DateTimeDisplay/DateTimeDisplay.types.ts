@@ -1,6 +1,8 @@
-export type IProps = {
+import { ElementType } from "react";
+
+export type DateTimeDisplayProps = {
     format?: "en" | "eu";
-    containerClassName?: string;
-    timeClassName?: string;
-    dateClassName?: string;
+    Container?: ElementType;
+    TimeWrapper?: ElementType;
+    DateWrapper?: ElementType;
 };

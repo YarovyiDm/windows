@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 
-import styles from "./Notification.module.scss";
 import { CROSS } from "Constants/System";
 import Icon from "Components/Icon/Icon";
 import useLanguage from "Hooks/useLanguage";
+import { NotificationProps } from "./Notification.types";
+import {
+    CloseButtonWrapper,
+    NotificationContent,
+    NotificationHeader, NotificationTitle,
+    NotificationWrapper,
+} from "Components/Notification/Notification.styled";
 
-type IProps = {
-    delayBeforeShow?: number;
-    duration?: number;
-    text: string;
-};
-
-const Notification = ({ delayBeforeShow, duration, text }: IProps) => {
+const Notification = ({ delayBeforeShow, duration, text }: NotificationProps) => {
     const [visible, setVisible] = useState(true);
     const { translate } = useLanguage();
 
@@ -25,27 +25,25 @@ const Notification = ({ delayBeforeShow, duration, text }: IProps) => {
     const closeNotification = () => setVisible(false);
 
     return (
-        <div
-            className={styles.wrapper}
+        <NotificationWrapper
             style={{
                 transform: visible ? "translateX(0)" : "translateX(100%)",
                 opacity: visible ? 1 : 0,
             }}
         >
-            <header className={styles.header}>
-                <div className={styles.title}>{translate("notification")}</div>
-                <div
-                    className={styles.closeButton}
+            <NotificationHeader>
+                <NotificationTitle>{translate("notification")}</NotificationTitle>
+                <CloseButtonWrapper
                     onClick={() => closeNotification()}
                 >
                     <Icon
                         name={CROSS}
                         style={{ width: "20px", height: "20px" }}
                     />
-                </div>
-            </header>
-            <main className={styles.notification}>{text}</main>
-        </div>
+                </CloseButtonWrapper>
+            </NotificationHeader>
+            <NotificationContent>{text}</NotificationContent>
+        </NotificationWrapper>
     );
 };
 

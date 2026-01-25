@@ -17,7 +17,7 @@ import styles from "./TaskPanel.module.scss";
 import { selectLanguageIndex } from "Store/selectors/System";
 import WindowsModal from "Components/Modals/WindowsModal/WindowsModal";
 
-const TaskPanel: React.FC = () => {
+const TaskPanel = () => {
     const dispatch = useAppDispatch();
     const [currentModal, setCurrentModal] = useState<string>("");
 

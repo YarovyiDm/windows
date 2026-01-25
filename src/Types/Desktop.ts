@@ -1,10 +1,9 @@
+import { BasicCoordinates } from "Types/System";
+
 export type IFile = {
     name: string;
     icon: string;
-    position: {
-        x: number;
-        y: number;
-    };
+    position: BasicCoordinates;
     isSelected: boolean;
     type: string;
     innerContent: Array<IFile> | string;

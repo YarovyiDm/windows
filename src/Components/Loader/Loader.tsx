@@ -1,16 +1,10 @@
-import React from "react";
-
-import styles from "./Loader.module.scss";
+import { LoaderItem, LoaderWrapper } from "Components/Loader/Loader.styled";
 
 const Loader = () => {
     return (
-        <div className={styles.loadingContainer}>
-            <div className={styles.loadingCircle}></div>
-            <div className={styles.loadingCircle}></div>
-            <div className={styles.loadingCircle}></div>
-            <div className={styles.loadingCircle}></div>
-            <div className={styles.loadingCircle}></div>
-        </div>
+        <LoaderWrapper>
+            {Array.from({ length: 5 }).map(() => { return <LoaderItem />;})}
+        </LoaderWrapper>
     );
 };
 

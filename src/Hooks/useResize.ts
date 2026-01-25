@@ -9,11 +9,12 @@ import {
     ZERO_POSITION,
 } from "Constants/System";
 import { useEffect, useState } from "react";
+import { BasicCoordinates, BasicSize } from "Types/System";
 
 const useResize = (
-    initialSize: { width: number; height: number },
-    setPosition: ({ x, y }: { x: number; y: number }) => void,
-    position: { x: number; y: number },
+    initialSize: BasicSize,
+    setPosition: ({ x, y }: BasicCoordinates) => void,
+    position: BasicCoordinates,
 ) => {
     const [size, setSize] = useState({
         width: initialSize.width,

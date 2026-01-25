@@ -25,19 +25,13 @@ import FolderWindow from "Components/Windows/FolderWindow/FolderWindow";
 import Notification from "Components/Notification/Notification";
 import useLanguage from "Hooks/useLanguage";
 import SettingsWindow from "Components/Windows/SettingsWindow/SettingsWindow";
-import { size } from "lodash";
-import { getTextSize } from "../../utils/getTextSize";
-
-type Position = {
-    x: number;
-    y: number;
-};
+import { BasicCoordinates } from "Types/System";
 
 const Desktop = () => {
     const [isSelecting, setIsSelecting] = useState<boolean>(false);
-    const [startPosition, setStartPosition] = useState<Position>(ZERO_POSITION);
+    const [startPosition, setStartPosition] = useState<BasicCoordinates>(ZERO_POSITION);
     const [currentPosition, setCurrentPosition] =
-        useState<Position>(ZERO_POSITION);
+        useState<BasicCoordinates>(ZERO_POSITION);
     const selectionRef = useRef<HTMLDivElement>(null);
     const [renameFileId, setRenameFileId] = useState<string>('');
     const selectionStyles = useAppSelector(selectSelectionStyles);

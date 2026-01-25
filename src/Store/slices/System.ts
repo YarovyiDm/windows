@@ -26,7 +26,7 @@ const initialSystemState = {
         areaColor: "rgba(74, 144, 226, 0.2)",
     },
     fileSelectionColor: "rgba(179, 180, 179, 1)",
-} as SystemType;
+} satisfies SystemType;
 
 const systemSlice = createSlice({
     name: SYSTEM,

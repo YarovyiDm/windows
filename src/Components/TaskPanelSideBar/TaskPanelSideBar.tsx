@@ -3,9 +3,8 @@ import cn from "classnames";
 import { HiddenAppsModal, LanguagesModal } from "Components/Modals";
 import { Icon } from "Components";
 import { ARROW, LANGUAGES } from "Constants/System";
-import { ModalNames, ObjectOfModalRefs } from "Types/TaskPanelTypes";
-
 import styles from "./TaskPanelSideBar.module.scss";
+import { IProps } from "Components/TaskPanelSideBar/TaskPanelSideBar.types";
 
 const TaskPanelSideBar = ({
     hiddenAppsModalOpen,
@@ -13,13 +12,7 @@ const TaskPanelSideBar = ({
     systemLanguageIndex,
     refs,
     handleModalChange,
-}: {
-    hiddenAppsModalOpen: boolean;
-    isLanguagesModalOpen: boolean;
-    systemLanguageIndex: number;
-    refs: ObjectOfModalRefs;
-    handleModalChange: (name: ModalNames) => void;
-}) => {
+}: IProps) => {
     return (
         <div className={styles.taskPanelSidebar}>
             <div

@@ -1,43 +1,45 @@
 import React from "react";
 
-import styles from "./ConfirmationWithoutSaveModal.module.scss";
 import useLanguage from "Hooks/useLanguage";
-
-type IProps = {
-    handleSave: () => void;
-    unsaveExit: () => void;
-    onConfirmationModalChange: () => void;
-};
+import { ConfirmationWithoutSaveModalProps } from "./ConfirmationWithoutSaveModal.types";
+import {
+    ConfirmationButton,
+    ConfirmationButtonsWrapper,
+    ConfirmationModal,
+    ConfirmationSubTitle,
+    ConfirmationTitle,
+    ConfirmationWrapper,
+} from "./ConfirmationWithoutSaveModal.styled";
 
 const ConfirmationWithoutSaveModal = ({
     handleSave,
     unsaveExit,
     onConfirmationModalChange,
-}: IProps) => {
+}: ConfirmationWithoutSaveModalProps) => {
     const { translate } = useLanguage();
 
     return (
-        <div className={styles.confirmation}>
-            <div className={styles.confirmationWindow}>
-                <div className={styles.confirmationTitle}>
+        <ConfirmationWrapper>
+            <ConfirmationModal>
+                <ConfirmationTitle>
                     {translate("confirmationUnsaveTitle")}
-                </div>
-                <div className={styles.confirmationSubTitle}>
+                </ConfirmationTitle>
+                <ConfirmationSubTitle>
                     {translate("confirmationUnsaveSubTitle")}
-                </div>
-                <div className={styles.confirmationButtons}>
-                    <button onClick={() => handleSave()}>
+                </ConfirmationSubTitle>
+                <ConfirmationButtonsWrapper>
+                    <ConfirmationButton onClick={() => handleSave()}>
                         {translate("save")}
-                    </button>
-                    <button onClick={() => unsaveExit()}>
+                    </ConfirmationButton>
+                    <ConfirmationButton onClick={() => unsaveExit()}>
                         {translate("unsave")}
-                    </button>
-                    <button onClick={onConfirmationModalChange}>
+                    </ConfirmationButton>
+                    <ConfirmationButton onClick={onConfirmationModalChange}>
                         {translate("cancel")}
-                    </button>
-                </div>
-            </div>
-        </div>
+                    </ConfirmationButton>
+                </ConfirmationButtonsWrapper>
+            </ConfirmationModal>
+        </ConfirmationWrapper>
     );
 };
 

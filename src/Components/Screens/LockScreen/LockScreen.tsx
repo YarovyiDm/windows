@@ -1,7 +1,7 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import styles from "./LockScreen.module.scss";
 import DateTimeDisplay from "Components/DateTimeDisplay/DateTimeDisplay";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import Icon from "Components/Icon/Icon";
 import {
     ENTER_KEY_CODE,
@@ -12,72 +12,63 @@ import {
 } from "Constants/System";
 import { useAppDispatch } from "Store/index";
 import { toggleWindowsUnlock, updateSystemScenario } from "Store/slices/System";
+import {
+    AvatarWrapper,
+    DateTimeContainer, InputWrapper,
+    LockScreenWrapper,
+    LoginWrapper,
+    TimeWrapper,
+    UserNameStyled,
+    IconWrapper,
+} from "Components/Screens/LockScreen/LockScreen.styled";
+
+type FormValues = {
+    password: string;
+};
 
 const LockScreen = () => {
     const dispatch = useAppDispatch();
     const [isLoginScreenShow, setIsLoginScreenShow] = useState(false);
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState(false);
-    const isTouchedRef = useRef(false);
 
-    const isPasswordValid = useMemo(
-        () => SYSTEM_PASSWORD.toLowerCase() === password.toLowerCase(),
-        [password],
-    );
+    const {
+        control,
+        handleSubmit,
+        clearErrors,
+        watch,
+        formState: { errors },
+    } = useForm<FormValues>({
+        defaultValues: { password: "" },
+    });
 
-    const onPasswordChange = (e: React.SyntheticEvent<Element, Event>) => {
-        const target = e.target as HTMLInputElement;
+    const passwordValue = watch("password");
 
-        setPassword(target.value.trim());
-    };
-
-    const login = () => {
-        if (isPasswordValid) {
+    const login: SubmitHandler<FormValues> = ({ password }) => {
+        if (password.trim() === SYSTEM_PASSWORD) {
             dispatch(toggleWindowsUnlock(true));
             dispatch(updateSystemScenario(null));
             return;
         }
-        setError(true);
     };
 
     const onLoginScreenChange = (e: KeyboardEvent) => {
         setIsLoginScreenShow(true);
-        if (e.key === ENTER_KEY_CODE && isPasswordValid) {
-            dispatch(toggleWindowsUnlock(true));
-            dispatch(updateSystemScenario(null));
-        }
-        if (
-            e.key === ENTER_KEY_CODE &&
-            !isPasswordValid &&
-            isTouchedRef.current
-        ) {
-            setError(true);
+
+        if (e.key === ENTER_KEY_CODE) {
+            handleSubmit(login)();
         }
     };
 
     useEffect(() => {
-        document.addEventListener(
-            KEY_DOWN_EVENT,
-            onLoginScreenChange as EventListener,
-        );
+        document.addEventListener(KEY_DOWN_EVENT, onLoginScreenChange as EventListener);
 
         return () => {
-            document.removeEventListener(
-                KEY_DOWN_EVENT,
-                onLoginScreenChange as EventListener,
-            );
+            document.removeEventListener(KEY_DOWN_EVENT, onLoginScreenChange as EventListener);
         };
-    }, [password]);
-
-    const handleFocus = () => {
-        isTouchedRef.current = true;
-    };
+    }, [passwordValue]);
 
     return (
-        <div
-            className={`${styles.lockScreen} ${
-                isLoginScreenShow ? styles.blur : styles.noBlur
-            }`}
+        <LockScreenWrapper
+            isBlur={isLoginScreenShow}
             style={{
                 alignItems: isLoginScreenShow ? "flex-start" : "flex-end",
                 justifyContent: isLoginScreenShow ? "center" : "none",
@@ -85,37 +76,40 @@ const LockScreen = () => {
             onClick={() => setIsLoginScreenShow(true)}
         >
             {!isLoginScreenShow && (
-                <DateTimeDisplay
-                    containerClassName={styles.containerPrimary}
-                    timeClassName={styles.timePrimary}
-                    dateClassName={styles.datePrimary}
-                />
+                <DateTimeDisplay Container={DateTimeContainer} TimeWrapper={TimeWrapper} />
             )}
+
             {isLoginScreenShow && (
-                <div className={styles.loginForm}>
-                    <div className={styles.userAvatar}>
+                <LoginWrapper>
+                    <AvatarWrapper>
                         <Icon name={USER} />
-                    </div>
-                    <div className={styles.userName}>Yarovyi</div>
-                    <div className={styles.inputWrapper}>
-                        <input
-                            onFocus={handleFocus}
-                            placeholder='Password is: 1111'
-                            value={password}
-                            onChange={e => onPasswordChange(e)}
-                            className={error ? styles.error : ""}
-                            autoFocus={isLoginScreenShow}
-                        />
-                        <div
-                            className={styles.iconWrapper}
-                            onClick={() => login()}
-                        >
-                            <Icon name={FULL_ARROW} />
-                        </div>
-                    </div>
-                </div>
+                    </AvatarWrapper>
+                    <UserNameStyled>Yarovyi</UserNameStyled>
+
+                    <Controller
+                        name='password'
+                        control={control}
+                        rules={{
+                            required: "Password is required",
+                            validate: (value) => value === SYSTEM_PASSWORD || "Password is incorrect",
+                        }}
+                        render={({ field }) => (
+                            <InputWrapper isError={!!errors.password}>
+                                <input
+                                    {...field}
+                                    placeholder='Password is: 1111'
+                                    autoFocus={isLoginScreenShow}
+                                    onFocus={() => clearErrors("password")}
+                                />
+                                <IconWrapper onClick={handleSubmit(login)}>
+                                    <Icon name={FULL_ARROW} />
+                                </IconWrapper>
+                            </InputWrapper>
+                        )}
+                    />
+                </LoginWrapper>
             )}
-        </div>
+        </LockScreenWrapper>
     );
 };
 

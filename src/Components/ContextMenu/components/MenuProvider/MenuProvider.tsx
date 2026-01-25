@@ -1,8 +1,8 @@
-import { IProps } from "./MenuProvider.types";
+import { MenuProviderProps } from "./MenuProvider.types";
 import DesktopMenu from "Components/ContextMenu/components/DesktopMenu/DesktopMenu";
 import FileMenu from "Components/ContextMenu/components/FileMenu/FileMenu";
 
-const MenuProvider = ({ contextMenuPosition, setContextMenuVisible, clickedType, onDesktopFileSizeChange, targetId, setRenameFileId }: IProps)  => {
+const MenuProvider = ({ contextMenuPosition, setContextMenuVisible, clickedType, onDesktopFileSizeChange, targetId, setRenameFileId }: MenuProviderProps)  => {
     if(!clickedType) { return null; }
 
     const MenuMap = {

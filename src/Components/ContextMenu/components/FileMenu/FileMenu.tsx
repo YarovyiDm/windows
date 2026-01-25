@@ -1,35 +1,34 @@
-import styles from "Components/ContextMenu/ContextMenu.module.scss";
 import { EDIT, STASH } from "Constants/System";
-import Icon from "Components/Icon/Icon";
-import { Dispatch, SetStateAction } from "react";
+import { FileMenuProps } from "./FileMenu.types";
+import { ItemTitle, MenuItem, MenuItemMain, IconStyled } from "../../ContextMenu.styled";
 
-const FileMenu = ({ targetId, setRenameFileId }:{targetId: string | null, setRenameFileId: Dispatch<SetStateAction<string>>}) => {
+const FileMenu = ({ targetId, setRenameFileId }: FileMenuProps) => {
     return (
         <>
-            <div className={styles.menuItem}>
-                <div className={styles.wrapper} onClick={() => {targetId && setRenameFileId(targetId);}}>
-                    <Icon name={EDIT} className={styles.itemIconTemp} />
-                    <div className={styles.itemName}>
+            <MenuItem>
+                <MenuItemMain onClick={() => {targetId && setRenameFileId(targetId);}}>
+                    <IconStyled name={EDIT} />
+                    <ItemTitle>
                         Перейменувати
-                    </div>
-                </div>
-            </div>
-            <div className={styles.menuItem}>
-                <div className={styles.wrapper}>
-                    <Icon name={STASH} className={styles.itemIconTemp} />
-                    <div className={styles.itemName}>
+                    </ItemTitle>
+                </MenuItemMain>
+            </MenuItem>
+            <MenuItem>
+                <MenuItemMain>
+                    <IconStyled name={STASH} />
+                    <ItemTitle>
                         Видалити
-                    </div>
-                </div>
-            </div>
-            <div className={styles.menuItem}>
-                <div className={styles.wrapper}>
-                    <Icon name={STASH} className={styles.itemIconTemp} />
-                    <div className={styles.itemName}>
+                    </ItemTitle>
+                </MenuItemMain>
+            </MenuItem>
+            <MenuItem>
+                <MenuItemMain>
+                    <IconStyled name={STASH}  />
+                    <ItemTitle>
                         Властивості
-                    </div>
-                </div>
-            </div>
+                    </ItemTitle>
+                </MenuItemMain>
+            </MenuItem>
         </>
     );
 };

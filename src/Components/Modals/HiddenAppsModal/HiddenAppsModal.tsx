@@ -1,24 +1,20 @@
 import React from "react";
-import cn from "classnames";
 import { Icon } from "Components";
 import { HIDDEN_APPS } from "Constants/TaskPanel";
 
-import styles from "./HiddenAppsModal.module.scss";
+import { HiddenAppsItem, HiddenAppsModalWrapper } from "Components/Modals/HiddenAppsModal/HiddenAppsModal.styled";
 
 const HiddenAppsModal = () => {
     return (
-        <div
-            onClick={e => e.stopPropagation()}
-            className={cn(styles.hiddenAppsModal, styles.taskPanelModal)}
-        >
+        <HiddenAppsModalWrapper>
             {HIDDEN_APPS.map(appName => {
                 return (
-                    <div key={appName} className={styles.hiddenAppUnit}>
-                        <Icon name={appName} className={styles.appUnitIcon} />
-                    </div>
+                    <HiddenAppsItem key={appName}>
+                        <Icon name={appName} style={{ width: "18px", height: "18px" }} />
+                    </HiddenAppsItem>
                 );
             })}
-        </div>
+        </HiddenAppsModalWrapper>
     );
 };
 

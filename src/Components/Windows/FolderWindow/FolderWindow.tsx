@@ -1,12 +1,11 @@
-import React, { Dispatch, SetStateAction } from "react";
 import WindowBasic from "Components/Windows/WindowBasic/WindowBasic";
-
 import styles from "./FolderWindow.module.scss";
 import { useAppSelector } from "Store/index";
 import { selectFolder } from "Store/selectors/Desktop";
 import { DraggableFile } from "Components/index";
+import { FolderWindowProps } from "./FolderWindow.types";
 
-const FolderWindow = ({ name, id, renameFileId, selectedFiles, setIsSelecting, onContextMenu, setRenameFileId }: {setRenameFileId: Dispatch<SetStateAction<string>>, selectedFiles: string[], onContextMenu: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void, name: string; id: string, renameFileId: string, setIsSelecting: (isSelecting: boolean) => void; }) => {
+const FolderWindow = ({ name, id, renameFileId, selectedFiles, setIsSelecting, onContextMenu, setRenameFileId }: FolderWindowProps) => {
     const folder = useAppSelector(selectFolder(id));
 
     return (
@@ -36,8 +35,6 @@ const FolderWindow = ({ name, id, renameFileId, selectedFiles, setIsSelecting, o
                             type={item.type}
                             setRenameFileId={setRenameFileId}
                         />);
-
-                        // <div>{item.name}+{item.size} bytes</div>;
                     })}
             </div>
         </WindowBasic>

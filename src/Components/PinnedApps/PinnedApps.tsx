@@ -6,18 +6,12 @@ import { useAppDispatch } from "Store/index";
 import { changeApp, openingApp } from "Store/slices/TaskPanelSlice";
 
 import styles from "./PinnedApps.module.scss";
-
-type App = {
-    name: string;
-    isOpen?: boolean;
-    isFocused?: boolean;
-    component: React.ReactElement;
-};
+import { PinnedAppsProps } from "Components/PinnedApps/PinnedApps.types";
 
 const PinnedApps = ({
     taskPanelApps,
 }: {
-    taskPanelApps: { [key: string]: App };
+    taskPanelApps: { [key: string]: PinnedAppsProps };
 }) => {
     const dispatch = useAppDispatch();
 

@@ -1,6 +1,6 @@
 import { BasicSize } from "Types/System";
 
-export type IProps = {
+export type FileSizeProps = {
     selectedSize: BasicSize,
     onDesktopFileSizeChange: ({ width, height }: BasicSize) => void;
 }

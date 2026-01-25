@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from "react";
 
-import styles from "./OffScreen.module.scss";
 import Icon from "Components/Icon/Icon";
 import { POWER } from "Constants/System";
+import { OffScreenProps } from "./OffScreen.types";
+import { Typography } from '@mui/material';
+import { NoSignal, OffScreenWrapper, PowerButtonWrapper } from "Components/Screens/OffScreen/OffScreen.styled";
 
-type IProps = {
-    isStartScreen?: boolean;
-    start?: () => void;
-    isShutDownScreen?: boolean;
-};
-
-const OffScreen = ({ isStartScreen, start, isShutDownScreen }: IProps) => {
+const OffScreen = ({ isStartScreen, start, isShutDownScreen }: OffScreenProps) => {
     const [isMessageShow, setIsMessageShow] = useState(false);
     const [executionCount, setExecutionCount] = useState(0);
 
@@ -30,22 +26,21 @@ const OffScreen = ({ isStartScreen, start, isShutDownScreen }: IProps) => {
     };
 
     return (
-        <div className={styles.wrapper}>
+        <OffScreenWrapper>
             {isMessageShow && (
-                <div className={styles.noSignal}>
-                    <div className={styles.title}>HDMI 1</div>
-                    <div className={styles.subTitle}>No signal</div>
-                </div>
+                <NoSignal>
+                    <Typography style={{ fontSize: "25px" }}>HDMI 1</Typography>
+                    <Typography style={{ fontSize: "18px" }}>No signal</Typography>
+                </NoSignal>
             )}
             {(isStartScreen || isShutDownScreen) && (
-                <div
-                    className={styles.powerButton}
+                <PowerButtonWrapper
                     onClick={() => onSystemStart()}
                 >
                     <Icon name={POWER} />
-                </div>
+                </PowerButtonWrapper>
             )}
-        </div>
+        </OffScreenWrapper>
     );
 };
 

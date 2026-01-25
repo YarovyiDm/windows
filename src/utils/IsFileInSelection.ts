@@ -1,20 +1,11 @@
-type Position = {
-    x: number;
-    y: number;
-};
+import { BasicCoordinates, BasicSize } from "Types/System";
 
 export const isFileInSelection = (
-    filePosition: Position,
-    fileSize: { width: number; height: number },
+    filePosition: BasicCoordinates,
+    fileSize: BasicSize,
     meta: {
-        startPosition: {
-            x: number;
-            y: number;
-        };
-        currentPosition: {
-            x: number;
-            y: number;
-        };
+        startPosition: BasicCoordinates;
+        currentPosition: BasicCoordinates;
     },
 ) => {
     const selectionX = Math.min(meta.startPosition.x, meta.currentPosition.x);

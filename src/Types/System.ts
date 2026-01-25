@@ -1,7 +1,12 @@
+export type BasicSize = {
+    height: number;
+    width: number;
+}
+
 export type FileSize = {
     name: string;
     iconName: string;
-    size: { width: number; height: number };
+    size: BasicSize;
     hotKeys: string;
     isSelected: boolean;
 };
@@ -11,7 +16,7 @@ export type SystemType = {
     systemPassword: string;
     systemLanguage: string;
     isWindowsUnlock: boolean;
-    desktopFileSize: { width: number; height: number };
+    desktopFileSize: BasicSize;
     wallpaper: string;
     systemScenario: string;
     brightness: number;
@@ -25,7 +30,3 @@ export type BasicCoordinates = {
     y: number;
 }
 
-export type BasicSize = {
-    height: number;
-    width: number;
-}

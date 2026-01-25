@@ -9,11 +9,11 @@ export const selectFiles = createSelector(
     (state: Desktop) => state.desktopFiles,
 );
 
-export const selectIsWindowOpen = (winodwName: string) =>
+export const selectIsWindowOpen = (windowName: string) =>
     createSelector(
         selectDesktop,
         (state: Desktop) =>
-            state.openedWindows.filter(window => window.fileName === winodwName)
+            state.openedWindows.filter(window => window.fileName === windowName)
                 .length,
     );
 

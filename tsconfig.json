@@ -9,7 +9,7 @@
             "Icons/*": ["Icons/*"],
             "Modals/*": ["/Components/Modals/*"],
             "Types/*": ["Types/*"],
-            "Sccs/*": ["Sccs/*"],
+            "Scss/*": ["Scss/*"],
             "Hooks/*": ["Hooks/*"]
         },
         "target": "es5",

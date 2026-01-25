@@ -1,7 +1,7 @@
 import { BasicCoordinates } from "Types/System";
 import { Dispatch, SetStateAction } from "react";
 
-export type IProps = {
+export type ContextMenuProps = {
     contextMenuPosition: BasicCoordinates;
     setContextMenuVisible: (state: boolean) => void;
     clickedType: "file" | "desktop" | null;

@@ -1,14 +1,18 @@
-import styles from "Components/ContextMenu/ContextMenu.module.scss";
 import { DESKTOP_FILE_SIZE_UNIT } from "Constants/System";
-import Icon from "Components/Icon/Icon";
 import useLanguage from "Hooks/useLanguage";
-import { IProps } from "Components/ContextMenu/components/FileSize/FileSize.types";
+import { FileSizeProps } from "Components/ContextMenu/components/FileSize/FileSize.types";
+import {
+    SubMenuWrapper,
+    SubMenuItemMain,
+    SubItemTitle,
+    IconWrapper, HotKeys, SizeSelected, SizeIcon, SizeTitle,
+} from "../../ContextMenu.styled";
 
-const FileSize = ({ selectedSize, onDesktopFileSizeChange }: IProps) => {
+const FileSize = ({ selectedSize, onDesktopFileSizeChange }: FileSizeProps) => {
     const { translate } = useLanguage();
     
     return (
-        <div className={styles.subMenu}>
+        <SubMenuWrapper className='submenu'>
             {DESKTOP_FILE_SIZE_UNIT.map(
                 ({ size, name, iconName, hotKeys }) => {
                     const isSizeSelected =
@@ -16,9 +20,8 @@ const FileSize = ({ selectedSize, onDesktopFileSizeChange }: IProps) => {
                         size.width === selectedSize.width;
 
                     return (
-                        <div
+                        <SubMenuItemMain
                             key={name}
-                            className={styles.subMenuItem}
                             onClick={() =>
                                 onDesktopFileSizeChange({
                                     width: size.width,
@@ -26,28 +29,27 @@ const FileSize = ({ selectedSize, onDesktopFileSizeChange }: IProps) => {
                                 })
                             }
                         >
-                            <div className={styles.subMenuItemName}>
-                                <div className={styles.iconWrapper}>
-                                    <Icon
+                            <SubItemTitle>
+                                <IconWrapper>
+                                    <SizeIcon
                                         name={iconName}
-                                        className={styles.sizeIcon}
                                     />
-                                </div>
-                                <div className={styles.sizeName}>
+                                </IconWrapper>
+                                <SizeTitle>
                                     {translate(name)}
-                                </div>
-                            </div>
-                            <div className={styles.hotKeys}>
+                                </SizeTitle>
+                            </SubItemTitle>
+                            <HotKeys>
                                 {hotKeys}
-                            </div>
+                            </HotKeys>
                             {isSizeSelected && (
-                                <div className={styles.sizeSelected} />
+                                <SizeSelected />
                             )}
-                        </div>
+                        </SubMenuItemMain>
                     );
                 },
             )}
-        </div>
+        </SubMenuWrapper>
     );
 };
 

@@ -119,19 +119,19 @@ export const DESKTOP_FILE_SIZE_UNIT = [
         name: "bigIcons" as keyof typeof translations.en,
         iconName: SQUARE_LIST,
         size: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_LARGE],
-        hotKeys: "Crtl+Shift+2",
+        hotKeys: "Ctrl+Shift+2",
     },
     {
         name: "mediumIcons" as keyof typeof translations.en,
         iconName: SQUARE_LIST,
         size: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_MEDIUM],
-        hotKeys: "Crtl+Shift+3",
+        hotKeys: "Ctrl+Shift+3",
     },
     {
         name: "smallIcons" as keyof typeof translations.en,
         iconName: VIEW_BOXES,
         size: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_SMALL],
-        hotKeys: "Crtl+Shift+4",
+        hotKeys: "Ctrl+Shift+4",
     },
 ];
 
@@ -140,10 +140,10 @@ export const SHOW_SAVE_MESSAGE_DELAY: number = 2000;
 //System scenarios
 
 export const RESTART_SCENARIO: string = "restart";
-export const SHUTWODN_SCENARIO: string = "shutdown";
+export const SHUTDOWN_SCENARIO: string = "shutdown";
 
 export const POWER_MODAL_UNITS = {
-    [POWER]: { name: "Завершити роботу", scenario: SHUTWODN_SCENARIO },
+    [POWER]: { name: "Завершити роботу", scenario: SHUTDOWN_SCENARIO },
     [SLEEP]: { name: "Сон", scenario: RESTART_SCENARIO },
     [RELOAD]: { name: "Перезавантажити", scenario: RESTART_SCENARIO },
 };

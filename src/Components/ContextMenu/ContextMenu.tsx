@@ -3,11 +3,12 @@ import {
     SIZE_HOT_KEYS_MAP,
 } from "Constants/System";
 import { useAppDispatch } from "Store/index";
-import styles from "./ContextMenu.module.scss";
 import { changeDesktopFileSize } from "Store/slices/System";
 import { useEffect } from "react";
-import { IProps } from "./ContextMenu.types";
+import { ContextMenuProps } from "./ContextMenu.types";
 import MenuProvider from "Components/ContextMenu/components/MenuProvider/MenuProvider";
+import { BasicSize } from "Types/System";
+import { ContextMenuStyled } from './ContextMenu.styled';
 
 const ContextMenu = ({
     contextMenuPosition,
@@ -15,13 +16,10 @@ const ContextMenu = ({
     clickedType,
     targetId,
     setRenameFileId,
-}: IProps) => {
+}: ContextMenuProps) => {
     const dispatch = useAppDispatch();
 
-    const onDesktopFileSizeChange = (newSize: {
-        width: number;
-        height: number;
-    }) => {
+    const onDesktopFileSizeChange = (newSize: BasicSize) => {
         dispatch(changeDesktopFileSize(newSize));
     };
 
@@ -53,8 +51,7 @@ const ContextMenu = ({
     });
 
     return (
-        <div
-            className={styles.contextMenu}
+        <ContextMenuStyled
             style={{ top: contextMenuPosition.y, left: contextMenuPosition.x }}
         >
             <MenuProvider
@@ -65,7 +62,7 @@ const ContextMenu = ({
                 clickedType={clickedType}
                 setContextMenuVisible={setContextMenuVisible}
             />
-        </div>
+        </ContextMenuStyled>
     );
 };
 

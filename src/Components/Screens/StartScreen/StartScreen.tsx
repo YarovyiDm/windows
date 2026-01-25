@@ -1,16 +1,16 @@
 import React from "react";
 
-import styles from "./StartScreen.module.scss";
 import Icon from "Components/Icon/Icon";
 import { WINDOWS } from "Constants/System";
 import Loader from "Components/Loader/Loader";
+import { StartScreenWrapper } from "Components/Screens/StartScreen/StartScreen.styled";
 
 const StartScreen = () => {
     return (
-        <div className={styles.wrapper}>
+        <StartScreenWrapper>
             <Icon name={WINDOWS} />
             <Loader />
-        </div>
+        </StartScreenWrapper>
     );
 };
 

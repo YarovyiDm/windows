@@ -24,22 +24,16 @@ import Notification from "Components/Notification/Notification";
 import useLanguage from "Hooks/useLanguage";
 import SettingsWindow from "Containers/Desktop/Components/Windows/SettingsWindow/SettingsWindow";
 import type { BasicCoordinates } from "Types/System";
-import { handleMouseMoveHelper } from "Containers/Desktop/Desktop.helpers";
 import Selection from "Containers/Desktop/Components/Selection/Selection";
 import { DesktopWrapper } from "Containers/Desktop/Desktop.styled";
-import { useUserLocation } from "Hooks/Api/useUserLocation";
 import type { MouseEvent as ReactMouseEvent, DragEvent } from "react";
 
 const Desktop = () => {
-    const [isSelecting, setIsSelecting] = useState<boolean>(false);
-    const [startPosition, setStartPosition] = useState<BasicCoordinates>(ZERO_POSITION);
-    const [currentPosition, setCurrentPosition] =
-        useState<BasicCoordinates>(ZERO_POSITION);
+    const [isSelecting, setIsSelecting] = useState(false);
+    const startPositionRef = useRef<BasicCoordinates>(ZERO_POSITION);
+    const currentPositionRef = useRef<BasicCoordinates>(ZERO_POSITION);
     const selectionRef = useRef<HTMLDivElement>(null);
-    const [renameFileId, setRenameFileId] = useState<string>('');
-    const location = useUserLocation();
-
-    console.log('location', location.data?.city);
+    const [renameFileId, setRenameFileId] = useState('');
 
     const dispatch = useAppDispatch();
     const {
@@ -58,69 +52,62 @@ const Desktop = () => {
     const isSettingsWindowOpen = useAppSelector(selectIsWindowOpen("Settings"));
     const selectedFiles = useAppSelector(state => state.desktop.selectedFiles);
 
-    const handleMouseDown = (
-        e: ReactMouseEvent<HTMLDivElement>,
-    ) => {
+    const handleMouseDown = (e: ReactMouseEvent<HTMLDivElement>) => {
         const target = e.target as HTMLElement;
 
         if (!target.closest(".prevent-selecting")) {
             setIsSelecting(true);
-            setStartPosition({ x: e.clientX, y: e.clientY });
-            setCurrentPosition({ x: e.clientX, y: e.clientY });
+            startPositionRef.current = { x: e.clientX, y: e.clientY };
+            currentPositionRef.current = { x: e.clientX, y: e.clientY };
             dispatch(clearSelection());
         }
     };
 
     useEffect(() => {
-        const handleClickOutside = () => {
-            setContextMenuVisible(false);
+        const handleClickOutside = () => setContextMenuVisible(false);
+
+        const handleMouseMove = (e: Event) => {
+            if (!isSelecting) return;
+            if (!(e instanceof MouseEvent)) return;
+
+            currentPositionRef.current = { x: e.clientX, y: e.clientY };
+
+            const newSelected = desktopFiles
+                .filter(file =>
+                    isFileInSelection(file.position, DESKTOP_FILE_SIZE, {
+                        startPosition: startPositionRef.current,
+                        currentPosition: currentPositionRef.current,
+                    }),
+                )
+                .map(f => f.name);
+
+            dispatch(selectMultipleFiles(newSelected));
         };
 
-        const handleMouseMoveEvent = (e: Event) => {
-            if (!(e instanceof MouseEvent)) return;
-            handleMouseMoveHelper(e, isSelecting, setCurrentPosition);
-        };
-
-        const handleMouseUpEvent = (e: Event) => {
-            if (!(e instanceof MouseEvent)) return;
-            setIsSelecting(false);
+        const handleMouseUp = () => {
+            if (isSelecting) setIsSelecting(false);
         };
 
         document.addEventListener(CLICK_EVENT, handleClickOutside);
-
-        if (isSelecting) {
-            document.addEventListener(MOUSE_MOVE_EVENT, handleMouseMoveEvent);
-            document.addEventListener(MOUSE_UP_EVENT, handleMouseUpEvent);
-
-            const newSelectedFiles = desktopFiles
-                .filter(({ position }) =>
-                    isFileInSelection(position, DESKTOP_FILE_SIZE, {
-                        startPosition,
-                        currentPosition,
-                    }),
-                )
-                .map(({ name }) => name);
-
-            dispatch(selectMultipleFiles(newSelectedFiles));
-        }
+        document.addEventListener(MOUSE_MOVE_EVENT, handleMouseMove);
+        document.addEventListener(MOUSE_UP_EVENT, handleMouseUp);
 
         return () => {
             document.removeEventListener(CLICK_EVENT, handleClickOutside);
-            document.removeEventListener(MOUSE_MOVE_EVENT, handleMouseMoveEvent);
-            document.removeEventListener(MOUSE_UP_EVENT, handleMouseUpEvent);
+            document.removeEventListener(MOUSE_MOVE_EVENT, handleMouseMove);
+            document.removeEventListener(MOUSE_UP_EVENT, handleMouseUp);
         };
-    }, [isSelecting, currentPosition, startPosition, desktopFiles, dispatch, setContextMenuVisible]);
+    }, [desktopFiles, dispatch, isSelecting, setContextMenuVisible]);
 
     return (
         <DesktopWrapper
-            style={{
-                backgroundImage: `url(${wallpaper})`,
-            }}
+            style={{ backgroundImage: `url(${wallpaper})` }}
             onMouseDown={handleMouseDown}
             onContextMenu={handleContextMenu}
             onDragOver={(e: DragEvent) => e.preventDefault()}
         >
             <Notification text={translate("fullscreenAdvice")} />
+
             {contextMenuVisible && (
                 <ContextMenu
                     clickedType={clickedType}
@@ -130,10 +117,9 @@ const Desktop = () => {
                     setRenameFileId={setRenameFileId}
                 />
             )}
+
             {openedWindows.map(window => {
-                if (window.isSystem) {
-                    return;
-                }
+                if (window.isSystem) return null;
                 if (window.type === TEXT_FILE) {
                     return (
                         <TextWindow
@@ -146,6 +132,7 @@ const Desktop = () => {
                 }
                 return (
                     <FolderWindow
+                        key={window.id}
                         renameFileId={renameFileId}
                         setIsSelecting={setIsSelecting}
                         onContextMenu={handleContextMenu}
@@ -153,14 +140,18 @@ const Desktop = () => {
                         setRenameFileId={setRenameFileId}
                         name={window.fileName}
                         id={window.id}
-                        key={window.id}
                     />
                 );
             })}
 
             {isSelecting && (
-                <Selection selectionRef={selectionRef} startPosition={startPosition} currentPosition={currentPosition} />
+                <Selection
+                    selectionRef={selectionRef}
+                    startPosition={startPositionRef.current}
+                    currentPosition={currentPositionRef.current}
+                />
             )}
+
             {desktopFiles.map(
                 ({
                     name,
@@ -190,9 +181,11 @@ const Desktop = () => {
                     />
                 ),
             )}
+
             {isSettingsWindowOpen && <SettingsWindow />}
         </DesktopWrapper>
     );
 };
 
 export default Desktop;
+

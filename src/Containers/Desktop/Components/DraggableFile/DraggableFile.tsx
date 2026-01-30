@@ -43,7 +43,7 @@ const DraggableFile = ({
     const [isDragging, setIsDragging] = useState<boolean>(false);
 
     const fileRef = useRef<HTMLDivElement | null>(null);
-    const positionRef = useRef(filePosition); // позиція під час drag
+    const positionRef = useRef(filePosition);
     const offsetRef = useRef({ x: 0, y: 0 });
 
     const fileSelectionColor = useAppSelector(selectFileSelectionColor);

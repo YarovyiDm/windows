@@ -106,6 +106,8 @@ const Icon = (props: IProps) => {
     const { name } = props;
     const Component = Icons[name as keyof typeof Icons];
 
+    if (!Component) return null;
+
     return <Component {...props} />;
 };
 

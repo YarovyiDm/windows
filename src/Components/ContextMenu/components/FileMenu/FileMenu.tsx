@@ -1,6 +1,6 @@
 import { EDIT, STASH } from "Constants/System";
-import { FileMenuProps } from "./FileMenu.types";
-import { ItemTitle, MenuItem, MenuItemMain, IconStyled } from "../../ContextMenu.styled";
+import { IconStyled,ItemTitle, MenuItem, MenuItemMain } from "../../ContextMenu.styled";
+import type { FileMenuProps } from "./FileMenu.types";
 
 const FileMenu = ({ targetId, setRenameFileId }: FileMenuProps) => {
     return (

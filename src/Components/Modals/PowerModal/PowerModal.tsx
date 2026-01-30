@@ -1,7 +1,5 @@
-import React from "react";
 import * as _ from "lodash";
 import { POWER_MODAL_UNITS } from "Constants/System";
-
 import { useAppDispatch } from "Store/index";
 import { updateSystemScenario } from "Store/slices/System";
 import {
@@ -19,6 +17,7 @@ const PowerModal = () => {
             {_.map(POWER_MODAL_UNITS, (unit, key) => {
                 return (
                     <PowerModalItem
+                        key={key}
                         onClick={() =>
                             dispatch(updateSystemScenario(unit.scenario))
                         }

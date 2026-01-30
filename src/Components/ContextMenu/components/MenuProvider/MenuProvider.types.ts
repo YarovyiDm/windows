@@ -1,11 +1,6 @@
-import { BasicCoordinates, BasicSize } from "Types/System";
-import { Dispatch, SetStateAction } from "react";
+import type { BasicSize } from "Types/System";
+import type { ContextMenuProps } from "Components/ContextMenu/ContextMenu.types";
 
 export type MenuProviderProps = {
-    contextMenuPosition: BasicCoordinates;
-    setContextMenuVisible: (state: boolean) => void;
-    clickedType: "file" | "desktop" | null;
     onDesktopFileSizeChange: (newSize: BasicSize) => void;
-    targetId: string | null;
-    setRenameFileId: Dispatch<SetStateAction<string>>
-};
+} & ContextMenuProps;

@@ -1,7 +1,4 @@
-import React from "react";
-
 import useLanguage from "Hooks/useLanguage";
-import { ConfirmationWithoutSaveModalProps } from "./ConfirmationWithoutSaveModal.types";
 import {
     ConfirmationButton,
     ConfirmationButtonsWrapper,
@@ -10,6 +7,7 @@ import {
     ConfirmationTitle,
     ConfirmationWrapper,
 } from "./ConfirmationWithoutSaveModal.styled";
+import type { ConfirmationWithoutSaveModalProps } from "./ConfirmationWithoutSaveModal.types";
 
 const ConfirmationWithoutSaveModal = ({
     handleSave,

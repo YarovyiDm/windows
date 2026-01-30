@@ -1,23 +1,22 @@
 import React, { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { Tooltip } from "react-tooltip";
+import { Desktop, TaskBar } from "Containers";
 import { CONTEXT_MENU_EVENT, KEY_DOWN_EVENT } from "Constants/System";
-import { Desktop, TaskPanel } from "Containers";
-
-import styles from "./App.module.scss";
 import { changeLanguageIndexByHotKeys } from "Store/slices/System";
-import { useAppSelector } from "./Store";
 import useLanguage from "Hooks/useLanguage";
 import { updateFile } from "Store/slices/Desktop";
-import RestartScenario from "Components/SystemScenarios/RestartScenario";
-import StartScenario from "Components/SystemScenarios/StartScenario";
-import ShutDownScenario from "Components/SystemScenarios/ShutDownScenario";
+import RestartScenario from "Containers/Screens/Components/SystemScenarios/RestartScenario";
+import StartScenario from "Containers/Screens/Components/SystemScenarios/StartScenario";
+import ShutDownScenario from "Containers/Screens/Components/SystemScenarios/ShutDownScenario";
 import {
     selectNightMode,
     selectSystemBrightness,
     selectSystemScenario,
 } from "Store/selectors/System";
 import ErrorBoundary from "Components/ErrorBoundary/ErrorBoundary";
+import { useAppSelector } from "./Store";
+import styles from "./App.module.scss";
 
 const SCENARIOS_MAP = {
     restart: <RestartScenario />,
@@ -78,7 +77,7 @@ function App() {
                     ? SCENARIOS_MAP[
                           systemScenario as keyof typeof SCENARIOS_MAP
                     ]
-                    : [<Desktop />, <TaskPanel />]}
+                    : [<Desktop key='desktop' />, <TaskBar key='taskbar' />]}
             </div>
         </ErrorBoundary>
     );

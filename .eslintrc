@@ -1,7 +1,41 @@
 {
     "extends": ["react-app", "react-app/jest"],
-    "plugins": ["unused-imports"],
+    "plugins": ["unused-imports", "import", "@typescript-eslint"],
     "rules": {
+      "import/order": [
+        "error",
+        {
+          "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "type"],
+          "newlines-between": "never",
+          "pathGroups": [
+            { "pattern": "Components/**", "group": "internal" },
+            { "pattern": "Containers/**", "group": "internal" },
+            { "pattern": "Constants/**", "group": "internal" },
+            { "pattern": "Store/**", "group": "internal" },
+            { "pattern": "Hooks/**", "group": "internal" },
+            { "pattern": "Types/**", "group": "internal" },
+            { "pattern": "Icons/**", "group": "internal" },
+            { "pattern": "Modals/**", "group": "internal" },
+            { "pattern": "Scss/**", "group": "internal" },
+            { "pattern": "**/*.types", "group": "type", "position": "after" }
+          ],
+          "pathGroupsExcludedImportTypes": ["builtin"]
+        }
+      ],
+      "@typescript-eslint/member-delimiter-style": [
+        "error",
+        {
+          "multiline": {
+            "delimiter": "semi",
+            "requireLast": true
+          },
+          "singleline": {
+            "delimiter": "semi",
+            "requireLast": true
+          }
+        }
+      ],
+        "import/no-unresolved": "off",
         "unused-imports/no-unused-imports": "error",
         "unused-imports/no-unused-vars": [
           "warn",
@@ -18,6 +52,7 @@
         "prefer-const": "warn",
         "indent": ["warn", 4],
         "comma-dangle": ["error", "always-multiline"],
+        "no-trailing-spaces": "error",
         "semi": "error",
         "no-use-before-define": "warn",
         "one-var-declaration-per-line": "warn",

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { DraggableFile, ContextMenu } from "Components";
-import { DESKTOP_FILE_SIZE } from "Constants/File";
+import { isFileInSelection } from "utils/IsFileInSelection";
 import {
     CLICK_EVENT,
     MOUSE_MOVE_EVENT,
@@ -15,17 +15,21 @@ import {
     selectOpenedWindows,
 } from "Store/selectors/Desktop";
 import { selectMultipleFiles, clearSelection } from "Store/slices/Desktop";
-import { isFileInSelection } from "utils/IsFileInSelection";
-
-import styles from "./Desktop.module.scss";
+import { DESKTOP_FILE_SIZE } from "Constants/File";
 import { useContextMenu } from "Hooks/useContextMenu";
-import { selectSelectionStyles, selectWallpaper } from "Store/selectors/System";
-import TextWindow from "Components/Windows/TextWindow/TextWindow";
-import FolderWindow from "Components/Windows/FolderWindow/FolderWindow";
+import { selectWallpaper } from "Store/selectors/System";
+import TextWindow from "Containers/Desktop/Components/Windows/TextWindow/TextWindow";
+import FolderWindow from "Containers/Desktop/Components/Windows/FolderWindow/FolderWindow";
 import Notification from "Components/Notification/Notification";
 import useLanguage from "Hooks/useLanguage";
-import SettingsWindow from "Components/Windows/SettingsWindow/SettingsWindow";
-import { BasicCoordinates } from "Types/System";
+import SettingsWindow from "Containers/Desktop/Components/Windows/SettingsWindow/SettingsWindow";
+import type { BasicCoordinates } from "Types/System";
+import { handleMouseMoveHelper } from "Containers/Desktop/Desktop.helpers";
+import Selection from "Containers/Desktop/Components/Selection/Selection";
+import { DesktopWrapper } from "Containers/Desktop/Desktop.styled";
+import { useWeatherForecast } from "Hooks/Api/useWeather";
+import { getWeekdayName } from "../../utils/date";
+import type { MouseEvent as ReactMouseEvent, DragEvent } from "react";
 
 const Desktop = () => {
     const [isSelecting, setIsSelecting] = useState<boolean>(false);
@@ -34,7 +38,9 @@ const Desktop = () => {
         useState<BasicCoordinates>(ZERO_POSITION);
     const selectionRef = useRef<HTMLDivElement>(null);
     const [renameFileId, setRenameFileId] = useState<string>('');
-    const selectionStyles = useAppSelector(selectSelectionStyles);
+    const weather = useWeatherForecast("Kyiv");
+
+    console.log('date', getWeekdayName("2026-01-30"));
 
     const dispatch = useAppDispatch();
     const {
@@ -50,11 +56,11 @@ const Desktop = () => {
     const openedWindows = useAppSelector(selectOpenedWindows);
     const desktopFiles = useAppSelector(selectFiles);
     const wallpaper = useAppSelector(selectWallpaper);
-    const isSettingsModalOpen = useAppSelector(selectIsWindowOpen("Settings"));
+    const isSettingsWindowOpen = useAppSelector(selectIsWindowOpen("Settings"));
     const selectedFiles = useAppSelector(state => state.desktop.selectedFiles);
 
     const handleMouseDown = (
-        e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+        e: ReactMouseEvent<HTMLDivElement>,
     ) => {
         const target = e.target as HTMLElement;
 
@@ -66,57 +72,27 @@ const Desktop = () => {
         }
     };
 
-    const handleMouseMove = (e: MouseEvent) => {
-        if (!isSelecting) return;
-
-        const newPosition = { x: e.clientX, y: e.clientY };
-
-        setCurrentPosition(newPosition);
-
-        if (newPosition.y > window.innerHeight) {
-            setCurrentPosition(prev => ({
-                ...prev,
-                y: window.innerHeight,
-            }));
-        }
-    };
-
-    const handleMouseUp = () => {
-        setIsSelecting(false);
-    };
-
     useEffect(() => {
         const handleClickOutside = () => {
             setContextMenuVisible(false);
         };
 
+        const handleMouseMoveEvent = (e: Event) => {
+            if (!(e instanceof MouseEvent)) return;
+            handleMouseMoveHelper(e, isSelecting, setCurrentPosition);
+        };
+
+        const handleMouseUpEvent = (e: Event) => {
+            if (!(e instanceof MouseEvent)) return;
+            setIsSelecting(false);
+        };
+
         document.addEventListener(CLICK_EVENT, handleClickOutside);
 
-        return () => {
-            document.removeEventListener(CLICK_EVENT, handleClickOutside);
-        };
-    }, []);
-
-    useEffect(() => {
         if (isSelecting) {
-            document.addEventListener(
-                MOUSE_MOVE_EVENT,
-                handleMouseMove as EventListener,
-            );
-            document.addEventListener(MOUSE_UP_EVENT, handleMouseUp);
-        }
+            document.addEventListener(MOUSE_MOVE_EVENT, handleMouseMoveEvent);
+            document.addEventListener(MOUSE_UP_EVENT, handleMouseUpEvent);
 
-        return () => {
-            document.removeEventListener(
-                MOUSE_MOVE_EVENT,
-                handleMouseMove as EventListener,
-            );
-            document.removeEventListener(MOUSE_UP_EVENT, handleMouseUp);
-        };
-    }, [isSelecting]);
-
-    useEffect(() => {
-        if (isSelecting) {
             const newSelectedFiles = desktopFiles
                 .filter(({ position }) =>
                     isFileInSelection(position, DESKTOP_FILE_SIZE, {
@@ -128,35 +104,22 @@ const Desktop = () => {
 
             dispatch(selectMultipleFiles(newSelectedFiles));
         }
-    }, [currentPosition, isSelecting, desktopFiles, dispatch]);
 
-    const getSelectionStyles = () => {
-        const width = Math.abs(currentPosition.x - startPosition.x);
-        const height = Math.abs(currentPosition.y - startPosition.y);
-        const left = Math.min(startPosition.x, currentPosition.x);
-        const top = Math.min(startPosition.y, currentPosition.y);
-
-        return {
-            width: `${width}px`,
-            height: `${height}px`,
-            left: `${left}px`,
-            top: `${top}px`,
+        return () => {
+            document.removeEventListener(CLICK_EVENT, handleClickOutside);
+            document.removeEventListener(MOUSE_MOVE_EVENT, handleMouseMoveEvent);
+            document.removeEventListener(MOUSE_UP_EVENT, handleMouseUpEvent);
         };
-    };
-
-    const handleDragOver = (e: React.DragEvent) => {
-        e.preventDefault();
-    };
+    }, [isSelecting, currentPosition, startPosition, desktopFiles, dispatch, setContextMenuVisible]);
 
     return (
-        <div
+        <DesktopWrapper
             style={{
                 backgroundImage: `url(${wallpaper})`,
             }}
-            className={styles.Desktop}
             onMouseDown={handleMouseDown}
             onContextMenu={handleContextMenu}
-            onDragOver={handleDragOver}
+            onDragOver={(e: DragEvent) => e.preventDefault()}
         >
             <Notification text={translate("fullscreenAdvice")} />
             {contextMenuVisible && (
@@ -197,15 +160,7 @@ const Desktop = () => {
             })}
 
             {isSelecting && (
-                <div
-                    ref={selectionRef}
-                    className={styles.selection}
-                    style={{
-                        ...getSelectionStyles(),
-                        border: `solid 1px ${selectionStyles.borderColor}`,
-                        backgroundColor: selectionStyles.areaColor,
-                    }}
-                />
+                <Selection selectionRef={selectionRef} startPosition={startPosition} currentPosition={currentPosition} />
             )}
             {desktopFiles.map(
                 ({
@@ -236,8 +191,8 @@ const Desktop = () => {
                     />
                 ),
             )}
-            {isSettingsModalOpen && <SettingsWindow />}
-        </div>
+            {isSettingsWindowOpen && <SettingsWindow />}
+        </DesktopWrapper>
     );
 };
 

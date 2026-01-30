@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
     DIRECTION_BOTTOM,
     DIRECTION_RIGHT,
@@ -8,8 +9,7 @@ import {
     TASK_PANEL_HEIGHT,
     ZERO_POSITION,
 } from "Constants/System";
-import { useEffect, useState } from "react";
-import { BasicCoordinates, BasicSize } from "Types/System";
+import type { BasicCoordinates, BasicSize } from "Types/System";
 
 const useResize = (
     initialSize: BasicSize,

@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { updateSystemScenario } from "Store/slices/System";
-import { Dispatch } from "redux";
-import { ErrorBoundaryProps, ProgressBarState } from "./ErrorBoundary.types";
 import { ErrorContent, ErrorIcon, ErrorProgress, ErrorWrapper } from "Components/ErrorBoundary/ErrorBoundary.styled";
+import type { Dispatch } from "redux";
+import type { ErrorBoundaryProps, ProgressBarState } from "./ErrorBoundary.types";
 
 class ErrorBoundary extends React.Component<
     ErrorBoundaryProps,

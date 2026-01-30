@@ -1,4 +1,4 @@
-import { styled, Box } from "@mui/material";
+import { Box, styled } from "@mui/material";
 import Icon from "Components/Icon/Icon";
 
 export const ContextMenuStyled = styled(Box)({
@@ -40,7 +40,7 @@ export const MenuItem = styled(Box)({
         background: "#535353",
         borderRadius: "5px",
     },
-    "& path": {
+    "& > path": {
         fill: "#d9d9d9",
     },
 });

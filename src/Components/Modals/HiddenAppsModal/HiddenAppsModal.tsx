@@ -1,12 +1,10 @@
-import React from "react";
 import { Icon } from "Components";
 import { HIDDEN_APPS } from "Constants/TaskPanel";
-
 import { HiddenAppsItem, HiddenAppsModalWrapper } from "Components/Modals/HiddenAppsModal/HiddenAppsModal.styled";
 
 const HiddenAppsModal = () => {
     return (
-        <HiddenAppsModalWrapper>
+        <HiddenAppsModalWrapper onClick={(e) => e.stopPropagation()}>
             {HIDDEN_APPS.map(appName => {
                 return (
                     <HiddenAppsItem key={appName}>

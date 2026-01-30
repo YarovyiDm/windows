@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from "react";
-
+import { useState, useEffect } from "react";
 import { CROSS } from "Constants/System";
 import Icon from "Components/Icon/Icon";
 import useLanguage from "Hooks/useLanguage";
-import { NotificationProps } from "./Notification.types";
 import {
     CloseButtonWrapper,
     NotificationContent,
     NotificationHeader, NotificationTitle,
     NotificationWrapper,
 } from "Components/Notification/Notification.styled";
+import type { NotificationProps } from "./Notification.types";
 
 const Notification = ({ delayBeforeShow, duration, text }: NotificationProps) => {
     const [visible, setVisible] = useState(true);
@@ -26,7 +25,7 @@ const Notification = ({ delayBeforeShow, duration, text }: NotificationProps) =>
 
     return (
         <NotificationWrapper
-            style={{
+            sx={{
                 transform: visible ? "translateX(0)" : "translateX(100%)",
                 opacity: visible ? 1 : 0,
             }}

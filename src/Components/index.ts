@@ -1,17 +1,17 @@
 import ContextMenu from "Components/ContextMenu/ContextMenu";
-import DraggableFile from "Components/DraggableFile/DraggableFile";
-import File from "./File/File";
+import DraggableFile from "Containers/Desktop/Components/DraggableFile/DraggableFile";
+import File from "Containers/Desktop/Components/File/File";
+import Search from "Containers/TaskBar/Components/Main/Components/Search/Search";
+import SystemTray from "Containers/TaskBar/Components/SystemTray/SystemTray";
+import Apps from "Containers/TaskBar/Components/Main/Components/Apps/Apps";
 import Icon from "./Icon/Icon";
-import PinnedApps from "./PinnedApps/PinnedApps";
-import TaskPanelSearch from "./TaskPanelSearch/TaskPanelSearch";
-import TaskPanelSideBar from "./TaskPanelSideBar/TaskPanelSideBar";
 
 export {
     ContextMenu,
     DraggableFile,
     File,
     Icon,
-    PinnedApps,
-    TaskPanelSearch,
-    TaskPanelSideBar,
+    Apps,
+    Search,
+    SystemTray,
 };

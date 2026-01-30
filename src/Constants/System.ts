@@ -1,12 +1,11 @@
 import { LanguagesType } from "Types/TaskPanelTypes";
-
+import translations from "Components/I18n/translations";
 import wallpaper from "../assets/wallpaper.jpeg";
 import bri from "../assets/bri.jpg";
 import bessHamiti from "../assets/bessHamiti.jpg";
 import iriser from "../assets/iriser.jpg";
 import witcher from "../assets/witcher.jpg";
 import witcher2 from "../assets/witcher2.jpg";
-import translations from "Components/I18n/translations";
 
 export const USER: string = "User";
 export const POWER: string = "Power";

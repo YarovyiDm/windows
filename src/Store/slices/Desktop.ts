@@ -64,7 +64,7 @@ const desktopSlice = createSlice({
             state: Desktop,
             action: PayloadAction<{
                 name: string;
-                position: { x: number; y: number };
+                position: { x: number; y: number; };
             }>,
         ) {
             const file = state.desktopFiles.find(
@@ -134,13 +134,13 @@ const desktopSlice = createSlice({
             }
         },
         changeWindowZindex(state: Desktop, action: PayloadAction<string>) {
-            const currentFile = state.openedWindows.filter(
+            const currentFile = state.openedWindows.find(
                 item => item.id === action.payload,
-            )[0];
-
-            state.openedWindows.forEach(
-                (item, index) => (item.zIndex = index + 2),
             );
+
+            if (!currentFile) return; // <-- безпечний вихід, якщо такого ID немає
+
+            state.openedWindows.forEach((item, index) => (item.zIndex = index + 2));
             currentFile.zIndex = 99;
         },
         updateFile(
@@ -164,7 +164,7 @@ const desktopSlice = createSlice({
         },
         dragFileToFolder(
             state: Desktop,
-            action: PayloadAction<{ fileName: string; folderName: string }>,
+            action: PayloadAction<{ fileName: string; folderName: string; }>,
         ) {
             const { fileName, folderName } = action.payload;
             const targetFolder = state.desktopFiles.filter(

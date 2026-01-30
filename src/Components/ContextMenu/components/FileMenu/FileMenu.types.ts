@@ -1,6 +1,3 @@
-import { Dispatch, SetStateAction } from "react";
+import { ContextMenuProps } from "Components/ContextMenu/ContextMenu.types";
 
-export type FileMenuProps = {
-    targetId: string | null;
-    setRenameFileId: Dispatch<SetStateAction<string>>
-}
+export type FileMenuProps = Pick<ContextMenuProps, "targetId" | "setRenameFileId">

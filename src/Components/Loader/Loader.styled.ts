@@ -30,23 +30,23 @@ export const LoaderItem = styled(Box)({
     backgroundColor: "white",
     opacity: "0",
     animation: `${fade} 1.5s linear infinite`,
-    "&:nth-child(1)": {
+    ":nth-of-type(1)": {
         transform: "rotate(0deg) translate(30px)",
         animationDelay: "0s",
     },
-    "&:nth-child(2)": {
+    "&:nth-of-type(2)": {
         transform: "rotate(30deg) translate(30px)",
         animationDelay: "0.1s",
     },
-    "&:nth-child(3)": {
+    "&:nth-of-type(3)": {
         transform: "rotate(60deg) translate(30px)",
         animationDelay: "0.2s",
     },
-    "&:nth-child(4)": {
+    "&:nth-of-type(4)": {
         transform: "rotate(90deg) translate(30px)",
         animationDelay: "0.3s",
     },
-    "&:nth-child(5)": {
+    "&:nth-of-type(5)": {
         transform: "rotate(120deg) translate(30px)",
         animationDelay: "0.4s",
     },

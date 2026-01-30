@@ -1,12 +1,12 @@
-import { PLUS_CIRCLE, RIGHT_ARROW, TEXT_FILE, VIEW_BOXES } from "Constants/System";
-import FileSize from "Components/ContextMenu/components/FileSize/FileSize";
+import { v4 as uuid } from "uuid";
+import { useRef } from "react";
 import { FOLDER } from "Constants/Desktop";
+import { PLUS_CIRCLE, RIGHT_ARROW, TEXT_FILE, VIEW_BOXES } from "Constants/System";
 import useLanguage from "Hooks/useLanguage";
 import { useAppDispatch, useAppSelector } from "Store/index";
 import { selectFileSize } from "Store/selectors/System";
 import { addDesktopFile } from "Store/slices/Desktop";
-import { useId } from "react";
-import { CreateFilePayload, DesktopMenuProps } from "./DesktopMenu.types";
+import FileSize from "Components/ContextMenu/components/FileSize/FileSize";
 import {
     IconStyled,
     IconWrapper, ItemArrowIcon,
@@ -17,11 +17,12 @@ import {
     SubMenuItemMain,
     SubMenuWrapper,
 } from "../../ContextMenu.styled";
+import type { CreateFilePayload, DesktopMenuProps } from "./DesktopMenu.types";
 
 const DesktopMenu = ({ contextMenuPosition, setContextMenuVisible, onDesktopFileSizeChange } : DesktopMenuProps) => {
     const selectedSize = useAppSelector(selectFileSize);
     const { translate } = useLanguage();
-    const fileId = useId();
+    const fileId = useRef(uuid()).current;
     const dispatch = useAppDispatch();
 
     const createNewFile =

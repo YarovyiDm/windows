@@ -1,7 +1,7 @@
 import { styled, Box } from "@mui/material";
-import Modal from "Components/Modals/Modal/Modal";
+import { ModalWrapper } from "Components/Modals/Modals.styled";
 
-export const HiddenAppsModalWrapper = styled(Modal)({
+export const HiddenAppsModalWrapper = styled(ModalWrapper)({
     width: "166px",
     height: "81px",
     top: "-110px",

@@ -21,8 +21,9 @@ export type SystemType = {
     systemScenario: string;
     brightness: number;
     isNightMode: boolean;
-    selectionStyles: { borderColor: string; areaColor: string };
+    selectionStyles: { borderColor: string; areaColor: string; };
     fileSelectionColor: string;
+    settingsWindowID: string;
 };
 
 export type BasicCoordinates = {

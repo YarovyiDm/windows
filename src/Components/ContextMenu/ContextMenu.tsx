@@ -1,14 +1,14 @@
+import { useEffect } from "react";
+import MenuProvider from "Components/ContextMenu/components/MenuProvider/MenuProvider";
 import {
     KEY_DOWN_EVENT,
     SIZE_HOT_KEYS_MAP,
 } from "Constants/System";
 import { useAppDispatch } from "Store/index";
 import { changeDesktopFileSize } from "Store/slices/System";
-import { useEffect } from "react";
-import { ContextMenuProps } from "./ContextMenu.types";
-import MenuProvider from "Components/ContextMenu/components/MenuProvider/MenuProvider";
 import { BasicSize } from "Types/System";
 import { ContextMenuStyled } from './ContextMenu.styled';
+import type { ContextMenuProps } from "./ContextMenu.types";
 
 const ContextMenu = ({
     contextMenuPosition,
@@ -52,7 +52,7 @@ const ContextMenu = ({
 
     return (
         <ContextMenuStyled
-            style={{ top: contextMenuPosition.y, left: contextMenuPosition.x }}
+            sx={{ top: contextMenuPosition.y, left: contextMenuPosition.x }}
         >
             <MenuProvider
                 setRenameFileId={setRenameFileId}

@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-
+import { useEffect, useState } from "react";
 import { DateTimeDisplayProps } from "./DateTimeDisplay.types";
 
 const DateTimeDisplay = ({

@@ -1,13 +1,12 @@
 import { styled, Box } from "@mui/material";
-import Modal from "Components/Modals/Modal/Modal";
-import { Icon } from "Components";
+import Icon from "Components/Icon/Icon";
+import { ModalWrapper } from "Components/Modals/Modals.styled";
 
-export const PowerModalWrapper = styled(Modal)({
+export const PowerModalWrapper = styled(ModalWrapper)({
     position: "absolute",
     top: "-107px",
     width: "180px",
     height: "100px",
-    background: "green",
     padding: "5px",
     display: "flex",
     flexDirection: "column",

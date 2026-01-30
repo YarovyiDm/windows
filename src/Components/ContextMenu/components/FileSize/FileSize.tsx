@@ -1,16 +1,20 @@
+import { FileSizeProps } from "Components/ContextMenu/components/FileSize/FileSize.types";
 import { DESKTOP_FILE_SIZE_UNIT } from "Constants/System";
 import useLanguage from "Hooks/useLanguage";
-import { FileSizeProps } from "Components/ContextMenu/components/FileSize/FileSize.types";
 import {
-    SubMenuWrapper,
-    SubMenuItemMain,
+    HotKeys,
+    IconWrapper,
+    SizeIcon,
+    SizeSelected,
+    SizeTitle,
     SubItemTitle,
-    IconWrapper, HotKeys, SizeSelected, SizeIcon, SizeTitle,
+    SubMenuItemMain,
+    SubMenuWrapper,
 } from "../../ContextMenu.styled";
 
 const FileSize = ({ selectedSize, onDesktopFileSizeChange }: FileSizeProps) => {
     const { translate } = useLanguage();
-    
+
     return (
         <SubMenuWrapper className='submenu'>
             {DESKTOP_FILE_SIZE_UNIT.map(

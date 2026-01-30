@@ -1,6 +1,6 @@
 import { createSelector } from "@reduxjs/toolkit";
+import type { SystemType } from "Types/System";
 import { RootState } from "..";
-import { SystemType } from "Types/System";
 
 const selectSystem = (state: RootState) => state.system;
 
@@ -45,4 +45,8 @@ export const selectSelectionStyles = createSelector(
 export const selectFileSelectionColor = createSelector(
     selectSystem,
     (state: SystemType) => state.fileSelectionColor,
+);
+export const selectSettingsWindowId = createSelector(
+    selectSystem,
+    (state: SystemType) => state.settingsWindowID,
 );

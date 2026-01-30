@@ -10,7 +10,6 @@ import {
     MOUSE_MOVE_EVENT,
     MOUSE_UP_EVENT,
 } from "Constants/System";
-import useDrag from "Hooks/useDrag";
 import useLanguage from "Hooks/useLanguage";
 import { useAppDispatch, useAppSelector } from "Store/index";
 import {
@@ -42,119 +41,116 @@ const DraggableFile = ({
     const [isFileSelected, setIsFileSelected] = useState<boolean>(isSelected);
     const [targetFolderName, setTargetFolderName] = useState<string>("");
     const [isDragging, setIsDragging] = useState<boolean>(false);
-    const fileRef = useRef<HTMLDivElement | null>(null);
-    const fileSelectionColor = useAppSelector(selectFileSelectionColor);
-    const [fileName, setFileName] = useState<string>(name);
 
+    const fileRef = useRef<HTMLDivElement | null>(null);
+    const positionRef = useRef(filePosition); // позиція під час drag
+    const offsetRef = useRef({ x: 0, y: 0 });
+
+    const fileSelectionColor = useAppSelector(selectFileSelectionColor);
     const selectedSize = useAppSelector(selectFileSize);
     const dispatch = useAppDispatch();
-    const { position, handleMouseDown } = useDrag(filePosition, selectedSize);
     const { translate } = useLanguage();
+    const [fileName, setFileName] = useState(name);
 
-    const handleClickFileOutside = (e: MouseEvent) => {
+    const isRename = useMemo(() => renameFileId === id, [renameFileId, id]);
+
+    const handleClickOutside = useCallback((e: MouseEvent) => {
         if (fileRef.current && !fileRef.current.contains(e.target as Node)) {
             setIsFileSelected(false);
             setRenameFileId('');
         }
+    }, [setRenameFileId]);
+
+    const handleMouseDown = (e: React.MouseEvent) => {
+        setIsDragging(true);
+        setIsFileSelected(true);
+        setIsSelecting(false);
+
+        offsetRef.current = {
+            x: e.clientX - positionRef.current.x,
+            y: e.clientY - positionRef.current.y,
+        };
     };
 
-    const openFile = () => {
-        if (!isOpened) {
-            dispatch(
-                openWindow({
-                    zIndex: 999,
-                    content: innerContent,
-                    fileName: name,
-                    id,
-                    type,
-                }),
-            );
+    const handleMouseMove = useCallback((e: MouseEvent) => {
+        if (!isDragging) return;
+
+        const newX = e.clientX - offsetRef.current.x;
+        const newY = e.clientY - offsetRef.current.y;
+
+        positionRef.current = { x: newX, y: newY };
+
+        if (fileRef.current) {
+            fileRef.current.style.transform = `translate3d(${newX}px, ${newY}px, 0)`;
         }
-    };
 
-    useEffect(() => {
-        dispatch(changeFilePosition({ name, position }));
-    }, [position]);
+        checkDropTarget({ fileRef, id, setTargetFolderName });
+    }, [isDragging, id]);
+
+    const handleMouseUp = useCallback(() => {
+        if (!isDragging) return;
+
+        setIsDragging(false);
+        setPosition(positionRef.current);
+        dispatch(changeFilePosition({ name, position: positionRef.current }));
+
+        if (targetFolderName) {
+            dispatch(dragFileToFolder({ fileName: name, folderName: targetFolderName }));
+            setTargetFolderName("");
+        }
+    }, [dispatch, isDragging, name, targetFolderName]);
 
     useEffect(() => {
         if (!isFileSelected) return;
 
         const handleKeyDown = (e: KeyboardEvent) => {
-            if (e.code === DELETE_KEY_CODE) {
-                dispatch(removeFile(id));
-            }
+            if (e.code === DELETE_KEY_CODE) dispatch(removeFile(id));
             if (e.key === ENTER_KEY_CODE && isFileSelected) {
-                openFile();
+                if (!isOpened) {
+                    dispatch(openWindow({ zIndex: 999, content: innerContent, fileName: name, id, type }));
+                }
                 setIsFileSelected(false);
             }
         };
 
         document.addEventListener(KEY_DOWN_EVENT, handleKeyDown as EventListener);
         return () => document.removeEventListener(KEY_DOWN_EVENT, handleKeyDown as EventListener);
-    }, [isFileSelected]);
+    }, [dispatch, isFileSelected, id, innerContent, isOpened, name, type]);
 
     useEffect(() => {
-        if (targetFolderName && !isDragging) {
-            dispatch(
-                dragFileToFolder({
-                    fileName: name,
-                    folderName: targetFolderName,
-                }),
-            );
-            setTargetFolderName("");
-        }
-    }, [targetFolderName, isDragging, name, dispatch]);
+        const handleMouseDownWrapper = (e: Event) => handleClickOutside(e as MouseEvent);
+        const handleMouseMoveWrapper = (e: Event) => handleMouseMove(e as MouseEvent);
+        const handleMouseUpWrapper = () => handleMouseUp();
 
-    const handleMouseUp = () => {
+        document.addEventListener(MOUSE_DOWN_EVENT, handleMouseDownWrapper);
         if (isDragging) {
-            setIsDragging(false);
+            document.addEventListener(MOUSE_MOVE_EVENT, handleMouseMoveWrapper);
+            document.addEventListener(MOUSE_UP_EVENT, handleMouseUpWrapper);
         }
-    };
-
-    const handleMouseMove = useCallback(() => {
-        checkDropTarget({ fileRef, id, setTargetFolderName });
-    }, [fileRef, id, setTargetFolderName]);
-
-    useEffect(() => {
-        if (isDragging) {
-            document.addEventListener(MOUSE_UP_EVENT, handleMouseUp);
-            document.addEventListener(MOUSE_MOVE_EVENT, handleMouseMove);
-        }
-
-        document.addEventListener(
-            MOUSE_DOWN_EVENT,
-            handleClickFileOutside as EventListener,
-        );
 
         return () => {
-            document.removeEventListener(MOUSE_UP_EVENT, handleMouseUp);
-            document.removeEventListener(MOUSE_MOVE_EVENT, handleMouseMove);
-            document.removeEventListener(
-                MOUSE_DOWN_EVENT,
-                handleClickFileOutside as EventListener,
-            );
+            document.removeEventListener(MOUSE_DOWN_EVENT, handleMouseDownWrapper);
+            document.removeEventListener(MOUSE_MOVE_EVENT, handleMouseMoveWrapper);
+            document.removeEventListener(MOUSE_UP_EVENT, handleMouseUpWrapper);
         };
-    }, [isDragging]);
+    }, [isDragging, handleClickOutside, handleMouseMove, handleMouseUp]);
 
     useEffect(() => {
         setIsFileSelected(isSelected);
     }, [isSelected]);
 
-    const onFileNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setFileName(e.target.value);
-    };
+    const onFileNameChange = (e: ChangeEvent<HTMLInputElement>) => setFileName(e.target.value);
 
-    const isRename = useMemo(() => renameFileId === id, [renameFileId, id]);
+    const [position, setPosition] = useState(filePosition);
 
     return (
         <File
-            onMouseDown={e => {
-                handleMouseDown(e);
-                setIsFileSelected(true);
-                setIsSelecting(false);
-                setIsDragging(true);
+            onMouseDown={handleMouseDown}
+            onDoubleClick={() => {
+                if (!isOpened) {
+                    dispatch(openWindow({ zIndex: 999, content: innerContent, fileName: name, id, type }));
+                }
             }}
-            onDoubleClick={openFile}
             ref={fileRef}
             data-context='file'
             data-id={id}
@@ -163,11 +159,11 @@ const DraggableFile = ({
             sx={{
                 width: selectedSize?.width,
                 height: selectedSize?.height,
-                top: `${position.y}px`,
-                left: `${position.x}px`,
                 position: "absolute",
                 zIndex: isFileSelected ? 9 : 1,
-                background: (isFileSelected && fileSelectionColor) || "",
+                background: isFileSelected ? fileSelectionColor : "",
+                transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
+                willChange: "transform",
             }}
         >
             <Icon
@@ -180,7 +176,9 @@ const DraggableFile = ({
                     height: selectedSize.height / 2,
                 }}
             />
-            {isRename ? <input value={fileName} autoFocus onChange={(e) => onFileNameChange(e)}/> : <FileName>{fileName}</FileName>}
+            {isRename
+                ? <input value={fileName} autoFocus onChange={onFileNameChange} />
+                : <FileName>{fileName}</FileName>}
             {isDragging && targetFolderName && (
                 <TooltipStyled>
                     {translate("moveTo")} {targetFolderName}

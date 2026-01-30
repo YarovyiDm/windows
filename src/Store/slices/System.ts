@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuid } from "uuid";
 import {
     DEFAULT_LANGUAGE_INDEX,
     DESKTOP_FILE_SIZE,
@@ -27,7 +27,8 @@ const initialSystemState = {
         areaColor: "rgba(74, 144, 226, 0.2)",
     },
     fileSelectionColor: "rgba(179, 180, 179, 1)",
-    settingsWindowID: uuidv4(),
+    settingsWindowID: uuid(),
+    userLocationCity: "",
 } satisfies SystemType;
 
 const systemSlice = createSlice({
@@ -80,6 +81,9 @@ const systemSlice = createSlice({
         ) {
             state.fileSelectionColor = action.payload;
         },
+        changeUserLocationCity(state: SystemType, action: PayloadAction<string>) {
+            state.userLocationCity = action.payload;
+        },
     },
 });
 
@@ -96,4 +100,5 @@ export const {
     changeNightMode,
     changeSelectionStyle,
     changeFileSelectionColor,
+    changeUserLocationCity,
 } = systemSlice.actions;

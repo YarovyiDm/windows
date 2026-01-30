@@ -50,3 +50,5 @@ export const selectSettingsWindowId = createSelector(
     selectSystem,
     (state: SystemType) => state.settingsWindowID,
 );
+
+export const selectUserLocationCity = createSelector(selectSystem, (state: SystemType) => state.userLocationCity);

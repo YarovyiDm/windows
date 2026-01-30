@@ -1,22 +1,26 @@
 import { Box, Typography } from '@mui/material';
-import { useMemo, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useCurrentWeather } from "Hooks/Api/useWeather";
 import { WeatherIcon, WeatherTrigger, WeatherWrapper } from "Containers/TaskBar/Components/Weather/Weather.styled";
 import Widget from "Containers/TaskBar/Components/Weather/Components/Widget/Widget";
 import { useClickOutside } from "Hooks/useClickOutside";
 import { getIconUrl } from "Containers/TaskBar/Components/Weather/Weather.helpers";
+import { useAppSelector } from "Store/index";
+import { selectUserLocationCity } from "Store/selectors/System";
 
 const Weather = () => {
     const [isWidgetOpen, setIsWidgetOpen] = useState(false);
     const widgetRef = useRef<HTMLDivElement>(null);
-    const city = useMemo(() => "Kyiv", []);
+    const userLocationCity = useAppSelector(selectUserLocationCity);
+
+    console.log('userLocationCity', userLocationCity);
     const {
         data,
         isLoading,
         isError,
         error,
         isFetching,
-    } = useCurrentWeather(city);
+    } = useCurrentWeather(userLocationCity);
 
     useClickOutside(widgetRef, () => {
         setIsWidgetOpen(false);

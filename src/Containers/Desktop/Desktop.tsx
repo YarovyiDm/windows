@@ -27,8 +27,7 @@ import type { BasicCoordinates } from "Types/System";
 import { handleMouseMoveHelper } from "Containers/Desktop/Desktop.helpers";
 import Selection from "Containers/Desktop/Components/Selection/Selection";
 import { DesktopWrapper } from "Containers/Desktop/Desktop.styled";
-import { useWeatherForecast } from "Hooks/Api/useWeather";
-import { getWeekdayName } from "../../utils/date";
+import { useUserLocation } from "Hooks/Api/useUserLocation";
 import type { MouseEvent as ReactMouseEvent, DragEvent } from "react";
 
 const Desktop = () => {
@@ -38,9 +37,9 @@ const Desktop = () => {
         useState<BasicCoordinates>(ZERO_POSITION);
     const selectionRef = useRef<HTMLDivElement>(null);
     const [renameFileId, setRenameFileId] = useState<string>('');
-    const weather = useWeatherForecast("Kyiv");
+    const location = useUserLocation();
 
-    console.log('date', getWeekdayName("2026-01-30"));
+    console.log('location', location.data?.city);
 
     const dispatch = useAppDispatch();
     const {

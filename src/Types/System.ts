@@ -24,6 +24,7 @@ export type SystemType = {
     selectionStyles: { borderColor: string; areaColor: string; };
     fileSelectionColor: string;
     settingsWindowID: string;
+    userLocationCity: string;
 };
 
 export type BasicCoordinates = {

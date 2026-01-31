@@ -3,7 +3,6 @@ import { ZodError } from "zod";
 import { WeatherCurrentSchema, WeatherForecastSchema } from "./Weather.schemas";
 
 export const initApi = (client: AxiosInstance) => ({
-
     currentByCity: async (city: string) => {
         try {
             const res = await client.get("/current.json", { params: { q: city } });

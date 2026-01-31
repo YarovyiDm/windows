@@ -9,14 +9,13 @@ export const WallpapersStyled = styled(Box, {
     height: "120px",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
-
+    cursor: "pointer",
     "&:hover": {
-        outline: "solid 3px #09677b",
+        outline: "solid 3px #fff",
     },
 
     "&:not(:last-of-type)": {
         marginRight: "10px",
     },
-    outline: isSelected ? "solid 3px #09677b" : "solid 3px rgba(0, 0, 0, 0)",
-
+    outline: isSelected ? "solid 3px #fff" : "solid 3px rgba(0, 0, 0, 0)",
 }));

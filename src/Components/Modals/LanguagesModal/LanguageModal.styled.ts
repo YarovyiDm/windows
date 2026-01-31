@@ -6,6 +6,7 @@ export const LanguageModalWrapper = styled(ModalWrapper)({
     height: "270px",
     right: "-30px",
     top: "-290px",
+    background: "#242424",
 });
 
 export const LanguageModalHeaderWrapper = styled(Box)({
@@ -15,7 +16,6 @@ export const LanguageModalHeaderWrapper = styled(Box)({
 });
 
 export const LanguageModalTitle = styled(Box)({
-    color: "#535353",
     fontSize: "14px",
     marginRight: "10px",
     fontWeight: "500",
@@ -25,11 +25,11 @@ export const LanguageModalTitle = styled(Box)({
 export const LanguageModalHotKeysWrapper = styled(Box)({
     display: "flex",
     alignItems: "center",
-    color: "#535353",
+    gap: "5px",
 });
 
 export const LanguageModalHotKeysItem = styled(Box)({
-    fontSize: "10px",
+    fontSize: "12px",
     border: "solid 1px #c3c3c3",
     padding: "0 3px",
     borderRadius: "5px",

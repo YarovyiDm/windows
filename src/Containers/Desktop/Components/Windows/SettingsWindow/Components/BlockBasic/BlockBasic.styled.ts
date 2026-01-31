@@ -1,15 +1,36 @@
 import { styled, Box } from "@mui/material";
 
-export const BlockWrapper =  styled(Box)({
+export const BlockWrapper = styled(Box)({
     color: "#636363",
-    background: "white",
     marginBottom: "20px",
     borderRadius: "8px",
+
+    overflowX: "auto",
+
+    scrollbarWidth: "thin",
+    scrollbarColor: "#ffffff rgba(255, 255, 255, 0.05)",
+
+    "&::-webkit-scrollbar": {
+        height: "8px",
+    },
+
+    "&::-webkit-scrollbar-track": {
+        background: "rgba(255, 255, 255, 0.05)",
+        borderRadius: "8px",
+    },
+
+    "&::-webkit-scrollbar-thumb": {
+        background: "#ffffff",
+        borderRadius: "8px",
+    },
+
+    "&::-webkit-scrollbar-thumb:hover": {
+        background: "rgba(255, 255, 255, 0.85)",
+    },
 });
 
 export const BlockHeader =  styled(Box)({
     fontSize: "20px",
-    borderBottom: "solid 1px #b9b9b9",
     padding: "10px",
     fontWeight: "bold",
 });

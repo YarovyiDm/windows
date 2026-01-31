@@ -11,7 +11,7 @@ export const BlockBasic = ({
 }: BlockBasicProps) => {
     return (
         <BlockWrapper>
-            <BlockHeader>{title}</BlockHeader>
+            {title && <BlockHeader>{title}</BlockHeader>}
             <BlockChildren>{children}</BlockChildren>
         </BlockWrapper>
     );

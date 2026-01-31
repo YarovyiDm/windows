@@ -12,7 +12,7 @@ const Start = ({ refs, handleModalChange, isWindowsModalOpen }: StartProps) => {
             ref={refs.isWindowsModalOpen}
             onClick={() => handleModalChange("isWindowsModalOpen")}
         >
-            <Icon name={WINDOWS} style={{ width: "30px", height: "30px" }} />
+            <Icon name={WINDOWS} style={{ width: "30px", height: "30px", cursor: "pointer" }} />
             {isWindowsModalOpen && <WindowsModal />}
         </StartWrapper>
     );

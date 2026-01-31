@@ -9,10 +9,10 @@ export const Color = styled(Box, {
     borderRadius: "5px",
     cursor: "pointer",
     "&:hover": {
-        outline: "solid 2px #09677b",
+        outline: "solid 2px #fff",
     },
     "&:not(:last-of-type)": {
         marginRight: "10px",
     },
-    outline: isSelected ? "solid 3px #09677b" : 'solid 1px rgba(0, 0, 0, 0)',
+    outline: isSelected ? "solid 3px #fff" : 'solid 1px rgba(0, 0, 0, 0)',
 }));

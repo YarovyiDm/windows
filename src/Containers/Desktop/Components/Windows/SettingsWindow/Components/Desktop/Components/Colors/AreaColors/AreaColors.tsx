@@ -3,6 +3,7 @@ import { AREA_COLORS } from "Containers/Desktop/Components/Windows/SettingsWindo
 import { useAppDispatch, useAppSelector } from "Store/index";
 import { selectSelectionStyles } from "Store/selectors/System";
 import { Color } from "Containers/Desktop/Components/Windows/SettingsWindow/Components/Desktop/Components/Colors/Colors.styled";
+import { rgbaToRgb } from "../../../../../../../../../../utils/rgbaToRgb";
 
 const AreaColors = () => {
     const dispatch = useAppDispatch();
@@ -23,7 +24,7 @@ const AreaColors = () => {
                         )
                     }
                     sx={{
-                        background: color,
+                        background: rgbaToRgb(color),
                     }}
                 />
             );

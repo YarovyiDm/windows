@@ -6,7 +6,7 @@ export const HiddenAppsModalWrapper = styled(ModalWrapper)({
     height: "81px",
     top: "-110px",
     padding: "5px",
-    background: "#fbfbfb",
+    background: "#242424",
     display: "flex",
     flexWrap: "wrap",
     gap: "2px",
@@ -20,6 +20,6 @@ export const HiddenAppsItem = styled(Box)({
     alignItems: "center",
     justifyContent: "center",
     "&:hover": {
-        background: "#f7f5f5",
+        background: "rgba(255, 255, 255, 0.05)",
     },
 });

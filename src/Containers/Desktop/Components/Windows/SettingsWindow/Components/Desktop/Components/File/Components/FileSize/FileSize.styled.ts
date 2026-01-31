@@ -27,7 +27,7 @@ export const FileItem = styled(Box, {
         height: "30px",
     },
     "&:hover": {
-        outline: "solid 3px #09677b",
+        outline: "solid 3px #fff",
     },
-    outline: isSelected ? "solid 3px #09677b" : '',
+    outline: isSelected ? "solid 3px #fff" : '',
 }));

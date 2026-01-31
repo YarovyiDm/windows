@@ -11,7 +11,7 @@ export const SystemInformation = () => {
     const systemInfo = useSystem();
 
     return (
-        <BlockBasic title='System information'>
+        <BlockBasic>
             <SystemContentWrapper>
                 <SystemInformationItemWrapper>
                     <SystemInformationItemTitle>Platform:</SystemInformationItemTitle>

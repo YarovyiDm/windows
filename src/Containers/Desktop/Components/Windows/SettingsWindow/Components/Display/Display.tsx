@@ -30,7 +30,7 @@ export const Display = () => {
     };
 
     return (
-        <BlockBasic title='Display'>
+        <BlockBasic>
             <SystemContentWrapper>
                 <SystemItemWrapper>
                     <SystemItemSubTitleStyle>Brightness</SystemItemSubTitleStyle>
@@ -50,7 +50,7 @@ export const Display = () => {
                         checked={isNightMode}
                         onChange={onNightModeChange}
                         onColor='#86d3ff'
-                        onHandleColor='#2693e6'
+                        onHandleColor='#fff'
                         uncheckedIcon={false}
                         checkedIcon={false}
                         boxShadow='0px 1px 5px rgba(0, 0, 0, 0.6)'

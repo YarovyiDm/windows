@@ -1,8 +1,9 @@
 import { Box, styled } from "@mui/material";
 
 export const SettingsExample = styled(Box)({
-    width: "70px",
-    height: "50px",
+    width: "80px",
+    height: "70px",
+    borderRadius: "5px",
     marginLeft: "50px",
     display: "flex",
     alignItems: "center",

@@ -23,7 +23,8 @@ export const TextWindowWrapper = styled(Box)({
     "textarea": {
         width: "calc(100% - 20px)",
         height: "calc(100% - 20px)",
-        background: "#cfcfcf",
+        background: "none",
+        color: "wheat",
         padding: "10px",
         resize: "none",
         border: "none",
@@ -55,6 +56,7 @@ export const TextWindowFooter = styled(Box)({
     justifyContent: "space-between",
     padding: "0 10px",
     fontSize: "11px",
+    color: "white",
 });
 
 export const TextWindowFileFormat = styled(Box)({

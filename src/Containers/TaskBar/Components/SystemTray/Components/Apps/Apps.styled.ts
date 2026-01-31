@@ -6,9 +6,10 @@ import Icon from "Components/Icon/Icon";
 export const AppsWrapper = styled(SystemTrayItemWrapper, {
     shouldForwardProp: (prop) => prop !== "isOpened",
 })<isOpenedStylesProps>(({ isOpened }) => ({
-    background: isOpened ? "#f7f5f5" : "",
+    background: isOpened ? "rgba(255, 255, 255, 0.05)" : "",
+    cursor: "pointer",
     "&:hover": {
-        background: "#f7f5f5",
+        background: "rgba(255, 255, 255, 0.05)",
     },
 }));
 
@@ -16,5 +17,6 @@ export const AppsIconWrapper = styled(Icon, {
     shouldForwardProp: (prop) => prop !== "isOpened",
 })<isOpenedStylesProps>(({ isOpened }) => ({
     transition: "transform 200ms ease-in-out",
+    fill: "white",
     transform: isOpened ? "rotate(180deg)" : "none",
 }));

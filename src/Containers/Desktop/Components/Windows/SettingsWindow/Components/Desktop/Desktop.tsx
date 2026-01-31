@@ -5,7 +5,7 @@ import { SystemContentWrapper } from "../../SettingsWindow.styled";
 
 export const Desktop = () => {
     return (
-        <BlockBasic title='Desktop'>
+        <BlockBasic>
             <SystemContentWrapper>
                 <SelectionArea />
                 <File />

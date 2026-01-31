@@ -1,5 +1,5 @@
 import { WALLPAPERS } from "Constants/System";
-import "rc-slider/assets/index.css";
+// import "rc-slider/assets/index.css";
 import { useAppDispatch, useAppSelector } from "Store/index";
 import { selectWallpaper } from "Store/selectors/System";
 import { changeWallpaper } from "Store/slices/System";
@@ -15,7 +15,7 @@ const Wallpapers = () => {
     };
 
     return (
-        <BlockBasic title='Wallpapers'>
+        <BlockBasic>
             {WALLPAPERS.map(wallpaper => {
                 return (
                     <WallpapersStyled

@@ -20,7 +20,7 @@ const Apps = ({
     };
 
     return (
-        <Box sx={{ display: "flex", width: "fit-content", blockSize: "fit-content" }}>
+        <Box sx={{ display: "flex", width: "fit-content", blockSize: "fit-content", cursor: "pointer" }}>
             {taskPanelApps &&
                 map(
                     taskPanelApps,

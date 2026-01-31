@@ -15,7 +15,7 @@ const FileSelection = () => {
         <SystemItemContentWrapper>
             <Box display='flex' alignItems='center'>
                 <Box>
-                    <Typography mb={1}>
+                    <Typography mb={1} sx={{ color: "#fff" }}>
                         Selection file color
                     </Typography>
                     <Box display='flex'>

@@ -20,9 +20,9 @@ export const LanguageModalContentItem = styled(Box, {
     width: "calc(100% - 15px)",
     padding: "18px 0 0 15px",
     borderRadius: "5px",
-    background: isSelected ? "#d9d8d8" : "transparent",
+    background: isSelected ? "rgba(255, 255, 255, 0.05)" : "transparent",
     "&:hover": {
-        background: "#d9d8d8",
+        background: "rgba(255, 255, 255, 0.05)",
     },
 }));
 

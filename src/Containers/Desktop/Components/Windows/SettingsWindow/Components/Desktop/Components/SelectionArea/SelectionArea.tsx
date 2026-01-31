@@ -20,7 +20,7 @@ const SelectionArea = () => {
             <SystemItemContentWrapper>
                 <Box display='flex' flexDirection='column' gap={2}>
                     <Box>
-                        <Typography>
+                        <Typography sx={{ color: "#fff" }} mb={1}>
                             Border color
                         </Typography>
                         <Box display='flex'>
@@ -28,7 +28,7 @@ const SelectionArea = () => {
                         </Box>
                     </Box>
                     <Box>
-                        <Typography>
+                        <Typography sx={{ color: "#fff" }} mb={1}>
                             Area color
                         </Typography>
                         <Box display='flex'>

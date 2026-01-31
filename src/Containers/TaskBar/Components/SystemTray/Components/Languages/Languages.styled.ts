@@ -5,8 +5,10 @@ import { isOpenedStylesProps } from "Containers/TaskBar/TaskBar.types";
 export const LanguagesWrapper = styled(SystemTrayItemWrapper, {
     shouldForwardProp: (prop) => prop !== "isOpened",
 })<isOpenedStylesProps>(({ isOpened }) => ({
-    background: isOpened ? "#f7f5f5" : "",
+    color: "white",
+    cursor: "pointer",
+    background: isOpened ? "rgba(255, 255, 255, 0.05)" : "",
     "&:hover": {
-        background: "#f7f5f5",
+        background: "rgba(255, 255, 255, 0.05)",
     },
 }));

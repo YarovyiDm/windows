@@ -23,7 +23,7 @@ const FileSize = () => {
     return (
         <SystemItemContentWrapper>
             <Box>
-                <Typography mb={1}>Size</Typography>
+                <Typography mb={1} sx={{ color: "#fff" }}>Size</Typography>
                 <Box display='flex' gap={1}>
                     {FILE_SIZE.map(file => {
                         return (
@@ -52,7 +52,7 @@ const FileSize = () => {
                                         }}
                                     />
                                 </FileItem>
-                                <FileSizeTitle>{file.title}</FileSizeTitle>
+                                <FileSizeTitle sx={{ color: "#fff" }}>{file.title}</FileSizeTitle>
                             </FileSizeItem>
                         );
                     })}

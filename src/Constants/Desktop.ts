@@ -1,6 +1,14 @@
 export const DESKTOP: string = "desktop";
-export const FOLDER: string = "folder";
+export const FOLDER: string = "Folder";
 export const BIN: string = "bin";
+
+export const FILE_TYPES = {
+    DESKTOP: "Desktop",
+    FOLDER: "Folder",
+    BIN: "Bin",
+    TEXT_FILE: "Text_file",
+    LINK: "Link",
+} as const;
 
 export const DEFAULT_DESKTOP_MODAL_SIZE = {
     width: 700,

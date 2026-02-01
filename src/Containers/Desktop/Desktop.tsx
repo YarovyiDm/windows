@@ -2,10 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { DraggableFile, ContextMenu } from "Components";
 import { isFileInSelection } from "utils/IsFileInSelection";
 import {
-    CLICK_EVENT,
-    MOUSE_MOVE_EVENT,
-    MOUSE_UP_EVENT,
-    TEXT_FILE,
+    DOM_EVENTS, WINDOW_TYPES,
     ZERO_POSITION,
 } from "Constants/System";
 import { useAppSelector, useAppDispatch } from "Store/index";
@@ -88,14 +85,14 @@ const Desktop = () => {
             if (isSelecting) setIsSelecting(false);
         };
 
-        document.addEventListener(CLICK_EVENT, handleClickOutside);
-        document.addEventListener(MOUSE_MOVE_EVENT, handleMouseMove);
-        document.addEventListener(MOUSE_UP_EVENT, handleMouseUp);
+        document.addEventListener(DOM_EVENTS.CLICK, handleClickOutside);
+        document.addEventListener(DOM_EVENTS.MOUSE_MOVE, handleMouseMove);
+        document.addEventListener(DOM_EVENTS.MOUSE_UP, handleMouseUp);
 
         return () => {
-            document.removeEventListener(CLICK_EVENT, handleClickOutside);
-            document.removeEventListener(MOUSE_MOVE_EVENT, handleMouseMove);
-            document.removeEventListener(MOUSE_UP_EVENT, handleMouseUp);
+            document.removeEventListener(DOM_EVENTS.CLICK, handleClickOutside);
+            document.removeEventListener(DOM_EVENTS.MOUSE_MOVE, handleMouseMove);
+            document.removeEventListener(DOM_EVENTS.MOUSE_UP, handleMouseUp);
         };
     }, [desktopFiles, dispatch, isSelecting, setContextMenuVisible]);
 
@@ -120,7 +117,7 @@ const Desktop = () => {
 
             {openedWindows.map(window => {
                 if (window.isSystem) return null;
-                if (window.type === TEXT_FILE) {
+                if (window.type === WINDOW_TYPES.TEXT_FILE) {
                     return (
                         <TextWindow
                             key={window.id}
@@ -162,6 +159,7 @@ const Desktop = () => {
                     id,
                     type,
                     size,
+                    link,
                 }) => (
                     <DraggableFile
                         renameFileId={renameFileId}
@@ -169,6 +167,7 @@ const Desktop = () => {
                         size={size}
                         name={name}
                         icon={icon}
+                        link={link || ""}
                         position={position}
                         isOpened={isOpened}
                         innerContent={innerContent}

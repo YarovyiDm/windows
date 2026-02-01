@@ -2,9 +2,9 @@ import { useMemo, useState, useEffect, ChangeEvent } from "react";
 import { Box } from '@mui/material';
 import WindowBasic from "Containers/Desktop/Components/Windows/WindowBasic/WindowBasic";
 import {
-    KEY_DOWN_EVENT,
-    S_KEY_CODE,
-    SHOW_SAVE_MESSAGE_DELAY,
+    DOM_EVENTS,
+    KEY_CODES,
+    SHOW_SAVE_MESSAGE_DELAY, WINDOW_TYPES,
 } from "Constants/System";
 import { useAppDispatch } from "Store/index";
 import { closeWindow, updateFile } from "Store/slices/Desktop";
@@ -66,17 +66,17 @@ const TextWindow = ({
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
-            if (e.ctrlKey && e.code === S_KEY_CODE) {
+            if (e.ctrlKey && e.code === KEY_CODES.S) {
                 e.preventDefault();
                 handleSave();
             }
         };
 
-        window.addEventListener(KEY_DOWN_EVENT, handleKeyDown as EventListener);
+        window.addEventListener(DOM_EVENTS.KEY_DOWN, handleKeyDown as EventListener);
 
         return () => {
             window.removeEventListener(
-                KEY_DOWN_EVENT,
+                DOM_EVENTS.KEY_DOWN,
                 handleKeyDown as EventListener,
             );
         };
@@ -86,6 +86,7 @@ const TextWindow = ({
         <WindowBasic
             name={name}
             id={id}
+            type={WINDOW_TYPES.TEXT_FILE}
             onCloseCallback={isFileChanged && onConfirmationModalChange}
         >
             <TextWindowWrapper>

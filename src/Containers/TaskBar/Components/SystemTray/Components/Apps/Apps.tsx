@@ -1,7 +1,7 @@
 import { HiddenAppsModal } from "Components/Modals";
-import { ARROW } from "Constants/System";
 import { AppsProps } from "Containers/TaskBar/Components/SystemTray/Components/Apps/Apps.types";
 import { AppsIconWrapper, AppsWrapper } from "Containers/TaskBar/Components/SystemTray/Components/Apps/Apps.styled";
+import { ICONS } from "Constants/System";
 
 const Apps = ({ refs, hiddenAppsModalOpen, handleModalChange }: AppsProps) => {
     return (
@@ -14,7 +14,7 @@ const Apps = ({ refs, hiddenAppsModalOpen, handleModalChange }: AppsProps) => {
             <AppsIconWrapper
                 sx={{ width: "15px", height: "15px" }}
                 isOpened={hiddenAppsModalOpen}
-                name={ARROW}
+                name={ICONS.ARROW}
             />
         </AppsWrapper>
     );

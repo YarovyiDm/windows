@@ -1,9 +1,9 @@
 import React from "react";
 import { Icon } from "Components/index";
-import { WINDOWS } from "Constants/System";
 import WindowsModal from "Components/Modals/WindowsModal/WindowsModal";
 import { StartProps } from "Containers/TaskBar/Components/Main/Components/Start/Start.types";
 import { StartWrapper } from "Containers/TaskBar/Components/Main/Components/Start/Start.styled";
+import { ICONS } from "Constants/System";
 
 const Start = ({ refs, handleModalChange, isWindowsModalOpen }: StartProps) => {
     return (
@@ -12,7 +12,7 @@ const Start = ({ refs, handleModalChange, isWindowsModalOpen }: StartProps) => {
             ref={refs.isWindowsModalOpen}
             onClick={() => handleModalChange("isWindowsModalOpen")}
         >
-            <Icon name={WINDOWS} style={{ width: "30px", height: "30px", cursor: "pointer" }} />
+            <Icon name={ICONS.WINDOWS} style={{ width: "30px", height: "30px", cursor: "pointer" }} />
             {isWindowsModalOpen && <WindowsModal />}
         </StartWrapper>
     );

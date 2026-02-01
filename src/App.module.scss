@@ -13,24 +13,25 @@ body {
     --TASK_PANEL_ELEMENT_FOCUS: #f7f5f5;
 }
 
-/* Глобальний стиль для всіх скролбарів */
 ::-webkit-scrollbar {
-    width: 8px; /* Ширина для вертикального скролу */
-    height: 8px; /* Висота для горизонтального скролу */
+    width: 8px!important;
+    height: 8px!important;
 }
 
 ::-webkit-scrollbar-track {
-    background: #f1f1f1; /* Колір фону */
-    border-radius: 10px;
+  background: none!important;
 }
 
+
 ::-webkit-scrollbar-thumb {
-    background: #888; /* Колір бігуна */
+    background: rgba(255, 255, 255, 0.05)!important;
     border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #555; /* Колір при наведенні */
+  cursor: pointer!important;
+  background: white!important;
+
 }
 
 .window {

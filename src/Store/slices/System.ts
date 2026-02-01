@@ -2,8 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { v4 as uuid } from "uuid";
 import {
     DEFAULT_LANGUAGE_INDEX,
-    DESKTOP_FILE_SIZE,
-    DESKTOP_FILE_SIZE_MEDIUM,
+    DESKTOP_FILE_SIZE, DESKTOP_FILE_SIZE_KEYS,
     LANGUAGE_CHANGE_STEP,
     MAX_LANGUAGES,
     SYSTEM,
@@ -17,7 +16,7 @@ const initialSystemState = {
     systemPassword: SYSTEM_PASSWORD,
     systemLanguage: "ua",
     isWindowsUnlock: false,
-    desktopFileSize: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_MEDIUM],
+    desktopFileSize: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_KEYS.MEDIUM],
     wallpaper: WALLPAPERS[3],
     systemScenario: "start",
     brightness: 1,

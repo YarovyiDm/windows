@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { Tooltip } from "react-tooltip";
 import { Desktop, TaskBar } from "Containers";
-import { CONTEXT_MENU_EVENT, KEY_DOWN_EVENT } from "Constants/System";
 import { changeLanguageIndexByHotKeys, changeUserLocationCity } from "Store/slices/System";
 import useLanguage from "Hooks/useLanguage";
 import { updateFile } from "Store/slices/Desktop";
@@ -16,6 +15,7 @@ import {
 } from "Store/selectors/System";
 import ErrorBoundary from "Components/ErrorBoundary/ErrorBoundary";
 import { useUserLocation } from "Hooks/Api/useUserLocation";
+import { DOM_EVENTS } from "Constants/System";
 import { useAppSelector } from "./Store";
 import styles from "./App.module.scss";
 
@@ -63,13 +63,13 @@ function App() {
         };
 
         dispatch(updateFile({ id: ":2d", newValue: translate("readMeFile") }));
-        document.addEventListener(CONTEXT_MENU_EVENT, handleContextMenu);
+        document.addEventListener(DOM_EVENTS.CONTEXT_MENU, handleContextMenu);
         document.addEventListener(
-            KEY_DOWN_EVENT,
+            DOM_EVENTS.KEY_DOWN,
             detectKeyDown as EventListener,
         );
         return () => {
-            document.removeEventListener(CONTEXT_MENU_EVENT, handleContextMenu);
+            document.removeEventListener(DOM_EVENTS.CONTEXT_MENU, handleContextMenu);
         };
     }, []);
 

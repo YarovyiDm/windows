@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Typography } from '@mui/material';
 import Icon from "Components/Icon/Icon";
-import { POWER } from "Constants/System";
 import { NoSignal, OffScreenWrapper, PowerButtonWrapper } from "Containers/Screens/OffScreen/OffScreen.styled";
+import { ICONS } from "Constants/System";
 import type { OffScreenProps } from "./OffScreen.types";
 
 const OffScreen = ({ isStartScreen, start, isShutDownScreen }: OffScreenProps) => {
@@ -36,7 +36,7 @@ const OffScreen = ({ isStartScreen, start, isShutDownScreen }: OffScreenProps) =
                 <PowerButtonWrapper
                     onClick={() => onSystemStart()}
                 >
-                    <Icon name={POWER} />
+                    <Icon name={ICONS.POWER} />
                 </PowerButtonWrapper>
             )}
         </OffScreenWrapper>

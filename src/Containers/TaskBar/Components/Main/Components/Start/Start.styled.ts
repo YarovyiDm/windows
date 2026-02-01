@@ -13,7 +13,7 @@ export const StartWrapper = styled(Box, {
     alignItems: "center",
     justifyContent: "center",
     "&:hover": {
-        background: "#f7f5f5",
+        background: "rgba(255, 255, 255, 0.05)",
     },
-    background: isOpened ? "#f7f5f5" : "",
+    background: isOpened ? "rgba(255, 255, 255, 0.05)" : "",
 }));

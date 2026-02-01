@@ -31,7 +31,7 @@ const File = ({ name, text }: FileProps) => {
 
     return (
         <FileStyled onClick={onFileModalChange}>
-            <Icon name={name} />
+            <Icon name={name} style={{ width: "50px", height: "50px" }} />
             <Typography sx={{ fontSize: '12px' }}>{text}</Typography>
         </FileStyled>
     );

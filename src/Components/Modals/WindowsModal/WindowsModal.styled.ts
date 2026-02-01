@@ -8,14 +8,14 @@ export const WindowsModalWrapper = styled(ModalWrapper)({
     height: "700px",
     top: "-720px",
     left: "-10px",
-    background: "grey",
+    background: "#202020",
+    border: "solid 1px rgba(255, 255, 255, 0.05)",
 });
 
 export const WindowsModalFooter = styled(Box)({
     height: "8%",
     width: "calc(100% - 140px)",
-    background: "#e7e7e7",
-    borderTop: "solid 1px #d3d3d3",
+    background: "rgba(255, 255, 255, 0.05)",
     borderBottomLeftRadius: "10px",
     borderBottomRightRadius: "10px",
     display: "flex",
@@ -34,7 +34,6 @@ export const WindowsModalContentWrapper = styled(Box)({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    background: "#d9d9d9",
 });
 
 export const WindowsModalContentHeader = styled(Box)({
@@ -42,7 +41,8 @@ export const WindowsModalContentHeader = styled(Box)({
     display: "flex",
     alignItems: "center",
     marginBottom: "10px",
-    fontWeight: "500",
+    fontWeight: "600",
+    color: "white",
 });
 
 export const WindowsModalFooterUserWrapper = styled(Box)({

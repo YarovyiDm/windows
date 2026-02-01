@@ -6,7 +6,7 @@ export const NotificationWrapper =  styled(Box)({
     right: "20px",
     width: "300px",
     height: "200px",
-    backgroundColor: "#f0f0f0",
+    background: "#202020",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
     transition: "transform 0.5s ease, opacity 0.5s ease",
     zIndex: "1000",
@@ -20,7 +20,8 @@ export const NotificationHeader = styled(Box)({
     width: "calc(100% - 20px)",
     justifyContent: "space-between",
     padding: "0 10px",
-    borderBottom: "solid 1px #cfcfcf",
+    borderBottom: "solid 1px rgba(255, 255, 255, 0.05)",
+    color: "white",
 });
 
 export const NotificationContent = styled(Box)({
@@ -28,14 +29,13 @@ export const NotificationContent = styled(Box)({
     width: "calc(100% - 20px)",
     height: "calc(100% - 70px)",
     fontSize: "14px",
-    color: "#3f3f3f",
+    color: "white",
 });
 
 export const NotificationTitle = styled(Box)({
     height: "100%",
     lineHeight: "50px",
     fontSize: "14px",
-    color: "#3f3f3f",
 });
 
 export const CloseButtonWrapper = styled(Box)({
@@ -45,10 +45,13 @@ export const CloseButtonWrapper = styled(Box)({
     alignItems: "center",
     justifyContent: "center",
     cursor: "pointer",
-    border: "solid 1px transparent",
+    border: "solid 1px #3f3f3f",
     borderRadius: "3px",
     "&:hover": {
-        border: "solid 1px #3f3f3f",
+        background: "#3f3f3f",
+        "svg path": {
+            fill: "white",
+        },
     },
     "svg path": {
         fill: "#3f3f3f",

@@ -1,6 +1,5 @@
 import { Icon, File } from "Components";
 import { Box, Typography } from '@mui/material';
-import { POWER, SETTINGS, USER } from "Constants/System";
 import { toggleModal } from "Store/slices/TaskPanelSlice";
 import { useAppDispatch, useAppSelector } from "Store/index";
 import { selectPowerModalState } from "Store/selectors/TaskPanel";
@@ -11,6 +10,7 @@ import {
     WindowsModalFooterPowerIconWrapper, WindowsModalFooterUserIconWrapper, WindowsModalFooterUserWrapper,
     WindowsModalWrapper,
 } from "Components/Modals/WindowsModal/WindowsModal.styled";
+import { ICONS } from "Constants/System";
 import PowerModal from "../PowerModal/PowerModal";
 
 const WindowsModal = () => {
@@ -29,17 +29,15 @@ const WindowsModal = () => {
                 <Box sx={{ height: "50%", width: "100%" }}>
                     <WindowsModalContentHeader>Закріплено</WindowsModalContentHeader>
                     <Box sx={{ display: "flex" }}>
-                        <File text='Налаштування' name={SETTINGS} />
-                        {/*<File text='Калькулятор' name={CALCULATOR} />*/}
-                        {/* Need to refactor */}
+                        <File text='Налаштування' name={ICONS.SETTINGS} />
                     </Box>
                 </Box>
-                <Box sx={{ height: "50%", width: "100%" }}>In progress...</Box>
+                <Box sx={{ height: "50%", width: "100%", color: "white" }}>In progress...</Box>
             </WindowsModalContentWrapper>
             <WindowsModalFooter>
                 <WindowsModalFooterUserWrapper>
                     <WindowsModalFooterUserIconWrapper>
-                        <Icon name={USER} />
+                        <Icon name={ICONS.USER} />
                     </WindowsModalFooterUserIconWrapper>
                     <Typography sx={{ fontSize: '12px', marginLeft: '15px' }}>Beast</Typography>
                 </WindowsModalFooterUserWrapper>
@@ -47,7 +45,7 @@ const WindowsModal = () => {
                     onClick={onWindowsModalChange}
                 >
                     {isPowerModalOpen && <PowerModal />}
-                    <Icon name={POWER} />
+                    <Icon name={ICONS.POWER} />
                 </WindowsModalFooterPowerIconWrapper>
             </WindowsModalFooter>
         </WindowsModalWrapper>

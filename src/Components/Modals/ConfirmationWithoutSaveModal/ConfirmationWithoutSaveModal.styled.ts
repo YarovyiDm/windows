@@ -17,7 +17,7 @@ export const ConfirmationWrapper = styled(Box)({
 export const ConfirmationModal = styled(Box)({
     minWidth: "280px",
     height: "140px",
-    background: "#ffffff",
+    background: "#202020",
     border: "solid 1px #a1a1a1",
     padding: "30px",
 });
@@ -25,11 +25,13 @@ export const ConfirmationModal = styled(Box)({
 export const ConfirmationTitle = styled(Box)({
     fontSize: "21px",
     marginBottom: "10px",
+    color: "white",
 });
 
 export const ConfirmationSubTitle = styled(Box)({
     fontSize: "14px",
     marginBottom: "50px",
+    color: "white",
 });
 
 export const ConfirmationButtonsWrapper = styled(Box)({
@@ -48,16 +50,18 @@ export const ConfirmationButton = styled(Box)({
     whiteSpace: "nowrap",
     backgroundColor: "#f4f4f4",
     fontSize: "14px",
+    lineHeight: "30px",
     cursor: "pointer",
     '&:hover': {
         border: 'solid 2px grey',
+        background: "rgba(255, 255, 255, 0.05)",
+        color: "white",
     },
     '&:first-child': {
         color: 'white',
         background: '#1b79f1',
         '&:hover': {
-            color: 'black',
-            background: '#bdbdbd',
+            background: 'rgba(255, 255, 255, 0.05)',
         },
     },
 });

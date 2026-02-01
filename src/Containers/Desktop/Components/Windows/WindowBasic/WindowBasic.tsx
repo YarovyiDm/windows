@@ -1,11 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
-import cn from "classnames";
+import { Box } from "@mui/material";
 import {
-    CROSS,
-    DIRECTIONS_RESIZE_MAP,
-    LINE,
-    SQUARE_IN_SQUARE,
-    SQUARE_OUTLINE,
+    DIRECTIONS_RESIZE_MAP, ICONS,
     TASK_PANEL_HEIGHT,
 } from "Constants/System";
 import useDrag from "Hooks/useDrag";
@@ -16,17 +12,30 @@ import { useAppDispatch, useAppSelector } from "Store/index";
 import { changeWindowZindex, closeWindow } from "Store/slices/Desktop";
 import { selectWindowZindex } from "Store/selectors/Desktop";
 import type { BasicSize } from "Types/System";
+import {
+    ResizeHandleBottom, ResizeHandleCorner,
+    ResizeHandleRight,
+    WindowBasicButtonsIconWrapper,
+    WindowBasicButtonsWrapper,
+    WindowBasicHeader,
+    WindowBasicWrapper,
+} from "Containers/Desktop/Components/Windows/WindowBasic/WindowBasic.styled";
 import { getRandomCenterCoordinates } from "../../../../../helpers/getRandomCenterCoordinates";
-import styles from "./WindowBasic.module.scss";
 import type { WindowBasicProps } from "./WindowBasic.types";
+
+const COMPONENT_MAP = {
+    resizeHandleRight: ResizeHandleRight,
+    resizeHandleBottom: ResizeHandleBottom,
+    resizeHandleCorner: ResizeHandleCorner,
+};
 
 const WindowBasic = ({
     children,
     name,
     id,
     onCloseCallback,
-    system,
     wishSidePadding,
+    type,
     ...rest
 }: WindowBasicProps) => {
     const [newSize, setNewSize] = useState<BasicSize | null>(null);
@@ -67,8 +76,8 @@ const WindowBasic = ({
     };
 
     return (
-        <div
-            className={cn(styles.window, "prevent-selecting")}
+        <WindowBasicWrapper
+            className='prevent-selecting'
             style={{
                 left: position.x,
                 top: position.y,
@@ -81,30 +90,27 @@ const WindowBasic = ({
             {...rest}
             onMouseDown={onWindowZindexChange}
         >
-            <div
-                className={styles.header}
+            <WindowBasicHeader
                 onMouseDown={handleMouseDown}
                 onDoubleClick={handleDoubleClick}
             >
-                <div className={styles.title}>{name}</div>
-                <div className={styles.windowButtons}>
-                    <div className={styles.iconWrapper}>
-                        <Icon name={LINE} style={{ width: "15px" }} />
-                    </div>
-                    <div
-                        className={styles.iconWrapper}
+                <Box sx={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                    <Icon name={type}/>
+                    <Box>{name}</Box>
+                </Box>
+                <WindowBasicButtonsWrapper>
+                    <WindowBasicButtonsIconWrapper>
+                        <Icon name={ICONS.LINE} style={{ width: "15px" }} />
+                    </WindowBasicButtonsIconWrapper>
+                    <WindowBasicButtonsIconWrapper
                         onClick={toggleFullscreen}
                     >
                         <Icon
-                            name={
-                                isFullscreen ? SQUARE_IN_SQUARE : SQUARE_OUTLINE
-                            }
+                            name={isFullscreen ? ICONS.SQUARE_IN_SQUARE : ICONS.SQUARE_OUTLINE}
                             style={{ width: "12px", height: "12px" }}
                         />
-                    </div>
-
-                    <div
-                        className={styles.iconWrapper}
+                    </WindowBasicButtonsIconWrapper>
+                    <WindowBasicButtonsIconWrapper
                         style={{
                             borderTopRightRadius: borderRadius,
                         }}
@@ -114,25 +120,24 @@ const WindowBasic = ({
                                 : onWindowClose()
                         }
                     >
-                        <Icon name={CROSS} />
-                    </div>
-                </div>
-            </div>
-            <div className={styles.content}>
+                        <Icon name={ICONS.CROSS} />
+                    </WindowBasicButtonsIconWrapper>
+                </WindowBasicButtonsWrapper>
+            </WindowBasicHeader>
+            <Box sx={{ flex: "1 1 auto", overflow: "auto", padding: "10px" }}>
                 {children}
-            </div>
+            </Box>
             {DIRECTIONS_RESIZE_MAP.map(direction => {
+                const Component = COMPONENT_MAP[direction.class as keyof typeof COMPONENT_MAP];
+
                 return (
-                    <div
+                    <Component
                         key={direction.name}
-                        className={styles[direction.class]}
-                        onMouseDown={e =>
-                            handleResizeMouseDown(e, direction.name)
-                        }
+                        onMouseDown={e => handleResizeMouseDown(e, direction.name)}
                     />
                 );
             })}
-        </div>
+        </WindowBasicWrapper>
     );
 };
 

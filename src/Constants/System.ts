@@ -1,4 +1,3 @@
-import { LanguagesType } from "Types/TaskPanelTypes";
 import translations from "Components/I18n/translations";
 import wallpaper from "../assets/wallpaper.jpeg";
 import bri from "../assets/bri.jpg";
@@ -7,28 +6,45 @@ import iriser from "../assets/iriser.jpg";
 import witcher from "../assets/witcher.jpg";
 import witcher2 from "../assets/witcher2.jpg";
 
-export const USER: string = "User";
-export const POWER: string = "Power";
+export const ICONS = {
+    USER: "User",
+    POWER: "Power",
+    SEARCH: "Search",
+    WINDOWS: "Windows",
+    GITHUB: "Github",
+    LINKEDIN: "Linkedin",
+    FOLDER: "Folder",
+    ARROW: "Arrow",
+    TEXT_FILE: "Text_file",
+    SETTINGS: "Settings",
+    CROSS: "Cross",
+    VIEW_BOXES: "ViewBoxes",
+    PLUS_CIRCLE: "PlusCircle",
+    RIGHT_ARROW: "RightArrow",
+    SQUARE_IN_SQUARE: "SquareInSquare",
+    SQUARE_OUTLINE: "SquareOutLine",
+    LINE: "Line",
+    EDIT: "Edit",
+    FULL_ARROW: "FullArrow",
+    STASH: "Stash",
+} as const;
+
+export const WINDOW_TYPES = {
+    SETTINGS: "Settings",
+    TEXT_FILE: "Text_file",
+    FOLDER: "Folder",
+};
+
 export const SLEEP: string = "Sleep";
 export const RELOAD: string = "Reload";
-export const SEARCH: string = "Search";
-export const WINDOWS: string = "Windows";
-export const ARROW: string = "Arrow";
-export const TEXT_FILE: string = "Text_file";
-export const SETTINGS: string = "Settings";
-export const CALCULATOR: string = "Calculator";
-export const CROSS: string = "Cross";
-export const VIEW_BOXES: string = "ViewBoxes";
-export const PLUS_CIRCLE: string = "PlusCircle";
-export const RIGHT_ARROW: string = "RightArrow";
-export const SQUARE_LIST: string = "SquareList";
-export const DOT: string = "Dot";
-export const SQUARE_IN_SQUARE: string = "SquareInSquare";
-export const SQUARE_OUTLINE: string = "SquareOutline";
-export const LINE: string = "Line";
-export const EDIT: string = "Edit";
-export const FULL_ARROW: string = "FullArrow";
-export const STASH: string = "Stash";
+export const SQUARE_LIST: string = "SquareList";//-----
+export const DOT: string = "Dot";//------
+
+export const SYSTEM_ACTIONS = {
+    POWER: "Power",
+    SLEEP: "Sleep",
+    RELOAD: "Reload",
+} as const;
 
 export const WALLPAPERS = [
     wallpaper,
@@ -39,110 +55,120 @@ export const WALLPAPERS = [
     witcher2,
 ];
 
+export const SYSTEM: string = "system";
 export const SYSTEM_PASSWORD: string = "1111";
-
 export const ZERO_POSITION = {
     x: 0,
     y: 0,
 };
-
-export const TASK_PANEL_HEIGHT: number = 51;
+export const MIN_WINDOW_WIDTH = 430;
+export const MIN_WINDOW_HEIGHT = 260;
+export const TASK_PANEL_HEIGHT = 51;
+export const SHOW_SAVE_MESSAGE_DELAY = 2000;
 
 // Languages
-export const ENG: string = "ENG";
-export const UA: string = "УКР";
-export const POL: string = "POL";
-export const LANGUAGES: Array<LanguagesType> = [
+export const LANG_ABBR = {
+    ENG: "ENG",
+    UA: "УКР",
+    POL: "POL",
+} as const;
+export const LANGUAGES = [
     {
-        abbreviation: UA,
+        abbreviation: LANG_ABBR.UA,
         title: "Українська",
         subTitle: "Українська (розширена)",
     },
-    { abbreviation: ENG, title: "Англійська (США)", subTitle: "US" },
-    { abbreviation: POL, title: "Польська", subTitle: "Польська" },
-];
+    { abbreviation: LANG_ABBR.ENG, title: "Англійська (США)", subTitle: "US" },
+    { abbreviation: LANG_ABBR.POL, title: "Польська", subTitle: "Польська" },
+] as const;
 export const DEFAULT_LANGUAGE_INDEX: number = 0;
 export const LANGUAGE_CHANGE_STEP: number = 1;
 export const MAX_LANGUAGES: number = LANGUAGES.length - LANGUAGE_CHANGE_STEP;
 
 // Key codes
-
-export const DELETE_KEY_CODE: string = "Delete";
-export const ENTER_KEY_CODE: string = "Enter";
-export const S_KEY_CODE: string = "KeyS";
+export const KEY_CODES = {
+    DELETE: "Delete",
+    ENTER: "Enter",
+    S: "KeyS",
+} as const;
 
 // Events
+export const DOM_EVENTS = {
+    KEY_DOWN: "keydown",
+    MOUSE_DOWN: "mousedown",
+    MOUSE_MOVE: "mousemove",
+    MOUSE_UP: "mouseup",
+    CLICK: "click",
+    CONTEXT_MENU: "contextmenu",
+} as const;
 
-export const KEY_DOWN_EVENT: keyof DocumentEventMap = "keydown";
-export const MOUSE_DOWN_EVENT: keyof DocumentEventMap = "mousedown";
-export const MOUSE_MOVE_EVENT: keyof DocumentEventMap = "mousemove";
-export const MOUSE_UP_EVENT: keyof DocumentEventMap = "mouseup";
-export const CLICK_EVENT: keyof DocumentEventMap = "click";
-export const CONTEXT_MENU_EVENT: keyof DocumentEventMap = "contextmenu";
+export const MOUSE_BUTTONS = {
+    LEFT: 0,
+    MIDDLE: 1,
+    RIGHT: 2,
+} as const;
 
-export const RIGHT_MOUSE_BUTTON_CODE: number = 2;
-
-export const SYSTEM: string = "system";
-
-export const DIRECTION_RIGHT: string = "right";
-export const DIRECTION_BOTTOM: string = "bottom";
-export const DIRECTION_RIGHT_BOTTOM: string = "right bottom";
+// Directions
+export const DIRECTIONS = {
+    RIGHT: "right",
+    BOTTOM: "bottom",
+    RIGHT_BOTTOM: "right bottom",
+} as const;
 
 export const DIRECTIONS_RESIZE_MAP = [
-    { name: DIRECTION_RIGHT, class: "resizeHandleRight" },
-    { name: DIRECTION_BOTTOM, class: "resizeHandleBottom" },
-    { name: DIRECTION_RIGHT_BOTTOM, class: "resizeHandleCorner" },
-];
+    { name: DIRECTIONS.RIGHT, class: "resizeHandleRight" },
+    { name: DIRECTIONS.BOTTOM, class: "resizeHandleBottom" },
+    { name: DIRECTIONS.RIGHT_BOTTOM, class: "resizeHandleCorner" },
+] as const;
 
-export const DESKTOP_FILE_SIZE_SMALL: string = "small";
-export const DESKTOP_FILE_SIZE_MEDIUM: string = "medium";
-export const DESKTOP_FILE_SIZE_LARGE: string = "large";
+// Desktop file sizes
+export const DESKTOP_FILE_SIZE_KEYS = {
+    SMALL: "small",
+    MEDIUM: "medium",
+    LARGE: "large",
+} as const;
 
 export const DESKTOP_FILE_SIZE = {
-    [DESKTOP_FILE_SIZE_SMALL]: { width: 60, height: 50 },
-    [DESKTOP_FILE_SIZE_MEDIUM]: { width: 80, height: 70 },
-    [DESKTOP_FILE_SIZE_LARGE]: { width: 100, height: 90 },
-};
-
-export const MIN_WINDOW_WIDTH = 430;
-export const MIN_WINDOW_HEIGHT = 260;
+    [DESKTOP_FILE_SIZE_KEYS.SMALL]: { width: 60, height: 50 },
+    [DESKTOP_FILE_SIZE_KEYS.MEDIUM]: { width: 80, height: 70 },
+    [DESKTOP_FILE_SIZE_KEYS.LARGE]: { width: 100, height: 90 },
+} as const;
 
 export const SIZE_HOT_KEYS_MAP = {
-    Digit2: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_LARGE],
-    Digit3: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_MEDIUM],
-    Digit4: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_SMALL],
-};
+    Digit2: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_KEYS.LARGE],
+    Digit3: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_KEYS.MEDIUM],
+    Digit4: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_KEYS.SMALL],
+} as const;
 
 export const DESKTOP_FILE_SIZE_UNIT = [
     {
         name: "bigIcons" as keyof typeof translations.en,
         iconName: SQUARE_LIST,
-        size: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_LARGE],
+        size: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_KEYS.LARGE],
         hotKeys: "Ctrl+Shift+2",
     },
     {
         name: "mediumIcons" as keyof typeof translations.en,
         iconName: SQUARE_LIST,
-        size: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_MEDIUM],
+        size: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_KEYS.MEDIUM],
         hotKeys: "Ctrl+Shift+3",
     },
     {
         name: "smallIcons" as keyof typeof translations.en,
-        iconName: VIEW_BOXES,
-        size: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_SMALL],
+        iconName: ICONS.VIEW_BOXES,
+        size: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_KEYS.SMALL],
         hotKeys: "Ctrl+Shift+4",
     },
-];
-
-export const SHOW_SAVE_MESSAGE_DELAY: number = 2000;
+] as const;
 
 //System scenarios
-
-export const RESTART_SCENARIO: string = "restart";
-export const SHUTDOWN_SCENARIO: string = "shutdown";
+export const SYSTEM_SCENARIOS = {
+    RESTART: "restart",
+    SHUTDOWN: "shutdown",
+} as const;
 
 export const POWER_MODAL_UNITS = {
-    [POWER]: { name: "Завершити роботу", scenario: SHUTDOWN_SCENARIO },
-    [SLEEP]: { name: "Сон", scenario: RESTART_SCENARIO },
-    [RELOAD]: { name: "Перезавантажити", scenario: RESTART_SCENARIO },
-};
+    [SYSTEM_ACTIONS.POWER]: { name: "Завершити роботу", scenario: SYSTEM_SCENARIOS.SHUTDOWN },
+    [SYSTEM_ACTIONS.SLEEP]: { name: "Сон", scenario: SYSTEM_SCENARIOS.RESTART },
+    [SYSTEM_ACTIONS.RELOAD]: { name: "Перезавантажити", scenario: SYSTEM_SCENARIOS.RESTART },
+} as const;

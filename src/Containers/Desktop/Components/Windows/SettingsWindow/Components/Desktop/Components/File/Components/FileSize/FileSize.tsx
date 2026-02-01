@@ -3,7 +3,6 @@ import { useAppDispatch, useAppSelector } from "Store/index";
 import { selectFileSelectionColor, selectFileSize } from "Store/selectors/System";
 import { SystemItemContentWrapper } from "Containers/Desktop/Components/Windows/SettingsWindow/SettingsWindow.styled";
 import Icon from "Components/Icon/Icon";
-import { TEXT_FILE } from "Constants/System";
 import { changeDesktopFileSize } from "Store/slices/System";
 import {
     FILE_SIZE,
@@ -13,6 +12,7 @@ import {
     FileSizeItem,
     FileSizeTitle,
 } from "Containers/Desktop/Components/Windows/SettingsWindow/Components/Desktop/Components/File/Components/FileSize/FileSize.styled";
+import { ICONS } from "Constants/System";
 
 const FileSize = () => {
     const dispatch = useAppDispatch();
@@ -45,7 +45,7 @@ const FileSize = () => {
                                     }}
                                 >
                                     <Icon
-                                        name={TEXT_FILE}
+                                        name={ICONS.TEXT_FILE}
                                         style={{
                                             height: file.iconSize.height,
                                             width: file.iconSize.width,

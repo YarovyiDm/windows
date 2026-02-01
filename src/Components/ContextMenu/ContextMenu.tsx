@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import MenuProvider from "Components/ContextMenu/components/MenuProvider/MenuProvider";
 import {
-    KEY_DOWN_EVENT,
+    DOM_EVENTS,
     SIZE_HOT_KEYS_MAP,
 } from "Constants/System";
 import { useAppDispatch } from "Store/index";
@@ -38,13 +38,13 @@ const ContextMenu = ({
 
     useEffect(() => {
         document.addEventListener(
-            KEY_DOWN_EVENT,
+            DOM_EVENTS.KEY_DOWN,
             changeFileSizeByHotKey as EventListener,
         );
 
         return () => {
             document.removeEventListener(
-                KEY_DOWN_EVENT,
+                DOM_EVENTS.KEY_DOWN,
                 changeFileSizeByHotKey as EventListener,
             );
         };

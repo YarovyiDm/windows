@@ -10,6 +10,7 @@ export type IFile = {
     isOpened: boolean;
     id: string;
     size: number;
+    link?: string;
 };
 
 export type Desktop = {

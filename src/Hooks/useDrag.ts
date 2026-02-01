@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import {
-    MOUSE_MOVE_EVENT,
-    MOUSE_UP_EVENT,
-    RIGHT_MOUSE_BUTTON_CODE,
+    DOM_EVENTS, MOUSE_BUTTONS,
     TASK_PANEL_HEIGHT,
     ZERO_POSITION,
 } from "Constants/System";
@@ -17,7 +15,7 @@ const useDrag = (
     const [offset, setOffset] = useState(ZERO_POSITION);
 
     const handleMouseMove = (e: MouseEvent) => {
-        if (!isDragging || e.buttons === RIGHT_MOUSE_BUTTON_CODE) return;
+        if (!isDragging || e.buttons === MOUSE_BUTTONS.RIGHT) return;
         e.preventDefault();
 
         let newX = e.clientX - offset.x;
@@ -50,18 +48,18 @@ const useDrag = (
     useEffect(() => {
         if (isDragging) {
             document.addEventListener(
-                MOUSE_MOVE_EVENT,
+                DOM_EVENTS.MOUSE_MOVE,
                 handleMouseMove as EventListener,
             );
-            document.addEventListener(MOUSE_UP_EVENT, handleMouseUp);
+            document.addEventListener(DOM_EVENTS.MOUSE_UP, handleMouseUp);
         }
 
         return () => {
             document.removeEventListener(
-                MOUSE_MOVE_EVENT,
+                DOM_EVENTS.MOUSE_MOVE,
                 handleMouseMove as EventListener,
             );
-            document.removeEventListener(MOUSE_UP_EVENT, handleMouseUp);
+            document.removeEventListener(DOM_EVENTS.MOUSE_UP, handleMouseUp);
         };
     }, [isDragging]);
 

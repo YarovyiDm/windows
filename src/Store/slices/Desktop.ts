@@ -1,17 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { BIN, DESKTOP, FOLDER } from "Constants/Desktop";
-import { TEXT_FILE } from "Constants/System";
+import { BIN, DESKTOP, FILE_TYPES, FOLDER } from "Constants/Desktop";
 import { Desktop, IFile } from "Types/Desktop";
+import { ICONS } from "Constants/System";
 
 const initialDesktopState = {
     desktopFiles: [
         {
             name: "Read me!",
-            icon: TEXT_FILE,
+            icon: ICONS.TEXT_FILE,
             position: { x: 50, y: 50 },
             isSelected: false,
             isOpened: false,
-            type: TEXT_FILE,
+            type: FILE_TYPES.TEXT_FILE,
             innerContent: "Hello from text file, looks like it's work",
             id: ":2d",
             size: 12,
@@ -21,10 +21,34 @@ const initialDesktopState = {
             icon: FOLDER,
             position: { x: 50, y: 150 },
             isSelected: false,
-            type: "folder",
+            type: FILE_TYPES.FOLDER,
             isOpened: false,
             innerContent: [],
             id: "223/",
+            size: 12,
+        },
+        {
+            name: "Github",
+            icon: ICONS.GITHUB,
+            position: { x: 50, y: 250 },
+            isSelected: false,
+            isOpened: false,
+            type: FILE_TYPES.LINK,
+            innerContent: [],
+            id: "github",
+            link: "https://github.com/YarovyiDm/windows",
+            size: 12,
+        },
+        {
+            name: "LinkedIn",
+            icon: ICONS.LINKEDIN,
+            position: { x: 50, y: 350 },
+            isSelected: false,
+            isOpened: false,
+            type: FILE_TYPES.LINK,
+            innerContent: [],
+            id: "linkedin",
+            link: "https://www.linkedin.com/in/dmytro-yarovyi-31072b152/",
             size: 12,
         },
         {
@@ -33,7 +57,7 @@ const initialDesktopState = {
             position: { x: 1800, y: 750 },
             isSelected: false,
             isOpened: false,
-            type: "folder",
+            type: FILE_TYPES.FOLDER,
             innerContent: [],
             id: "ds5",
             size: 12,
@@ -181,6 +205,13 @@ const desktopSlice = createSlice({
                 item => item.name !== fileName,
             );
         },
+        renameFile(state: Desktop, action: PayloadAction<{ id: string; newName: string; }>) {
+            const file = state.desktopFiles.find(file => file.id === action.payload.id);
+
+            if (file) {
+                file.name = action.payload.newName;
+            }
+        },
     },
 });
 
@@ -198,4 +229,5 @@ export const {
     changeWindowZindex,
     updateFile,
     dragFileToFolder,
+    renameFile,
 } = desktopSlice.actions;

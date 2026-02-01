@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import {
-    DIRECTION_BOTTOM,
-    DIRECTION_RIGHT,
+    DIRECTIONS,
+    DOM_EVENTS,
     MIN_WINDOW_HEIGHT,
     MIN_WINDOW_WIDTH,
-    MOUSE_MOVE_EVENT,
-    MOUSE_UP_EVENT,
     TASK_PANEL_HEIGHT,
     ZERO_POSITION,
 } from "Constants/System";
@@ -71,7 +69,7 @@ const useResize = (
             let newWidth = startSize.width;
             let newHeight = startSize.height;
 
-            if (resizeDirection.includes(DIRECTION_RIGHT)) {
+            if (resizeDirection.includes(DIRECTIONS.RIGHT)) {
                 const windowWidth = window.innerWidth;
 
                 newWidth = Math.max(
@@ -79,7 +77,7 @@ const useResize = (
                     Math.min(windowWidth, startSize.width + deltaX),
                 );
             }
-            if (resizeDirection.includes(DIRECTION_BOTTOM)) {
+            if (resizeDirection.includes(DIRECTIONS.BOTTOM)) {
                 const windowHeight = window.innerHeight;
 
                 newHeight = Math.max(
@@ -102,22 +100,22 @@ const useResize = (
     useEffect(() => {
         if (isResizing) {
             document.addEventListener(
-                MOUSE_MOVE_EVENT,
+                DOM_EVENTS.MOUSE_MOVE,
                 handleResizeMouseMove as EventListener,
             );
             document.addEventListener(
-                MOUSE_UP_EVENT,
+                DOM_EVENTS.MOUSE_UP,
                 handleResizeMouseUp as EventListener,
             );
         }
 
         return () => {
             document.removeEventListener(
-                MOUSE_MOVE_EVENT,
+                DOM_EVENTS.MOUSE_MOVE,
                 handleResizeMouseMove as EventListener,
             );
             document.removeEventListener(
-                MOUSE_UP_EVENT,
+                DOM_EVENTS.MOUSE_UP,
                 handleResizeMouseUp as EventListener,
             );
         };

@@ -3,8 +3,8 @@ import Icon from "Components/Icon/Icon";
 
 export const ContextMenuStyled = styled(Box)({
     position: "absolute",
-    backgroundColor: "#2f2f2f",
-    border: "1px solid #535353",
+    background: "#202020",
+    border: "1px solid rgba(255, 255, 255, 0.05)",
     boxShadow: "0 2px 10px rgba(0, 0, 0, 0.2)",
     zIndex: "1000",
     width: "calc(250px - 10px)",
@@ -17,8 +17,8 @@ export const SubMenuWrapper = styled(Box)({
     position: 'absolute',
     top: 0,
     left: '100%',
-    background: '#2f2f2f',
-    border: '1px solid #535353',
+    background: "#202020",
+    border: '1px solid rgba(255, 255, 255, 0.05)',
     boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)',
     zIndex: 1000,
     padding: '5px',
@@ -37,7 +37,7 @@ export const MenuItem = styled(Box)({
         display: "block",
     },
     "&:hover": {
-        background: "#535353",
+        background: "rgba(255, 255, 255, 0.05)",
         borderRadius: "5px",
     },
     "& > path": {
@@ -63,7 +63,7 @@ export const SubMenuItemMain = styled(Box)({
         height: "16px",
     },
     "&:hover": {
-        background: "#535353",
+        background: "rgba(255, 255, 255, 0.05)",
     },
 });
 

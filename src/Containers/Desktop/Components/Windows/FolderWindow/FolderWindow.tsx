@@ -3,13 +3,14 @@ import { useAppSelector } from "Store/index";
 import { selectFolder } from "Store/selectors/Desktop";
 import { DraggableFile } from "Components/index";
 import { FolderWindowWrapper } from "Containers/Desktop/Components/Windows/FolderWindow/FolderWindow.styled";
+import { WINDOW_TYPES } from "Constants/System";
 import type { FolderWindowProps } from "./FolderWindow.types";
 
 const FolderWindow = ({ name, id, renameFileId, selectedFiles, setIsSelecting, onContextMenu, setRenameFileId }: FolderWindowProps) => {
     const folder = useAppSelector(selectFolder(id));
 
     return (
-        <WindowBasic name={name} id={id}>
+        <WindowBasic name={name} id={id} type={WINDOW_TYPES.FOLDER}>
             <FolderWindowWrapper
                 data-file='folder'
                 data-id={id}

@@ -1,12 +1,12 @@
 import { v4 as uuid } from "uuid";
 import { useRef } from "react";
-import { FOLDER } from "Constants/Desktop";
-import { PLUS_CIRCLE, RIGHT_ARROW, TEXT_FILE, VIEW_BOXES } from "Constants/System";
+import { FILE_TYPES } from "Constants/Desktop";
 import useLanguage from "Hooks/useLanguage";
 import { useAppDispatch, useAppSelector } from "Store/index";
 import { selectFileSize } from "Store/selectors/System";
 import { addDesktopFile } from "Store/slices/Desktop";
 import FileSize from "Components/ContextMenu/components/FileSize/FileSize";
+import { ICONS } from "Constants/System";
 import {
     IconStyled,
     IconWrapper, ItemArrowIcon,
@@ -19,7 +19,7 @@ import {
 } from "../../ContextMenu.styled";
 import type { CreateFilePayload, DesktopMenuProps } from "./DesktopMenu.types";
 
-const DesktopMenu = ({ contextMenuPosition, setContextMenuVisible, onDesktopFileSizeChange } : DesktopMenuProps) => {
+const  DesktopMenu = ({ contextMenuPosition, setContextMenuVisible, onDesktopFileSizeChange } : DesktopMenuProps) => {
     const selectedSize = useAppSelector(selectFileSize);
     const { translate } = useLanguage();
     const fileId = useRef(uuid()).current;
@@ -47,35 +47,35 @@ const DesktopMenu = ({ contextMenuPosition, setContextMenuVisible, onDesktopFile
         <>
             <MenuItem>
                 <MenuItemMain>
-                    <IconStyled name={VIEW_BOXES} />
+                    <IconStyled name={ICONS.VIEW_BOXES} />
                     <ItemTitle>
                         {translate("iconsView")}
                     </ItemTitle>
                 </MenuItemMain>
                 <ItemArrowIcon
-                    name={RIGHT_ARROW}
+                    name={ICONS.RIGHT_ARROW}
                 />
                 <FileSize selectedSize={selectedSize} onDesktopFileSizeChange={onDesktopFileSizeChange} />
             </MenuItem>
             <MenuItem>
                 <MenuItemMain>
-                    <IconStyled name={PLUS_CIRCLE} />
+                    <IconStyled name={ICONS.PLUS_CIRCLE} />
                     <ItemTitle>
                         {translate("createNewFile")}
                     </ItemTitle>
                 </MenuItemMain>
                 <ItemArrowIcon
-                    name={RIGHT_ARROW}
+                    name={ICONS.RIGHT_ARROW}
                 />
                 <SubMenuWrapper className='submenu'>
                     <SubMenuItemMain
                         onClick={() => createNewFile({
                             name: translate("newFolder"),
-                            type: FOLDER,
+                            type: FILE_TYPES.FOLDER,
                         })}
                     >
                         <IconWrapper>
-                            <IconStyled name={FOLDER} />
+                            <IconStyled name={ICONS.FOLDER} />
                         </IconWrapper>
 
                         <SubItemTitle>
@@ -85,11 +85,11 @@ const DesktopMenu = ({ contextMenuPosition, setContextMenuVisible, onDesktopFile
                     <SubMenuItemMain
                         onClick={() => createNewFile({
                             name: translate("newTextDocument"),
-                            type: TEXT_FILE,
+                            type: FILE_TYPES.TEXT_FILE,
                         })}
                     >
                         <IconWrapper>
-                            <IconStyled name={TEXT_FILE} />
+                            <IconStyled name={ICONS.TEXT_FILE} />
                         </IconWrapper>
                         <SubItemTitle>
                             {translate("textDocument")}

@@ -25,4 +25,5 @@ export const WeatherTrigger = styled(Box)({
     display: "flex",
     alignItems: "center",
     cursor: "pointer",
+    gap: "10px",
 });

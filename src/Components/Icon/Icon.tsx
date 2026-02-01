@@ -14,8 +14,7 @@ import { ReactComponent as Arrow } from "Icons/upArrowIcon.svg";
 import { ReactComponent as TextFile } from "Icons/TextFileIcon.svg";
 import { ReactComponent as Folder } from "Icons/folderIcon.svg";
 import { ReactComponent as Bin } from "Icons/binIcon.svg";
-import { ReactComponent as Settings } from "Icons/settingsIcon.svg";
-import { ReactComponent as Calculator } from "Icons/calculatorIcon.svg";
+import { ReactComponent as Settings } from "Icons/winSettings.svg";
 import { ReactComponent as Cross } from "Icons/crossIcon.svg";
 import { ReactComponent as PlusCircle } from "Icons/plusCircleIcon.svg";
 import { ReactComponent as ViewBoxes } from "Icons/viewBoxesIcon.svg";
@@ -28,6 +27,8 @@ import { ReactComponent as Line } from "Icons/line.svg";
 import { ReactComponent as FullArrow } from "Icons/fullArrow.svg";
 import { ReactComponent as Edit } from "Icons/edit.svg";
 import { ReactComponent as Stash } from "Icons/delete.svg";
+import { ReactComponent as Github } from "Icons/github.svg";
+import { ReactComponent as Linkedin } from "Icons/linkedin.svg";
 import {
     TELEGRAM,
     SKYPE,
@@ -38,28 +39,16 @@ import {
 } from "Constants/TaskPanel";
 import { FOLDER, BIN } from "Constants/Desktop";
 import {
-    ARROW,
-    CALCULATOR,
-    CROSS,
-    DOT,
-    LINE,
-    PLUS_CIRCLE,
-    POWER,
-    RELOAD,
-    RIGHT_ARROW,
-    SEARCH,
-    SETTINGS,
-    SLEEP,
-    SQUARE_IN_SQUARE,
-    SQUARE_LIST,
-    SQUARE_OUTLINE,
-    TEXT_FILE,
-    USER,
-    VIEW_BOXES,
-    WINDOWS,
-    FULL_ARROW,
-    EDIT,
-    STASH,
+
+    DOT,//
+    ICONS,
+
+    RELOAD,//
+
+    SLEEP,//
+
+    SQUARE_LIST,//
+
 } from "Constants/System";
 
 type IProps = {
@@ -76,30 +65,31 @@ const Icons = {
     [STEAM]: Steam,
     [POSTMAN]: Postman,
     [WEBSTORM]: WebStorm,
-    [USER]: User,
-    [POWER]: Power,
+    [ICONS.USER]: User,
+    [ICONS.POWER]: Power,
     [SLEEP]: Sleep,
     [RELOAD]: Reload,
-    [SEARCH]: Search,
-    [WINDOWS]: Windows,
-    [ARROW]: Arrow,
-    [TEXT_FILE]: TextFile,
+    [ICONS.SEARCH]: Search,
+    [ICONS.WINDOWS]: Windows,
+    [ICONS.ARROW]: Arrow,
+    [ICONS.TEXT_FILE]: TextFile,
     [FOLDER]: Folder,
     [BIN]: Bin,
-    [SETTINGS]: Settings,
-    [CALCULATOR]: Calculator,
-    [CROSS]: Cross,
-    [PLUS_CIRCLE]: PlusCircle,
-    [VIEW_BOXES]: ViewBoxes,
-    [RIGHT_ARROW]: RightArrow,
+    [ICONS.SETTINGS]: Settings,
+    [ICONS.CROSS]: Cross,
+    [ICONS.PLUS_CIRCLE]: PlusCircle,
+    [ICONS.VIEW_BOXES]: ViewBoxes,
+    [ICONS.RIGHT_ARROW]: RightArrow,
     [SQUARE_LIST]: SquareList,
     [DOT]: Dot,
-    [SQUARE_IN_SQUARE]: SquareInSquare,
-    [SQUARE_OUTLINE]: SquareOutline,
-    [LINE]: Line,
-    [FULL_ARROW]: FullArrow,
-    [EDIT]: Edit,
-    [STASH]: Stash,
+    [ICONS.SQUARE_IN_SQUARE]: SquareInSquare,
+    [ICONS.SQUARE_OUTLINE]: SquareOutline,
+    [ICONS.LINE]: Line,
+    [ICONS.FULL_ARROW]: FullArrow,
+    [ICONS.EDIT]: Edit,
+    [ICONS.STASH]: Stash,
+    [ICONS.GITHUB]: Github,
+    [ICONS.LINKEDIN]: Linkedin,
 };
 
 const Icon = (props: IProps) => {

@@ -1,6 +1,6 @@
 import { useState, MouseEvent } from "react";
 import { DEFAULT_DESKTOP_CONTEXT_MENU_WIDTH } from "Constants/Desktop";
-import { RIGHT_MOUSE_BUTTON_CODE, ZERO_POSITION } from "Constants/System";
+import { MOUSE_BUTTONS, ZERO_POSITION } from "Constants/System";
 import type { BasicCoordinates } from "Types/System";
 
 type ContextType = "file" | "desktop" | null;
@@ -16,7 +16,7 @@ export const useContextMenu = () => {
     const handleContextMenu = (
         e: MouseEvent<HTMLDivElement>,
     ) => {
-        if (e.button === RIGHT_MOUSE_BUTTON_CODE) {
+        if (e.button === MOUSE_BUTTONS.RIGHT) {
             e.preventDefault();
 
             const target = e.target as HTMLElement;

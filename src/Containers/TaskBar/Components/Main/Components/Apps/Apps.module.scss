@@ -11,7 +11,7 @@
 
     &:hover,
     &.appIsActive {
-        background: var(--TASK_PANEL_ELEMENT_FOCUS);
+        background: rgba(255, 255, 255, 0.05);
     }
 
     .taskPanelAppIcon {

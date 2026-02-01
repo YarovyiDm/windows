@@ -3,11 +3,9 @@ import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import DateTimeDisplay from "Components/DateTimeDisplay/DateTimeDisplay";
 import Icon from "Components/Icon/Icon";
 import {
-    ENTER_KEY_CODE,
-    FULL_ARROW,
-    KEY_DOWN_EVENT,
+    DOM_EVENTS, ICONS,
+    KEY_CODES,
     SYSTEM_PASSWORD,
-    USER,
 } from "Constants/System";
 import { useAppDispatch } from "Store/index";
 import { toggleWindowsUnlock, updateSystemScenario } from "Store/slices/System";
@@ -52,16 +50,16 @@ const LockScreen = () => {
     const onLoginScreenChange = (e: KeyboardEvent) => {
         setIsLoginScreenShow(true);
 
-        if (e.key === ENTER_KEY_CODE) {
+        if (e.key === KEY_CODES.ENTER) {
             handleSubmit(login)();
         }
     };
 
     useEffect(() => {
-        document.addEventListener(KEY_DOWN_EVENT, onLoginScreenChange as EventListener);
+        document.addEventListener(DOM_EVENTS.KEY_DOWN, onLoginScreenChange as EventListener);
 
         return () => {
-            document.removeEventListener(KEY_DOWN_EVENT, onLoginScreenChange as EventListener);
+            document.removeEventListener(DOM_EVENTS.KEY_DOWN, onLoginScreenChange as EventListener);
         };
     }, [passwordValue]);
 
@@ -81,7 +79,7 @@ const LockScreen = () => {
             {isLoginScreenShow && (
                 <LoginWrapper>
                     <AvatarWrapper>
-                        <Icon name={USER} />
+                        <Icon name={ICONS.USER} />
                     </AvatarWrapper>
                     <UserNameStyled>Yarovyi</UserNameStyled>
 
@@ -101,7 +99,7 @@ const LockScreen = () => {
                                     onFocus={() => clearErrors("password")}
                                 />
                                 <IconWrapper onClick={handleSubmit(login)}>
-                                    <Icon name={FULL_ARROW} />
+                                    <Icon name={ICONS.FULL_ARROW} />
                                 </IconWrapper>
                             </InputWrapper>
                         )}

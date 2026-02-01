@@ -1,15 +1,17 @@
 import { styled, Box } from "@mui/material";
 
 export const FileStyled = styled(Box)({
-    width: "90px",
-    height: "90px",
+    width: "100px",
+    height: "100px",
     borderRadius: "5px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-around",
+    color: "white",
+    cursor: "pointer",
     "&:hover": {
-        background: "white",
+        background: "rgba(255, 255, 255, 0.05)",
     },
     "svg": {
         width: "50px",

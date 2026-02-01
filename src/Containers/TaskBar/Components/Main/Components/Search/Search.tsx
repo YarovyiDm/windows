@@ -1,7 +1,7 @@
 import { ChangeEvent } from "react";
 import { Icon } from "Components/index";
-import { SEARCH } from "Constants/System";
 import { useAppDispatch } from "Store/index";
+import { ICONS } from "Constants/System";
 import styles from "./Search.module.scss";
 
 const Search = () => {
@@ -13,7 +13,7 @@ const Search = () => {
 
     return (
         <div className={styles.taskPanelSearch}>
-            <Icon name={SEARCH} className={styles.searchIcon} />
+            <Icon name={ICONS.SEARCH} className={styles.searchIcon} />
             <input
                 className={styles.taskPanelSearchInput}
                 placeholder='Пошук'

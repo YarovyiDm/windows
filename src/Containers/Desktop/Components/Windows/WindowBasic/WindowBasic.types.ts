@@ -5,5 +5,6 @@ export type WindowBasicProps = {
     id: string;
     onCloseCallback?: false | (() => void);
     system?: boolean;
+    type: string;
     wishSidePadding?: boolean;
 } & HTMLAttributes<HTMLDivElement>;

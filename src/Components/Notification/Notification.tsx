@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { CROSS } from "Constants/System";
 import Icon from "Components/Icon/Icon";
 import useLanguage from "Hooks/useLanguage";
 import {
@@ -8,6 +7,7 @@ import {
     NotificationHeader, NotificationTitle,
     NotificationWrapper,
 } from "Components/Notification/Notification.styled";
+import { ICONS } from "Constants/System";
 import type { NotificationProps } from "./Notification.types";
 
 const Notification = ({ delayBeforeShow, duration, text }: NotificationProps) => {
@@ -16,7 +16,7 @@ const Notification = ({ delayBeforeShow, duration, text }: NotificationProps) =>
 
     useEffect(() => {
         setTimeout(() => setVisible(true), delayBeforeShow ?? 2000);
-        const timer = setTimeout(() => setVisible(false), duration ?? 10000);
+        const timer = setTimeout(() => setVisible(false), duration ?? 10000000);
 
         return () => clearTimeout(timer);
     }, [delayBeforeShow, duration]);
@@ -36,7 +36,7 @@ const Notification = ({ delayBeforeShow, duration, text }: NotificationProps) =>
                     onClick={() => closeNotification()}
                 >
                     <Icon
-                        name={CROSS}
+                        name={ICONS.CROSS}
                         style={{ width: "20px", height: "20px" }}
                     />
                 </CloseButtonWrapper>

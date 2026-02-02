@@ -13,10 +13,10 @@ export const ICONS = {
     WINDOWS: "Windows",
     GITHUB: "Github",
     LINKEDIN: "Linkedin",
-    FOLDER: "Folder",
+    FOLDER: "FOLDER",
     ARROW: "Arrow",
-    TEXT_FILE: "Text_file",
-    SETTINGS: "Settings",
+    TEXT_FILE: "TEXT",
+    SETTINGS: "SETTINGS",
     CROSS: "Cross",
     VIEW_BOXES: "ViewBoxes",
     PLUS_CIRCLE: "PlusCircle",
@@ -28,12 +28,6 @@ export const ICONS = {
     FULL_ARROW: "FullArrow",
     STASH: "Stash",
 } as const;
-
-export const WINDOW_TYPES = {
-    SETTINGS: "Settings",
-    TEXT_FILE: "Text_file",
-    FOLDER: "Folder",
-};
 
 export const SLEEP: string = "Sleep";
 export const RELOAD: string = "Reload";

@@ -4,10 +4,10 @@ import WindowBasic from "Containers/Desktop/Components/Windows/WindowBasic/Windo
 import {
     DOM_EVENTS,
     KEY_CODES,
-    SHOW_SAVE_MESSAGE_DELAY, WINDOW_TYPES,
+    SHOW_SAVE_MESSAGE_DELAY,
 } from "Constants/System";
 import { useAppDispatch } from "Store/index";
-import { closeWindow, updateFile } from "Store/slices/Desktop";
+import { closeWindow } from "Store/slices/Desktop";
 import ConfirmationWithoutSaveModal from "Components/Modals/ConfirmationWithoutSaveModal/ConfirmationWithoutSaveModal";
 import useLanguage from "Hooks/useLanguage";
 import {
@@ -16,16 +16,22 @@ import {
     TextWindowSaveMessage,
     TextWindowWrapper,
 } from "Containers/Desktop/Components/Windows/TextWindow/TextWindow.styled";
-import { getTextSize } from "../../../../../utils/getTextSize";
+import { WINDOW_KIND } from "Types/Desktop";
 import type { TextWindowProps } from "./TextWindow.types";
 
 const TextWindow = ({
-    name,
-    content,
-    id,
+    desktopWindow,
 }: TextWindowProps) => {
-    const [fileValue, setFileValue] = useState(content);
-    const [prevFileValue, setPrevFileValue] = useState(content);
+    const [fileValue, setFileValue] = useState(()  => {
+        if("content" in desktopWindow.payload) {
+            return desktopWindow.payload.content;
+        }
+    });
+    const [prevFileValue, setPrevFileValue] = useState(()  => {
+        if("content" in desktopWindow.payload) {
+            return desktopWindow.payload.content;
+        }
+    });
     const [showSaveMessage, setShowSaveMessage] = useState(false);
     const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
@@ -44,7 +50,7 @@ const TextWindow = ({
     const handleSave = () => {
         if (isFileChanged) {
             setPrevFileValue(fileValue);
-            dispatch(updateFile({ id, newValue: fileValue, size: getTextSize(fileValue) }));
+            // dispatch(updateFile({ id: window.id, newValue: fileValue, size: getTextSize(fileValue) }));
             showConfirmationModal && unsaveExit();
 
             setShowSaveMessage(true);
@@ -56,7 +62,7 @@ const TextWindow = ({
     };
 
     const unsaveExit = () => {
-        dispatch(closeWindow(id));
+        dispatch(closeWindow(desktopWindow.id));
         onConfirmationModalChange();
     };
 
@@ -84,9 +90,9 @@ const TextWindow = ({
 
     return (
         <WindowBasic
-            name={name}
-            id={id}
-            type={WINDOW_TYPES.TEXT_FILE}
+            title={desktopWindow.title}
+            id={desktopWindow.id}
+            kind={WINDOW_KIND.TEXT}
             onCloseCallback={isFileChanged && onConfirmationModalChange}
         >
             <TextWindowWrapper>
@@ -109,7 +115,7 @@ const TextWindow = ({
                 )}
                 <TextWindowFooter>
                     <Box>
-                        C:\Users\Beast\Desktop\{name}.txt
+                        C:\Users\Beast\Desktop\{desktopWindow.title}.txt
                     </Box>
                     <TextWindowFileFormat>
                         <Box sx={{ width: '42px', color: '#127fb5' }}>

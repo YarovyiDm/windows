@@ -9,7 +9,7 @@ import { selectSettingsWindowId } from "Store/selectors/System";
 import {
     BlockHeader,
 } from "Containers/Desktop/Components/Windows/SettingsWindow/Components/BlockBasic/BlockBasic.styled";
-import { WINDOW_TYPES } from "Constants/System";
+import { WINDOW_KIND } from "Types/Desktop";
 import SystemInformation from "./Components/SystemInformation/SystemInformation";
 import Display from "./Components/Display/Display";
 import Desktop from "./Components/Desktop/Desktop";
@@ -81,7 +81,7 @@ const SettingsWindow = () => {
     };
 
     return (
-        <WindowBasic name='Settings' id={settingsID} type={WINDOW_TYPES.SETTINGS}>
+        <WindowBasic title='Settings' id='settings' kind={WINDOW_KIND.SETTINGS}>
             <SettingsWrapper>
                 <SidebarWrapper>
                     <TabsContainer>

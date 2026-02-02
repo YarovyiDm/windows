@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { DraggableFile, ContextMenu } from "Components";
 import { isFileInSelection } from "utils/IsFileInSelection";
 import {
-    DOM_EVENTS, WINDOW_TYPES,
+    DOM_EVENTS,
     ZERO_POSITION,
 } from "Constants/System";
 import { useAppSelector, useAppDispatch } from "Store/index";
@@ -15,14 +15,15 @@ import { selectMultipleFiles, clearSelection } from "Store/slices/Desktop";
 import { DESKTOP_FILE_SIZE } from "Constants/File";
 import { useContextMenu } from "Hooks/useContextMenu";
 import { selectWallpaper } from "Store/selectors/System";
-import TextWindow from "Containers/Desktop/Components/Windows/TextWindow/TextWindow";
-import FolderWindow from "Containers/Desktop/Components/Windows/FolderWindow/FolderWindow";
 import Notification from "Components/Notification/Notification";
 import useLanguage from "Hooks/useLanguage";
 import SettingsWindow from "Containers/Desktop/Components/Windows/SettingsWindow/SettingsWindow";
 import type { BasicCoordinates } from "Types/System";
 import Selection from "Containers/Desktop/Components/Selection/Selection";
 import { DesktopWrapper } from "Containers/Desktop/Desktop.styled";
+import { DesktopFile, WINDOW_KIND } from "Types/Desktop";
+import FolderWindow from "Containers/Desktop/Components/Windows/FolderWindow/FolderWindow";
+import TextWindow from "Containers/Desktop/Components/Windows/TextWindow/TextWindow";
 import type { MouseEvent as ReactMouseEvent, DragEvent } from "react";
 
 const Desktop = () => {
@@ -115,31 +116,25 @@ const Desktop = () => {
                 />
             )}
 
-            {openedWindows.map(window => {
-                if (window.isSystem) return null;
-                if (window.type === WINDOW_TYPES.TEXT_FILE) {
-                    return (
-                        <TextWindow
-                            key={window.id}
-                            name={window.fileName}
-                            content={window.content as string}
-                            id={window.id}
-                        />
-                    );
+            {openedWindows.map(win => {
+                switch (win.kind) {
+
+                case WINDOW_KIND.TEXT:
+                    return <TextWindow key={win.id} desktopWindow={win} />;
+
+                case WINDOW_KIND.FOLDER:
+                    return <FolderWindow key={win.id} window={win} />;
+
+                // case WINDOW_KIND.BROWSER:
+                //     return <BrowserWindow key={win.id} tabs={win.payload.tabs} />;
+                //
+                case WINDOW_KIND.SETTINGS:
+                    return <SettingsWindow key={win.id} />;
+
+                default:
+                    return <div>1</div>;
                 }
-                return (
-                    <FolderWindow
-                        key={window.id}
-                        renameFileId={renameFileId}
-                        setIsSelecting={setIsSelecting}
-                        onContextMenu={handleContextMenu}
-                        selectedFiles={selectedFiles}
-                        setRenameFileId={setRenameFileId}
-                        name={window.fileName}
-                        id={window.id}
-                    />
-                );
-            })}
+            })};
 
             {isSelecting && (
                 <Selection
@@ -149,37 +144,17 @@ const Desktop = () => {
                 />
             )}
 
-            {desktopFiles.map(
-                ({
-                    name,
-                    icon,
-                    position,
-                    isOpened,
-                    innerContent,
-                    id,
-                    type,
-                    size,
-                    link,
-                }) => (
-                    <DraggableFile
-                        renameFileId={renameFileId}
-                        key={name}
-                        size={size}
-                        name={name}
-                        icon={icon}
-                        link={link || ""}
-                        position={position}
-                        isOpened={isOpened}
-                        innerContent={innerContent}
-                        setIsSelecting={setIsSelecting}
-                        isSelected={selectedFiles.includes(name)}
-                        onContextMenu={handleContextMenu}
-                        id={id}
-                        type={type}
-                        setRenameFileId={setRenameFileId}
-                    />
-                ),
-            )}
+            {desktopFiles.map((file: DesktopFile) => (
+                <DraggableFile
+                    key={file.id}
+                    file={file}
+                    setIsSelecting={setIsSelecting}
+                    onContextMenu={handleContextMenu}
+                    isSelected={selectedFiles.includes(file.name)}
+                    renameFileId={renameFileId}
+                    setRenameFileId={setRenameFileId}
+                />
+            ))}
 
             {isSettingsWindowOpen && <SettingsWindow />}
         </DesktopWrapper>

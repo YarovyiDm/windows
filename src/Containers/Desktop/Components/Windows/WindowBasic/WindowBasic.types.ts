@@ -1,10 +1,10 @@
 import type { HTMLAttributes } from "react";
 
 export type WindowBasicProps = {
-    name: string;
+    kind: "SETTINGS" | "FOLDER" | "TEXT";
     id: string;
     onCloseCallback?: false | (() => void);
     system?: boolean;
-    type: string;
+    title: string;
     wishSidePadding?: boolean;
 } & HTMLAttributes<HTMLDivElement>;

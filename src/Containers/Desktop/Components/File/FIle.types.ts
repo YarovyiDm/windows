@@ -1,4 +1,5 @@
+import { DesktopFile } from "Types/Desktop";
+
 export type FileProps = {
-    name: string;
-    text: string;
+    file: DesktopFile;
 };

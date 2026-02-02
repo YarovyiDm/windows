@@ -1,10 +1,11 @@
-import type { IFile } from "Types/Desktop";
+import { DesktopFile } from "Types/Desktop";
 import type { Dispatch,MutableRefObject, SetStateAction, MouseEvent } from "react";
 
 export type CheckDropTargetProps = {
     fileRef: MutableRefObject<HTMLDivElement | null>;
     id: string;
-    setTargetFolderName:  Dispatch<SetStateAction<string>>;
+    setTargetFolderId:  Dispatch<SetStateAction<string>>;
+    parentFolderId?: string;
 }
 
 export type DraggableFileProps = {
@@ -12,4 +13,6 @@ export type DraggableFileProps = {
     onContextMenu: (e: MouseEvent<HTMLDivElement>) => void;
     renameFileId: string;
     setRenameFileId: Dispatch<SetStateAction<string>>;
-} & IFile
+    isSelected: boolean;
+    file: DesktopFile;
+}

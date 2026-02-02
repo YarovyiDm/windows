@@ -1,12 +1,12 @@
 import { v4 as uuid } from "uuid";
 import { useRef } from "react";
-import { FILE_TYPES } from "Constants/Desktop";
 import useLanguage from "Hooks/useLanguage";
 import { useAppDispatch, useAppSelector } from "Store/index";
 import { selectFileSize } from "Store/selectors/System";
-import { addDesktopFile } from "Store/slices/Desktop";
 import FileSize from "Components/ContextMenu/components/FileSize/FileSize";
 import { ICONS } from "Constants/System";
+import { addDesktopFile } from "Store/slices/Desktop";
+import { FILE_TYPE } from "Types/Desktop";
 import {
     IconStyled,
     IconWrapper, ItemArrowIcon,
@@ -17,6 +17,7 @@ import {
     SubMenuItemMain,
     SubMenuWrapper,
 } from "../../ContextMenu.styled";
+import { createDesktopFile } from "../../../../utils/createDesktopFile";
 import type { CreateFilePayload, DesktopMenuProps } from "./DesktopMenu.types";
 
 const  DesktopMenu = ({ contextMenuPosition, setContextMenuVisible, onDesktopFileSizeChange } : DesktopMenuProps) => {
@@ -25,23 +26,16 @@ const  DesktopMenu = ({ contextMenuPosition, setContextMenuVisible, onDesktopFil
     const fileId = useRef(uuid()).current;
     const dispatch = useAppDispatch();
 
-    const createNewFile =
-        ({ name, type }: CreateFilePayload) => {
-            const newFile = {
-                name: name + `_${contextMenuPosition.x}`,
-                icon: type,
-                position: contextMenuPosition,
-                isSelected: false,
-                isOpened: false,
-                id: fileId,
-                type,
-                innerContent: [],
-                size: 1,
-            };
+    const createNewFile = ({ name, type }: CreateFilePayload) => {
+        const newFile = createDesktopFile({
+            name: `${name}_${contextMenuPosition.x}`,
+            type,
+            position: contextMenuPosition,
+        });
 
-            dispatch(addDesktopFile(newFile));
-            setContextMenuVisible(false);
-        };
+        dispatch(addDesktopFile(newFile));
+        setContextMenuVisible(false);
+    };
 
     return (
         <>
@@ -71,7 +65,7 @@ const  DesktopMenu = ({ contextMenuPosition, setContextMenuVisible, onDesktopFil
                     <SubMenuItemMain
                         onClick={() => createNewFile({
                             name: translate("newFolder"),
-                            type: FILE_TYPES.FOLDER,
+                            type: FILE_TYPE.FOLDER,
                         })}
                     >
                         <IconWrapper>
@@ -85,7 +79,7 @@ const  DesktopMenu = ({ contextMenuPosition, setContextMenuVisible, onDesktopFil
                     <SubMenuItemMain
                         onClick={() => createNewFile({
                             name: translate("newTextDocument"),
-                            type: FILE_TYPES.TEXT_FILE,
+                            type: FILE_TYPE.TEXT,
                         })}
                     >
                         <IconWrapper>

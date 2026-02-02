@@ -1,72 +1,60 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { BIN, DESKTOP, FILE_TYPES, FOLDER } from "Constants/Desktop";
-import { Desktop, IFile } from "Types/Desktop";
+import { BIN, DESKTOP, FOLDER } from "Constants/Desktop";
+import { Desktop, DesktopFile, DesktopWindow, FILE_TYPE } from "Types/Desktop";
 import { ICONS } from "Constants/System";
 
-const initialDesktopState = {
+const initialDesktopState: Desktop = {
     desktopFiles: [
         {
             name: "Read me!",
             icon: ICONS.TEXT_FILE,
             position: { x: 50, y: 50 },
-            isSelected: false,
-            isOpened: false,
-            type: FILE_TYPES.TEXT_FILE,
-            innerContent: "Hello from text file, looks like it's work",
+            type: FILE_TYPE.TEXT,
+            innerContent: "",
             id: ":2d",
-            size: 12,
+            isSelected: false,
         },
         {
             name: "Check what I have",
             icon: FOLDER,
             position: { x: 50, y: 150 },
-            isSelected: false,
-            type: FILE_TYPES.FOLDER,
-            isOpened: false,
+            type: FILE_TYPE.FOLDER,
             innerContent: [],
             id: "223/",
-            size: 12,
+            isSelected: false,
         },
         {
             name: "Github",
             icon: ICONS.GITHUB,
             position: { x: 50, y: 250 },
             isSelected: false,
-            isOpened: false,
-            type: FILE_TYPES.LINK,
-            innerContent: [],
+            type: FILE_TYPE.LINK,
             id: "github",
             link: "https://github.com/YarovyiDm/windows",
-            size: 12,
         },
         {
             name: "LinkedIn",
             icon: ICONS.LINKEDIN,
             position: { x: 50, y: 350 },
             isSelected: false,
-            isOpened: false,
-            type: FILE_TYPES.LINK,
-            innerContent: [],
+            type: FILE_TYPE.LINK,
             id: "linkedin",
             link: "https://www.linkedin.com/in/dmytro-yarovyi-31072b152/",
-            size: 12,
         },
         {
             name: "Кошик",
             icon: BIN,
             position: { x: 1800, y: 750 },
-            isSelected: false,
-            isOpened: false,
-            type: FILE_TYPES.FOLDER,
+            type: FILE_TYPE.FOLDER,
             innerContent: [],
             id: "ds5",
-            size: 12,
+            isSelected: false,
         },
     ],
     selectedFiles: [],
     bin: [],
     openedWindows: [],
-} as Desktop;
+};
 
 const desktopSlice = createSlice({
     name: DESKTOP,
@@ -87,12 +75,12 @@ const desktopSlice = createSlice({
         changeFilePosition(
             state: Desktop,
             action: PayloadAction<{
-                name: string;
+                fileId: string;
                 position: { x: number; y: number; };
             }>,
         ) {
             const file = state.desktopFiles.find(
-                file => file.name === action.payload.name,
+                file => file.id === action.payload.fileId,
             );
 
             if (file) {
@@ -120,49 +108,24 @@ const desktopSlice = createSlice({
         ) {
             state.selectedFiles = action.payload;
         },
-        addDesktopFile(state, action: PayloadAction<IFile>) {
+        addDesktopFile(state, action: PayloadAction<DesktopFile>) {
             state.desktopFiles.push(action.payload);
         },
-        openWindow(
-            state: Desktop,
-            action: PayloadAction<{
-                fileName: string;
-                content: string | Array<IFile>;
-                id: string;
-                zIndex: number;
-                type: string;
-                isSystem?: boolean;
-            }>,
-        ) {
-            const { id } = action.payload;
-            const currentFile = state.desktopFiles.filter(
-                item => item.id === id,
-            )[0];
-
-            state.openedWindows.push(action.payload);
-
-            if (currentFile) {
-                currentFile.isOpened = true;
+        openWindow(state, action: PayloadAction<DesktopWindow>) {
+            if (!state.openedWindows.find(w => w.id === action.payload.id)) {
+                state.openedWindows.push(action.payload);
             }
         },
-        closeWindow(state: Desktop, action: PayloadAction<string>) {
-            const currentFile = state.desktopFiles.filter(
-                item => item.id === action.payload,
-            )[0];
 
-            state.openedWindows = state.openedWindows.filter(
-                window => window.id !== action.payload,
-            );
-            if (currentFile) {
-                currentFile.isOpened = false;
-            }
+        closeWindow(state, action: PayloadAction<string>) {
+            state.openedWindows = state.openedWindows.filter(w => w.id !== action.payload);
         },
         changeWindowZindex(state: Desktop, action: PayloadAction<string>) {
             const currentFile = state.openedWindows.find(
                 item => item.id === action.payload,
             );
 
-            if (!currentFile) return; // <-- безпечний вихід, якщо такого ID немає
+            if (!currentFile) return;
 
             state.openedWindows.forEach((item, index) => (item.zIndex = index + 2));
             currentFile.zIndex = 99;
@@ -171,7 +134,7 @@ const desktopSlice = createSlice({
             state: Desktop,
             action: PayloadAction<{
                 id: string;
-                newValue: Array<IFile> | string;
+                newValue: Array<DesktopFile> | string;
                 size?: number;
             }>,
         ) {
@@ -180,7 +143,9 @@ const desktopSlice = createSlice({
                 item => item.id === id,
             )[0];
 
-            currentFile.innerContent = newValue;
+            if('innerContent' in currentFile) {
+                currentFile.innerContent = newValue;
+            }
 
             if(size){
                 currentFile.size = size;
@@ -188,22 +153,25 @@ const desktopSlice = createSlice({
         },
         dragFileToFolder(
             state: Desktop,
-            action: PayloadAction<{ fileName: string; folderName: string; }>,
+            action: PayloadAction<{ fileId: string; folderId: string; }>,
         ) {
-            const { fileName, folderName } = action.payload;
-            const targetFolder = state.desktopFiles.filter(
-                item => item.name === folderName,
-            )[0];
-            const file = state.desktopFiles.filter(
-                item => item.name === fileName,
-            )[0];
+            const { fileId, folderId } = action.payload;
+            const fileIndex = state.desktopFiles.findIndex(f => f.id === fileId);
+            const targetFolderIndex = state.desktopFiles.findIndex(f => f.id === folderId);
 
-            if (Array.isArray(targetFolder.innerContent)) {
-                targetFolder.innerContent.push(file);
+            if (fileIndex === -1 || targetFolderIndex === -1) return;
+
+            const file = state.desktopFiles[fileIndex];
+            const targetFolder = state.desktopFiles[targetFolderIndex];
+
+            if (targetFolder.type === FILE_TYPE.FOLDER) {
+                state.desktopFiles[targetFolderIndex] = {
+                    ...targetFolder,
+                    innerContent: [...targetFolder.innerContent, { ...file, position: { x:0, y:0 } }],
+                };
+
+                state.desktopFiles = state.desktopFiles.filter((_, idx) => idx !== fileIndex);
             }
-            state.desktopFiles = state.desktopFiles.filter(
-                item => item.name !== fileName,
-            );
         },
         renameFile(state: Desktop, action: PayloadAction<{ id: string; newName: string; }>) {
             const file = state.desktopFiles.find(file => file.id === action.payload.id);

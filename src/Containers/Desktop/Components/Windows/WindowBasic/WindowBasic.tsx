@@ -31,11 +31,11 @@ const COMPONENT_MAP = {
 
 const WindowBasic = ({
     children,
-    name,
+    kind,
     id,
+    title,
     onCloseCallback,
     wishSidePadding,
-    type,
     ...rest
 }: WindowBasicProps) => {
     const [newSize, setNewSize] = useState<BasicSize | null>(null);
@@ -95,8 +95,8 @@ const WindowBasic = ({
                 onDoubleClick={handleDoubleClick}
             >
                 <Box sx={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                    <Icon name={type}/>
-                    <Box>{name}</Box>
+                    <Icon name={kind} />
+                    <Box>{title}</Box>
                 </Box>
                 <WindowBasicButtonsWrapper>
                     <WindowBasicButtonsIconWrapper>

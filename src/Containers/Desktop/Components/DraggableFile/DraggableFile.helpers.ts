@@ -1,14 +1,14 @@
 import { Dispatch, SetStateAction } from "react";
 import type { CheckDropTargetProps } from "Containers/Desktop/Components/DraggableFile/DraggableFile.types";
-import { FILE_TYPES } from "Constants/Desktop";
+import { FILE_TYPE } from "Types/Desktop";
 
-export const checkDropTarget = ({ fileRef, id, setTargetFolderName }: CheckDropTargetProps) => {
+export const checkDropTarget = ({ fileRef, id, setTargetFolderId, parentFolderId }: CheckDropTargetProps) => {
     const file = fileRef.current;
 
     if (!file) return;
 
     const folders = document.querySelectorAll<HTMLDivElement>(
-        `[data-file=${FILE_TYPES.FOLDER}]`,
+        `[data-file="${FILE_TYPE.FOLDER}"]`,
     );
 
     let folderFound = false;
@@ -22,23 +22,24 @@ export const checkDropTarget = ({ fileRef, id, setTargetFolderName }: CheckDropT
             fileRect.right > folderRect.left &&
             fileRect.top < folderRect.bottom &&
             fileRect.bottom > folderRect.top &&
-            id !== folder.dataset.id
+            id !== folder.dataset.id &&
+            folder.dataset.id !== parentFolderId
         ) {
-            setTargetFolderName(folder.dataset.name || "");
+            setTargetFolderId(folder.dataset.id || "");
             folderFound = true;
         }
     });
 
     if (!folderFound) {
-        setTargetFolderName("");
+        setTargetFolderId("");
     }
 };
 
 type MouseUpParams = {
     isDragging: boolean;
     positionRef: React.MutableRefObject<{ x: number; y: number; }>;
-    name: string;
-    targetFolderName: string;
+    fileId: string;
+    targetFolderId: string;
     dispatch: Function;
     setIsDragging: (v: boolean) => void;
     setPosition: (pos: { x: number; y: number; }) => void;
@@ -47,8 +48,8 @@ type MouseUpParams = {
 export const handleFileMouseUp = ({
     isDragging,
     positionRef,
-    name,
-    targetFolderName,
+    fileId,
+    targetFolderId,
     dispatch,
     setIsDragging,
     setPosition,
@@ -60,13 +61,13 @@ export const handleFileMouseUp = ({
 
     dispatch({
         type: "desktop/changeFilePosition",
-        payload: { name, position: positionRef.current },
+        payload: { fileId, position: positionRef.current },
     });
 
-    if (targetFolderName) {
+    if (targetFolderId) {
         dispatch({
             type: "desktop/dragFileToFolder",
-            payload: { fileName: name, folderName: targetFolderName },
+            payload: { fileId, folderId: targetFolderId },
         });
     }
 };
@@ -78,7 +79,8 @@ type MouseMoveParams = {
     positionRef: React.MutableRefObject<{ x: number; y: number; }>;
     fileRef: React.RefObject<HTMLDivElement>;
     id: string;
-    setTargetFolderName: Dispatch<SetStateAction<string>>;
+    setTargetFolderId: Dispatch<SetStateAction<string>>;
+    parentFolderId: string;
 };
 
 export const handleFileMouseMove = ({
@@ -88,7 +90,8 @@ export const handleFileMouseMove = ({
     positionRef,
     fileRef,
     id,
-    setTargetFolderName,
+    setTargetFolderId,
+    parentFolderId,
 }: MouseMoveParams) => {
     if (!isDragging) return;
 
@@ -101,5 +104,5 @@ export const handleFileMouseMove = ({
         fileRef.current.style.transform = `translate3d(${newX}px, ${newY}px, 0)`;
     }
 
-    checkDropTarget({ fileRef, id, setTargetFolderName });
+    checkDropTarget({ fileRef, id, setTargetFolderId, parentFolderId });
 };

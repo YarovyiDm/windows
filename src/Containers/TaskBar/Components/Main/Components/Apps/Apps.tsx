@@ -3,31 +3,36 @@ import cn from "classnames";
 import { Box } from  '@mui/material';
 import { Icon } from "Components/index";
 import { useAppDispatch } from "Store/index";
-import { changeApp, openingApp } from "Store/slices/TaskPanelSlice";
-import type { PinnedAppsProps } from "Containers/TaskBar/Components/Main/Components/Apps/Apps.types";
+import { AppsProps, PinnedAppsProps } from "Containers/TaskBar/Components/Main/Components/Apps/Apps.types";
+import { FILE_TYPE } from "Types/Desktop";
+import { openFile } from "../../../../../../helpers/openFile";
 import styles from "./Apps.module.scss";
 
-const Apps = ({
-    taskPanelApps,
-}: {
-    taskPanelApps: { [key: string]: PinnedAppsProps; };
-}) => {
+const Apps = ({ apps }: AppsProps) => {
     const dispatch = useAppDispatch();
 
-    const onAppClick = (name: string) => {
-        dispatch(openingApp(name));
-        dispatch(changeApp(name));
+    const onAppClick = (name: string, icon: string) => {
+        openFile({
+            id: FILE_TYPE.BROWSER,
+            name,
+            icon,
+            isSelected: false,
+            type: FILE_TYPE.BROWSER,
+        }, dispatch);
+        // dispatch(openingApp(name));
+        // dispatch(changeApp(name));
     };
 
     return (
         <Box sx={{ display: "flex", width: "fit-content", blockSize: "fit-content", cursor: "pointer" }}>
-            {taskPanelApps &&
+            {apps &&
                 map(
-                    taskPanelApps,
+                    apps,
                     ({
                         name,
                         isOpen,
                         isFocused,
+                        icon,
                     }: PinnedAppsProps) => {
                         return (
                             <div
@@ -38,11 +43,11 @@ const Apps = ({
                                 data-tooltip-content={name}
                                 data-tooltip-id='taskPanelTooltips'
                                 data-tooltip-delay-show={500}
-                                onClick={() => onAppClick(name)}
+                                onClick={() => onAppClick(name, icon)}
                             >
                                 <Icon
                                     className={styles.taskPanelAppIcon}
-                                    name={name}
+                                    name={icon}
                                 />
                                 {isOpen && (
                                     <div

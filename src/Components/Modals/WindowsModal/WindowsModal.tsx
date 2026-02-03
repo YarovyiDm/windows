@@ -12,7 +12,7 @@ import {
     WindowsModalWrapper,
 } from "Components/Modals/WindowsModal/WindowsModal.styled";
 import { ICONS } from "Constants/System";
-import { FILE_TYPE, SettingsDesktopFile } from "Types/Desktop";
+import { FILE_TYPE, SettingsFile } from "Types/Desktop";
 import PowerModal from "../PowerModal/PowerModal";
 
 const WindowsModal = () => {
@@ -31,7 +31,7 @@ const WindowsModal = () => {
             name: "Settings",
             icon: ICONS.SETTINGS,
             isSelected: false,
-        } satisfies SettingsDesktopFile;
+        } satisfies SettingsFile;
     }, []);
 
     return (

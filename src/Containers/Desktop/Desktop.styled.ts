@@ -1,7 +1,7 @@
 import { styled, Box } from "@mui/material";
 
 export const DesktopWrapper = styled(Box)({
-    height: "calc(100vh - 66px)",
+    height: "calc(100vh - 70px)",
     width: "100%",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
@@ -9,6 +9,6 @@ export const DesktopWrapper = styled(Box)({
     display: "flex",
     flexWrap: "wrap",
     alignContent: "flex-start",
-    padding: "10px",
+    padding: "10px 30px",
     flexDirection: "column",
 });

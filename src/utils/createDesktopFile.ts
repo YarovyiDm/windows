@@ -1,8 +1,6 @@
 import { v4 as uuid } from "uuid";
 import {
-    DesktopFile,
-    TextDesktopFile,
-    FolderDesktopFile, FILE_TYPE,
+    DesktopFile, FILE_TYPE, FolderFile, TextFile,
 } from "Types/Desktop";
 
 type CreateDesktopFileArgs = {
@@ -31,14 +29,14 @@ export const createDesktopFile = ({
             ...base,
             type: FILE_TYPE.TEXT,
             innerContent: "",
-        } satisfies TextDesktopFile;
+        } satisfies TextFile;
 
     case FILE_TYPE.FOLDER:
         return {
             ...base,
             type: FILE_TYPE.FOLDER,
             innerContent: [],
-        } satisfies FolderDesktopFile;
+        } satisfies FolderFile;
 
     default:
         throw new Error(`Unsupported file type: ${type}`);

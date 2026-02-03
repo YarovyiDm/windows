@@ -21,7 +21,7 @@ const Main = ({ refs, setCurrentModal }: MainProps) => {
         <Box sx={{ display: "flex", alignItems: "center" }}>
             <Start refs={refs} handleModalChange={handleModalChange} isWindowsModalOpen={isWindowsModalOpen} />
             <Search />
-            <Apps taskPanelApps={taskPanelApps} />
+            <Apps apps={taskPanelApps} />
         </Box>
     );
 };

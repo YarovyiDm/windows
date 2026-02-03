@@ -1,43 +1,42 @@
-import React from "react";
 import { map } from "lodash";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import Icon from "Components/Icon/Icon";
 import {
     GOOGLE_CHROME,
     TASK_PANEL,
-    SKYPE,
-    STEAM,
-    TELEGRAM,
 } from "Constants/TaskPanel";
 import { TaskPanelType, ToggleModalPayload } from "Types/TaskPanelTypes";
+import { FILE_TYPE } from "Types/Desktop";
+import { ICONS } from "Constants/System";
 
 const initialTaskPanelState = {
-    taskPanelApps: {
-        [TELEGRAM]: {
-            name: TELEGRAM,
-            component: <Icon name={TELEGRAM} />,
-            isOpen: false,
-            isFocused: false,
-        },
-        [SKYPE]: {
-            name: SKYPE,
-            component: <Icon name={SKYPE} />,
-            isOpen: false,
-            isFocused: false,
-        },
-        [GOOGLE_CHROME]: {
+    taskPanelApps: [
+        // [TELEGRAM]: {
+        //     name: TELEGRAM,
+        //     component: <Icon name={TELEGRAM} />,
+        //     isOpen: false,
+        //     isFocused: false,
+        // },
+        // [SKYPE]: {
+        //     name: SKYPE,
+        //     component: <Icon name={SKYPE} />,
+        //     isOpen: false,
+        //     isFocused: false,
+        // },
+        {
+            id: FILE_TYPE.BROWSER,
+            icon: ICONS.BROWSER,
             name: GOOGLE_CHROME,
-            component: <Icon name={GOOGLE_CHROME} />,
+            type: FILE_TYPE.BROWSER,
             isOpen: false,
             isFocused: false,
         },
-        [STEAM]: {
-            name: STEAM,
-            component: <Icon name={STEAM} />,
-            isOpen: false,
-            isFocused: false,
-        },
-    },
+        // [STEAM]: {
+        //     name: STEAM,
+        //     component: <Icon name={STEAM} />,
+        //     isOpen: false,
+        //     isFocused: false,
+        // },
+    ],
     isHiddenAppsModalOpen: false,
     isWindowsModalOpen: false,
     isPowerModalOpen: false,

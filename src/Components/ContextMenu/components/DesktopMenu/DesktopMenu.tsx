@@ -1,5 +1,3 @@
-import { v4 as uuid } from "uuid";
-import { useRef } from "react";
 import useLanguage from "Hooks/useLanguage";
 import { useAppDispatch, useAppSelector } from "Store/index";
 import { selectFileSize } from "Store/selectors/System";
@@ -23,7 +21,6 @@ import type { CreateFilePayload, DesktopMenuProps } from "./DesktopMenu.types";
 const  DesktopMenu = ({ contextMenuPosition, setContextMenuVisible, onDesktopFileSizeChange } : DesktopMenuProps) => {
     const selectedSize = useAppSelector(selectFileSize);
     const { translate } = useLanguage();
-    const fileId = useRef(uuid()).current;
     const dispatch = useAppDispatch();
 
     const createNewFile = ({ name, type }: CreateFilePayload) => {

@@ -33,3 +33,10 @@ export const selectFolder = (id: string) => (state: RootState) =>
     state.desktop.desktopFiles.find(
         file => file.id === id && file.type === FILE_TYPE.FOLDER,
     );
+
+export const selectDraggableFile = () =>
+    createSelector(
+        selectDesktop,
+        (state: Desktop) =>
+            state.draggingFile,
+    );

@@ -16,7 +16,7 @@ const Notification = ({ delayBeforeShow, duration, text }: NotificationProps) =>
 
     useEffect(() => {
         setTimeout(() => setVisible(true), delayBeforeShow ?? 2000);
-        const timer = setTimeout(() => setVisible(false), duration ?? 10000000);
+        const timer = setTimeout(() => setVisible(false), duration ?? 10000);
 
         return () => clearTimeout(timer);
     }, [delayBeforeShow, duration]);

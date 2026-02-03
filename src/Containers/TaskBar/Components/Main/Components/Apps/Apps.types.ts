@@ -1,3 +1,4 @@
+import { taskPanelApp } from "Types/TaskPanelTypes";
 import type { ReactElement } from "react";
 
 export type PinnedAppsProps = {
@@ -5,4 +6,9 @@ export type PinnedAppsProps = {
     isOpen?: boolean;
     isFocused?: boolean;
     component: ReactElement;
+    icon: string;
 };
+
+export type AppsProps = {
+    apps: taskPanelApp[];
+}

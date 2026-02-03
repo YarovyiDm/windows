@@ -1,29 +1,30 @@
 import React, { useEffect, useRef, useState } from "react";
-import { DraggableFile, ContextMenu } from "Components";
 import {
     DOM_EVENTS,
     ZERO_POSITION,
 } from "Constants/System";
 import { useAppSelector, useAppDispatch } from "Store/index";
 import {
-    selectIsWindowOpen,
+    selectDraggableFile,
     selectFiles,
     selectOpenedWindows,
 } from "Store/selectors/Desktop";
 import { clearSelection, selectMultipleFiles } from "Store/slices/Desktop";
 import { useContextMenu } from "Hooks/useContextMenu";
 import { selectWallpaper } from "Store/selectors/System";
-import Notification from "Components/Notification/Notification";
 import useLanguage from "Hooks/useLanguage";
 import SettingsWindow from "Containers/Desktop/Components/Windows/SettingsWindow/SettingsWindow";
 import type { BasicCoordinates } from "Types/System";
-import Selection from "Containers/Desktop/Components/Selection/Selection";
 import { DesktopWrapper } from "Containers/Desktop/Desktop.styled";
 import { DesktopFile, FILE_TYPE, WINDOW_KIND } from "Types/Desktop";
 import FolderWindow from "Containers/Desktop/Components/Windows/FolderWindow/FolderWindow";
 import TextWindow from "Containers/Desktop/Components/Windows/TextWindow/TextWindow";
 import DraggableFileCopy
     from "Containers/Desktop/Components/DraggableFile/Components/DraggableFileCopy/DraggableFileCopy";
+import { ContextMenu, DraggableFile } from "Components/index";
+import Selection from "Containers/Desktop/Components/Selection/Selection";
+import Notification from 'Components/Notification/Notification';
+import ChromeWindow from "Containers/Desktop/Components/Windows/ChromeWindow/ChromeWindow";
 import type { MouseEvent as ReactMouseEvent, DragEvent } from "react";
 
 const Desktop = () => {
@@ -32,8 +33,7 @@ const Desktop = () => {
     const currentPositionRef = useRef<BasicCoordinates>(ZERO_POSITION);
     const selectionRef = useRef<HTMLDivElement>(null);
     const [renameFileId, setRenameFileId] = useState('');
-    const draggingFile = useAppSelector(state => state.desktop.draggingFile);
-    // const [cursorPos, setCursorPos] = useState<{ x: number; y: number; } | null>(null);
+    const draggingFile = useAppSelector(selectDraggableFile());
 
     const dispatch = useAppDispatch();
     const {
@@ -49,30 +49,12 @@ const Desktop = () => {
     const openedWindows = useAppSelector(selectOpenedWindows);
     const desktopFiles = useAppSelector(selectFiles);
     const wallpaper = useAppSelector(selectWallpaper);
-    const isSettingsWindowOpen = useAppSelector(selectIsWindowOpen("Settings"));
     const selectedFiles = useAppSelector(state => state.desktop.selectedFiles);
     const [targetFolderId, setTargetFolderId] = useState<string>("");
 
     const targetFolderHandle = (id: string) => {
         setTargetFolderId(id);
     };
-
-    // useEffect(() => {
-    //     const handleMouseMove = (e: MouseEvent) => {
-    //         // setCursorPos({
-    //         //     x: e.clientX,
-    //         //     y: e.clientY,
-    //         // });
-    //     };
-    //
-    //     if (draggingFile) {
-    //         document.addEventListener("mousemove", handleMouseMove);
-    //     }
-    //
-    //     return () => {
-    //         document.removeEventListener("mousemove", handleMouseMove);
-    //     };
-    // }, [draggingFile]);
 
     const handleMouseDown = (e: ReactMouseEvent<HTMLDivElement>) => {
         const target = e.target as HTMLElement;
@@ -131,14 +113,12 @@ const Desktop = () => {
         };
     }, [desktopFiles, dispatch, isSelecting, setContextMenuVisible]);
 
-    console.log('selectedFiles', selectedFiles);
-
     return (
         <DesktopWrapper
             style={{ backgroundImage: `url(${wallpaper})` }}
             onMouseDown={handleMouseDown}
             onContextMenu={handleContextMenu}
-            data-id='DESKTOP'
+            data-id={FILE_TYPE.DESKTOP}
             data-file={FILE_TYPE.FOLDER}
             onDragOver={(e: DragEvent) => e.preventDefault()}
         >
@@ -156,23 +136,27 @@ const Desktop = () => {
 
             {openedWindows.map(win => {
                 switch (win.kind) {
-
                 case WINDOW_KIND.TEXT:
                     return <TextWindow key={win.id} desktopWindow={win} />;
 
                 case WINDOW_KIND.FOLDER:
-                    return <FolderWindow key={win.id} window={win} targetFolderId={targetFolderId} targetFolderHandle={targetFolderHandle} />;
+                    return <FolderWindow
+                        key={win.id}
+                        window={win}
+                        targetFolderId={targetFolderId}
+                        targetFolderHandle={targetFolderHandle}
+                    />;
 
-                // case WINDOW_KIND.BROWSER:
-                //     return <BrowserWindow key={win.id} tabs={win.payload.tabs} />;
-                //
+                case WINDOW_KIND.BROWSER:
+                    return <ChromeWindow />;
+
                 case WINDOW_KIND.SETTINGS:
                     return <SettingsWindow key={win.id} />;
 
                 default:
-                    return <div>1</div>;
+                    return null;
                 }
-            })};
+            })}
 
             {isSelecting && (
                 <Selection
@@ -188,19 +172,16 @@ const Desktop = () => {
                     targetFolderHandle={targetFolderHandle}
                     key={file.id}
                     file={file}
-                    setIsSelecting={setIsSelecting}
                     onContextMenu={handleContextMenu}
                     isSelected={selectedFiles.includes(file.name)}
                     renameFileId={renameFileId}
                     setRenameFileId={setRenameFileId}
-                    // isInFolder={false}
                 />
             ))}
 
             {draggingFile && (
                 <DraggableFileCopy x={draggingFile.initialCursorPos.x} y={draggingFile.initialCursorPos.y} icon={draggingFile.icon} />
             )}
-            {isSettingsWindowOpen && <SettingsWindow />}
         </DesktopWrapper>
     );
 };

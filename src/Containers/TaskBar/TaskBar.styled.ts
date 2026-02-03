@@ -1,7 +1,7 @@
 import { styled, Box } from "@mui/material";
 
 export const TaskBarWrapper = styled(Box)({
-    height: "50px",
+    height: "60px",
     flex: 1,
     minWidth: 0,
     display: "flex",

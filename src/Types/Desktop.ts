@@ -8,17 +8,17 @@ export type FolderWindowPayload = {
     files: DesktopFile[];
 };
 
-// export type BrowserTab = {
-//     id: string;
-//     title: string;
-//     url: string;
-// };
-//
-// export type BrowserWindowPayload = {
-//     tabs: BrowserTab[];
-//     activeTabId: string;
-// };
-//
+export type BrowserTab = {
+    id: string;
+    title: string;
+    url: string;
+};
+
+export type BrowserWindowPayload = {
+    // tabs: BrowserTab[];
+    // activeTabId: string;
+};
+
 export type SettingsWindowPayload = Record<string, never>;
 
 export enum WINDOW_KIND {
@@ -45,14 +45,14 @@ export type DesktopWindow =
     position?: BasicCoordinates;
     payload: FolderWindowPayload;
 }
-//     | {
-//     id: string;
-//     kind: WINDOW_KIND.BROWSER;
-//     title: string;
-//     zIndex: number;
-//     position?: BasicCoordinates;
-//     payload: BrowserWindowPayload;
-// }
+    | {
+    id: string;
+    kind: WINDOW_KIND.BROWSER;
+    title: string;
+    zIndex: number;
+    position?: BasicCoordinates;
+    payload: BrowserWindowPayload;
+}
     | {
     id: string;
     kind: WINDOW_KIND.SETTINGS;
@@ -67,55 +67,48 @@ export enum FILE_TYPE {
     FOLDER = "FOLDER",
     LINK = "LINK",
     SETTINGS = "SETTINGS",
+    DESKTOP = "DESKTOP",
+    BROWSER = "BROWSER",
 }
 
 export type BaseDesktopFile = {
     id: string;
     name: string;
     icon: string;
-    // position: { x: number; y: number; };
     size?: number;
     isSelected: boolean;
     parentId?: string;
 };
 
-export type TextDesktopFile = BaseDesktopFile & {
+export type TextFile = BaseDesktopFile & {
     type: FILE_TYPE.TEXT;
     innerContent: string;
 };
 
-export type FolderDesktopFile = BaseDesktopFile & {
+export type FolderFile = BaseDesktopFile & {
     type: FILE_TYPE.FOLDER;
     innerContent: DesktopFile[];
 };
 
-export type LinkDesktopFile = BaseDesktopFile & {
+export type LinkFile = BaseDesktopFile & {
     type: FILE_TYPE.LINK;
     link: string;
 };
 
-export type SettingsDesktopFile = BaseDesktopFile & {
+export type SettingsFile = BaseDesktopFile & {
     type: FILE_TYPE.SETTINGS;
 };
 
-export type DesktopFile =
-    | TextDesktopFile
-    | FolderDesktopFile
-    | SettingsDesktopFile
-    | LinkDesktopFile;
+export type BrowserFile = BaseDesktopFile & {
+    type: FILE_TYPE.BROWSER;
+};
 
-// export type IFile = {
-//     name: string;
-//     icon: string;
-//     position: BasicCoordinates;
-//     isSelected: boolean;
-//     type: string;
-//     innerContent: Array<IFile> | string;
-//     isOpened: boolean;
-//     id: string;
-//     size: number;
-//     link?: string;
-// };
+export type DesktopFile =
+    | TextFile
+    | FolderFile
+    | SettingsFile
+    | LinkFile
+    | BrowserFile;
 
 export type Desktop = {
     desktopFiles: DesktopFile[];

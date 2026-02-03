@@ -23,6 +23,7 @@ export const ICONS = {
     RIGHT_ARROW: "RightArrow",
     SQUARE_IN_SQUARE: "SquareInSquare",
     SQUARE_OUTLINE: "SquareOutLine",
+    BROWSER: "BROWSER",
     LINE: "Line",
     EDIT: "Edit",
     FULL_ARROW: "FullArrow",
@@ -84,6 +85,7 @@ export const KEY_CODES = {
     DELETE: "Delete",
     ENTER: "Enter",
     S: "KeyS",
+    ESCAPE: "Escape",
 } as const;
 
 // Events

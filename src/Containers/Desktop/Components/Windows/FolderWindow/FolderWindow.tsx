@@ -26,7 +26,6 @@ const FolderWindow = ({ window, targetFolderId, targetFolderHandle }: FolderWind
                             targetFolderId={targetFolderId}
                             key={file.id}
                             file={file}
-                            setIsSelecting={() => {}}
                             onContextMenu={() => {}}
                             isSelected={false}
                             renameFileId=''

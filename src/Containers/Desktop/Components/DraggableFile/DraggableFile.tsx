@@ -2,10 +2,19 @@ import React, { ChangeEvent, useEffect, useMemo, useRef, useState } from "react"
 import { Icon } from "Components/index";
 import { File, FileName } from "Containers/Desktop/Components/DraggableFile/DraggableFile.styled";
 import { useAppDispatch, useAppSelector } from "Store/index";
-import { setDraggingFile, renameFile, dragFileToFolder, removeFile, selectMultipleFiles } from "Store/slices/Desktop";
+import {
+    setDraggingFile,
+    renameFile,
+    dragFileToFolder,
+    removeFile,
+    selectMultipleFiles,
+    clearSelection,
+} from "Store/slices/Desktop";
 import { FILE_TYPE } from "Types/Desktop";
-import { selectFileSize } from "Store/selectors/System";
+import { selectFileSelectionColor, selectFileSize } from "Store/selectors/System";
 import { DOM_EVENTS, KEY_CODES } from "Constants/System";
+import { useClickOutside } from "Hooks/useClickOutside";
+import { selectDraggableFile } from "Store/selectors/Desktop";
 import { openFile } from "../../../../helpers/openFile";
 import { checkDropTargetByCursor } from "./DraggableFile.helpers";
 import type { DraggableFileProps } from "./DraggableFile.types";
@@ -13,7 +22,6 @@ import type { DraggableFileProps } from "./DraggableFile.types";
 const DraggableFile = ({
     file,
     isSelected,
-    setIsSelecting,
     onContextMenu,
     renameFileId,
     setRenameFileId,
@@ -21,11 +29,6 @@ const DraggableFile = ({
     targetFolderId,
 }: DraggableFileProps) => {
     const dispatch = useAppDispatch();
-    const draggingFile = useAppSelector(state => state.desktop.draggingFile);
-    const fileSelectionColor = useAppSelector(state => state.system.fileSelectionColor);
-    const selectedSize = useAppSelector(selectFileSize);
-    const [fileName, setFileName] = useState(file.name);
-    const [isFileSelected, setIsFileSelected] = useState(isSelected);
     const mouseDownRef = useRef<{
         x: number;
         y: number;
@@ -38,7 +41,18 @@ const DraggableFile = ({
     const dragStartedRef = useRef(false);
     const fileRef = useRef<HTMLDivElement | null>(null);
 
+    const draggingFile = useAppSelector(selectDraggableFile());
+    const fileSelectionColor = useAppSelector(selectFileSelectionColor);
+    const selectedSize = useAppSelector(selectFileSize);
+    const [fileName, setFileName] = useState(file.name);
+    const [isFileSelected, setIsFileSelected] = useState(isSelected);
+
     const isRename = useMemo(() => renameFileId === file.id, [renameFileId, file.id]);
+
+    useClickOutside(fileRef, () => {
+        setRenameFileId("");
+        dispatch(clearSelection());
+    });
 
     const commitRename = () => {
         if (!fileName.length) return;
@@ -47,8 +61,8 @@ const DraggableFile = ({
     };
 
     const handleRenameKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === "Enter") commitRename();
-        if (e.key === "Escape") setFileName(file.name);
+        if (e.key === KEY_CODES.ENTER) commitRename();
+        if (e.key === KEY_CODES.ESCAPE) setFileName(file.name);
     };
 
     const handleMouseDown = (e: React.MouseEvent) => {
@@ -153,7 +167,7 @@ const DraggableFile = ({
             onDoubleClick={handleOpen}
             onClick={(e) => {
                 e.stopPropagation();
-                dispatch(selectMultipleFiles([file.name])); // виділяємо лише цей файл
+                dispatch(selectMultipleFiles([file.name]));
             }}
             onContextMenu={onContextMenu}
             className='prevent-selecting desktop-file'
@@ -164,9 +178,7 @@ const DraggableFile = ({
                 width: selectedSize?.width,
                 height: selectedSize?.height,
                 background: isFileSelected ? fileSelectionColor : "",
-                // transform: `translate3d(${file.position.x}px, ${file.position.y}px, 0)`,
                 willChange: "transform",
-                // position: isInFolder ? "relative" : "absolute",
             }}
         >
             <Icon
@@ -180,6 +192,7 @@ const DraggableFile = ({
                     value={fileName}
                     autoFocus
                     onChange={(e: ChangeEvent<HTMLInputElement>) => setFileName(e.target.value)}
+                    style={{ width: "80px" }}
                     onKeyDown={handleRenameKeyDown}
                 />
             ) : (

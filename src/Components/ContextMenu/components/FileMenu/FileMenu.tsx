@@ -27,14 +27,6 @@ const FileMenu = ({ targetId, setRenameFileId }: FileMenuProps) => {
                     </ItemTitle>
                 </MenuItemMain>
             </MenuItem>
-            {/*<MenuItem>*/}
-            {/*    <MenuItemMain>*/}
-            {/*        <IconStyled name={STASH}  />*/}
-            {/*        <ItemTitle>*/}
-            {/*            Властивості*/}
-            {/*        </ItemTitle>*/}
-            {/*    </MenuItemMain>*/}
-            {/*</MenuItem>*/}
         </>
     );
 };

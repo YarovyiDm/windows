@@ -82,10 +82,13 @@ function App() {
                     classNameArrow={styles.tooltipArrow}
                 />
                 {systemScenario
-                    ? SCENARIOS_MAP[
-                          systemScenario as keyof typeof SCENARIOS_MAP
-                    ]
-                    : [<Desktop key='desktop' />, <TaskBar key='taskbar' />]}
+                    ? SCENARIOS_MAP[systemScenario as keyof typeof SCENARIOS_MAP]
+                    : (
+                        <>
+                            <Desktop key='desktop' />
+                            <TaskBar key='taskbar' />
+                        </>
+                    )}
             </div>
         </ErrorBoundary>
     );

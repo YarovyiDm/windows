@@ -32,7 +32,6 @@ import { ReactComponent as Linkedin } from "Icons/linkedin.svg";
 import {
     TELEGRAM,
     SKYPE,
-    GOOGLE_CHROME,
     STEAM,
     POSTMAN,
     WEBSTORM,
@@ -61,7 +60,7 @@ type IProps = {
 const Icons = {
     [TELEGRAM]: Telegram,
     [SKYPE]: Skype,
-    [GOOGLE_CHROME]: Chrome,
+    [ICONS.BROWSER]: Chrome,
     [STEAM]: Steam,
     [POSTMAN]: Postman,
     [WEBSTORM]: WebStorm,

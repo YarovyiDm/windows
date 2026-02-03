@@ -30,11 +30,20 @@ export const mapFileToWindow = (
             },
         };
 
+    case FILE_TYPE.BROWSER:
+        return {
+            id: file.id,
+            kind: WINDOW_KIND.BROWSER,
+            title: "Chrome",
+            zIndex: 10,
+            payload: {},
+        };
+
     case FILE_TYPE.SETTINGS:
         return {
             id: "settings",
             kind: WINDOW_KIND.SETTINGS,
-            title: "Settings",
+            title: file.name,
             zIndex: 10,
             payload: {},
         };

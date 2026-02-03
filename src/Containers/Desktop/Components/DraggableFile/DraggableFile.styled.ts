@@ -12,21 +12,6 @@ export const File = styled(Box)({
     },
 });
 
-// export const TooltipStyled = styled(Box)({
-//     backgroundColor: "#333333",
-//     color: "#ffffff",
-//     padding: "4px 8px",
-//     borderRadius: "4px",
-//     fontSize: "12px",
-//     whiteSpace: "nowrap",
-//     pointerEvents: "none",
-//     zIndex: "999",
-//     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
-//     position: "absolute",
-//     top: "25px",
-//     left: "70px",
-// });
-
 export const FileName = styled(Box)({
     fontSize: "12px",
     color: "white",

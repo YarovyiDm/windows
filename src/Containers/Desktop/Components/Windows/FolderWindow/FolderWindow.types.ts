@@ -9,4 +9,6 @@ export type FolderWindowProps = {
     // renameFileId: string;
     // setIsSelecting: (isSelecting: boolean) => void;
     window: DesktopWindow;
+    targetFolderId: string;
+    targetFolderHandle: (id: string) => void;
 }

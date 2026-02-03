@@ -15,4 +15,7 @@ export type DraggableFileProps = {
     setRenameFileId: Dispatch<SetStateAction<string>>;
     isSelected: boolean;
     file: DesktopFile;
+    // isInFolder?: boolean;
+    targetFolderHandle?: (id: string) => void;
+    targetFolderId: string;
 }

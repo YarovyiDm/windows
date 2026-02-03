@@ -7,7 +7,7 @@ import { useAppSelector } from "Store/index";
 import { selectFolder } from "Store/selectors/Desktop";
 import type { FolderWindowProps } from "./FolderWindow.types";
 
-const FolderWindow = ({ window }: FolderWindowProps) => {
+const FolderWindow = ({ window, targetFolderId, targetFolderHandle }: FolderWindowProps) => {
     const folder = useAppSelector(selectFolder(window.id));
 
     return (
@@ -22,6 +22,8 @@ const FolderWindow = ({ window }: FolderWindowProps) => {
                     Array.isArray(folder.innerContent) &&
                     folder.innerContent.map(file => (
                         <DraggableFile
+                            targetFolderHandle={targetFolderHandle}
+                            targetFolderId={targetFolderId}
                             key={file.id}
                             file={file}
                             setIsSelecting={() => {}}

@@ -73,10 +73,10 @@ export type BaseDesktopFile = {
     id: string;
     name: string;
     icon: string;
-    position: { x: number; y: number; };
+    // position: { x: number; y: number; };
     size?: number;
     isSelected: boolean;
-    parentFolderId?: string | null;
+    parentId?: string;
 };
 
 export type TextDesktopFile = BaseDesktopFile & {
@@ -122,4 +122,5 @@ export type Desktop = {
     bin: DesktopFile[];
     selectedFiles: Array<string>;
     openedWindows: DesktopWindow[];
+    draggingFile: DesktopFile & { initialCursorPos: {x: number; y: number;};} | null;
 };

@@ -14,7 +14,6 @@ import {
 import { ICONS } from "Constants/System";
 import { FILE_TYPE, SettingsDesktopFile } from "Types/Desktop";
 import PowerModal from "../PowerModal/PowerModal";
-import { getRandomCenterCoordinates } from "../../../helpers/getRandomCenterCoordinates";
 
 const WindowsModal = () => {
     const dispatch = useAppDispatch();
@@ -31,7 +30,6 @@ const WindowsModal = () => {
             id: "Settings",
             name: "Settings",
             icon: ICONS.SETTINGS,
-            position: getRandomCenterCoordinates(),
             isSelected: false,
         } satisfies SettingsDesktopFile;
     }, []);

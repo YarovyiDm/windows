@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/windows/static/css/main.a8a544f8.css",
-    "main.js": "/windows/static/js/main.70fb0d01.js",
+    "main.css": "/windows/static/css/main.a9a43b33.css",
+    "main.js": "/windows/static/js/main.dd568bea.js",
     "static/media/iriser.jpg": "/windows/static/media/iriser.27e9cdf4087a77e95102.jpg",
     "static/media/bri.jpg": "/windows/static/media/bri.daffee13f010b22dd758.jpg",
     "static/media/witcher.jpg": "/windows/static/media/witcher.a1c7f5700f98aeb7b0f1.jpg",
@@ -13,7 +13,7 @@
     "static/media/postmanIcon.svg": "/windows/static/media/postmanIcon.c74cd48d00339ba03ff2e6ed3f9d0c4d.svg",
     "static/media/TextFileIcon.svg": "/windows/static/media/TextFileIcon.2f349ec355cb336c35d56670e31cc6bb.svg",
     "static/media/winSettings.svg": "/windows/static/media/winSettings.291743aee0319a3612255c608e54a5a5.svg",
-    "static/media/github.svg": "/windows/static/media/github.fdc048908dffb6d0f52bc38bfbd82611.svg",
+    "static/media/github.svg": "/windows/static/media/github.3b1df8d0b16e3bd1942cf87716b42feb.svg",
     "static/media/chromeIcon.svg": "/windows/static/media/chromeIcon.b8d46baffc8a4a2187394ba00ae0d362.svg",
     "static/media/webstormIcon.svg": "/windows/static/media/webstormIcon.e1ddbc246702e25959152aa46d2a29ae.svg",
     "static/media/binIcon.svg": "/windows/static/media/binIcon.10ab850dee02075835cf3893d0ec32cf.svg",
@@ -25,10 +25,10 @@
     "static/media/squareOnSquare.svg": "/windows/static/media/squareOnSquare.404d7f7fb8b7f54798eefc540bbc667d.svg",
     "static/media/edit.svg": "/windows/static/media/edit.c395a6a39f5aac53d0f45fe9640f4e3b.svg",
     "static/media/userIcon.svg": "/windows/static/media/userIcon.a28000d87f1ea97f43603d365de64387.svg",
+    "static/media/linkedin.svg": "/windows/static/media/linkedin.f0d0caf54c8bec35c23633f3fad065a3.svg",
     "static/media/reloadModIcon.svg": "/windows/static/media/reloadModIcon.61b19f10df06c502a5ac7c7ef779d33c.svg",
     "static/media/powerIcon.svg": "/windows/static/media/powerIcon.ce02a7ed691ef72bd50114141fbc17e2.svg",
     "static/media/folderIcon.svg": "/windows/static/media/folderIcon.90791b11b4c823f6abb5b71c843a4145.svg",
-    "static/media/linkedin.svg": "/windows/static/media/linkedin.c341cc1c307221b0fe42599c619ceeaf.svg",
     "static/media/sleepModIcon.svg": "/windows/static/media/sleepModIcon.cb7c7779b45689d109a44bc96b6fcdae.svg",
     "static/media/upArrowIcon.svg": "/windows/static/media/upArrowIcon.86b10dc63f02936bb599108a492619d6.svg",
     "static/media/fullArrow.svg": "/windows/static/media/fullArrow.b98fbedb5f927f59c82ed04d74a0cb5c.svg",
@@ -40,11 +40,11 @@
     "static/media/plusCircleIcon.svg": "/windows/static/media/plusCircleIcon.8c3e089bace212b94cb9ea252fbd5d6e.svg",
     "static/media/rightArrow.svg": "/windows/static/media/rightArrow.3be968dabe76747fedd2f22525c93867.svg",
     "static/media/line.svg": "/windows/static/media/line.49e295bf589c9ffd48ec9b557c54b9b3.svg",
-    "main.a8a544f8.css.map": "/windows/static/css/main.a8a544f8.css.map",
-    "main.70fb0d01.js.map": "/windows/static/js/main.70fb0d01.js.map"
+    "main.a9a43b33.css.map": "/windows/static/css/main.a9a43b33.css.map",
+    "main.dd568bea.js.map": "/windows/static/js/main.dd568bea.js.map"
   },
   "entrypoints": [
-    "static/css/main.a8a544f8.css",
-    "static/js/main.70fb0d01.js"
+    "static/css/main.a9a43b33.css",
+    "static/js/main.dd568bea.js"
   ]
 }

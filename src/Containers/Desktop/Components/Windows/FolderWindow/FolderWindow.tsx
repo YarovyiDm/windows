@@ -18,7 +18,7 @@ const FolderWindow = ({
     const folder = useAppSelector(selectFolder(window.id));
 
     return (
-        <WindowBasic title={window.title} id={window.id} kind={WINDOW_KIND.FOLDER}>
+        <WindowBasic zIndex={window.zIndex} title={window.title} id={window.id} kind={WINDOW_KIND.FOLDER}>
             <FolderWindowWrapper
                 data-file={FILE_TYPE.FOLDER}
                 data-id={window.id}

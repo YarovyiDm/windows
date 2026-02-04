@@ -3,13 +3,15 @@ import cn from "classnames";
 import { Box } from  '@mui/material';
 import { openFile } from "Utils";
 import { Icon } from "Components/index";
-import { useAppDispatch } from "Store/index";
+import { useAppDispatch, useAppSelector } from "Store/index";
 import { AppsProps, PinnedAppsProps } from "Containers/TaskBar/Components/Main/Components/Apps/Apps.types";
 import { FILE_TYPE } from "Types/Desktop";
+import { selectOpenedWindowLength } from "Store/selectors/Desktop";
 import styles from "./Apps.module.scss";
 
 const Apps = ({ apps }: AppsProps) => {
     const dispatch = useAppDispatch();
+    const openedWindowsLength = useAppSelector(selectOpenedWindowLength);
 
     const onAppClick = (name: string, icon: string) => {
         openFile({
@@ -18,7 +20,7 @@ const Apps = ({ apps }: AppsProps) => {
             icon,
             isSelected: false,
             type: FILE_TYPE.BROWSER,
-        }, dispatch);
+        }, dispatch, openedWindowsLength);
         // dispatch(openingApp(name));
         // dispatch(changeApp(name));
     };

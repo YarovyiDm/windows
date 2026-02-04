@@ -16,6 +16,7 @@ import {
 import ErrorBoundary from "Components/ErrorBoundary/ErrorBoundary";
 import { useUserLocation } from "Hooks/Api";
 import { DOM_EVENTS } from "Constants/Events";
+import { TRANSLATION_KEYS } from "Constants/Translation";
 import { useAppSelector } from "./Store";
 import styles from "./App.module.scss";
 
@@ -62,7 +63,7 @@ function App() {
             e.preventDefault();
         };
 
-        dispatch(updateFile({ id: ":2d", newValue: translate("readMeFile") }));
+        dispatch(updateFile({ id: ":2d", newValue: translate(TRANSLATION_KEYS.READ_ME) }));
         document.addEventListener(DOM_EVENTS.CONTEXT_MENU, handleContextMenu);
         document.addEventListener(
             DOM_EVENTS.KEY_DOWN,

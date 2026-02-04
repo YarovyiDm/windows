@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useLanguage } from "Hooks";
 import Icon from "Components/Icon/Icon";
 import { ICONS } from "Constants/Icons";
+import { TRANSLATION_KEYS } from "Constants/Translation";
 import {
     CloseButtonWrapper,
     NotificationContent,
@@ -34,7 +35,7 @@ const Notification = ({ delayBeforeShow, duration, text }: NotificationProps) =>
             }}
         >
             <NotificationHeader>
-                <NotificationTitle>{translate("notification")}</NotificationTitle>
+                <NotificationTitle>{translate(TRANSLATION_KEYS.NOTIFICATION)}</NotificationTitle>
                 <CloseButtonWrapper
                     onClick={closeNotification}
                 >

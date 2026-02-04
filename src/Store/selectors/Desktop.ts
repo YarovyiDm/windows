@@ -40,3 +40,8 @@ export const selectDraggableFile = () =>
         (state: Desktop) =>
             state.draggingFile,
     );
+
+export const selectOpenedWindowLength = createSelector(
+    selectDesktop,
+    (state: Desktop) => state.openedWindows.length,
+);

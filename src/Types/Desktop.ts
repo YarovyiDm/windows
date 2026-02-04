@@ -36,6 +36,7 @@ export type DesktopWindow =
     zIndex: number;
     position?: BasicCoordinates;
     payload: TextWindowPayload;
+    fileId?: string;
 }
     | {
     id: string;

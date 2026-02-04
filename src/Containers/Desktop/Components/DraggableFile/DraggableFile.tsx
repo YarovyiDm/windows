@@ -14,7 +14,7 @@ import {
 } from "Store/slices/Desktop";
 import { FILE_TYPE } from "Types/Desktop";
 import { selectFileSelectionColor, selectFileSize } from "Store/selectors/System";
-import { selectDraggableFile } from "Store/selectors/Desktop";
+import { selectDraggableFile, selectOpenedWindowLength } from "Store/selectors/Desktop";
 import { KEY_CODES } from "Constants/KeyCodes";
 import { DOM_EVENTS } from "Constants/Events";
 import { CONTEXT_MENU_TYPES } from "Constants/System";
@@ -48,23 +48,30 @@ const DraggableFile = ({
     const selectedSize = useAppSelector(selectFileSize);
     const [fileName, setFileName] = useState(file.name);
     const [isFileSelected, setIsFileSelected] = useState(isSelected);
+    const inputRef = useRef<HTMLInputElement>(null);
+    const openedWindowsLength = useAppSelector(selectOpenedWindowLength);
 
     const isRename = useMemo(() => renameFileId === file.id, [renameFileId, file.id]);
 
     useClickOutside(fileRef, () => {
-        setRenameFileId("");
+        commitRename();
         dispatch(clearSelection());
     });
 
     const commitRename = () => {
-        if (!fileName.length) return;
-        dispatch(renameFile({ id: file.id, newName: fileName }));
+        const newName = inputRef.current?.value || "";
+
+        if (!newName.length) return;
+        dispatch(renameFile({ id: file.id, newName }));
         setRenameFileId("");
     };
 
     const handleRenameKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === KEY_CODES.ENTER) commitRename();
-        if (e.key === KEY_CODES.ESCAPE) setFileName(file.name);
+        if (e.key === KEY_CODES.ESCAPE) {
+            setFileName(file.name);
+            setRenameFileId("");
+        }
     };
 
     const handleMouseDown = (e: React.MouseEvent) => {
@@ -134,14 +141,14 @@ const DraggableFile = ({
         const handleKeyDown = (e: KeyboardEvent) => {
             if (e.code === KEY_CODES.DELETE) dispatch(removeFile(file.id));
             if (e.key === KEY_CODES.ENTER && isFileSelected) {
-                openFile(file, dispatch);
+                openFile(file, dispatch, openedWindowsLength);
                 setIsFileSelected(false);
             }
         };
 
         document.addEventListener(DOM_EVENTS.KEY_DOWN, handleKeyDown as EventListener);
         return () => document.removeEventListener(DOM_EVENTS.KEY_DOWN, handleKeyDown as EventListener);
-    }, [dispatch, isFileSelected, file]);
+    }, [dispatch, isFileSelected, file, openedWindowsLength]);
 
     useEffect(() => {
         document.addEventListener(DOM_EVENTS.MOUSE_MOVE, handleMouseMove);
@@ -159,7 +166,7 @@ const DraggableFile = ({
 
     const handleOpen = () => {
         if (file.type === FILE_TYPE.LINK && file.link) window.open(file.link, "_blank");
-        else openFile(file, dispatch);
+        else openFile(file, dispatch, openedWindowsLength);
     };
 
     return (
@@ -191,6 +198,7 @@ const DraggableFile = ({
             />
             {isRename ? (
                 <input
+                    ref={inputRef}
                     value={fileName}
                     autoFocus
                     onChange={(e: ChangeEvent<HTMLInputElement>) => setFileName(e.target.value)}

@@ -37,8 +37,8 @@ body {
 .window {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
-    position: relative;
+    //align-items: stretch;
+    //position: relative;
     .taskPanelAppTooltip {
         background-color: #f3f3f3;
         color: black;

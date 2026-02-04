@@ -1,5 +1,7 @@
 import React from "react";
 import { Box } from '@mui/material';
+import { TRANSLATION_KEYS } from "Constants/Translation";
+import { useLanguage } from "Hooks/useLanguage";
 import { createTab } from "../../ChromeWindow.helpers";
 import {
     TabCloseButton, TabNewButton,
@@ -9,11 +11,12 @@ import {
 import { TabsProps } from "./Tabs.types";
 
 const Tabs = ({ tabs, activeTabId, setActiveTabId, setTabs }: TabsProps) => {
+    const { translate } = useLanguage();
 
     const addTab = () => {
         if (tabs.length >= 5) return;
 
-        const newTab = createTab();
+        const newTab = createTab(translate(TRANSLATION_KEYS.NEW_TAB));
 
         setTabs(prev => [...prev, newTab]);
         setActiveTabId(newTab.id);

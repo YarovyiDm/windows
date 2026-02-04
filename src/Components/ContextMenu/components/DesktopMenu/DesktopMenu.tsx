@@ -5,6 +5,7 @@ import FileSize from "Components/ContextMenu/components/FileSize/FileSize";
 import { ICONS } from "Constants/Icons";
 import { FILE_TYPE } from "Types/Desktop";
 import { useDesktopMenuActions } from "Components/ContextMenu/Hooks/useDesktopMenuActions";
+import { TRANSLATION_KEYS } from "Constants/Translation";
 import {
     IconStyled,
     IconWrapper, ItemArrowIcon,
@@ -33,7 +34,7 @@ const  DesktopMenu = ({
                 <MenuItemMain>
                     <IconStyled name={ICONS.VIEW_BOXES} />
                     <ItemTitle>
-                        {translate("iconsView")}
+                        {translate(TRANSLATION_KEYS.ICONS_VIEW)}
                     </ItemTitle>
                 </MenuItemMain>
                 <ItemArrowIcon
@@ -45,7 +46,7 @@ const  DesktopMenu = ({
                 <MenuItemMain>
                     <IconStyled name={ICONS.PLUS_CIRCLE} />
                     <ItemTitle>
-                        {translate("createNewFile")}
+                        {translate(TRANSLATION_KEYS.CREATE)}
                     </ItemTitle>
                 </MenuItemMain>
                 <ItemArrowIcon
@@ -54,7 +55,7 @@ const  DesktopMenu = ({
                 <SubMenuWrapper className='submenu'>
                     <SubMenuItemMain
                         onClick={() => createNewFile({
-                            name: translate("newFolder"),
+                            name: translate(TRANSLATION_KEYS.NEW_FOLDER),
                             type: FILE_TYPE.FOLDER,
                         })}
                     >
@@ -63,12 +64,12 @@ const  DesktopMenu = ({
                         </IconWrapper>
 
                         <SubItemTitle>
-                            {translate("folder")}
+                            {translate(TRANSLATION_KEYS.FOLDER)}
                         </SubItemTitle>
                     </SubMenuItemMain>
                     <SubMenuItemMain
                         onClick={() => createNewFile({
-                            name: translate("newTextDocument"),
+                            name: translate(TRANSLATION_KEYS.NEW_TEXT_DOCUMENT),
                             type: FILE_TYPE.TEXT,
                         })}
                     >
@@ -76,7 +77,7 @@ const  DesktopMenu = ({
                             <IconStyled name={ICONS.TEXT_FILE} />
                         </IconWrapper>
                         <SubItemTitle>
-                            {translate("textDocument")}
+                            {translate(TRANSLATION_KEYS.TEXT_DOCUMENT)}
                         </SubItemTitle>
                     </SubMenuItemMain>
                 </SubMenuWrapper>

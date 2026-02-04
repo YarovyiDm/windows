@@ -1,4 +1,5 @@
 import { useLanguage } from "Hooks";
+import { TRANSLATION_KEYS } from "Constants/Translation";
 import {
     LanguageModalHeaderWrapper,
     LanguageModalHotKeysItem,
@@ -15,7 +16,7 @@ const LanguagesModal = () => {
         <LanguageModalWrapper>
             <LanguageModalHeaderWrapper>
                 <LanguageModalTitle>
-                    {translate("keyboardLayout")}
+                    {translate(TRANSLATION_KEYS.KEYBOARD_LAYOUT)}
                 </LanguageModalTitle>
                 <LanguageModalHotKeysWrapper>
                     <LanguageModalHotKeysItem>Shift</LanguageModalHotKeysItem>+

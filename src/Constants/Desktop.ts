@@ -1,4 +1,5 @@
 import translations from "Components/I18n/translations";
+import { TRANSLATION_KEYS } from "Constants/Translation";
 import { ICONS } from "./Icons";
 
 export const MIN_WINDOW_WIDTH = 430;
@@ -19,9 +20,9 @@ export const SIZE_HOT_KEYS_MAP = {
 } as const;
 
 export const DESKTOP_FILE_SIZE_UNIT = [
-    { name: "bigIcons" as keyof typeof translations.en, iconName: ICONS.SQUARE_LIST, size: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_KEYS.LARGE], hotKeys: "Ctrl+Shift+2" },
-    { name: "mediumIcons" as keyof typeof translations.en, iconName: ICONS.SQUARE_LIST, size: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_KEYS.MEDIUM], hotKeys: "Ctrl+Shift+3" },
-    { name: "smallIcons" as keyof typeof translations.en, iconName: ICONS.VIEW_BOXES, size: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_KEYS.SMALL], hotKeys: "Ctrl+Shift+4" },
+    { name: TRANSLATION_KEYS.BIG_ICONS as keyof typeof translations.en, iconName: ICONS.SQUARE_LIST, size: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_KEYS.LARGE], hotKeys: "Ctrl+Shift+2" },
+    { name: TRANSLATION_KEYS.MEDIUM_ICONS as keyof typeof translations.en, iconName: ICONS.SQUARE_LIST, size: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_KEYS.MEDIUM], hotKeys: "Ctrl+Shift+3" },
+    { name: TRANSLATION_KEYS.SMALL_ICONS as keyof typeof translations.en, iconName: ICONS.VIEW_BOXES, size: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_KEYS.SMALL], hotKeys: "Ctrl+Shift+4" },
 ] as const;
 
 export const DEFAULT_DESKTOP_MODAL_SIZE = {

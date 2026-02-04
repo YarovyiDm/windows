@@ -1,4 +1,5 @@
 import { useLanguage } from "Hooks";
+import { TRANSLATION_KEYS } from "Constants/Translation";
 import {
     ConfirmationButton,
     ConfirmationButtonsWrapper,
@@ -20,20 +21,20 @@ const ConfirmationWithoutSaveModal = ({
         <ConfirmationWrapper>
             <ConfirmationModal>
                 <ConfirmationTitle>
-                    {translate("confirmationUnsaveTitle")}
+                    {translate(TRANSLATION_KEYS.UNSAVE_TITLE)}
                 </ConfirmationTitle>
                 <ConfirmationSubTitle>
-                    {translate("confirmationUnsaveSubTitle")}
+                    {translate(TRANSLATION_KEYS.UNSAVE_SUBTITLE)}
                 </ConfirmationSubTitle>
                 <ConfirmationButtonsWrapper>
                     <ConfirmationButton onClick={() => handleSave()}>
-                        {translate("save")}
+                        {translate(TRANSLATION_KEYS.SAVE)}
                     </ConfirmationButton>
                     <ConfirmationButton onClick={() => unsaveExit()}>
-                        {translate("unsave")}
+                        {translate(TRANSLATION_KEYS.UNSAVE)}
                     </ConfirmationButton>
                     <ConfirmationButton onClick={onConfirmationModalChange}>
-                        {translate("cancel")}
+                        {translate(TRANSLATION_KEYS.CANSEL)}
                     </ConfirmationButton>
                 </ConfirmationButtonsWrapper>
             </ConfirmationModal>

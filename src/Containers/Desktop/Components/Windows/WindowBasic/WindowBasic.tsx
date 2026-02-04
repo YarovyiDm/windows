@@ -3,9 +3,8 @@ import { Box } from "@mui/material";
 import { useDrag, useResize } from "Hooks";
 import { DEFAULT_DESKTOP_MODAL_SIZE } from "Constants/Desktop";
 import Icon from "Components/Icon/Icon";
-import { useAppDispatch, useAppSelector } from "Store/index";
+import { useAppDispatch } from "Store/index";
 import { changeWindowZindex, closeWindow } from "Store/slices/Desktop";
-import { selectWindowZindex } from "Store/selectors/Desktop";
 import type { BasicSize } from "Types/System";
 import { ICONS } from "Constants/Icons";
 import { TASK_PANEL_HEIGHT } from "Constants/System";
@@ -32,6 +31,7 @@ const WindowBasic = ({
     kind,
     id,
     title,
+    zIndex,
     onCloseCallback,
     wishSidePadding,
     ...rest
@@ -43,7 +43,7 @@ const WindowBasic = ({
         newSize || DEFAULT_DESKTOP_MODAL_SIZE,
     );
     const dispatch = useAppDispatch();
-    const zIndex = useAppSelector(selectWindowZindex(id));
+    // const zIndex = useAppSelector(selectWindowZindex(id));
 
     const {
         handleDoubleClick,
@@ -82,7 +82,7 @@ const WindowBasic = ({
                 width: size.width,
                 height: size.height,
                 borderRadius,
-                zIndex: Number(zIndex),
+                zIndex,
                 padding: wishSidePadding ? "0 10px" : 0,
             }}
             {...rest}

@@ -1,5 +1,7 @@
 import { ICONS } from "Constants/Icons";
 import { useDesktopMenuActions } from "Components/ContextMenu/Hooks/useDesktopMenuActions";
+import { useLanguage } from "Hooks/useLanguage";
+import { TRANSLATION_KEYS } from "Constants/Translation";
 import { IconStyled,ItemTitle, MenuItem, MenuItemMain } from "../../ContextMenu.styled";
 import type { FileMenuProps } from "./FileMenu.types";
 
@@ -8,6 +10,7 @@ const FileMenu = ({
     setRenameFileId,
 }: FileMenuProps) => {
     const { deleteFile, renameFile } = useDesktopMenuActions({ setRenameFileId });
+    const { translate } = useLanguage();
 
     if(!targetId){ return null; }
 
@@ -17,7 +20,7 @@ const FileMenu = ({
                 <MenuItemMain onClick={() => {renameFile(targetId);}}>
                     <IconStyled name={ICONS.EDIT} />
                     <ItemTitle>
-                        Перейменувати
+                        {translate(TRANSLATION_KEYS.CHANGE_NAME)}
                     </ItemTitle>
                 </MenuItemMain>
             </MenuItem>
@@ -25,7 +28,7 @@ const FileMenu = ({
                 <MenuItemMain onClick={() => {deleteFile(targetId);}}>
                     <IconStyled name={ICONS.STASH} />
                     <ItemTitle>
-                        Видалити
+                        {translate(TRANSLATION_KEYS.DELETE)}
                     </ItemTitle>
                 </MenuItemMain>
             </MenuItem>

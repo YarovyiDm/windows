@@ -9,6 +9,10 @@ import {
 } from "Containers/Desktop/Components/Windows/SettingsWindow/Components/BlockBasic/BlockBasic.styled";
 import { WINDOW_KIND } from "Types/Desktop";
 import { WINDOW_META } from "Constants/System";
+import { TRANSLATION_KEYS } from "Constants/Translation";
+import { useLanguage } from "Hooks/useLanguage";
+import { selectWindowZindex } from "Store/selectors/Desktop";
+import { useAppSelector } from "Store/index";
 import SystemInformation from "./Components/SystemInformation/SystemInformation";
 import Display from "./Components/Display/Display";
 import Desktop from "./Components/Desktop/Desktop";
@@ -26,7 +30,9 @@ import {
 type Tab = "Personalization" | "System";
 
 const SettingsWindow = () => {
+    const { translate } = useLanguage();
     const [activeTab, setActiveTab] = useState<Tab>("Personalization");
+    const zIndex = useAppSelector(selectWindowZindex(WINDOW_META.SETTINGS.id));
 
     const renderTabContent = () => {
         switch (activeTab) {
@@ -80,7 +86,7 @@ const SettingsWindow = () => {
     };
 
     return (
-        <WindowBasic title={WINDOW_META.SETTINGS.title} id={WINDOW_META.SETTINGS.id} kind={WINDOW_KIND.SETTINGS}>
+        <WindowBasic zIndex={zIndex} title={translate(TRANSLATION_KEYS.SETTINGS)} id={WINDOW_META.SETTINGS.id} kind={WINDOW_KIND.SETTINGS}>
             <SettingsWrapper>
                 <SidebarWrapper>
                     <TabsContainer>

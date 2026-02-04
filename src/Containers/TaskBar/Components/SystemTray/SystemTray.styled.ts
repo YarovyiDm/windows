@@ -10,4 +10,5 @@ export const SystemTrayItemWrapper = styled(Box)({
     fontSize: "12px",
     position: "relative",
     marginRight: "2px",
+    width: "20px",
 });

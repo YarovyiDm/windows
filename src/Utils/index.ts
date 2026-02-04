@@ -9,6 +9,7 @@ import { isFileInSelection } from "Utils/IsFileInSelection";
 import { QUERY_KEYS } from 'Utils/query-keys';
 import { rgbaToRgb } from "Utils/rgbaToRgb";
 import { openFile } from "Utils/openFile";
+import { updateFileInTree } from "Utils/updateFileInTree";
 
 export {
     removeFileFromTree,
@@ -22,4 +23,5 @@ export {
     QUERY_KEYS,
     rgbaToRgb,
     openFile,
+    updateFileInTree,
 };

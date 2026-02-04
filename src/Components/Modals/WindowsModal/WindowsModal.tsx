@@ -6,6 +6,8 @@ import { selectPowerModalState } from "Store/selectors/TaskPanel";
 import { ICONS } from "Constants/Icons";
 import { FILE_TYPE, SettingsFile } from "Types/Desktop";
 import { WINDOW_META } from "Constants/System";
+import { useLanguage } from "Hooks/useLanguage";
+import { TRANSLATION_KEYS } from "Constants/Translation";
 import PowerModal from "../PowerModal/PowerModal";
 import {
     WindowsModalContentHeader,
@@ -19,6 +21,7 @@ import {
 
 const WindowsModal = () => {
     const dispatch = useAppDispatch();
+    const { translate } = useLanguage();
     const isPowerModalOpen = useAppSelector(selectPowerModalState);
 
     const onWindowsModalChange = () => {
@@ -40,7 +43,7 @@ const WindowsModal = () => {
         >
             <WindowsModalContentWrapper>
                 <Box sx={{ height: "50%", width: "100%" }}>
-                    <WindowsModalContentHeader>Закріплено</WindowsModalContentHeader>
+                    <WindowsModalContentHeader>{translate(TRANSLATION_KEYS.PINNED)}</WindowsModalContentHeader>
                     <Box sx={{ display: "flex" }}>
                         <File file={settingsFile} />
                     </Box>

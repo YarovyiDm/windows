@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import { useLanguage } from "Hooks";
 import WindowBasic from "Containers/Desktop/Components/Windows/WindowBasic/WindowBasic";
 import { useAppDispatch } from "Store/index";
-import { closeWindow } from "Store/slices/Desktop";
+import { closeWindow, updateFile } from "Store/slices/Desktop";
 import ConfirmationWithoutSaveModal from "Components/Modals/ConfirmationWithoutSaveModal/ConfirmationWithoutSaveModal";
 import {
     TextWindowFileFormat,
@@ -15,6 +15,7 @@ import { WINDOW_KIND } from "Types/Desktop";
 import { SHOW_SAVE_MESSAGE_DELAY } from "Constants/System";
 import { KEY_CODES } from "Constants/KeyCodes";
 import { DOM_EVENTS } from "Constants/Events";
+import { TRANSLATION_KEYS } from "Constants/Translation";
 import type { TextWindowProps } from "./TextWindow.types";
 
 const TextWindow = ({
@@ -24,11 +25,13 @@ const TextWindow = ({
         if("content" in desktopWindow.payload) {
             return desktopWindow.payload.content;
         }
+        return "";
     });
     const [prevFileValue, setPrevFileValue] = useState(()  => {
         if("content" in desktopWindow.payload) {
             return desktopWindow.payload.content;
         }
+        return "";
     });
     const [showSaveMessage, setShowSaveMessage] = useState(false);
     const [showConfirmationModal, setShowConfirmationModal] = useState(false);
@@ -49,6 +52,13 @@ const TextWindow = ({
         if (isFileChanged) {
             setPrevFileValue(fileValue);
             showConfirmationModal && unsaveExit();
+
+            if("fileId" in desktopWindow && desktopWindow.fileId) {
+                dispatch(updateFile({
+                    id: desktopWindow.fileId,
+                    newValue: fileValue,
+                }));
+            }
 
             setShowSaveMessage(true);
 
@@ -91,6 +101,7 @@ const TextWindow = ({
             id={desktopWindow.id}
             kind={WINDOW_KIND.TEXT}
             onCloseCallback={isFileChanged && onConfirmationModalChange}
+            zIndex={desktopWindow.zIndex}
         >
             <TextWindowWrapper>
                 {showConfirmationModal && (
@@ -107,7 +118,7 @@ const TextWindow = ({
                 />
                 {showSaveMessage && (
                     <TextWindowSaveMessage>
-                        {translate("textFileWasSaved")}
+                        {translate(TRANSLATION_KEYS.SAVED)}
                     </TextWindowSaveMessage>
                 )}
                 <TextWindowFooter>
@@ -117,7 +128,7 @@ const TextWindow = ({
                     <TextWindowFileFormat>
                         <Box sx={{ width: '42px', color: '#127fb5' }}>
                             {isFileChanged &&
-                                translate("textFileWasChangeMarker")}
+                                translate(TRANSLATION_KEYS.CHANGED)}
                         </Box>
                         <Box>Windows (CRLF)</Box>
                         <Box>UTF-8</Box>

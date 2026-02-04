@@ -5,6 +5,7 @@ import { getRandomCenterCoordinates } from "./getRandomCenterCoordinates";
 
 export const mapFileToWindow = (
     file: DesktopFile,
+    zIndex: number,
 ): DesktopWindow => {
     switch (file.type) {
     case FILE_TYPE.TEXT:
@@ -12,11 +13,12 @@ export const mapFileToWindow = (
             id: file.id,
             kind: WINDOW_KIND.TEXT,
             title: file.name,
-            zIndex: 10,
+            zIndex,
             position: getRandomCenterCoordinates(),
             payload: {
                 content: file.innerContent,
             },
+            fileId: file.id,
         };
 
     case FILE_TYPE.FOLDER:
@@ -24,7 +26,7 @@ export const mapFileToWindow = (
             id: file.id,
             kind: WINDOW_KIND.FOLDER,
             title: file.name,
-            zIndex: 10,
+            zIndex,
             position: getRandomCenterCoordinates(),
             payload: {
                 files: file.innerContent,
@@ -36,7 +38,7 @@ export const mapFileToWindow = (
             id: file.id,
             kind: WINDOW_KIND.BROWSER,
             title: "Chrome",
-            zIndex: 10,
+            zIndex,
             payload: {},
         };
 
@@ -45,7 +47,7 @@ export const mapFileToWindow = (
             id: WINDOW_META.SETTINGS.id,
             kind: WINDOW_KIND.SETTINGS,
             title: file.name,
-            zIndex: 10,
+            zIndex,
             payload: {},
         };
 

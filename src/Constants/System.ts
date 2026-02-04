@@ -31,9 +31,10 @@ export const POWER_MODAL_UNITS = {
     [SYSTEM_ACTIONS.RELOAD]: { name: "Перезавантажити", scenario: SYSTEM_SCENARIOS.RESTART },
 } as const;
 
-export const TASK_PANEL_HEIGHT = 51;
+export const TASK_PANEL_HEIGHT = 48;
 export const SHOW_SAVE_MESSAGE_DELAY = 2000;
 export const ZERO_POSITION = { x: 0, y: 0 };
+export const WINDOW_ZINDEX_MULTIPLIER = 100;
 
 export const WINDOW_META = {
     [WINDOW_KIND.BROWSER]: { title: "Google Chrome", id: WINDOW_KIND.BROWSER },

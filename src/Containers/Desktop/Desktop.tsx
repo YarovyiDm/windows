@@ -22,6 +22,7 @@ import Notification from 'Components/Notification/Notification';
 import ChromeWindow from "Containers/Desktop/Components/Windows/ChromeWindow/ChromeWindow";
 import { CONTEXT_MENU_TYPES, ZERO_POSITION } from "Constants/System";
 import { DOM_EVENTS } from "Constants/Events";
+import { TRANSLATION_KEYS } from "Constants/Translation";
 import type { MouseEvent as ReactMouseEvent, DragEvent } from "react";
 
 const Desktop = () => {
@@ -120,7 +121,7 @@ const Desktop = () => {
             data-context={CONTEXT_MENU_TYPES.DESKTOP}
             onDragOver={(e: DragEvent) => e.preventDefault()}
         >
-            <Notification text={translate("fullscreenAdvice")} />
+            <Notification text={translate(TRANSLATION_KEYS.FULL_SCREEN_ADVICE)} />
 
             {contextMenuVisible && (
                 <ContextMenu

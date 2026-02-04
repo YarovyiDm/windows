@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { removeFileFromTree, findFileById, dragFile } from "Utils";
+import { removeFileFromTree, findFileById, dragFile, updateFileInTree } from "Utils";
 import { Desktop, DesktopFile, DesktopWindow, FILE_TYPE } from "Types/Desktop";
 import { ICONS } from "Constants/Icons";
 import { SYSTEM_SLICES } from "Constants/System";
@@ -117,22 +117,13 @@ const desktopSlice = createSlice({
             state: Desktop,
             action: PayloadAction<{
                 id: string;
-                newValue: Array<DesktopFile> | string;
+                newValue: string;
                 size?: number;
             }>,
         ) {
             const { id, newValue, size } = action.payload;
-            const currentFile = state.desktopFiles.filter(
-                item => item.id === id,
-            )[0];
 
-            if('innerContent' in currentFile) {
-                currentFile.innerContent = newValue;
-            }
-
-            if(size){
-                currentFile.size = size;
-            }
+            updateFileInTree(state.desktopFiles, id, newValue, size);
         },
         dragFileToFolder(
             state: Desktop,

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Box } from '@mui/material';
+import { TRANSLATION_KEYS } from "Constants/Translation";
 import OffScreen from "../../OffScreen/OffScreen";
 import SystemQuitScreen from "../../SystemQuitScreen/SystemQuitScreen";
 import StartScreen from "../../StartScreen/StartScreen";
@@ -7,7 +8,7 @@ import LockScreen from "../../LockScreen/LockScreen";
 
 const RestartScenario = () => {
     const screens = [
-        <SystemQuitScreen type='restart' />,
+        <SystemQuitScreen type={TRANSLATION_KEYS.RESTART} />,
         <OffScreen />,
         <StartScreen />,
         <LockScreen />,

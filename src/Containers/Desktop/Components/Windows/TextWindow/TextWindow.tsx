@@ -1,10 +1,10 @@
 import { useMemo, useState, useEffect, ChangeEvent } from "react";
 import { Box } from '@mui/material';
+import { useLanguage } from "Hooks";
 import WindowBasic from "Containers/Desktop/Components/Windows/WindowBasic/WindowBasic";
 import { useAppDispatch } from "Store/index";
 import { closeWindow } from "Store/slices/Desktop";
 import ConfirmationWithoutSaveModal from "Components/Modals/ConfirmationWithoutSaveModal/ConfirmationWithoutSaveModal";
-import useLanguage from "Hooks/useLanguage";
 import {
     TextWindowFileFormat,
     TextWindowFooter,

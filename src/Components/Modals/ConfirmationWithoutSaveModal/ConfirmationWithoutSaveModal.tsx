@@ -1,4 +1,4 @@
-import useLanguage from "Hooks/useLanguage";
+import { useLanguage } from "Hooks";
 import {
     ConfirmationButton,
     ConfirmationButtonsWrapper,

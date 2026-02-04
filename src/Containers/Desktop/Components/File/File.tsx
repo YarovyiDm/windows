@@ -1,9 +1,9 @@
 import { Typography } from '@mui/material';
+import { openFile } from "Utils";
 import { Icon } from "Components/index";
 import { useAppDispatch, useAppSelector } from "Store/index";
 import { FileStyled } from "Containers/Desktop/Components/File/File.styled";
 import { selectIsWindowOpen } from "Store/selectors/Desktop";
-import { openFile } from "../../../../helpers/openFile";
 import type { FileProps } from "./FIle.types";
 
 const File = ({ file }: FileProps) => {

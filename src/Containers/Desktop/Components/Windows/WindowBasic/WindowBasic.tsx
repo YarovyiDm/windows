@@ -1,9 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Box } from "@mui/material";
-import useDrag from "Hooks/useDrag";
+import { useDrag, useResize } from "Hooks";
 import { DEFAULT_DESKTOP_MODAL_SIZE } from "Constants/Desktop";
 import Icon from "Components/Icon/Icon";
-import useResize from "Hooks/useResize";
 import { useAppDispatch, useAppSelector } from "Store/index";
 import { changeWindowZindex, closeWindow } from "Store/slices/Desktop";
 import { selectWindowZindex } from "Store/selectors/Desktop";

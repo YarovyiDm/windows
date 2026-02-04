@@ -5,7 +5,7 @@ import { MIN_WINDOW_HEIGHT, MIN_WINDOW_WIDTH } from "Constants/Desktop";
 import { DIRECTIONS } from "Constants/Directions";
 import { DOM_EVENTS } from "Constants/Events";
 
-const useResize = (
+export const useResize = (
     initialSize: BasicSize,
     setPosition: ({ x, y }: BasicCoordinates) => void,
     position: BasicCoordinates,
@@ -125,5 +125,3 @@ const useResize = (
         isFullscreen,
     };
 };
-
-export default useResize;

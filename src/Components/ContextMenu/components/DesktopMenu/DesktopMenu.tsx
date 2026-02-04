@@ -1,4 +1,4 @@
-import useLanguage from "Hooks/useLanguage";
+import { useLanguage } from "Hooks";
 import { useAppSelector } from "Store/index";
 import { selectFileSize } from "Store/selectors/System";
 import FileSize from "Components/ContextMenu/components/FileSize/FileSize";

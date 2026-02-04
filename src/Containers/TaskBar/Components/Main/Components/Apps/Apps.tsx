@@ -1,11 +1,11 @@
 import { map } from "lodash";
 import cn from "classnames";
 import { Box } from  '@mui/material';
+import { openFile } from "Utils";
 import { Icon } from "Components/index";
 import { useAppDispatch } from "Store/index";
 import { AppsProps, PinnedAppsProps } from "Containers/TaskBar/Components/Main/Components/Apps/Apps.types";
 import { FILE_TYPE } from "Types/Desktop";
-import { openFile } from "../../../../../../helpers/openFile";
 import styles from "./Apps.module.scss";
 
 const Apps = ({ apps }: AppsProps) => {

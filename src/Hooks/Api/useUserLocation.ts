@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
+import { QUERY_KEYS } from "Utils";
 import { API } from "../../Api";
-import { QUERY_KEYS } from '../../utils/query-keys';
 
 export const useUserLocation = () =>
     useQuery({

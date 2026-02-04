@@ -1,5 +1,5 @@
+import { useLanguage } from "Hooks";
 import { FileSizeProps } from "Components/ContextMenu/components/FileSize/FileSize.types";
-import useLanguage from "Hooks/useLanguage";
 import { DESKTOP_FILE_SIZE_UNIT } from "Constants/Desktop";
 import {
     HotKeys,

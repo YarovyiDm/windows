@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 import Today from "Containers/TaskBar/Components/Weather/Components/Widget/Components/Today/Today";
-import { useWeatherForecast } from "Hooks/Api/useWeather";
+import { useWeatherForecast } from "Hooks/Api";
 import Forecast from "Containers/TaskBar/Components/Weather/Components/Widget/Components/Forecast/Forecast";
 import { useAppSelector } from "Store/index";
 import { selectUserLocationCity } from "Store/selectors/System";

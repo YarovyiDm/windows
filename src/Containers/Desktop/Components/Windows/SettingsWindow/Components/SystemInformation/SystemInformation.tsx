@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
+import { useSystem } from "Hooks";
 import { BlockBasic } from "Containers/Desktop/Components/Windows/SettingsWindow/Components/BlockBasic/BlockBasic";
-import useSystem from "Hooks/useSystem";
 import { SystemContentWrapper } from "../../SettingsWindow.styled";
 import {
     SystemInformationItemTitle,

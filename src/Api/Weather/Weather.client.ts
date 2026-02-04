@@ -1,5 +1,5 @@
 import axios from "axios";
-import * as bc from "../../utils/build-config";
+import * as bc from "Utils/build-config";
 
 export const weatherClient = axios.create({
     baseURL: bc.WEATHER_API_URL,

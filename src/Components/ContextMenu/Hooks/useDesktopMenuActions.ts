@@ -1,7 +1,7 @@
+import { createDesktopFile } from "Utils";
 import { useAppDispatch } from "Store/index";
 import { addDesktopFile, removeFile } from "Store/slices/Desktop";
 import { CreateFilePayload } from "Components/ContextMenu/components/DesktopMenu/DesktopMenu.types";
-import { createDesktopFile } from "../../../utils/createDesktopFile";
 
 type UseDesktopMenuActionsProps = {
     contextMenuPosition?: { x: number; y: number; };

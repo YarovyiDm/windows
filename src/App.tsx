@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { Tooltip } from "react-tooltip";
 import { Desktop, TaskBar } from "Containers";
+import { useLanguage } from "Hooks";
 import { changeLanguageIndexByHotKeys, changeUserLocationCity } from "Store/slices/System";
-import useLanguage from "Hooks/useLanguage";
 import { updateFile } from "Store/slices/Desktop";
 import RestartScenario from "Containers/Screens/Components/SystemScenarios/RestartScenario";
 import StartScenario from "Containers/Screens/Components/SystemScenarios/StartScenario";
@@ -14,7 +14,7 @@ import {
     selectSystemScenario,
 } from "Store/selectors/System";
 import ErrorBoundary from "Components/ErrorBoundary/ErrorBoundary";
-import { useUserLocation } from "Hooks/Api/useUserLocation";
+import { useUserLocation } from "Hooks/Api";
 import { DOM_EVENTS } from "Constants/Events";
 import { useAppSelector } from "./Store";
 import styles from "./App.module.scss";

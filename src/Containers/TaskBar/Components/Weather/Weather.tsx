@@ -1,9 +1,9 @@
 import { Box, Typography } from '@mui/material';
 import { useRef, useState } from "react";
-import { useCurrentWeather } from "Hooks/Api/useWeather";
+import { useClickOutside } from "Hooks";
+import { useCurrentWeather } from "Hooks/Api";
 import { WeatherIcon, WeatherTrigger, WeatherWrapper } from "Containers/TaskBar/Components/Weather/Weather.styled";
 import Widget from "Containers/TaskBar/Components/Weather/Components/Widget/Widget";
-import { useClickOutside } from "Hooks/useClickOutside";
 import { getIconUrl } from "Containers/TaskBar/Components/Weather/Weather.helpers";
 import { useAppSelector } from "Store/index";
 import { selectUserLocationCity } from "Store/selectors/System";

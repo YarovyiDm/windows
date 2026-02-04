@@ -1,5 +1,6 @@
 import DesktopMenu from "Components/ContextMenu/components/DesktopMenu/DesktopMenu";
 import FileMenu from "Components/ContextMenu/components/FileMenu/FileMenu";
+import { CONTEXT_MENU_TYPES } from "Constants/System";
 import type { MenuProviderProps } from "./MenuProvider.types";
 
 const MenuProvider = ({
@@ -13,13 +14,14 @@ const MenuProvider = ({
     if(!clickedType) { return null; }
 
     const MenuMap = {
-        desktop:
+        [CONTEXT_MENU_TYPES.DESKTOP]:
             <DesktopMenu
                 contextMenuPosition={contextMenuPosition}
                 setContextMenuVisible={setContextMenuVisible}
                 onDesktopFileSizeChange={onDesktopFileSizeChange}
             />,
-        file: <FileMenu targetId={targetId} setRenameFileId={setRenameFileId}/>,
+        [CONTEXT_MENU_TYPES.FILE]: <FileMenu targetId={targetId} setRenameFileId={setRenameFileId}/>,
+        [CONTEXT_MENU_TYPES.FOLDER]: <div>1</div>,
     };
 
     return (

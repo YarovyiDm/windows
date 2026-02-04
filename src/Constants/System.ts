@@ -19,6 +19,12 @@ export const SYSTEM_SCENARIOS = {
     SHUTDOWN: "shutdown",
 } as const;
 
+export const CONTEXT_MENU_TYPES = {
+    DESKTOP: "DESKTOP",
+    FILE: "FILE",
+    FOLDER: "FOLDER",
+} as const;
+
 export const POWER_MODAL_UNITS = {
     [SYSTEM_ACTIONS.POWER]: { name: "Завершити роботу", scenario: SYSTEM_SCENARIOS.SHUTDOWN },
     [SYSTEM_ACTIONS.SLEEP]: { name: "Сон", scenario: SYSTEM_SCENARIOS.RESTART },

@@ -1,5 +1,5 @@
+import { useLanguage } from "Hooks";
 import Loader from "Components/Loader/Loader";
-import useLanguage from "Hooks/useLanguage";
 import {
     SystemQuitScreenStatus,
     SystemQuitScreenWrapper,

@@ -1,9 +1,9 @@
+import { rgbaToRgb } from "Utils";
 import { changeSelectionStyle } from "Store/slices/System";
 import { AREA_COLORS } from "Containers/Desktop/Components/Windows/SettingsWindow/Components/Desktop/Desktop.constants";
 import { useAppDispatch, useAppSelector } from "Store/index";
 import { selectSelectionStyles } from "Store/selectors/System";
 import { Color } from "../Colors.styled";
-import { rgbaToRgb } from "../../../../../../../../../../utils/rgbaToRgb";
 
 const AreaColors = () => {
     const dispatch = useAppDispatch();

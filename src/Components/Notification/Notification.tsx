@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
+import { useLanguage } from "Hooks";
 import Icon from "Components/Icon/Icon";
-import useLanguage from "Hooks/useLanguage";
 import { ICONS } from "Constants/Icons";
 import {
     CloseButtonWrapper,

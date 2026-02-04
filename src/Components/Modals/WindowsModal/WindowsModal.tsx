@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "Store/index";
 import { selectPowerModalState } from "Store/selectors/TaskPanel";
 import { ICONS } from "Constants/Icons";
 import { FILE_TYPE, SettingsFile } from "Types/Desktop";
+import { WINDOW_META } from "Constants/System";
 import PowerModal from "../PowerModal/PowerModal";
 import {
     WindowsModalContentHeader,
@@ -27,8 +28,8 @@ const WindowsModal = () => {
 
     const settingsFile = {
         type: FILE_TYPE.SETTINGS,
-        id: "Settings",
-        name: "Settings",
+        id: WINDOW_META.SETTINGS.id,
+        name: WINDOW_META.SETTINGS.title,
         icon: ICONS.SETTINGS,
         isSelected: false,
     } satisfies SettingsFile;

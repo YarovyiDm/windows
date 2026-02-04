@@ -43,7 +43,7 @@ const getScreenOrientation = () => {
     }
 };
 
-const useSystem = () => {
+export const useSystem = () => {
     const [systemInfo, setSystemInfo] = useState<SystemInfoType | null>(null);
 
     useEffect(() => {
@@ -80,5 +80,3 @@ const useSystem = () => {
 
     return systemInfo;
 };
-
-export default useSystem;

@@ -5,7 +5,7 @@ import { changeSystemLanguage } from "Store/slices/System";
 
 type Language = keyof typeof translations;
 
-const useLanguage = () => {
+export const useLanguage = () => {
     const dispatch = useAppDispatch();
     const language = useAppSelector(selectSystemLanguage) as Language;
 
@@ -18,5 +18,3 @@ const useLanguage = () => {
 
     return { translate, changeLanguage };
 };
-
-export default useLanguage;

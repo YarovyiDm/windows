@@ -1,4 +1,6 @@
 import React, { ChangeEvent, useEffect, useMemo, useRef, useState } from "react";
+import { openFile } from "Utils";
+import { useClickOutside } from "Hooks";
 import { Icon } from "Components/index";
 import { File, FileName } from "Containers/Desktop/Components/DraggableFile/DraggableFile.styled";
 import { useAppDispatch, useAppSelector } from "Store/index";
@@ -12,11 +14,10 @@ import {
 } from "Store/slices/Desktop";
 import { FILE_TYPE } from "Types/Desktop";
 import { selectFileSelectionColor, selectFileSize } from "Store/selectors/System";
-import { useClickOutside } from "Hooks/useClickOutside";
 import { selectDraggableFile } from "Store/selectors/Desktop";
 import { KEY_CODES } from "Constants/KeyCodes";
 import { DOM_EVENTS } from "Constants/Events";
-import { openFile } from "../../../../helpers/openFile";
+import { CONTEXT_MENU_TYPES } from "Constants/System";
 import { checkDropTargetByCursor } from "./DraggableFile.helpers";
 import type { DraggableFileProps } from "./DraggableFile.types";
 
@@ -172,7 +173,7 @@ const DraggableFile = ({
             }}
             onContextMenu={onContextMenu}
             className='prevent-selecting desktop-file'
-            data-context='file'
+            data-context={CONTEXT_MENU_TYPES.FILE}
             data-id={file.id}
             data-name={file.name}
             sx={{

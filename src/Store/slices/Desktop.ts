@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Desktop, DesktopFile, DesktopWindow, FILE_TYPE, FolderFile } from "Types/Desktop";
+import { removeFileFromTree, findFileById, dragFile } from "Utils";
+import { Desktop, DesktopFile, DesktopWindow, FILE_TYPE } from "Types/Desktop";
 import { ICONS } from "Constants/Icons";
 import { SYSTEM_SLICES } from "Constants/System";
 
@@ -62,16 +63,9 @@ const desktopSlice = createSlice({
     initialState: initialDesktopState,
     reducers: {
         removeFile(state: Desktop, action: PayloadAction<string>) {
-            const fileToRemove = state.desktopFiles.find(
-                item => item.id === action.payload,
-            );
+            const removed = removeFileFromTree(state.desktopFiles, action.payload);
 
-            if (fileToRemove) {
-                state.desktopFiles = state.desktopFiles.filter(
-                    item => item.id !== action.payload,
-                );
-                state.bin.push(fileToRemove);
-            }
+            if (removed) state.bin.push(removed);
         },
         setDraggingFile(state, action: PayloadAction<DesktopFile & { initialCursorPos: {x: number; y: number;};} | null>) {
             state.draggingFile = action.payload;
@@ -144,71 +138,10 @@ const desktopSlice = createSlice({
             state: Desktop,
             action: PayloadAction<{ fileId: string; folderId: string; }>,
         ) {
-            const { fileId, folderId } = action.payload;
-
-            let file: DesktopFile | undefined;
-            let fileIndex = state.desktopFiles.findIndex(f => f.id === fileId);
-            let parentFolder: FolderFile | undefined;
-
-            if (fileIndex !== -1) {
-                file = state.desktopFiles[fileIndex];
-            } else {
-                for (const f of state.desktopFiles) {
-                    if (f.type === FILE_TYPE.FOLDER) {
-                        const idx = f.innerContent.findIndex(inner => inner.id === fileId);
-
-                        if (idx !== -1) {
-                            file = f.innerContent[idx];
-                            parentFolder = f;
-                            fileIndex = idx;
-                            break;
-                        }
-                    }
-                }
-            }
-
-            if (!file) return;
-
-            if (fileId === folderId) return;
-
-            if (folderId === FILE_TYPE.DESKTOP) {
-                if (parentFolder) {
-                    parentFolder.innerContent.splice(fileIndex, 1);
-                } else {
-                    return;
-                }
-
-                state.desktopFiles.push({
-                    ...file,
-                    parentId: undefined,
-                    isSelected: false,
-                });
-
-                return;
-            }
-
-            const folder = state.desktopFiles.find(
-                f => f.id === folderId && f.type === FILE_TYPE.FOLDER,
-            ) as FolderFile | undefined;
-
-            if (!folder) return;
-
-            if (file.parentId === folderId) return;
-
-            if (parentFolder) {
-                parentFolder.innerContent.splice(fileIndex, 1);
-            } else {
-                state.desktopFiles.splice(fileIndex, 1);
-            }
-
-            folder.innerContent.push({
-                ...file,
-                parentId: folderId,
-                isSelected: false,
-            });
+            dragFile(state, action.payload.fileId, action.payload.folderId);
         },
         renameFile(state: Desktop, action: PayloadAction<{ id: string; newName: string; }>) {
-            const file = state.desktopFiles.find(file => file.id === action.payload.id);
+            const file = findFileById(state.desktopFiles, action.payload.id);
 
             if (file) {
                 file.name = action.payload.newName;

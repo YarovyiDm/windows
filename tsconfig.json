@@ -10,7 +10,8 @@
             "Modals/*": ["/Components/Modals/*"],
             "Types/*": ["Types/*"],
             "Scss/*": ["Scss/*"],
-            "Hooks/*": ["Hooks/*"]
+            "Hooks/*": ["Hooks/*"],
+            "Utils/*": ["Utils/*"]
         },
         "target": "es5",
         "lib": ["dom", "dom.iterable", "esnext"],

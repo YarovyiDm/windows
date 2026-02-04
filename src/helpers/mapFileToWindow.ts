@@ -1,5 +1,6 @@
 import { DesktopFile, FILE_TYPE } from "Types/Desktop";
 import { DesktopWindow, WINDOW_KIND } from "Types/Desktop";
+import { WINDOW_META } from "Constants/System";
 import { getRandomCenterCoordinates } from "./getRandomCenterCoordinates";
 
 export const mapFileToWindow = (
@@ -41,7 +42,7 @@ export const mapFileToWindow = (
 
     case FILE_TYPE.SETTINGS:
         return {
-            id: "settings",
+            id: WINDOW_META.SETTINGS.id,
             kind: WINDOW_KIND.SETTINGS,
             title: file.name,
             zIndex: 10,

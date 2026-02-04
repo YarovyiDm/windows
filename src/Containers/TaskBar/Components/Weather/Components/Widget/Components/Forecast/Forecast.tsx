@@ -1,9 +1,9 @@
 import { Box } from '@mui/material';
+import { formatDateShort } from "Utils";
 import {
     ForecastProps,
 } from "Containers/TaskBar/Components/Weather/Components/Widget/Components/Forecast/Forecast.types";
 import { WeatherIcon } from "Containers/TaskBar/Components/Weather/Weather.styled";
-import { formatDateShort } from "../../../../../../../../utils/formatDateShort";
 
 const Forecast = ({ forecastWeather }: ForecastProps) => {
     return (

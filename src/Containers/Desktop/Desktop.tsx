@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useContextMenu, useLanguage } from "Hooks";
 import { useAppSelector, useAppDispatch } from "Store/index";
 import {
     selectDraggableFile,
@@ -6,9 +7,7 @@ import {
     selectOpenedWindows,
 } from "Store/selectors/Desktop";
 import { clearSelection, selectMultipleFiles } from "Store/slices/Desktop";
-import { useContextMenu } from "Hooks/useContextMenu";
 import { selectWallpaper } from "Store/selectors/System";
-import useLanguage from "Hooks/useLanguage";
 import SettingsWindow from "Containers/Desktop/Components/Windows/SettingsWindow/SettingsWindow";
 import type { BasicCoordinates } from "Types/System";
 import { DesktopWrapper } from "Containers/Desktop/Desktop.styled";
@@ -21,7 +20,7 @@ import { ContextMenu, DraggableFile } from "Components/index";
 import Selection from "Containers/Desktop/Components/Selection/Selection";
 import Notification from 'Components/Notification/Notification';
 import ChromeWindow from "Containers/Desktop/Components/Windows/ChromeWindow/ChromeWindow";
-import { ZERO_POSITION } from "Constants/System";
+import { CONTEXT_MENU_TYPES, ZERO_POSITION } from "Constants/System";
 import { DOM_EVENTS } from "Constants/Events";
 import type { MouseEvent as ReactMouseEvent, DragEvent } from "react";
 
@@ -118,6 +117,7 @@ const Desktop = () => {
             onContextMenu={handleContextMenu}
             data-id={FILE_TYPE.DESKTOP}
             data-file={FILE_TYPE.FOLDER}
+            data-context={CONTEXT_MENU_TYPES.DESKTOP}
             onDragOver={(e: DragEvent) => e.preventDefault()}
         >
             <Notification text={translate("fullscreenAdvice")} />
@@ -139,6 +139,8 @@ const Desktop = () => {
 
                 case WINDOW_KIND.FOLDER:
                     return <FolderWindow
+                        setRenameFileId={setRenameFileId}
+                        renameFileId={renameFileId}
                         key={win.id}
                         window={win}
                         targetFolderId={targetFolderId}

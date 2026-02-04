@@ -16,6 +16,7 @@
             { "pattern": "Types/**", "group": "internal" },
             { "pattern": "Icons/**", "group": "internal" },
             { "pattern": "Modals/**", "group": "internal" },
+            { "pattern": "Utils/**", "group": "internal" },
             { "pattern": "Scss/**", "group": "internal" },
             { "pattern": "**/*.types", "group": "type", "position": "after" }
           ],

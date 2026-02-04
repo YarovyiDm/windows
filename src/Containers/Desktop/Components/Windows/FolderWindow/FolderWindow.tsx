@@ -4,6 +4,7 @@ import { DraggableFile } from "Components/index";
 import { FILE_TYPE, WINDOW_KIND } from "Types/Desktop";
 import { useAppSelector } from "Store/index";
 import { selectFolder } from "Store/selectors/Desktop";
+import { CONTEXT_MENU_TYPES } from "Constants/System";
 import { FolderWindowWrapper } from "./FolderWindow.styled";
 import type { FolderWindowProps } from "./FolderWindow.types";
 
@@ -11,6 +12,8 @@ const FolderWindow = ({
     window,
     targetFolderId,
     targetFolderHandle,
+    renameFileId,
+    setRenameFileId,
 }: FolderWindowProps) => {
     const folder = useAppSelector(selectFolder(window.id));
 
@@ -20,6 +23,7 @@ const FolderWindow = ({
                 data-file={FILE_TYPE.FOLDER}
                 data-id={window.id}
                 data-name={window.title}
+                data-context={CONTEXT_MENU_TYPES.FOLDER}
             >
                 {folder &&
                     'innerContent' in folder &&
@@ -32,8 +36,8 @@ const FolderWindow = ({
                             file={file}
                             onContextMenu={() => {}}
                             isSelected={false}
-                            renameFileId=''
-                            setRenameFileId={() => {}}
+                            renameFileId={renameFileId}
+                            setRenameFileId={setRenameFileId}
                         />
                     ))}
             </FolderWindowWrapper>

@@ -1,10 +1,10 @@
 import { useState, MouseEvent } from "react";
 import { DEFAULT_DESKTOP_CONTEXT_MENU_WIDTH } from "Constants/Desktop";
 import type { BasicCoordinates } from "Types/System";
-import { ZERO_POSITION } from "Constants/System";
+import { CONTEXT_MENU_TYPES, ZERO_POSITION } from "Constants/System";
 import { MOUSE_BUTTONS } from "Constants/Events";
 
-type ContextType = "file" | "desktop" | null;
+type ContextType = keyof typeof CONTEXT_MENU_TYPES| null;
 
 export const useContextMenu = () => {
     const [contextMenuVisible, setContextMenuVisible] = useState(false);
@@ -26,7 +26,7 @@ export const useContextMenu = () => {
 
             setTargetId(id);
 
-            const type = contextEl?.dataset.context ?? "desktop";
+            const type = contextEl?.dataset.context;
 
             setClickedType(type as ContextType);
 

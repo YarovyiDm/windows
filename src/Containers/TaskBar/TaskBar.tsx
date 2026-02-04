@@ -3,7 +3,7 @@ import {
     SystemTray,
 } from "Components";
 import { useAppDispatch, useAppSelector } from "Store";
-import { useClickOutside } from "Hooks/useClickOutside";
+import { useClickOutside } from "Hooks";
 import { handleCloseAllModals, toggleModal } from "Store/slices/TaskPanelSlice";
 import { ModalNames, ObjectOfModalRefs } from "Types/TaskPanelTypes";
 import { selectLanguageIndex } from "Store/selectors/System";

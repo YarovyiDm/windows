@@ -15,7 +15,7 @@ import {
 } from "Store/selectors/System";
 import ErrorBoundary from "Components/ErrorBoundary/ErrorBoundary";
 import { useUserLocation } from "Hooks/Api/useUserLocation";
-import { DOM_EVENTS } from "Constants/System";
+import { DOM_EVENTS } from "Constants/Events";
 import { useAppSelector } from "./Store";
 import styles from "./App.module.scss";
 

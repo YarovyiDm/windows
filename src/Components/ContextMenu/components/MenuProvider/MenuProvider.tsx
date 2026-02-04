@@ -2,7 +2,14 @@ import DesktopMenu from "Components/ContextMenu/components/DesktopMenu/DesktopMe
 import FileMenu from "Components/ContextMenu/components/FileMenu/FileMenu";
 import type { MenuProviderProps } from "./MenuProvider.types";
 
-const MenuProvider = ({ contextMenuPosition, setContextMenuVisible, clickedType, onDesktopFileSizeChange, targetId, setRenameFileId }: MenuProviderProps)  => {
+const MenuProvider = ({
+    contextMenuPosition,
+    setContextMenuVisible,
+    clickedType,
+    onDesktopFileSizeChange,
+    targetId,
+    setRenameFileId,
+}: MenuProviderProps)  => {
     if(!clickedType) { return null; }
 
     const MenuMap = {
@@ -11,7 +18,6 @@ const MenuProvider = ({ contextMenuPosition, setContextMenuVisible, clickedType,
                 contextMenuPosition={contextMenuPosition}
                 setContextMenuVisible={setContextMenuVisible}
                 onDesktopFileSizeChange={onDesktopFileSizeChange}
-                // clickedType={clickedType}
             />,
         file: <FileMenu targetId={targetId} setRenameFileId={setRenameFileId}/>,
     };

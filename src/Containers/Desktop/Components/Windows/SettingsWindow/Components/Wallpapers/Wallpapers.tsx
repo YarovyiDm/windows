@@ -1,10 +1,9 @@
-import { WALLPAPERS } from "Constants/System";
-// import "rc-slider/assets/index.css";
+import { WALLPAPERS } from "Constants/Wallpapers";
 import { useAppDispatch, useAppSelector } from "Store/index";
 import { selectWallpaper } from "Store/selectors/System";
 import { changeWallpaper } from "Store/slices/System";
 import { BlockBasic } from "Containers/Desktop/Components/Windows/SettingsWindow/Components/BlockBasic/BlockBasic";
-import { WallpapersStyled } from "Containers/Desktop/Components/Windows/SettingsWindow/Components/Wallpapers/Wallpapers.styled";
+import { WallpapersStyled } from "./Wallpapers.styled";
 
 const Wallpapers = () => {
     const dispatch = useAppDispatch();

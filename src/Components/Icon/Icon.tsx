@@ -20,7 +20,6 @@ import { ReactComponent as PlusCircle } from "Icons/plusCircleIcon.svg";
 import { ReactComponent as ViewBoxes } from "Icons/viewBoxesIcon.svg";
 import { ReactComponent as RightArrow } from "Icons/rightArrow.svg";
 import { ReactComponent as SquareList } from "Icons/squareListIcon.svg";
-import { ReactComponent as Dot } from "Icons/dotIcon.svg";
 import { ReactComponent as SquareInSquare } from "Icons/squareOnSquare.svg";
 import { ReactComponent as SquareOutline } from "Icons/squareOutline.svg";
 import { ReactComponent as Line } from "Icons/line.svg";
@@ -29,58 +28,32 @@ import { ReactComponent as Edit } from "Icons/edit.svg";
 import { ReactComponent as Stash } from "Icons/delete.svg";
 import { ReactComponent as Github } from "Icons/github.svg";
 import { ReactComponent as Linkedin } from "Icons/linkedin.svg";
-import {
-    TELEGRAM,
-    SKYPE,
-    STEAM,
-    POSTMAN,
-    WEBSTORM,
-} from "Constants/TaskPanel";
-import { FOLDER, BIN } from "Constants/Desktop";
-import {
-
-    DOT,//
-    ICONS,
-
-    RELOAD,//
-
-    SLEEP,//
-
-    SQUARE_LIST,//
-
-} from "Constants/System";
-
-type IProps = {
-    name: string;
-    className?: string;
-    style?: React.CSSProperties;
-    onClick?: () => void;
-};
+import { ICONS } from "Constants/Icons";
+import type { IconProps } from "./Icon.types";
 
 const Icons = {
-    [TELEGRAM]: Telegram,
-    [SKYPE]: Skype,
+    [ICONS.TELEGRAM]: Telegram,
+    [ICONS.SKYPE]: Skype,
     [ICONS.BROWSER]: Chrome,
-    [STEAM]: Steam,
-    [POSTMAN]: Postman,
-    [WEBSTORM]: WebStorm,
+    [ICONS.STEAM]: Steam,
+    [ICONS.POSTMAN]: Postman,
+    [ICONS.WEBSTORM]: WebStorm,
     [ICONS.USER]: User,
     [ICONS.POWER]: Power,
-    [SLEEP]: Sleep,
-    [RELOAD]: Reload,
+    [ICONS.SLEEP]: Sleep,
+    [ICONS.RELOAD]: Reload,
     [ICONS.SEARCH]: Search,
     [ICONS.WINDOWS]: Windows,
     [ICONS.ARROW]: Arrow,
     [ICONS.TEXT_FILE]: TextFile,
-    [FOLDER]: Folder,
-    [BIN]: Bin,
+    [ICONS.FOLDER]: Folder,
+    [ICONS.BIN]: Bin,
     [ICONS.SETTINGS]: Settings,
     [ICONS.CROSS]: Cross,
     [ICONS.PLUS_CIRCLE]: PlusCircle,
     [ICONS.VIEW_BOXES]: ViewBoxes,
     [ICONS.RIGHT_ARROW]: RightArrow,
-    [SQUARE_LIST]: SquareList,
-    [DOT]: Dot,
+    [ICONS.SQUARE_LIST]: SquareList,
     [ICONS.SQUARE_IN_SQUARE]: SquareInSquare,
     [ICONS.SQUARE_OUTLINE]: SquareOutline,
     [ICONS.LINE]: Line,
@@ -91,7 +64,7 @@ const Icons = {
     [ICONS.LINKEDIN]: Linkedin,
 };
 
-const Icon = (props: IProps) => {
+const Icon = (props: IconProps) => {
     const { name } = props;
     const Component = Icons[name as keyof typeof Icons];
 

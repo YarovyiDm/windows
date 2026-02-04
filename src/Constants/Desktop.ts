@@ -1,22 +1,41 @@
-export const DESKTOP: string = "desktop";
-export const FOLDER: string = "FOLDER";
-export const BIN: string = "bin";
+import translations from "Components/I18n/translations";
+import { ICONS } from "./Icons";
 
-export const FILE_TYPES = {
-    DESKTOP: "Desktop",
-    FOLDER: "Folder",
-    BIN: "Bin",
-    TEXT_FILE: "Text_file",
-    LINK: "Link",
+export const MIN_WINDOW_WIDTH = 430;
+export const MIN_WINDOW_HEIGHT = 260;
+
+export const DESKTOP_FILE_SIZE_KEYS = { SMALL: "small", MEDIUM: "medium", LARGE: "large" } as const;
+
+export const DESKTOP_FILE_SIZE = {
+    [DESKTOP_FILE_SIZE_KEYS.SMALL]: { width: 60, height: 50 },
+    [DESKTOP_FILE_SIZE_KEYS.MEDIUM]: { width: 80, height: 70 },
+    [DESKTOP_FILE_SIZE_KEYS.LARGE]: { width: 100, height: 90 },
 } as const;
+
+export const SIZE_HOT_KEYS_MAP = {
+    Digit2: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_KEYS.LARGE],
+    Digit3: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_KEYS.MEDIUM],
+    Digit4: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_KEYS.SMALL],
+} as const;
+
+export const DESKTOP_FILE_SIZE_UNIT = [
+    { name: "bigIcons" as keyof typeof translations.en, iconName: ICONS.SQUARE_LIST, size: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_KEYS.LARGE], hotKeys: "Ctrl+Shift+2" },
+    { name: "mediumIcons" as keyof typeof translations.en, iconName: ICONS.SQUARE_LIST, size: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_KEYS.MEDIUM], hotKeys: "Ctrl+Shift+3" },
+    { name: "smallIcons" as keyof typeof translations.en, iconName: ICONS.VIEW_BOXES, size: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_KEYS.SMALL], hotKeys: "Ctrl+Shift+4" },
+] as const;
 
 export const DEFAULT_DESKTOP_MODAL_SIZE = {
     width: 700,
     height: 500,
 };
-export const DEFAULT_DESKTOP_MODAL_POSITION = {
-    x: 300,
-    y: 300,
-};
 
 export const DEFAULT_DESKTOP_CONTEXT_MENU_WIDTH: number = 250;
+
+export const HIDDEN_APPS: Array<string> = [
+    ICONS.POSTMAN,
+    ICONS.WEBSTORM,
+    ICONS.TELEGRAM,
+    ICONS.STEAM,
+    ICONS.BROWSER,
+    ICONS.SKYPE,
+];

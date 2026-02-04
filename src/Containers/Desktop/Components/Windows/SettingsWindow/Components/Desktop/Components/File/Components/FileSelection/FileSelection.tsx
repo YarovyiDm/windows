@@ -1,12 +1,12 @@
 import { Box, Typography } from "@mui/material";
-import FileSelectionColors
-    from "Containers/Desktop/Components/Windows/SettingsWindow/Components/Desktop/Components/Colors/FileSelectionColors/FileSelectionColors";
 import Icon from "Components/Icon/Icon";
 import { SystemItemContentWrapper } from "Containers/Desktop/Components/Windows/SettingsWindow/SettingsWindow.styled";
 import { useAppSelector } from "Store/index";
 import { selectFileSelectionColor } from "Store/selectors/System";
 import { SettingsExample } from "Containers/Desktop/Components/Windows/SettingsWindow/Components/Desktop/Desktop.styled";
-import { ICONS } from "Constants/System";
+import { ICONS } from "Constants/Icons";
+import FileSelectionColors
+    from "../../../../Components/Colors/FileSelectionColors/FileSelectionColors";
 
 const FileSelection = () => {
     const fileSelectionColor = useAppSelector(selectFileSelectionColor);

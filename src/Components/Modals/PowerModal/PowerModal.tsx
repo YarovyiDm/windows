@@ -7,7 +7,7 @@ import {
     PowerModalItemContent,
     PowerModalItemIcon,
     PowerModalWrapper,
-} from "Components/Modals/PowerModal/PowerModal.styled";
+} from "./PowerModal.styled";
 
 const PowerModal = () => {
     const dispatch = useAppDispatch();

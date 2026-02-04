@@ -1,7 +1,8 @@
 import { useState, MouseEvent } from "react";
 import { DEFAULT_DESKTOP_CONTEXT_MENU_WIDTH } from "Constants/Desktop";
-import { MOUSE_BUTTONS, ZERO_POSITION } from "Constants/System";
 import type { BasicCoordinates } from "Types/System";
+import { ZERO_POSITION } from "Constants/System";
+import { MOUSE_BUTTONS } from "Constants/Events";
 
 type ContextType = "file" | "desktop" | null;
 

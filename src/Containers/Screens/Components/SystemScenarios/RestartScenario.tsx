@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Box } from '@mui/material';
-import LockScreen from "Containers/Screens/LockScreen/LockScreen";
-import OffScreen from "Containers/Screens/OffScreen/OffScreen";
-import SystemQuitScreen from "Containers/Screens/SystemQuitScreen/SystemQuitScreen";
-import StartScreen from "Containers/Screens/StartScreen/StartScreen";
+import OffScreen from "../../OffScreen/OffScreen";
+import SystemQuitScreen from "../../SystemQuitScreen/SystemQuitScreen";
+import StartScreen from "../../StartScreen/StartScreen";
+import LockScreen from "../../LockScreen/LockScreen";
 
 const RestartScenario = () => {
     const screens = [

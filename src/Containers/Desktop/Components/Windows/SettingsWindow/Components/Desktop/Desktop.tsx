@@ -1,7 +1,7 @@
 import { BlockBasic } from "Containers/Desktop/Components/Windows/SettingsWindow/Components/BlockBasic/BlockBasic";
-import SelectionArea from "Containers/Desktop/Components/Windows/SettingsWindow/Components/Desktop/Components/SelectionArea/SelectionArea";
-import File from "Containers/Desktop/Components/Windows/SettingsWindow/Components/Desktop/Components/File/File";
 import { SystemContentWrapper } from "../../SettingsWindow.styled";
+import SelectionArea from "./Components/SelectionArea/SelectionArea";
+import File from "./Components/File/File";
 
 export const Desktop = () => {
     return (

@@ -9,8 +9,8 @@ import {
     SystemContentWrapper,
     SystemItemSubTitleStyle,
     SystemItemWrapper,
-} from "Containers/Desktop/Components/Windows/SettingsWindow/SettingsWindow.styled";
-import { SliderWrapper } from "Containers/Desktop/Components/Windows/SettingsWindow/Components/Display/Display.styled";
+} from "../../SettingsWindow.styled";
+import { SliderWrapper } from "./Display.styled";
 import "rc-slider/assets/index.css";
 
 export const Display = () => {

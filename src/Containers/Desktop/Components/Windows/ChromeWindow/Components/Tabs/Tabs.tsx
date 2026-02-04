@@ -1,12 +1,12 @@
 import React from "react";
 import { Box } from '@mui/material';
-import { TabsProps } from "Containers/Desktop/Components/Windows/ChromeWindow/Components/Tabs/Tabs.types";
-import { createTab } from "Containers/Desktop/Components/Windows/ChromeWindow/ChromeWindow.helpers";
+import { createTab } from "../../ChromeWindow.helpers";
 import {
     TabCloseButton, TabNewButton,
     TabStyled,
     TabsWrapper,
-} from "Containers/Desktop/Components/Windows/ChromeWindow/Components/Tabs/Tabs.styled";
+} from "./Tabs.styled";
+import { TabsProps } from "./Tabs.types";
 
 const Tabs = ({ tabs, activeTabId, setActiveTabId, setTabs }: TabsProps) => {
 

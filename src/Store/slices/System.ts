@@ -1,15 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { v4 as uuid } from "uuid";
-import {
-    DEFAULT_LANGUAGE_INDEX,
-    DESKTOP_FILE_SIZE, DESKTOP_FILE_SIZE_KEYS,
-    LANGUAGE_CHANGE_STEP,
-    MAX_LANGUAGES,
-    SYSTEM,
-    SYSTEM_PASSWORD,
-    WALLPAPERS,
-} from "Constants/System";
+import { DESKTOP_FILE_SIZE_KEYS } from 'Constants/Desktop';
+import { SYSTEM_PASSWORD, SYSTEM_SLICES } from 'Constants/System';
+import { WALLPAPERS } from 'Constants/Wallpapers';
 import { SystemType } from "Types/System";
+import { DESKTOP_FILE_SIZE } from "Constants/Desktop";
+import { DEFAULT_LANGUAGE_INDEX, LANGUAGE_CHANGE_STEP, MAX_LANGUAGES } from "Constants/Languages";
 
 const initialSystemState = {
     inputLanguageIndex: DEFAULT_LANGUAGE_INDEX,
@@ -31,7 +27,7 @@ const initialSystemState = {
 } satisfies SystemType;
 
 const systemSlice = createSlice({
-    name: SYSTEM,
+    name: SYSTEM_SLICES.SYSTEM,
     initialState: initialSystemState,
     reducers: {
         changeLanguageIndexByHotKeys(state: SystemType) {

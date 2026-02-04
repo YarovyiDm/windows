@@ -2,22 +2,22 @@ import { useEffect, useState } from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import DateTimeDisplay from "Components/DateTimeDisplay/DateTimeDisplay";
 import Icon from "Components/Icon/Icon";
-import {
-    DOM_EVENTS, ICONS,
-    KEY_CODES,
-    SYSTEM_PASSWORD,
-} from "Constants/System";
+import { SYSTEM_PASSWORD } from 'Constants/System';
 import { useAppDispatch } from "Store/index";
 import { toggleWindowsUnlock, updateSystemScenario } from "Store/slices/System";
 import {
     AvatarWrapper,
-    DateTimeContainer, InputWrapper,
+    DateTimeContainer,
+    InputWrapper,
     LockScreenWrapper,
     LoginWrapper,
     TimeWrapper,
     UserNameStyled,
     IconWrapper,
 } from "Containers/Screens/LockScreen/LockScreen.styled";
+import { ICONS } from "Constants/Icons";
+import { KEY_CODES } from "Constants/KeyCodes";
+import { DOM_EVENTS } from "Constants/Events";
 
 type FormValues = {
     password: string;

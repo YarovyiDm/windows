@@ -1,11 +1,8 @@
 import React from "react";
 import { Icon } from "Components/index";
-
-type DraggableFileCopyProps = {
-    x: number;
-    y: number;
-    icon: string;
-};
+import {
+    DraggableFileCopyProps,
+} from "./DraggableFileCopy.types";
 
 const DraggableFileCopy = ({ x, y, icon }: DraggableFileCopyProps) => {
     return (

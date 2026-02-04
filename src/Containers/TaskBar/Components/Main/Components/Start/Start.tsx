@@ -3,7 +3,7 @@ import { Icon } from "Components/index";
 import WindowsModal from "Components/Modals/WindowsModal/WindowsModal";
 import { StartProps } from "Containers/TaskBar/Components/Main/Components/Start/Start.types";
 import { StartWrapper } from "Containers/TaskBar/Components/Main/Components/Start/Start.styled";
-import { ICONS } from "Constants/System";
+import { ICONS } from "Constants/Icons";
 
 const Start = ({ refs, handleModalChange, isWindowsModalOpen }: StartProps) => {
     return (

@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import Icon from "Components/Icon/Icon";
 import useLanguage from "Hooks/useLanguage";
+import { ICONS } from "Constants/Icons";
 import {
     CloseButtonWrapper,
     NotificationContent,
     NotificationHeader, NotificationTitle,
     NotificationWrapper,
-} from "Components/Notification/Notification.styled";
-import { ICONS } from "Constants/System";
+} from "./Notification.styled";
 import type { NotificationProps } from "./Notification.types";
 
 const Notification = ({ delayBeforeShow, duration, text }: NotificationProps) => {
@@ -15,10 +15,13 @@ const Notification = ({ delayBeforeShow, duration, text }: NotificationProps) =>
     const { translate } = useLanguage();
 
     useEffect(() => {
-        setTimeout(() => setVisible(true), delayBeforeShow ?? 2000);
-        const timer = setTimeout(() => setVisible(false), duration ?? 10000);
+        const showTimer = setTimeout(() => setVisible(true), delayBeforeShow ?? 2000);
+        const hideTimer = setTimeout(() => setVisible(false), (delayBeforeShow ?? 2000) + (duration ?? 1000));
 
-        return () => clearTimeout(timer);
+        return () => {
+            clearTimeout(showTimer);
+            clearTimeout(hideTimer);
+        };
     }, [delayBeforeShow, duration]);
 
     const closeNotification = () => setVisible(false);
@@ -33,7 +36,7 @@ const Notification = ({ delayBeforeShow, duration, text }: NotificationProps) =>
             <NotificationHeader>
                 <NotificationTitle>{translate("notification")}</NotificationTitle>
                 <CloseButtonWrapper
-                    onClick={() => closeNotification()}
+                    onClick={closeNotification}
                 >
                     <Icon
                         name={ICONS.CROSS}

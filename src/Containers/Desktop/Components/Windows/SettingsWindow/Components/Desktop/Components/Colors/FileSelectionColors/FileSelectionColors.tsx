@@ -2,7 +2,7 @@ import { changeFileSelectionColor } from "Store/slices/System";
 import { FILE_SELECTION_COLORS } from "Containers/Desktop/Components/Windows/SettingsWindow/Components/Desktop/Desktop.constants";
 import { useAppDispatch, useAppSelector } from "Store/index";
 import { selectFileSelectionColor } from "Store/selectors/System";
-import { Color } from "Containers/Desktop/Components/Windows/SettingsWindow/Components/Desktop/Components/Colors/Colors.styled";
+import { Color } from "../Colors.styled";
 
 const FileSelectionColors = () => {
     const dispatch = useAppDispatch();

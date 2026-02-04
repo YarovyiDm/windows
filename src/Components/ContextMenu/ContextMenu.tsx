@@ -1,12 +1,10 @@
 import { useEffect } from "react";
 import MenuProvider from "Components/ContextMenu/components/MenuProvider/MenuProvider";
-import {
-    DOM_EVENTS,
-    SIZE_HOT_KEYS_MAP,
-} from "Constants/System";
 import { useAppDispatch } from "Store/index";
 import { changeDesktopFileSize } from "Store/slices/System";
 import { BasicSize } from "Types/System";
+import { SIZE_HOT_KEYS_MAP } from "Constants/Desktop";
+import { DOM_EVENTS } from "Constants/Events";
 import { ContextMenuStyled } from './ContextMenu.styled';
 import type { ContextMenuProps } from "./ContextMenu.types";
 
@@ -48,7 +46,7 @@ const ContextMenu = ({
                 changeFileSizeByHotKey as EventListener,
             );
         };
-    });
+    }, []);
 
     return (
         <ContextMenuStyled

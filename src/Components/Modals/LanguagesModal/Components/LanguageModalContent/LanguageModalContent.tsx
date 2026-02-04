@@ -1,13 +1,14 @@
 import { Box } from '@mui/material';
-import { LANGUAGES } from "Constants/System";
 import { changeLanguageIndex } from "Store/slices/System";
 import { toggleModal } from "Store/slices/TaskPanelSlice";
 import { useAppDispatch, useAppSelector } from "Store/index";
 import { selectLanguageIndex } from "Store/selectors/System";
+import { LANGUAGES } from "Constants/Languages";
 import {
     LanguageModalContentItem,
-    LanguageModalContentWrapper, LanguageModalSelectedMarker,
-} from "Components/Modals/LanguagesModal/Components/LanguageModalContent/LanguageModalContent.styled";
+    LanguageModalContentWrapper,
+    LanguageModalSelectedMarker,
+} from "./LanguageModalContent.styled";
 
 const LanguageModalContent = () => {
     const systemLanguageIndex = useAppSelector(selectLanguageIndex);

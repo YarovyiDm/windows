@@ -1,11 +1,12 @@
 import useLanguage from "Hooks/useLanguage";
 import {
-    LanguageModalHeaderWrapper, LanguageModalHotKeysItem, LanguageModalHotKeysWrapper,
+    LanguageModalHeaderWrapper,
+    LanguageModalHotKeysItem,
+    LanguageModalHotKeysWrapper,
     LanguageModalTitle,
     LanguageModalWrapper,
-} from "Components/Modals/LanguagesModal/LanguageModal.styled";
-import LanguageModalContent
-    from "Components/Modals/LanguagesModal/Components/LanguageModalContent/LanguageModalContent";
+} from "./LanguageModal.styled";
+import LanguageModalContent from "./Components/LanguageModalContent/LanguageModalContent";
 
 const LanguagesModal = () => {
     const { translate } = useLanguage();

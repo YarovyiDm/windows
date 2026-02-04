@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Box } from '@mui/material';
-import LockScreen from "Containers/Screens/LockScreen/LockScreen";
-import OffScreen from "Containers/Screens/OffScreen/OffScreen";
-import StartScreen from "Containers/Screens/StartScreen/StartScreen";
+import OffScreen from "../../OffScreen/OffScreen";
+import StartScreen from "../../StartScreen/StartScreen";
+import LockScreen from "../../LockScreen/LockScreen";
 
 const StartScenario = () => {
     const [isSystemStart, setIsSystemStart] = useState(false);

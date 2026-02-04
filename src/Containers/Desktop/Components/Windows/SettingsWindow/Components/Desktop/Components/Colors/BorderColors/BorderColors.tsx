@@ -2,7 +2,7 @@ import { changeSelectionStyle } from "Store/slices/System";
 import { BORDER_COLORS } from "Containers/Desktop/Components/Windows/SettingsWindow/Components/Desktop/Desktop.constants";
 import { useAppDispatch, useAppSelector } from "Store/index";
 import { selectSelectionStyles } from "Store/selectors/System";
-import { Color } from "Containers/Desktop/Components/Windows/SettingsWindow/Components/Desktop/Components/Colors/Colors.styled";
+import { Color } from "../Colors.styled";
 
 const BorderColors = () => {
     const dispatch = useAppDispatch();

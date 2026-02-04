@@ -12,9 +12,10 @@ import {
 } from "Store/slices/Desktop";
 import { FILE_TYPE } from "Types/Desktop";
 import { selectFileSelectionColor, selectFileSize } from "Store/selectors/System";
-import { DOM_EVENTS, KEY_CODES } from "Constants/System";
 import { useClickOutside } from "Hooks/useClickOutside";
 import { selectDraggableFile } from "Store/selectors/Desktop";
+import { KEY_CODES } from "Constants/KeyCodes";
+import { DOM_EVENTS } from "Constants/Events";
 import { openFile } from "../../../../helpers/openFile";
 import { checkDropTargetByCursor } from "./DraggableFile.helpers";
 import type { DraggableFileProps } from "./DraggableFile.types";

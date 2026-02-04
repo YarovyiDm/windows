@@ -1,11 +1,6 @@
 import { useMemo, useState, useEffect, ChangeEvent } from "react";
 import { Box } from '@mui/material';
 import WindowBasic from "Containers/Desktop/Components/Windows/WindowBasic/WindowBasic";
-import {
-    DOM_EVENTS,
-    KEY_CODES,
-    SHOW_SAVE_MESSAGE_DELAY,
-} from "Constants/System";
 import { useAppDispatch } from "Store/index";
 import { closeWindow } from "Store/slices/Desktop";
 import ConfirmationWithoutSaveModal from "Components/Modals/ConfirmationWithoutSaveModal/ConfirmationWithoutSaveModal";
@@ -17,6 +12,9 @@ import {
     TextWindowWrapper,
 } from "Containers/Desktop/Components/Windows/TextWindow/TextWindow.styled";
 import { WINDOW_KIND } from "Types/Desktop";
+import { SHOW_SAVE_MESSAGE_DELAY } from "Constants/System";
+import { KEY_CODES } from "Constants/KeyCodes";
+import { DOM_EVENTS } from "Constants/Events";
 import type { TextWindowProps } from "./TextWindow.types";
 
 const TextWindow = ({
@@ -50,7 +48,6 @@ const TextWindow = ({
     const handleSave = () => {
         if (isFileChanged) {
             setPrevFileValue(fileValue);
-            // dispatch(updateFile({ id: window.id, newValue: fileValue, size: getTextSize(fileValue) }));
             showConfirmationModal && unsaveExit();
 
             setShowSaveMessage(true);

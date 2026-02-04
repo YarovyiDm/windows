@@ -4,12 +4,11 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import BrushIcon from '@mui/icons-material/Brush';
 import TvOutlinedIcon from '@mui/icons-material/TvOutlined';
 import WindowBasic from "Containers/Desktop/Components/Windows/WindowBasic/WindowBasic";
-import { useAppSelector } from "Store/index";
-import { selectSettingsWindowId } from "Store/selectors/System";
 import {
     BlockHeader,
 } from "Containers/Desktop/Components/Windows/SettingsWindow/Components/BlockBasic/BlockBasic.styled";
 import { WINDOW_KIND } from "Types/Desktop";
+import { WINDOW_META } from "Constants/System";
 import SystemInformation from "./Components/SystemInformation/SystemInformation";
 import Display from "./Components/Display/Display";
 import Desktop from "./Components/Desktop/Desktop";
@@ -20,13 +19,13 @@ import {
     TabsContainer,
     TabButton,
     AnimatedContent,
-    ContentInner, AccordionStyled,
+    ContentInner,
+    AccordionStyled,
 } from "./SettingsWindow.styled";
 
 type Tab = "Personalization" | "System";
 
 const SettingsWindow = () => {
-    const settingsID = useAppSelector(selectSettingsWindowId);
     const [activeTab, setActiveTab] = useState<Tab>("Personalization");
 
     const renderTabContent = () => {
@@ -81,7 +80,7 @@ const SettingsWindow = () => {
     };
 
     return (
-        <WindowBasic title='Settings' id='settings' kind={WINDOW_KIND.SETTINGS}>
+        <WindowBasic title={WINDOW_META.SETTINGS.title} id={WINDOW_META.SETTINGS.id} kind={WINDOW_KIND.SETTINGS}>
             <SettingsWrapper>
                 <SidebarWrapper>
                     <TabsContainer>

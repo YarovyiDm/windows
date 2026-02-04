@@ -1,8 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-    DOM_EVENTS,
-    ZERO_POSITION,
-} from "Constants/System";
 import { useAppSelector, useAppDispatch } from "Store/index";
 import {
     selectDraggableFile,
@@ -25,6 +21,8 @@ import { ContextMenu, DraggableFile } from "Components/index";
 import Selection from "Containers/Desktop/Components/Selection/Selection";
 import Notification from 'Components/Notification/Notification';
 import ChromeWindow from "Containers/Desktop/Components/Windows/ChromeWindow/ChromeWindow";
+import { ZERO_POSITION } from "Constants/System";
+import { DOM_EVENTS } from "Constants/Events";
 import type { MouseEvent as ReactMouseEvent, DragEvent } from "react";
 
 const Desktop = () => {

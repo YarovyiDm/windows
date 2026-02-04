@@ -1,13 +1,17 @@
 import React from "react";
 import WindowBasic from "Containers/Desktop/Components/Windows/WindowBasic/WindowBasic";
 import { DraggableFile } from "Components/index";
-import { FolderWindowWrapper } from "Containers/Desktop/Components/Windows/FolderWindow/FolderWindow.styled";
 import { FILE_TYPE, WINDOW_KIND } from "Types/Desktop";
 import { useAppSelector } from "Store/index";
 import { selectFolder } from "Store/selectors/Desktop";
+import { FolderWindowWrapper } from "./FolderWindow.styled";
 import type { FolderWindowProps } from "./FolderWindow.types";
 
-const FolderWindow = ({ window, targetFolderId, targetFolderHandle }: FolderWindowProps) => {
+const FolderWindow = ({
+    window,
+    targetFolderId,
+    targetFolderHandle,
+}: FolderWindowProps) => {
     const folder = useAppSelector(selectFolder(window.id));
 
     return (

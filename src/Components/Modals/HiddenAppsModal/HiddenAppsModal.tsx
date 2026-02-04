@@ -1,6 +1,6 @@
 import { Icon } from "Components";
-import { HIDDEN_APPS } from "Constants/TaskPanel";
-import { HiddenAppsItem, HiddenAppsModalWrapper } from "Components/Modals/HiddenAppsModal/HiddenAppsModal.styled";
+import { HIDDEN_APPS } from "Constants/Desktop";
+import { HiddenAppsItem, HiddenAppsModalWrapper } from "./HiddenAppsModal.styled";
 
 const HiddenAppsModal = () => {
     return (

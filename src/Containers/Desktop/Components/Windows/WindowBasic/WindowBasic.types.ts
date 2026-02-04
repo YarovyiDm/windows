@@ -1,7 +1,8 @@
+import { WINDOW_KIND } from "Types/Desktop";
 import type { HTMLAttributes } from "react";
 
 export type WindowBasicProps = {
-    kind: "SETTINGS" | "FOLDER" | "TEXT" | "BROWSER";
+    kind: keyof typeof WINDOW_KIND;
     id: string;
     onCloseCallback?: false | (() => void);
     system?: boolean;

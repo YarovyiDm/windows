@@ -1,11 +1,11 @@
 import { Typography } from "@mui/material";
 import { BlockBasic } from "Containers/Desktop/Components/Windows/SettingsWindow/Components/BlockBasic/BlockBasic";
 import useSystem from "Hooks/useSystem";
-import { SystemContentWrapper } from "Containers/Desktop/Components/Windows/SettingsWindow/SettingsWindow.styled";
+import { SystemContentWrapper } from "../../SettingsWindow.styled";
 import {
     SystemInformationItemTitle,
     SystemInformationItemWrapper,
-} from "Containers/Desktop/Components/Windows/SettingsWindow/Components/SystemInformation/SystemInformation.styled";
+} from "./SystemInformation.styled";
 
 export const SystemInformation = () => {
     const systemInfo = useSystem();

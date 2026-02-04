@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { BIN, DESKTOP, FOLDER } from "Constants/Desktop";
 import { Desktop, DesktopFile, DesktopWindow, FILE_TYPE, FolderFile } from "Types/Desktop";
-import { ICONS } from "Constants/System";
+import { ICONS } from "Constants/Icons";
+import { SYSTEM_SLICES } from "Constants/System";
 
 const initialDesktopState: Desktop = {
     desktopFiles: [
@@ -12,16 +12,16 @@ const initialDesktopState: Desktop = {
             innerContent: "",
             id: ":2d",
             isSelected: false,
-            parentId: "DESKTOP",
+            parentId: FILE_TYPE.DESKTOP,
         },
         {
             name: "Check what I have",
-            icon: FOLDER,
+            icon: ICONS.FOLDER,
             type: FILE_TYPE.FOLDER,
             innerContent: [],
             id: "223/",
             isSelected: false,
-            parentId: "DESKTOP",
+            parentId: FILE_TYPE.DESKTOP,
         },
         {
             name: "Github",
@@ -30,7 +30,7 @@ const initialDesktopState: Desktop = {
             type: FILE_TYPE.LINK,
             id: "github",
             link: "https://github.com/YarovyiDm/windows",
-            parentId: "DESKTOP",
+            parentId: FILE_TYPE.DESKTOP,
         },
         {
             name: "LinkedIn",
@@ -39,16 +39,16 @@ const initialDesktopState: Desktop = {
             type: FILE_TYPE.LINK,
             id: "linkedin",
             link: "https://www.linkedin.com/in/dmytro-yarovyi-31072b152/",
-            parentId: "DESKTOP",
+            parentId: FILE_TYPE.DESKTOP,
         },
         {
             name: "Кошик",
-            icon: BIN,
+            icon: ICONS.BIN,
             type: FILE_TYPE.FOLDER,
             innerContent: [],
             id: "ds5",
             isSelected: false,
-            parentId: "DESKTOP",
+            parentId: FILE_TYPE.DESKTOP,
         },
     ],
     selectedFiles: [],
@@ -58,7 +58,7 @@ const initialDesktopState: Desktop = {
 };
 
 const desktopSlice = createSlice({
-    name: DESKTOP,
+    name: SYSTEM_SLICES.DESKTOP,
     initialState: initialDesktopState,
     reducers: {
         removeFile(state: Desktop, action: PayloadAction<string>) {

@@ -1,13 +1,9 @@
 import { useEffect, useState } from "react";
-import {
-    DIRECTIONS,
-    DOM_EVENTS,
-    MIN_WINDOW_HEIGHT,
-    MIN_WINDOW_WIDTH,
-    TASK_PANEL_HEIGHT,
-    ZERO_POSITION,
-} from "Constants/System";
 import type { BasicCoordinates, BasicSize } from "Types/System";
+import { TASK_PANEL_HEIGHT, ZERO_POSITION } from "Constants/System";
+import { MIN_WINDOW_HEIGHT, MIN_WINDOW_WIDTH } from "Constants/Desktop";
+import { DIRECTIONS } from "Constants/Directions";
+import { DOM_EVENTS } from "Constants/Events";
 
 const useResize = (
     initialSize: BasicSize,

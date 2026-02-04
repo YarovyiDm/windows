@@ -1,7 +1,7 @@
 import { LanguagesProps } from "Containers/TaskBar/Components/SystemTray/Components/Languages/Languages.types";
 import { LanguagesModal } from "Components/Modals";
-import { LANGUAGES } from "Constants/System";
 import { LanguagesWrapper } from "Containers/TaskBar/Components/SystemTray/Components/Languages/Languages.styled";
+import { LANGUAGES } from "Constants/Languages";
 
 const Languages = ({ refs, isLanguagesModalOpen, handleModalChange, systemLanguageIndex }: LanguagesProps) => {
     return (

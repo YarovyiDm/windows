@@ -1,7 +1,7 @@
 import { HiddenAppsModal } from "Components/Modals";
 import { AppsProps } from "Containers/TaskBar/Components/SystemTray/Components/Apps/Apps.types";
 import { AppsIconWrapper, AppsWrapper } from "Containers/TaskBar/Components/SystemTray/Components/Apps/Apps.styled";
-import { ICONS } from "Constants/System";
+import { ICONS } from "Constants/Icons";
 
 const Apps = ({ refs, hiddenAppsModalOpen, handleModalChange }: AppsProps) => {
     return (

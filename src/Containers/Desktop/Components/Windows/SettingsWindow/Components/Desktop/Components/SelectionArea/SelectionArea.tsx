@@ -4,12 +4,12 @@ import {
     SystemItemSubTitleStyle,
     SystemItemWrapper,
 } from "Containers/Desktop/Components/Windows/SettingsWindow/SettingsWindow.styled";
-import BorderColors
-    from "Containers/Desktop/Components/Windows/SettingsWindow/Components/Desktop/Components/Colors/BorderColors/BorderColors";
-import AreaColors from "Containers/Desktop/Components/Windows/SettingsWindow/Components/Desktop/Components/Colors/AreaColors/AreaColors";
 import { useAppSelector } from "Store/index";
 import { selectSelectionStyles } from "Store/selectors/System";
-import { SettingsExample } from "Containers/Desktop/Components/Windows/SettingsWindow/Components/Desktop/Desktop.styled";
+import BorderColors
+    from "../Colors/BorderColors/BorderColors";
+import AreaColors from "../Colors/AreaColors/AreaColors";
+import { SettingsExample } from "../../Desktop.styled";
 
 const SelectionArea = () => {
     const selectionStyles = useAppSelector(selectSelectionStyles);

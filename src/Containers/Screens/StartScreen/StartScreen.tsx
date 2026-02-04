@@ -1,7 +1,7 @@
 import Icon from "Components/Icon/Icon";
 import Loader from "Components/Loader/Loader";
 import { StartScreenWrapper } from "Containers/Screens/StartScreen/StartScreen.styled";
-import { ICONS } from "Constants/System";
+import { ICONS } from "Constants/Icons";
 
 const StartScreen = () => {
     return (

@@ -4,15 +4,15 @@ import { selectFileSelectionColor, selectFileSize } from "Store/selectors/System
 import { SystemItemContentWrapper } from "Containers/Desktop/Components/Windows/SettingsWindow/SettingsWindow.styled";
 import Icon from "Components/Icon/Icon";
 import { changeDesktopFileSize } from "Store/slices/System";
+import { ICONS } from "Constants/Icons";
 import {
     FILE_SIZE,
-} from "Containers/Desktop/Components/Windows/SettingsWindow/Components/Desktop/Components/File/Components/FileSize/FileSize.constants";
+} from "./FileSize.constants";
 import {
     FileItem,
     FileSizeItem,
     FileSizeTitle,
-} from "Containers/Desktop/Components/Windows/SettingsWindow/Components/Desktop/Components/File/Components/FileSize/FileSize.styled";
-import { ICONS } from "Constants/System";
+} from "./FileSize.styled";
 
 const FileSize = () => {
     const dispatch = useAppDispatch();

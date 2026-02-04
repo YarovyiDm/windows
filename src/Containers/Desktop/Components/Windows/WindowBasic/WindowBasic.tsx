@@ -1,9 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Box } from "@mui/material";
-import {
-    DIRECTIONS_RESIZE_MAP, ICONS,
-    TASK_PANEL_HEIGHT,
-} from "Constants/System";
 import useDrag from "Hooks/useDrag";
 import { DEFAULT_DESKTOP_MODAL_SIZE } from "Constants/Desktop";
 import Icon from "Components/Icon/Icon";
@@ -12,6 +8,10 @@ import { useAppDispatch, useAppSelector } from "Store/index";
 import { changeWindowZindex, closeWindow } from "Store/slices/Desktop";
 import { selectWindowZindex } from "Store/selectors/Desktop";
 import type { BasicSize } from "Types/System";
+import { ICONS } from "Constants/Icons";
+import { TASK_PANEL_HEIGHT } from "Constants/System";
+import { DIRECTIONS_RESIZE_MAP } from "Constants/Directions";
+import { getRandomCenterCoordinates } from "../../../../../helpers/getRandomCenterCoordinates";
 import {
     ResizeHandleBottom, ResizeHandleCorner,
     ResizeHandleRight,
@@ -19,8 +19,7 @@ import {
     WindowBasicButtonsWrapper,
     WindowBasicHeader,
     WindowBasicWrapper,
-} from "Containers/Desktop/Components/Windows/WindowBasic/WindowBasic.styled";
-import { getRandomCenterCoordinates } from "../../../../../helpers/getRandomCenterCoordinates";
+} from "./WindowBasic.styled";
 import type { WindowBasicProps } from "./WindowBasic.types";
 
 const COMPONENT_MAP = {

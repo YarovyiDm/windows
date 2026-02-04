@@ -1,12 +1,9 @@
 import { map } from "lodash";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import {
-    GOOGLE_CHROME,
-    TASK_PANEL,
-} from "Constants/TaskPanel";
 import { TaskPanelType, ToggleModalPayload } from "Types/TaskPanelTypes";
 import { FILE_TYPE } from "Types/Desktop";
-import { ICONS } from "Constants/System";
+import { ICONS } from "Constants/Icons";
+import { SYSTEM_SLICES, WINDOW_META } from "Constants/System";
 
 const initialTaskPanelState = {
     taskPanelApps: [
@@ -25,7 +22,7 @@ const initialTaskPanelState = {
         {
             id: FILE_TYPE.BROWSER,
             icon: ICONS.BROWSER,
-            name: GOOGLE_CHROME,
+            name: WINDOW_META.BROWSER.title,
             type: FILE_TYPE.BROWSER,
             isOpen: false,
             isFocused: false,
@@ -44,7 +41,7 @@ const initialTaskPanelState = {
 } as TaskPanelType;
 
 const taskPanelSlice = createSlice({
-    name: TASK_PANEL,
+    name: SYSTEM_SLICES.TASK_PANEL,
     initialState: initialTaskPanelState,
     reducers: {
         addAppToTaskPanel(state: TaskPanelType, action) {

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Typography } from '@mui/material';
 import Icon from "Components/Icon/Icon";
 import { NoSignal, OffScreenWrapper, PowerButtonWrapper } from "Containers/Screens/OffScreen/OffScreen.styled";
-import { ICONS } from "Constants/System";
+import { ICONS } from "Constants/Icons";
 import type { OffScreenProps } from "./OffScreen.types";
 
 const OffScreen = ({ isStartScreen, start, isShutDownScreen }: OffScreenProps) => {

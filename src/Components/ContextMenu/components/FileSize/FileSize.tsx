@@ -1,6 +1,6 @@
 import { FileSizeProps } from "Components/ContextMenu/components/FileSize/FileSize.types";
-import { DESKTOP_FILE_SIZE_UNIT } from "Constants/System";
 import useLanguage from "Hooks/useLanguage";
+import { DESKTOP_FILE_SIZE_UNIT } from "Constants/Desktop";
 import {
     HotKeys,
     IconWrapper,
@@ -12,7 +12,10 @@ import {
     SubMenuWrapper,
 } from "../../ContextMenu.styled";
 
-const FileSize = ({ selectedSize, onDesktopFileSizeChange }: FileSizeProps) => {
+const FileSize = ({
+    selectedSize,
+    onDesktopFileSizeChange,
+}: FileSizeProps) => {
     const { translate } = useLanguage();
 
     return (

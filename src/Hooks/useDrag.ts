@@ -1,10 +1,7 @@
 import { useState, useEffect } from "react";
-import {
-    DOM_EVENTS, MOUSE_BUTTONS,
-    TASK_PANEL_HEIGHT,
-    ZERO_POSITION,
-} from "Constants/System";
 import { BasicCoordinates, BasicSize } from "Types/System";
+import { TASK_PANEL_HEIGHT, ZERO_POSITION } from "Constants/System";
+import { DOM_EVENTS, MOUSE_BUTTONS } from "Constants/Events";
 
 const useDrag = (
     initialPosition: BasicCoordinates,

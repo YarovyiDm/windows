@@ -1,10 +1,10 @@
 import useLanguage from "Hooks/useLanguage";
-import { useAppDispatch, useAppSelector } from "Store/index";
+import { useAppSelector } from "Store/index";
 import { selectFileSize } from "Store/selectors/System";
 import FileSize from "Components/ContextMenu/components/FileSize/FileSize";
-import { ICONS } from "Constants/System";
-import { addDesktopFile } from "Store/slices/Desktop";
+import { ICONS } from "Constants/Icons";
 import { FILE_TYPE } from "Types/Desktop";
+import { useDesktopMenuActions } from "Components/ContextMenu/Hooks/useDesktopMenuActions";
 import {
     IconStyled,
     IconWrapper, ItemArrowIcon,
@@ -15,24 +15,17 @@ import {
     SubMenuItemMain,
     SubMenuWrapper,
 } from "../../ContextMenu.styled";
-import { createDesktopFile } from "../../../../utils/createDesktopFile";
-import type { CreateFilePayload, DesktopMenuProps } from "./DesktopMenu.types";
+import type { DesktopMenuProps } from "./DesktopMenu.types";
 
-const  DesktopMenu = ({ contextMenuPosition, setContextMenuVisible, onDesktopFileSizeChange } : DesktopMenuProps) => {
+const  DesktopMenu = ({
+    contextMenuPosition,
+    setContextMenuVisible,
+    onDesktopFileSizeChange,
+} : DesktopMenuProps) => {
     const selectedSize = useAppSelector(selectFileSize);
     const { translate } = useLanguage();
-    const dispatch = useAppDispatch();
 
-    const createNewFile = ({ name, type }: CreateFilePayload) => {
-        const newFile = createDesktopFile({
-            name: `${name}_${contextMenuPosition.x}`,
-            type,
-            position: contextMenuPosition,
-        });
-
-        dispatch(addDesktopFile(newFile));
-        setContextMenuVisible(false);
-    };
+    const { createNewFile } = useDesktopMenuActions({ contextMenuPosition, setContextMenuVisible });
 
     return (
         <>

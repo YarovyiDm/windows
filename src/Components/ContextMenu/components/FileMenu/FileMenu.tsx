@@ -1,18 +1,20 @@
-import { useDispatch } from "react-redux";
-import { removeFile } from "Store/slices/Desktop";
-import { ICONS } from "Constants/System";
+import { ICONS } from "Constants/Icons";
+import { useDesktopMenuActions } from "Components/ContextMenu/Hooks/useDesktopMenuActions";
 import { IconStyled,ItemTitle, MenuItem, MenuItemMain } from "../../ContextMenu.styled";
 import type { FileMenuProps } from "./FileMenu.types";
 
-const FileMenu = ({ targetId, setRenameFileId }: FileMenuProps) => {
-    const dispatch = useDispatch();
+const FileMenu = ({
+    targetId,
+    setRenameFileId,
+}: FileMenuProps) => {
+    const { deleteFile, renameFile } = useDesktopMenuActions({ setRenameFileId });
 
     if(!targetId){ return null; }
 
     return (
         <>
             <MenuItem>
-                <MenuItemMain onClick={() => {setRenameFileId(targetId);}}>
+                <MenuItemMain onClick={() => {renameFile(targetId);}}>
                     <IconStyled name={ICONS.EDIT} />
                     <ItemTitle>
                         Перейменувати
@@ -20,7 +22,7 @@ const FileMenu = ({ targetId, setRenameFileId }: FileMenuProps) => {
                 </MenuItemMain>
             </MenuItem>
             <MenuItem>
-                <MenuItemMain onClick={() => {dispatch(removeFile(targetId));}}>
+                <MenuItemMain onClick={() => {deleteFile(targetId);}}>
                     <IconStyled name={ICONS.STASH} />
                     <ItemTitle>
                         Видалити

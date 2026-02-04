@@ -1,9 +1,9 @@
 import { Box } from "@mui/material";
 import { SystemItemSubTitleStyle, SystemItemWrapper } from "Containers/Desktop/Components/Windows/SettingsWindow/SettingsWindow.styled";
-import FileSize
-    from "Containers/Desktop/Components/Windows/SettingsWindow/Components/Desktop/Components/File/Components/FileSize/FileSize";
 import FileSelection
-    from "Containers/Desktop/Components/Windows/SettingsWindow/Components/Desktop/Components/File/Components/FileSelection/FileSelection";
+    from "./Components/FileSelection/FileSelection";
+import FileSize
+    from "./Components/FileSize/FileSize";
 
 const File = () => {
     return (

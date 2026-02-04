@@ -2,8 +2,8 @@ import React from "react";
 import { getSelectionStyles } from "Containers/Desktop/Desktop.helpers";
 import { useAppSelector } from "Store/index";
 import { selectSelectionStyles } from "Store/selectors/System";
-import { SelectionProps } from "Containers/Desktop/Components/Selection/Selection.types";
-import { SelectionWrapper } from "Containers/Desktop/Components/Selection/Selection.styled";
+import { SelectionWrapper } from "./Selection.styled";
+import { SelectionProps } from "./Selection.types";
 
 const Selection = ({ selectionRef, currentPosition, startPosition }: SelectionProps) => {
     const selectionStyles = useAppSelector(selectSelectionStyles);

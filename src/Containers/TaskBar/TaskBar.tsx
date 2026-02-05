@@ -1,51 +1,40 @@
-import React, { useRef, useState } from "react";
-import {
-    SystemTray,
-} from "Components";
+import React, { RefObject, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "Store";
 import { useClickOutside } from "Hooks";
-import { handleCloseAllModals, toggleModal } from "Store/slices/TaskPanelSlice";
-import { ModalNames, ObjectOfModalRefs } from "Types/TaskPanelTypes";
+import { closeModal } from "Store/slices/TaskBar";
+import { TaskBarModal } from "Types/TaskBar";
 import { selectLanguageIndex } from "Store/selectors/System";
 import { TaskBarWrapper } from "Containers/TaskBar/TaskBar.styled";
 import Main from "Containers/TaskBar/Components/Main/Main";
 import Weather from "Containers/TaskBar/Components/Weather/Weather";
+import { TASKBAR_MODALS } from "Constants/Taskbar";
+import { selectTopModal } from "Store/selectors/TaskBar";
+import { SystemTray } from "Components/index";
 
 const TaskBar = () => {
     const dispatch = useAppDispatch();
-    const [currentModal, setCurrentModal] = useState<string>("");
+    const topModal = useAppSelector(selectTopModal);
 
-    const refs: ObjectOfModalRefs = {
-        isWindowsModalOpen: useRef(null),
-        isHiddenAppsModalOpen: useRef(null),
-        isLanguagesModalOpen: useRef(null),
+    const modalRefs: Record<TaskBarModal, RefObject<HTMLDivElement>> = {
+        [TASKBAR_MODALS.WINDOWS]: useRef(null),
+        [TASKBAR_MODALS.POWER]: useRef(null),
+        [TASKBAR_MODALS.LANGUAGES]: useRef(null),
+        [TASKBAR_MODALS.HIDDEN_APPS]: useRef(null),
     };
-
-    const { isHiddenAppsModalOpen, isLanguagesModalOpen } = useAppSelector(
-        (state) => state.taskPanel,
-    );
-
     const languageIndex = useAppSelector(selectLanguageIndex);
 
-    useClickOutside(refs[currentModal as keyof typeof refs], () => {
-        dispatch(handleCloseAllModals());
-    });
-
-    const handleModalChange = (name: ModalNames) => {
-        setCurrentModal(name);
-        dispatch(toggleModal({ modalName: name }));
-    };
+    useClickOutside(
+        topModal ? modalRefs[topModal] : null,
+        () => dispatch(closeModal()),
+    );
 
     return (
         <TaskBarWrapper>
             <Weather />
-            <Main refs={refs} setCurrentModal={setCurrentModal} />
+            <Main refs={modalRefs} />
             <SystemTray
-                hiddenAppsModalOpen={isHiddenAppsModalOpen}
-                isLanguagesModalOpen={isLanguagesModalOpen}
-                handleModalChange={handleModalChange}
                 systemLanguageIndex={languageIndex}
-                refs={refs}
+                refs={modalRefs}
             />
         </TaskBarWrapper>
     );

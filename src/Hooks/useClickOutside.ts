@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { DOM_EVENTS } from "Constants/Events";
 
 export const useClickOutside = (
-    ref: React.RefObject<HTMLElement>,
+    ref: React.RefObject<HTMLElement> | null,
     callback: () => void,
 ) => {
     const handleClick = (e: Event) => {

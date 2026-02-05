@@ -1,4 +1,4 @@
-import { taskPanelApp } from "Types/TaskPanelTypes";
+import { TaskBarApp } from "Types/TaskBar";
 import type { ReactElement } from "react";
 
 export type PinnedAppsProps = {
@@ -10,5 +10,5 @@ export type PinnedAppsProps = {
 };
 
 export type AppsProps = {
-    apps: taskPanelApp[];
+    apps: TaskBarApp[];
 }

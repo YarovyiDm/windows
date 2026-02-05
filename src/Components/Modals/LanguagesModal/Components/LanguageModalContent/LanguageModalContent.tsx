@@ -1,6 +1,5 @@
 import { Box } from '@mui/material';
 import { changeLanguageIndex } from "Store/slices/System";
-import { toggleModal } from "Store/slices/TaskPanelSlice";
 import { useAppDispatch, useAppSelector } from "Store/index";
 import { selectLanguageIndex } from "Store/selectors/System";
 import { LANGUAGES } from "Constants/Languages";
@@ -16,7 +15,7 @@ const LanguageModalContent = () => {
 
     const onLanguageChange = (index: number) => {
         dispatch(changeLanguageIndex(index));
-        dispatch(toggleModal({ modalName: "isLanguagesModalOpen" }));
+        // dispatch(toggleModal({ modalName: "isLanguagesModalOpen" }));
     };
 
     return (

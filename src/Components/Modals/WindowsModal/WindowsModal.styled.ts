@@ -1,5 +1,6 @@
 import { styled, Box } from "@mui/material";
 import { ModalWrapper } from "Components/Modals/Modals.styled";
+import { isOpenedStylesProps } from "Containers/TaskBar/TaskBar.types";
 
 export const WindowsModalWrapper = styled(ModalWrapper)({
     display: "flex",
@@ -75,7 +76,9 @@ export const WindowsModalFooterUserIconWrapper = styled(Box)({
     },
 });
 
-export const WindowsModalFooterPowerIconWrapper = styled(Box)({
+export const WindowsModalFooterPowerIconWrapper = styled(Box, {
+    shouldForwardProp: (prop) => prop !== "isOpened",
+})<isOpenedStylesProps>(({ isOpened }) => ({
     width: "40px",
     height: "40px",
     borderRadius: "5px",
@@ -83,6 +86,7 @@ export const WindowsModalFooterPowerIconWrapper = styled(Box)({
     alignItems: "center",
     justifyContent: "center",
     position: "relative",
+    background: isOpened ? "rgba(255, 255, 255, 0.05)" : "",
     "&:hover": {
         background: "#f7f5f5",
     },
@@ -93,4 +97,4 @@ export const WindowsModalFooterPowerIconWrapper = styled(Box)({
             fill: "#535353",
         },
     },
-});
+}));

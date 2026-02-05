@@ -13,7 +13,7 @@ const PowerModal = () => {
     const dispatch = useAppDispatch();
 
     return (
-        <PowerModalWrapper>
+        <PowerModalWrapper onClick={e => e.stopPropagation()}>
             {_.map(POWER_MODAL_UNITS, (unit, key) => {
                 return (
                     <PowerModalItem

@@ -1,9 +1,7 @@
-import type { ModalNames, ObjectOfModalRefs } from "Types/TaskPanelTypes";
+import { RefObject } from "react";
+import { TaskBarModal } from "Types/TaskBar";
 
-export type IProps = {
-    hiddenAppsModalOpen: boolean;
-    isLanguagesModalOpen: boolean;
+export type SystemTrayProps = {
     systemLanguageIndex: number;
-    refs: ObjectOfModalRefs;
-    handleModalChange: (name: ModalNames) => void;
+    refs: Record<TaskBarModal, RefObject<HTMLDivElement>>;
 }

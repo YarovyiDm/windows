@@ -5,7 +5,7 @@ export const SYSTEM_PASSWORD = "1111";
 export const SYSTEM_SLICES = {
     DESKTOP: "DESKTOP",
     SYSTEM: "SYSTEM",
-    TASK_PANEL: "TASK_PANEL",
+    TASK_BAR: "TASK_BAR",
 };
 
 export const SYSTEM_ACTIONS = {

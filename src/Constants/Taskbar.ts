@@ -1,0 +1,6 @@
+export const TASKBAR_MODALS = {
+    WINDOWS: "WINDOWS",
+    POWER: "POWER",
+    LANGUAGES: "LANGUAGES",
+    HIDDEN_APPS: "HIDDEN_APPS",
+} as const;

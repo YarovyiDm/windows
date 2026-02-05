@@ -4,17 +4,16 @@ import { Icon } from "Components/index";
 import { useAppDispatch, useAppSelector } from "Store/index";
 import { FileStyled } from "Containers/Desktop/Components/File/File.styled";
 import { selectOpenedWindowLength } from "Store/selectors/Desktop";
+import { closeModal } from "Store/slices/TaskBar";
 import type { FileProps } from "./FIle.types";
 
 const File = ({ file }: FileProps) => {
     const dispatch = useAppDispatch();
-    // const isSettingsOpen = useAppSelector(selectIsWindowOpen("Settings"));
     const openedWindowsLength = useAppSelector(selectOpenedWindowLength);
 
     const onFileClick = () => {
-        // if(!isSettingsOpen) {
         openFile(file, dispatch, openedWindowsLength);
-        // }
+        dispatch(closeModal());
     };
 
     return (

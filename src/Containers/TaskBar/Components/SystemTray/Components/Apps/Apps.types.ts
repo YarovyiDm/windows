@@ -1,7 +1,6 @@
-import { ModalNames, ObjectOfModalRefs } from "Types/TaskPanelTypes";
+import { RefObject } from "react";
+import { TaskBarModal } from "Types/TaskBar";
 
 export type AppsProps = {
-    refs: ObjectOfModalRefs;
-    hiddenAppsModalOpen: boolean;
-    handleModalChange: (name: ModalNames) => void;
+    refs: Record<TaskBarModal, RefObject<HTMLDivElement>>;
 }

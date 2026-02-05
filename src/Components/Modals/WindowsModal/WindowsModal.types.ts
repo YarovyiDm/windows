@@ -1,6 +1,6 @@
 import { RefObject } from "react";
 import { TaskBarModal } from "Types/TaskBar";
 
-export type StartProps = {
+export type WindowsModalProps = {
     refs: Record<TaskBarModal, RefObject<HTMLDivElement>>;
 }

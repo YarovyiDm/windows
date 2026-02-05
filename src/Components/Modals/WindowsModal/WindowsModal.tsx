@@ -1,14 +1,17 @@
 import { Icon, File } from "Components";
 import { Box, Typography } from '@mui/material';
-import { handleCloseAllModals, toggleModal } from "Store/slices/TaskPanelSlice";
 import { useAppDispatch, useAppSelector } from "Store/index";
-import { selectPowerModalState } from "Store/selectors/TaskPanel";
+// import { selectPowerModalState } from "Store/selectors/TaskPanel";
 import { ICONS } from "Constants/Icons";
 import { FILE_TYPE, SettingsFile } from "Types/Desktop";
 import { WINDOW_META } from "Constants/System";
 import { useLanguage } from "Hooks/useLanguage";
 import { TRANSLATION_KEYS } from "Constants/Translation";
-import PowerModal from "../PowerModal/PowerModal";
+import { PowerModal } from "Components/Modals";
+import { openModal } from "Store/slices/TaskBar";
+import { TASKBAR_MODALS } from "Constants/Taskbar";
+import { selectModalStack } from "Store/selectors/TaskBar";
+import { WindowsModalProps } from "Components/Modals/WindowsModal/WindowsModal.types";
 import {
     WindowsModalContentHeader,
     WindowsModalContentWrapper,
@@ -19,15 +22,11 @@ import {
     WindowsModalWrapper,
 } from "./WindowsModal.styled";
 
-const WindowsModal = () => {
+const WindowsModal = ({ refs }: WindowsModalProps) => {
     const dispatch = useAppDispatch();
+    const modalStack = useAppSelector(selectModalStack);
+    const isOpened = modalStack.includes(TASKBAR_MODALS.POWER);
     const { translate } = useLanguage();
-    const isPowerModalOpen = useAppSelector(selectPowerModalState);
-
-    const onWindowsModalChange = () => {
-        dispatch(handleCloseAllModals());
-        dispatch(toggleModal({ modalName: "isPowerModalOpen" }));
-    };
 
     const settingsFile = {
         type: FILE_TYPE.SETTINGS,
@@ -58,9 +57,11 @@ const WindowsModal = () => {
                     <Typography sx={{ fontSize: '12px', marginLeft: '15px' }}>Beast</Typography>
                 </WindowsModalFooterUserWrapper>
                 <WindowsModalFooterPowerIconWrapper
-                    onClick={onWindowsModalChange}
+                    ref={refs[TASKBAR_MODALS.POWER]}
+                    isOpened={isOpened}
+                    onClick={() => dispatch(openModal(TASKBAR_MODALS.POWER))}
                 >
-                    {isPowerModalOpen && <PowerModal />}
+                    {isOpened && <PowerModal />}
                     <Icon name={ICONS.POWER} />
                 </WindowsModalFooterPowerIconWrapper>
             </WindowsModalFooter>

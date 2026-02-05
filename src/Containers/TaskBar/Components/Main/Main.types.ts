@@ -1,6 +1,6 @@
-import { ObjectOfModalRefs } from "Types/TaskPanelTypes";
+import { RefObject } from "react";
+import { TaskBarModal } from "Types/TaskBar";
 
 export type MainProps = {
-    refs: ObjectOfModalRefs;
-    setCurrentModal: (name: string) => void;
+    refs: Record<TaskBarModal, RefObject<HTMLDivElement>>;
 }

@@ -23,7 +23,6 @@ export type SystemType = {
     isNightMode: boolean;
     selectionStyles: { borderColor: string; areaColor: string; };
     fileSelectionColor: string;
-    settingsWindowID: string;
     userLocationCity: string;
 };
 

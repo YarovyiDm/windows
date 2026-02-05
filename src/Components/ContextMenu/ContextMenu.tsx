@@ -1,10 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import MenuProvider from "Components/ContextMenu/components/MenuProvider/MenuProvider";
 import { useAppDispatch } from "Store/index";
 import { changeDesktopFileSize } from "Store/slices/System";
 import { BasicSize } from "Types/System";
 import { SIZE_HOT_KEYS_MAP } from "Constants/Desktop";
 import { DOM_EVENTS } from "Constants/Events";
+import { useClickOutside } from "Hooks/useClickOutside";
 import { ContextMenuStyled } from './ContextMenu.styled';
 import type { ContextMenuProps } from "./ContextMenu.types";
 
@@ -16,6 +17,9 @@ const ContextMenu = ({
     setRenameFileId,
 }: ContextMenuProps) => {
     const dispatch = useAppDispatch();
+    const menuRef = useRef<HTMLDivElement>(null);
+
+    useClickOutside(menuRef, () => setContextMenuVisible(false));
 
     const onDesktopFileSizeChange = (newSize: BasicSize) => {
         dispatch(changeDesktopFileSize(newSize));
@@ -50,6 +54,7 @@ const ContextMenu = ({
 
     return (
         <ContextMenuStyled
+            ref={menuRef}
             sx={{ top: contextMenuPosition.y, left: contextMenuPosition.x }}
         >
             <MenuProvider

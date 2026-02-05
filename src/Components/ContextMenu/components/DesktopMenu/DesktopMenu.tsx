@@ -18,7 +18,7 @@ import {
 } from "../../ContextMenu.styled";
 import type { DesktopMenuProps } from "./DesktopMenu.types";
 
-const  DesktopMenu = ({
+const DesktopMenu = ({
     contextMenuPosition,
     setContextMenuVisible,
     onDesktopFileSizeChange,

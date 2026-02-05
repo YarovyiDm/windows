@@ -33,11 +33,17 @@ export const useDesktopMenuActions = ({
     };
 
     const deleteFile = (id: string) => {
+        if (!setContextMenuVisible) return;
+
         dispatch(removeFile(id));
+        setContextMenuVisible(false);
     };
 
     const renameFile = (id: string) => {
+        if (!setContextMenuVisible) return;
+
         if (setRenameFileId) setRenameFileId(id);
+        setContextMenuVisible(false);
     };
 
     return { createNewFile, deleteFile, renameFile };

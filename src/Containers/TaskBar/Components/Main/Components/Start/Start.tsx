@@ -1,9 +1,9 @@
 import React from "react";
 import { Icon } from "Components/index";
 import WindowsModal from "Components/Modals/WindowsModal/WindowsModal";
-import { StartProps } from "Containers/TaskBar/Components/Main/Components/Start/Start.types";
-import { StartWrapper } from "Containers/TaskBar/Components/Main/Components/Start/Start.styled";
 import { ICONS } from "Constants/Icons";
+import { StartProps } from "./Start.types";
+import { StartWrapper } from "./Start.styled";
 
 const Start = ({ refs, handleModalChange, isWindowsModalOpen }: StartProps) => {
     return (

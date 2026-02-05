@@ -20,7 +20,7 @@ const MenuProvider = ({
                 setContextMenuVisible={setContextMenuVisible}
                 onDesktopFileSizeChange={onDesktopFileSizeChange}
             />,
-        [CONTEXT_MENU_TYPES.FILE]: <FileMenu targetId={targetId} setRenameFileId={setRenameFileId}/>,
+        [CONTEXT_MENU_TYPES.FILE]: <FileMenu targetId={targetId} setRenameFileId={setRenameFileId} setContextMenuVisible={setContextMenuVisible}/>,
         [CONTEXT_MENU_TYPES.FOLDER]: <div>1</div>,
     };
 

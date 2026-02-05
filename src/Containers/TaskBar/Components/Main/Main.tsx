@@ -4,8 +4,8 @@ import { Apps } from "Components/index";
 import { RootState, useAppDispatch, useAppSelector } from "Store/index";
 import { ModalNames } from "Types/TaskPanelTypes";
 import { toggleModal } from "Store/slices/TaskPanelSlice";
-import Search from 'Containers/TaskBar/Components/Main/Components/Search/Search';
-import Start from "Containers/TaskBar/Components/Main/Components/Start/Start";
+import Search from './Components/Search/Search';
+import Start from "./Components/Start/Start";
 import type { MainProps } from './Main.types';
 
 const Main = ({ refs, setCurrentModal }: MainProps) => {

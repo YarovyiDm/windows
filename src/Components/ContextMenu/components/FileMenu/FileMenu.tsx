@@ -8,8 +8,9 @@ import type { FileMenuProps } from "./FileMenu.types";
 const FileMenu = ({
     targetId,
     setRenameFileId,
+    setContextMenuVisible,
 }: FileMenuProps) => {
-    const { deleteFile, renameFile } = useDesktopMenuActions({ setRenameFileId });
+    const { deleteFile, renameFile } = useDesktopMenuActions({ setRenameFileId, setContextMenuVisible });
     const { translate } = useLanguage();
 
     if(!targetId){ return null; }

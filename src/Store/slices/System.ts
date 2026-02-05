@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { v4 as uuid } from "uuid";
 import { DESKTOP_FILE_SIZE_KEYS } from 'Constants/Desktop';
 import { SYSTEM_PASSWORD, SYSTEM_SLICES } from 'Constants/System';
 import { WALLPAPERS } from 'Constants/Wallpapers';
@@ -22,7 +21,6 @@ const initialSystemState = {
         areaColor: "rgba(74, 144, 226, 0.2)",
     },
     fileSelectionColor: "rgba(179, 180, 179, 1)",
-    settingsWindowID: uuid(),
     userLocationCity: "",
 } satisfies SystemType;
 

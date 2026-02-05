@@ -4,7 +4,7 @@ import type { BasicCoordinates } from "Types/System";
 import { CONTEXT_MENU_TYPES, ZERO_POSITION } from "Constants/System";
 import { MOUSE_BUTTONS } from "Constants/Events";
 
-type ContextType = keyof typeof CONTEXT_MENU_TYPES| null;
+type ContextType = keyof typeof CONTEXT_MENU_TYPES | null;
 
 export const useContextMenu = () => {
     const [contextMenuVisible, setContextMenuVisible] = useState(false);

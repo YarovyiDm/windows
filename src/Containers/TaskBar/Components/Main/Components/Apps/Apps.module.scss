@@ -1,11 +1,12 @@
-@import "../../../../../../Scss/mixins";
 
 .taskPanelAppUnit {
     width: 40px;
     height: 40px;
     margin: 0 5px;
     border-radius: 5px;
-    @include flex-center;
+    display: flex;
+  align-items: center;
+  justify-content: center;
     position: relative;
     user-select: none;
 

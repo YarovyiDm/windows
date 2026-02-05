@@ -5,7 +5,11 @@ import { selectSelectionStyles } from "Store/selectors/System";
 import { SelectionWrapper } from "./Selection.styled";
 import { SelectionProps } from "./Selection.types";
 
-const Selection = ({ selectionRef, currentPosition, startPosition }: SelectionProps) => {
+const Selection = ({
+    selectionRef,
+    currentPosition,
+    startPosition,
+}: SelectionProps) => {
     const selectionStyles = useAppSelector(selectSelectionStyles);
 
     return (

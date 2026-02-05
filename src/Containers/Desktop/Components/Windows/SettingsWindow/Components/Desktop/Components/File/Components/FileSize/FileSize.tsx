@@ -40,16 +40,11 @@ const FileSize = () => {
                             >
                                 <FileItem
                                     isSelected={selectedSize.height === file.size.height}
-                                    sx={{
-                                        background: fileSelectionColor,
-                                    }}
+                                    sx={{ background: fileSelectionColor }}
                                 >
                                     <Icon
                                         name={ICONS.TEXT_FILE}
-                                        style={{
-                                            height: file.iconSize.height,
-                                            width: file.iconSize.width,
-                                        }}
+                                        style={{ height: file.iconSize.height, width: file.iconSize.width }}
                                     />
                                 </FileItem>
                                 <FileSizeTitle sx={{ color: "#fff" }}>{file.title}</FileSizeTitle>

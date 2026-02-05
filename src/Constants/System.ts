@@ -35,6 +35,8 @@ export const TASK_PANEL_HEIGHT = 48;
 export const SHOW_SAVE_MESSAGE_DELAY = 2000;
 export const ZERO_POSITION = { x: 0, y: 0 };
 export const WINDOW_ZINDEX_MULTIPLIER = 100;
+export const MAX_BROWSER_TABS_COUNT = 5;
+export const MIN_BROWSER_TABS_COUNT = 1;
 
 export const WINDOW_META = {
     [WINDOW_KIND.BROWSER]: { title: "Google Chrome", id: WINDOW_KIND.BROWSER },

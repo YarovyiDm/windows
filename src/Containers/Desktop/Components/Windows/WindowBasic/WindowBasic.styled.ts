@@ -89,3 +89,9 @@ export const ResizeHandleCorner = styled(Box)({
     height: "10px",
     cursor: "nwse-resize",
 });
+
+export const WindowContent = styled(Box)({
+    flex: "1 1 auto",
+    overflow: "auto",
+    padding: "10px",
+});

@@ -2,6 +2,7 @@ import React from "react";
 import { Box } from '@mui/material';
 import { TRANSLATION_KEYS } from "Constants/Translation";
 import { useLanguage } from "Hooks/useLanguage";
+import { MAX_BROWSER_TABS_COUNT, MIN_BROWSER_TABS_COUNT } from "Constants/System";
 import { createTab } from "../../ChromeWindow.helpers";
 import {
     TabCloseButton, TabNewButton,
@@ -10,11 +11,16 @@ import {
 } from "./Tabs.styled";
 import { TabsProps } from "./Tabs.types";
 
-const Tabs = ({ tabs, activeTabId, setActiveTabId, setTabs }: TabsProps) => {
+const Tabs = ({
+    tabs,
+    activeTabId,
+    setActiveTabId,
+    setTabs,
+}: TabsProps) => {
     const { translate } = useLanguage();
 
     const addTab = () => {
-        if (tabs.length >= 5) return;
+        if (tabs.length >= MAX_BROWSER_TABS_COUNT) return;
 
         const newTab = createTab(translate(TRANSLATION_KEYS.NEW_TAB));
 
@@ -23,7 +29,7 @@ const Tabs = ({ tabs, activeTabId, setActiveTabId, setTabs }: TabsProps) => {
     };
 
     const closeTab = (id: string) => {
-        if (tabs.length === 1) return;
+        if (tabs.length === MIN_BROWSER_TABS_COUNT) return;
 
         setTabs(prev => {
             const next = prev.filter(t => t.id !== id);
@@ -56,7 +62,7 @@ const Tabs = ({ tabs, activeTabId, setActiveTabId, setTabs }: TabsProps) => {
                 </TabStyled>
             ))}
 
-            {tabs.length < 5 && (
+            {tabs.length < MAX_BROWSER_TABS_COUNT && (
                 <TabNewButton onClick={addTab}>
                     +
                 </TabNewButton>

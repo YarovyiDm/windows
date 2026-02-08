@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/windows/static/css/main.e2470eeb.css",
-    "main.js": "/windows/static/js/main.81861ff1.js",
+    "main.js": "/windows/static/js/main.bff1c69a.js",
     "static/media/iriser.jpg": "/windows/static/media/iriser.27e9cdf4087a77e95102.jpg",
     "static/media/bri.jpg": "/windows/static/media/bri.daffee13f010b22dd758.jpg",
     "static/media/witcher.jpg": "/windows/static/media/witcher.a1c7f5700f98aeb7b0f1.jpg",
@@ -16,7 +16,7 @@
     "static/media/github.svg": "/windows/static/media/github.3b1df8d0b16e3bd1942cf87716b42feb.svg",
     "static/media/chromeIcon.svg": "/windows/static/media/chromeIcon.b8d46baffc8a4a2187394ba00ae0d362.svg",
     "static/media/webstormIcon.svg": "/windows/static/media/webstormIcon.e1ddbc246702e25959152aa46d2a29ae.svg",
-    "static/media/binIcon.svg": "/windows/static/media/binIcon.10ab850dee02075835cf3893d0ec32cf.svg",
+    "static/media/bin.svg": "/windows/static/media/bin.2c60942e015811cc07d495c02d04ab84.svg",
     "static/media/telegramIcon.svg": "/windows/static/media/telegramIcon.c18cbca27cd54da9f06831ba0884df1b.svg",
     "static/media/skypeIcon.svg": "/windows/static/media/skypeIcon.2d21a92209ec94c62e6f89a84dccfc0b.svg",
     "static/media/crossIcon.svg": "/windows/static/media/crossIcon.1ef132d43f7244aa8a228c1141f31bf9.svg",
@@ -41,10 +41,10 @@
     "static/media/rightArrow.svg": "/windows/static/media/rightArrow.3be968dabe76747fedd2f22525c93867.svg",
     "static/media/line.svg": "/windows/static/media/line.49e295bf589c9ffd48ec9b557c54b9b3.svg",
     "main.e2470eeb.css.map": "/windows/static/css/main.e2470eeb.css.map",
-    "main.81861ff1.js.map": "/windows/static/js/main.81861ff1.js.map"
+    "main.bff1c69a.js.map": "/windows/static/js/main.bff1c69a.js.map"
   },
   "entrypoints": [
     "static/css/main.e2470eeb.css",
-    "static/js/main.81861ff1.js"
+    "static/js/main.bff1c69a.js"
   ]
 }

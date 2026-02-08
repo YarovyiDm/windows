@@ -28,7 +28,7 @@ export const PowerButtonWrapper = styled(Box)({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    border: "1px solid #a5a5a5",
+    border: "2px solid white",
     borderRadius: "5px",
     cursor: "pointer",
     width: "50px",
@@ -39,12 +39,12 @@ export const PowerButtonWrapper = styled(Box)({
         height: "25px",
 
         "& rect, & path": {
-            fill: "#a5a5a5",
+            fill: "white",
         },
     },
 
     "&:hover": {
-        background: "#a5a5a5",
+        background: "#c5c5c5",
 
         "& svg rect, & svg path": {
             fill: "white",

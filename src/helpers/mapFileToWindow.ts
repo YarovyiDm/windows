@@ -33,6 +33,18 @@ export const mapFileToWindow = (
             },
         };
 
+    case FILE_TYPE.BIN:
+        return {
+            id: file.id,
+            kind: WINDOW_KIND.BIN,
+            title: file.name,
+            zIndex,
+            position: getRandomCenterCoordinates(),
+            payload: {
+                files: file.innerContent,
+            },
+        };
+
     case FILE_TYPE.BROWSER:
         return {
             id: file.id,

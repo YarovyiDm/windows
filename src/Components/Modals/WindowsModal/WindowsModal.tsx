@@ -1,7 +1,7 @@
 import { Icon, File } from "Components";
 import { Box, Typography } from '@mui/material';
+import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import { useAppDispatch, useAppSelector } from "Store/index";
-// import { selectPowerModalState } from "Store/selectors/TaskPanel";
 import { ICONS } from "Constants/Icons";
 import { FILE_TYPE, SettingsFile } from "Types/Desktop";
 import { WINDOW_META } from "Constants/System";
@@ -34,6 +34,7 @@ const WindowsModal = ({ refs }: WindowsModalProps) => {
         name: WINDOW_META.SETTINGS.title,
         icon: ICONS.SETTINGS,
         isSelected: false,
+        created_at: new Date().toISOString(),
     } satisfies SettingsFile;
 
     return (
@@ -62,7 +63,7 @@ const WindowsModal = ({ refs }: WindowsModalProps) => {
                     onClick={() => dispatch(openModal(TASKBAR_MODALS.POWER))}
                 >
                     {isOpened && <PowerModal />}
-                    <Icon name={ICONS.POWER} />
+                    <PowerSettingsNewIcon />
                 </WindowsModalFooterPowerIconWrapper>
             </WindowsModalFooter>
         </WindowsModalWrapper>

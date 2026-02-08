@@ -5,6 +5,8 @@ import { SystemItemContentWrapper } from "Containers/Desktop/Components/Windows/
 import Icon from "Components/Icon/Icon";
 import { changeDesktopFileSize } from "Store/slices/System";
 import { ICONS } from "Constants/Icons";
+import { useLanguage } from "Hooks/useLanguage";
+import { TRANSLATION_KEYS } from "Constants/Translation";
 import {
     FILE_SIZE,
 } from "./FileSize.constants";
@@ -17,13 +19,14 @@ import {
 const FileSize = () => {
     const dispatch = useAppDispatch();
     const selectedSize = useAppSelector(selectFileSize);
+    const { translate } = useLanguage();
 
     const fileSelectionColor = useAppSelector(selectFileSelectionColor);
 
     return (
         <SystemItemContentWrapper>
             <Box>
-                <Typography mb={1} sx={{ color: "#fff" }}>Size</Typography>
+                <Typography mb={1} sx={{ color: "#fff" }}>{translate(TRANSLATION_KEYS.SETTINGS_WINDOW.FILE_SIZE)}</Typography>
                 <Box display='flex' gap={1}>
                     {FILE_SIZE.map(file => {
                         return (
@@ -47,7 +50,7 @@ const FileSize = () => {
                                         style={{ height: file.iconSize.height, width: file.iconSize.width }}
                                     />
                                 </FileItem>
-                                <FileSizeTitle sx={{ color: "#fff" }}>{file.title}</FileSizeTitle>
+                                <FileSizeTitle>{translate(file.title)}</FileSizeTitle>
                             </FileSizeItem>
                         );
                     })}

@@ -6,6 +6,8 @@ import {
 } from "Containers/Desktop/Components/Windows/SettingsWindow/SettingsWindow.styled";
 import { useAppSelector } from "Store/index";
 import { selectSelectionStyles } from "Store/selectors/System";
+import { useLanguage } from "Hooks/useLanguage";
+import { TRANSLATION_KEYS } from "Constants/Translation";
 import BorderColors
     from "../Colors/BorderColors/BorderColors";
 import AreaColors from "../Colors/AreaColors/AreaColors";
@@ -13,15 +15,16 @@ import { SettingsExample } from "../../Desktop.styled";
 
 const SelectionArea = () => {
     const selectionStyles = useAppSelector(selectSelectionStyles);
+    const { translate } = useLanguage();
 
     return (
         <SystemItemWrapper>
-            <SystemItemSubTitleStyle>Selection area</SystemItemSubTitleStyle>
+            <SystemItemSubTitleStyle>{translate(TRANSLATION_KEYS.SETTINGS_WINDOW.SELECTION_AREA)}</SystemItemSubTitleStyle>
             <SystemItemContentWrapper>
                 <Box display='flex' flexDirection='column' gap={2}>
                     <Box>
                         <Typography sx={{ color: "#fff" }} mb={1}>
-                            Border color
+                            {translate(TRANSLATION_KEYS.SETTINGS_WINDOW.SELECTION_AREA_BORDER_COLOR)}
                         </Typography>
                         <Box display='flex'>
                             <BorderColors />
@@ -29,7 +32,7 @@ const SelectionArea = () => {
                     </Box>
                     <Box>
                         <Typography sx={{ color: "#fff" }} mb={1}>
-                            Area color
+                            {translate(TRANSLATION_KEYS.SETTINGS_WINDOW.SELECTION_AREA_COLOR)}
                         </Typography>
                         <Box display='flex'>
                             <AreaColors />

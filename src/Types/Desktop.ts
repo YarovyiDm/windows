@@ -8,6 +8,10 @@ export type FolderWindowPayload = {
     files: DesktopFile[];
 };
 
+export type BinWindowPayload = {
+    files: DesktopFile[];
+}
+
 export type BrowserTab = {
     id: string;
     title: string;
@@ -26,6 +30,7 @@ export enum WINDOW_KIND {
     FOLDER = "FOLDER",
     BROWSER = "BROWSER",
     SETTINGS = "SETTINGS",
+    BIN = "BIN",
 }
 
 export type DesktopWindow =
@@ -61,6 +66,14 @@ export type DesktopWindow =
     zIndex: number;
     position?: BasicCoordinates;
     payload: SettingsWindowPayload;
+}
+    | {
+    id: string;
+    kind: WINDOW_KIND.BIN;
+    title: string;
+    zIndex: number;
+    position?: BasicCoordinates;
+    payload: BinWindowPayload;
 };
 
 export enum FILE_TYPE {
@@ -70,6 +83,7 @@ export enum FILE_TYPE {
     SETTINGS = "SETTINGS",
     DESKTOP = "DESKTOP",
     BROWSER = "BROWSER",
+    BIN = "BIN",
 }
 
 export type BaseDesktopFile = {
@@ -79,6 +93,7 @@ export type BaseDesktopFile = {
     size?: number;
     isSelected: boolean;
     parentId?: string;
+    created_at?: string;
 };
 
 export type TextFile = BaseDesktopFile & {
@@ -104,16 +119,21 @@ export type BrowserFile = BaseDesktopFile & {
     type: FILE_TYPE.BROWSER;
 };
 
+export type BinFile = BaseDesktopFile & {
+    type: FILE_TYPE.BIN;
+    innerContent: DesktopFile[];
+}
+
 export type DesktopFile =
     | TextFile
     | FolderFile
     | SettingsFile
     | LinkFile
-    | BrowserFile;
+    | BrowserFile
+    | BinFile;
 
 export type Desktop = {
     desktopFiles: DesktopFile[];
-    bin: DesktopFile[];
     selectedFiles: Array<string>;
     openedWindows: DesktopWindow[];
     draggingFile: DesktopFile & { initialCursorPos: {x: number; y: number;};} | null;

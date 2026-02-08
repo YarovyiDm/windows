@@ -20,9 +20,9 @@ export const SIZE_HOT_KEYS_MAP = {
 } as const;
 
 export const DESKTOP_FILE_SIZE_UNIT = [
-    { name: TRANSLATION_KEYS.BIG_ICONS as keyof typeof translations.en, iconName: ICONS.SQUARE_LIST, size: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_KEYS.LARGE], hotKeys: "Ctrl+Shift+2" },
-    { name: TRANSLATION_KEYS.MEDIUM_ICONS as keyof typeof translations.en, iconName: ICONS.SQUARE_LIST, size: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_KEYS.MEDIUM], hotKeys: "Ctrl+Shift+3" },
-    { name: TRANSLATION_KEYS.SMALL_ICONS as keyof typeof translations.en, iconName: ICONS.VIEW_BOXES, size: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_KEYS.SMALL], hotKeys: "Ctrl+Shift+4" },
+    { name: TRANSLATION_KEYS.BIG_ICONS as keyof typeof translations.ENG, iconName: ICONS.SQUARE_LIST, size: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_KEYS.LARGE], hotKeys: "Ctrl+Shift+2" },
+    { name: TRANSLATION_KEYS.MEDIUM_ICONS as keyof typeof translations.ENG, iconName: ICONS.SQUARE_LIST, size: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_KEYS.MEDIUM], hotKeys: "Ctrl+Shift+3" },
+    { name: TRANSLATION_KEYS.SMALL_ICONS as keyof typeof translations.ENG, iconName: ICONS.VIEW_BOXES, size: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_KEYS.SMALL], hotKeys: "Ctrl+Shift+4" },
 ] as const;
 
 export const DEFAULT_DESKTOP_MODAL_SIZE = {

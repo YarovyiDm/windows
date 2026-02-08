@@ -5,14 +5,18 @@ import {
 } from "Containers/Desktop/Components/Windows/SettingsWindow/Components/BlockBasic/BlockBasic.styled";
 import { AccordionStyled } from "Containers/Desktop/Components/Windows/SettingsWindow/SettingsWindow.styled";
 import Wallpapers from "Containers/Desktop/Components/Windows/SettingsWindow/Components/Wallpapers/Wallpapers";
+import { useLanguage } from "Hooks/useLanguage";
+import { TRANSLATION_KEYS } from "Constants/Translation";
 import Desktop from "../../../Components/Desktop/Desktop";
 
 const PersonalizationTab = () => {
+    const { translate } = useLanguage();
+
     return (
         <>
             <AccordionStyled>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                    <BlockHeader>Wallpapers</BlockHeader>
+                    <BlockHeader>{translate(TRANSLATION_KEYS.SETTINGS_WINDOW.WALLPAPERS)}</BlockHeader>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Wallpapers />
@@ -21,7 +25,7 @@ const PersonalizationTab = () => {
 
             <AccordionStyled>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                    <BlockHeader>Desktop</BlockHeader>
+                    <BlockHeader>{translate(TRANSLATION_KEYS.SETTINGS_WINDOW.DESKTOP)}</BlockHeader>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Desktop />

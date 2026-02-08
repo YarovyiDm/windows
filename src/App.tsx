@@ -8,6 +8,7 @@ import { updateFile } from "Store/slices/Desktop";
 import RestartScenario from "Containers/Screens/Components/SystemScenarios/RestartScenario";
 import StartScenario from "Containers/Screens/Components/SystemScenarios/StartScenario";
 import ShutDownScenario from "Containers/Screens/Components/SystemScenarios/ShutDownScenario";
+import LockScenario from "Containers/Screens/Components/SystemScenarios/LockScenario";
 import {
     selectNightMode,
     selectSystemBrightness,
@@ -17,13 +18,15 @@ import ErrorBoundary from "Components/ErrorBoundary/ErrorBoundary";
 import { useUserLocation } from "Hooks/Api";
 import { DOM_EVENTS } from "Constants/Events";
 import { TRANSLATION_KEYS } from "Constants/Translation";
+import { SYSTEM_SCENARIOS } from "Constants/System";
 import { useAppSelector } from "./Store";
 import styles from "./App.module.scss";
 
 const SCENARIOS_MAP = {
-    restart: <RestartScenario />,
-    start: <StartScenario />,
-    shutdown: <ShutDownScenario />,
+    [SYSTEM_SCENARIOS.RESTART]: <RestartScenario />,
+    [SYSTEM_SCENARIOS.START]: <StartScenario />,
+    [SYSTEM_SCENARIOS.SHUTDOWN]: <ShutDownScenario />,
+    [SYSTEM_SCENARIOS.LOCK]: <LockScenario />,
 };
 
 function App() {

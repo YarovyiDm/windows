@@ -39,7 +39,6 @@ export const useFileSelection = () => {
                     if (fileName) newSelected.push(fileName);
                 }
             });
-
             dispatch(selectMultipleFiles(newSelected));
         };
 

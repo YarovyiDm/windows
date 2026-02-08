@@ -11,6 +11,7 @@ export const FileSizeItem = styled(Box)({
 export const FileSizeTitle = styled(Box)({
     fontSize: "14px",
     marginTop: "5px",
+    color: "white",
 });
 
 export const FileItem = styled(Box, {

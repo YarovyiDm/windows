@@ -2,15 +2,16 @@ import * as _ from "lodash";
 import { POWER_MODAL_UNITS } from "Constants/System";
 import { useAppDispatch } from "Store/index";
 import { updateSystemScenario } from "Store/slices/System";
+import { useLanguage } from "Hooks/useLanguage";
 import {
     PowerModalItem,
     PowerModalItemContent,
-    PowerModalItemIcon,
     PowerModalWrapper,
 } from "./PowerModal.styled";
 
 const PowerModal = () => {
     const dispatch = useAppDispatch();
+    const { translate } = useLanguage();
 
     return (
         <PowerModalWrapper onClick={e => e.stopPropagation()}>
@@ -22,8 +23,8 @@ const PowerModal = () => {
                             dispatch(updateSystemScenario(unit.scenario))
                         }
                     >
-                        <PowerModalItemIcon name={key} />
-                        <PowerModalItemContent>{unit.name}</PowerModalItemContent>
+                        {unit.icon}
+                        <PowerModalItemContent>{translate(unit.title)}</PowerModalItemContent>
                     </PowerModalItem>
                 );
             })}

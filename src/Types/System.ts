@@ -1,24 +1,19 @@
+import { SYSTEM_SCENARIOS } from "Constants/System";
+import translations from "Components/I18n/translations";
+
 export type BasicSize = {
     height: number;
     width: number;
 }
 
-export type FileSize = {
-    name: string;
-    iconName: string;
-    size: BasicSize;
-    hotKeys: string;
-    isSelected: boolean;
-};
-
 export type SystemType = {
     inputLanguageIndex: number;
     systemPassword: string;
-    systemLanguage: string;
+    systemLanguage: keyof typeof translations;
     isWindowsUnlock: boolean;
     desktopFileSize: BasicSize;
     wallpaper: string;
-    systemScenario: string;
+    systemScenario: keyof typeof SYSTEM_SCENARIOS;
     brightness: number;
     isNightMode: boolean;
     selectionStyles: { borderColor: string; areaColor: string; };

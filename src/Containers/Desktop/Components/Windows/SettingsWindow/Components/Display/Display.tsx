@@ -5,6 +5,8 @@ import { BlockBasic } from "Containers/Desktop/Components/Windows/SettingsWindow
 import { changeBrightness, changeNightMode } from "Store/slices/System";
 import { useAppDispatch, useAppSelector } from "Store/index";
 import { selectNightMode } from "Store/selectors/System";
+import { useLanguage } from "Hooks/useLanguage";
+import { TRANSLATION_KEYS } from "Constants/Translation";
 import {
     SystemContentWrapper,
     SystemItemSubTitleStyle,
@@ -17,6 +19,7 @@ export const Display = () => {
     const [brightness, setBrightness] = useState<number | number[]>(1);
     const isNightMode = useAppSelector(selectNightMode);
     const dispatch = useAppDispatch();
+    const { translate } = useLanguage();
 
     const onBrightnessChange = (e: number | number[]) => {
         setBrightness(e);
@@ -33,7 +36,7 @@ export const Display = () => {
         <BlockBasic>
             <SystemContentWrapper>
                 <SystemItemWrapper>
-                    <SystemItemSubTitleStyle>Brightness</SystemItemSubTitleStyle>
+                    <SystemItemSubTitleStyle>{translate(TRANSLATION_KEYS.SETTINGS_WINDOW.BRIGHTNESS)}</SystemItemSubTitleStyle>
                     <SliderWrapper>
                         <Slider
                             step={0.1}
@@ -45,7 +48,7 @@ export const Display = () => {
                     </SliderWrapper>
                 </SystemItemWrapper>
                 <SystemItemWrapper>
-                    <SystemItemSubTitleStyle>Night mode</SystemItemSubTitleStyle>
+                    <SystemItemSubTitleStyle>{translate(TRANSLATION_KEYS.SETTINGS_WINDOW.NIGHT_MODE)}</SystemItemSubTitleStyle>
                     <Switch
                         checked={isNightMode}
                         onChange={onNightModeChange}

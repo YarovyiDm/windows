@@ -13,7 +13,7 @@ export const useLanguage = () => {
         dispatch(changeSystemLanguage(newLanguage));
     };
 
-    const translate = (key: keyof (typeof translations)["en"]) =>
+    const translate = (key: keyof (typeof translations)["ENG"]) =>
         translations[language][key] || key;
 
     return { translate, changeLanguage };

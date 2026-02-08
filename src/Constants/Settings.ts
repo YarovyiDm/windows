@@ -1,5 +1,6 @@
 import BrushIcon from "@mui/icons-material/Brush";
 import TvOutlinedIcon from "@mui/icons-material/TvOutlined";
+import { TRANSLATION_KEYS } from "Constants/Translation";
 
 export enum SETTINGS_TAB {
     PERSONALIZATION = "personalization",
@@ -9,12 +10,12 @@ export enum SETTINGS_TAB {
 export const SETTINGS_TABS = [
     {
         id: SETTINGS_TAB.PERSONALIZATION,
-        label: "Personalization",
+        label: TRANSLATION_KEYS.SETTINGS_WINDOW.PERSONALIZATION,
         icon: BrushIcon,
     },
     {
         id: SETTINGS_TAB.SYSTEM,
-        label: "System",
+        label: TRANSLATION_KEYS.SETTINGS_WINDOW.SYSTEM,
         icon: TvOutlinedIcon,
     },
 ] as const;

@@ -8,7 +8,7 @@ import LockScreen from "../../LockScreen/LockScreen";
 
 const RestartScenario = () => {
     const screens = [
-        <SystemQuitScreen type={TRANSLATION_KEYS.RESTART} />,
+        <SystemQuitScreen type={TRANSLATION_KEYS.RESTART_TITLE} />,
         <OffScreen />,
         <StartScreen />,
         <LockScreen />,

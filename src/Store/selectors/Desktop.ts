@@ -1,5 +1,7 @@
 import { createSelector } from "@reduxjs/toolkit";
 import { Desktop, FILE_TYPE } from "Types/Desktop";
+import { WINDOW_META } from "Constants/System";
+import { isFolder } from "Utils/isFolder";
 import { RootState } from "..";
 
 const selectDesktop = (state: RootState) => state.desktop;
@@ -9,13 +11,14 @@ export const selectFiles = createSelector(
     (state: Desktop) => state.desktopFiles,
 );
 
-export const selectIsWindowOpen = (windowId: string) =>
-    createSelector(
-        selectDesktop,
-        (state: Desktop) =>
-            state.openedWindows.filter(window => window.id === windowId)
-                .length,
-    );
+export const selectBinFiles = createSelector(
+    selectDesktop,
+    (state: Desktop) => {
+        const bin = state.desktopFiles.find((file) => file.id === WINDOW_META.BIN.id);
+
+        if(bin && isFolder(bin)) return bin.innerContent || [];
+    },
+);
 
 export const selectOpenedWindows = createSelector(
     selectDesktop,

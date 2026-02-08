@@ -1,4 +1,3 @@
-// utils/desktopTree/dragFileToFolder.ts
 import { Desktop, DesktopFile, FILE_TYPE, FolderFile } from "Types/Desktop";
 
 export const dragFile = (

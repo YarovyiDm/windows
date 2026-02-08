@@ -7,12 +7,14 @@ type CreateDesktopFileArgs = {
     name: string;
     type: FILE_TYPE;
     position: { x: number; y: number; };
+    created_at: string;
 };
 
 export const createDesktopFile = ({
     name,
     type,
     position,
+    created_at,
 }: CreateDesktopFileArgs): DesktopFile => {
     const base = {
         id: uuid(),
@@ -21,6 +23,7 @@ export const createDesktopFile = ({
         isSelected: false,
         icon: type,
         size: 1,
+        created_at,
     };
 
     switch (type) {

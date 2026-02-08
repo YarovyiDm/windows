@@ -25,6 +25,7 @@ export const useDesktopMenuActions = ({
                     name: `${name}_${contextMenuPosition.x}`,
                     type,
                     position: contextMenuPosition,
+                    created_at: new Date().toISOString(),
                 }),
             ),
         );

@@ -2,7 +2,9 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { removeFileFromTree, findFileById, dragFile, updateFileInTree } from "Utils";
 import { Desktop, DesktopFile, DesktopWindow, FILE_TYPE } from "Types/Desktop";
 import { ICONS } from "Constants/Icons";
-import { SYSTEM_SLICES } from "Constants/System";
+import { SYSTEM_SLICES, WINDOW_META } from "Constants/System";
+import { findFolder } from "Utils/findFolder";
+import { isFolder } from "Utils/isFolder";
 
 const initialDesktopState: Desktop = {
     desktopFiles: [
@@ -14,6 +16,7 @@ const initialDesktopState: Desktop = {
             id: ":2d",
             isSelected: false,
             parentId: FILE_TYPE.DESKTOP,
+            created_at: new Date().toISOString(),
         },
         {
             name: "Check what I have",
@@ -23,6 +26,7 @@ const initialDesktopState: Desktop = {
             id: "223/",
             isSelected: false,
             parentId: FILE_TYPE.DESKTOP,
+            created_at: new Date().toISOString(),
         },
         {
             name: "Github",
@@ -32,6 +36,7 @@ const initialDesktopState: Desktop = {
             id: "github",
             link: "https://github.com/YarovyiDm/windows",
             parentId: FILE_TYPE.DESKTOP,
+            created_at: new Date().toISOString(),
         },
         {
             name: "LinkedIn",
@@ -41,19 +46,20 @@ const initialDesktopState: Desktop = {
             id: "linkedin",
             link: "https://www.linkedin.com/in/dmytro-yarovyi-31072b152/",
             parentId: FILE_TYPE.DESKTOP,
+            created_at: new Date().toISOString(),
         },
         {
             name: "Кошик",
             icon: ICONS.BIN,
-            type: FILE_TYPE.FOLDER,
+            type: FILE_TYPE.BIN,
             innerContent: [],
-            id: "ds5",
+            id: WINDOW_META.BIN.id,
             isSelected: false,
             parentId: FILE_TYPE.DESKTOP,
+            created_at: new Date().toISOString(),
         },
     ],
     selectedFiles: [],
-    bin: [],
     openedWindows: [],
     draggingFile: null,
 };
@@ -64,9 +70,61 @@ const desktopSlice = createSlice({
     reducers: {
         removeFile(state: Desktop, action: PayloadAction<string>) {
             const removed = removeFileFromTree(state.desktopFiles, action.payload);
+            const bin = state.desktopFiles.find(file => file.id === WINDOW_META.BIN.id);
 
-            if (removed) state.bin.push(removed);
+            if (removed && bin && isFolder(bin)) bin.innerContent.push(removed);
         },
+        removeFileForever(state: Desktop, action: PayloadAction<string>) {
+            const bin = state.desktopFiles.find(file => file.id === WINDOW_META.BIN.id);
+
+            if(bin && isFolder(bin)){
+                bin.innerContent = bin.innerContent.filter(
+                    file => file.id !== action.payload,
+                );
+            }
+        },
+        restoreFileFromBin(
+            state: Desktop,
+            action: PayloadAction<string>,
+        ) {
+            const fileId = action.payload;
+
+            const bin = state.desktopFiles.find(
+                file => file.id === WINDOW_META.BIN.id,
+            );
+
+            if (!bin || !('innerContent' in bin) || !Array.isArray(bin.innerContent)) {
+                return;
+            }
+
+            const index = bin.innerContent.findIndex(
+                file => file.id === fileId,
+            );
+
+            if (index === -1) return;
+
+            const file = bin.innerContent[index];
+
+            bin.innerContent.splice(index, 1);
+
+            if (file.parentId) {
+                const parentFolder = findFolder(
+                    state.desktopFiles,
+                    file.parentId,
+                );
+
+                if (
+                    parentFolder && isFolder(parentFolder)
+                ) {
+                    parentFolder.innerContent.push(file);
+                    return;
+                }
+            }
+
+            file.parentId = FILE_TYPE.DESKTOP;
+            state.desktopFiles.push(file);
+        },
+
         setDraggingFile(state, action: PayloadAction<DesktopFile & { initialCursorPos: {x: number; y: number;};} | null>) {
             state.draggingFile = action.payload;
         },
@@ -102,6 +160,9 @@ const desktopSlice = createSlice({
 
         closeWindow(state, action: PayloadAction<string>) {
             state.openedWindows = state.openedWindows.filter(w => w.id !== action.payload);
+        },
+        closeAllWindows(state: Desktop) {
+            state.openedWindows = [];
         },
         changeWindowZindex(state: Desktop, action: PayloadAction<string>) {
             const currentFile = state.openedWindows.find(
@@ -151,9 +212,12 @@ export const {
     addDesktopFile,
     openWindow,
     closeWindow,
+    closeAllWindows,
     changeWindowZindex,
     updateFile,
     dragFileToFolder,
     renameFile,
     setDraggingFile,
+    removeFileForever,
+    restoreFileFromBin,
 } = desktopSlice.actions;

@@ -1,19 +1,20 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { DESKTOP_FILE_SIZE_KEYS } from 'Constants/Desktop';
-import { SYSTEM_PASSWORD, SYSTEM_SLICES } from 'Constants/System';
+import { SYSTEM_LANGUAGES_SHORTCUT, SYSTEM_PASSWORD, SYSTEM_SCENARIOS, SYSTEM_SLICES } from 'Constants/System';
 import { WALLPAPERS } from 'Constants/Wallpapers';
 import { SystemType } from "Types/System";
 import { DESKTOP_FILE_SIZE } from "Constants/Desktop";
 import { DEFAULT_LANGUAGE_INDEX, LANGUAGE_CHANGE_STEP, MAX_LANGUAGES } from "Constants/Languages";
+import translations from "Components/I18n/translations";
 
 const initialSystemState = {
     inputLanguageIndex: DEFAULT_LANGUAGE_INDEX,
     systemPassword: SYSTEM_PASSWORD,
-    systemLanguage: "ua",
+    systemLanguage: SYSTEM_LANGUAGES_SHORTCUT.UA,
     isWindowsUnlock: false,
     desktopFileSize: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_KEYS.MEDIUM],
     wallpaper: WALLPAPERS[3],
-    systemScenario: "start",
+    systemScenario: SYSTEM_SCENARIOS.START,
     brightness: 1,
     isNightMode: false,
     selectionStyles: {
@@ -47,7 +48,7 @@ const systemSlice = createSlice({
         toggleWindowsUnlock(state: SystemType, action: PayloadAction<boolean>) {
             state.isWindowsUnlock = action.payload;
         },
-        changeSystemLanguage(state: SystemType, action: PayloadAction<string>) {
+        changeSystemLanguage(state: SystemType, action: PayloadAction<keyof typeof translations>) {
             state.systemLanguage = action.payload;
         },
         updateSystemScenario(state: SystemType, action) {

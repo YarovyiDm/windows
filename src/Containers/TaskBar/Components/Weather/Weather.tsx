@@ -13,7 +13,6 @@ const Weather = () => {
     const widgetRef = useRef<HTMLDivElement>(null);
     const userLocationCity = useAppSelector(selectUserLocationCity);
 
-    console.log('userLocationCity', userLocationCity);
     const {
         data,
         isLoading,

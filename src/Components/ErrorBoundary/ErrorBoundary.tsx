@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { updateSystemScenario } from "Store/slices/System";
 import { ErrorContent, ErrorIcon, ErrorProgress, ErrorWrapper } from "Components/ErrorBoundary/ErrorBoundary.styled";
+import { closeAllModals } from "Store/slices/TaskBar";
+import { closeAllWindows } from "Store/slices/Desktop";
 import type { Dispatch } from "redux";
 import type { ErrorBoundaryProps, ProgressBarState } from "./ErrorBoundary.types";
 
@@ -45,6 +47,8 @@ class ErrorBoundary extends React.Component<
     };
 
     onComplete = () => {
+        this.props.closeAllModals();
+        this.props.closeAllWindows();
         this.props.dispatchScenarioAction();
     };
 
@@ -98,6 +102,8 @@ class ErrorBoundary extends React.Component<
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     dispatchScenarioAction: () => dispatch(updateSystemScenario("restart")),
+    closeAllModals: () => dispatch(closeAllModals()),
+    closeAllWindows: () => dispatch(closeAllWindows()),
 });
 
 export default connect(null, mapDispatchToProps)(ErrorBoundary);

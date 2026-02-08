@@ -3,6 +3,7 @@ import TextWindow from "Containers/Desktop/Components/Windows/TextWindow/TextWin
 import FolderWindow from "Containers/Desktop/Components/Windows/FolderWindow/FolderWindow";
 import ChromeWindow from "Containers/Desktop/Components/Windows/ChromeWindow/ChromeWindow";
 import SettingsWindow from "Containers/Desktop/Components/Windows/SettingsWindow/SettingsWindow";
+import BinWindow from "Containers/Desktop/Components/Windows/BinWindow/BinWindow";
 import {
     DesktopWindowsRendererProps,
 } from "./DesktopWindowsRenderer.types";
@@ -20,6 +21,8 @@ const DesktopWindowsRenderer = ({
                 switch (win.kind) {
                 case WINDOW_KIND.TEXT:
                     return <TextWindow key={win.id} desktopWindow={win} />;
+                case WINDOW_KIND.BIN:
+                    return  <BinWindow key={win.id} />;
                 case WINDOW_KIND.FOLDER:
                     return <FolderWindow
                         key={win.id}

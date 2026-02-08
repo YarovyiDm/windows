@@ -9,7 +9,7 @@ export const SystemContentWrapper = styled(Box)({
 export const SystemItemWrapper = styled(Box)({
     display: "flex",
     flexDirection: "column",
-    marginBottom: "20px",
+    marginBottom: "40px",
 });
 
 export const SystemItemContentWrapper = styled(Box)({
@@ -21,7 +21,7 @@ export const SystemItemContentWrapper = styled(Box)({
 
 export const SystemItemSubTitleStyle = styled(Typography)({
     fontWeight: "bold",
-    marginBottom: "20px",
+    marginBottom: "10px",
     color: "white",
 });
 

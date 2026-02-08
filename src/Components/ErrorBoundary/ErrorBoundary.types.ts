@@ -9,4 +9,6 @@ export type ProgressBarState = {
 export type ErrorBoundaryProps = {
     children: ReactNode;
     dispatchScenarioAction: () => void;
+    closeAllModals: () => void;
+    closeAllWindows: () => void;
 }

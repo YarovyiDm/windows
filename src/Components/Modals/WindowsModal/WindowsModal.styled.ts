@@ -53,9 +53,8 @@ export const WindowsModalFooterUserWrapper = styled(Box)({
     justifyContent: "space-between",
     padding: "0 10px",
     borderRadius: "5px",
-    "&:hover": {
-        background: "#f7f5f5",
-    },
+    background: "rgba(255, 255, 255, 0.05)",
+    color: "white",
 });
 
 export const WindowsModalFooterUserIconWrapper = styled(Box)({
@@ -88,13 +87,13 @@ export const WindowsModalFooterPowerIconWrapper = styled(Box, {
     position: "relative",
     background: isOpened ? "rgba(255, 255, 255, 0.05)" : "",
     "&:hover": {
-        background: "#f7f5f5",
+        background: "rgba(255, 255, 255, 0.05)",
     },
     "svg": {
         width: "20px",
         height: "20px",
         "path": {
-            fill: "#535353",
+            fill: "#fff",
         },
     },
 }));

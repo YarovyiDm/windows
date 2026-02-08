@@ -15,19 +15,19 @@ const ShutDownScenario = () => {
     };
 
     const screens = [
-        <SystemQuitScreen type={TRANSLATION_KEYS.SHUT_DOWN} />,
+        <SystemQuitScreen type={TRANSLATION_KEYS.SHUT_DOWN_TITLE} />,
         <OffScreen isShutDownScreen start={onIndexChange} />,
         <StartScreen />,
         <LockScreen />,
     ];
 
     useEffect(() => {
-        if (currentIndex === 1) {
-            return;
-        }
+        if (currentIndex === 1) return;
+
+        if (currentIndex >= screens.length - 1) return;
 
         const interval = setInterval(() => {
-            setCurrentIndex(prevIndex => prevIndex + 1);
+            setCurrentIndex(prev => prev + 1);
         }, displayDuration);
 
         return () => clearInterval(interval);

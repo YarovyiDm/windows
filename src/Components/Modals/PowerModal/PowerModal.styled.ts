@@ -1,5 +1,4 @@
 import { styled, Box } from "@mui/material";
-import Icon from "Components/Icon/Icon";
 import { ModalWrapper } from "Components/Modals/Modals.styled";
 
 export const PowerModalWrapper = styled(ModalWrapper)({
@@ -12,6 +11,7 @@ export const PowerModalWrapper = styled(ModalWrapper)({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-between",
+    background: "#3d3d3d",
 });
 
 export const PowerModalItem = styled(Box)({
@@ -21,25 +21,24 @@ export const PowerModalItem = styled(Box)({
     borderRadius: "5px",
     display: "flex",
     alignItems: "center",
+    gap: "5px",
     cursor: "pointer",
     "&:hover": {
-        background: "#d3d3d3",
+        background: "rgba(255, 255, 255, 0.05)",
     },
     "svg": {
+        width: 20,
+        height: 20,
         fill: "#2b2b2b",
+        flexShrink: 0,
     },
-    "svg > path": {
-        stroke: "#2b2b2b",
+    "svg path": {
+        strokeWidth: 1,
+        vectorEffect: "non-scaling-stroke",
     },
-});
-
-export const PowerModalItemIcon = styled(Icon)({
-    width: "15px",
-    height: "15px",
-    marginRight: "10px",
 });
 
 export const PowerModalItemContent = styled(Box)({
-    color: "#535353",
+    color: "#fff",
     fontSize: "15px",
 });

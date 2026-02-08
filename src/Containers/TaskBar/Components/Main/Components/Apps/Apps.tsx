@@ -1,17 +1,17 @@
-import { map } from "lodash";
 import cn from "classnames";
 import { Box } from  '@mui/material';
 import { openFile } from "Utils";
 import { Icon } from "Components/index";
 import { useAppDispatch, useAppSelector } from "Store/index";
-import { AppsProps, PinnedAppsProps } from "Containers/TaskBar/Components/Main/Components/Apps/Apps.types";
 import { FILE_TYPE } from "Types/Desktop";
 import { selectOpenedWindowLength } from "Store/selectors/Desktop";
+import { selectTaskBarApps } from "Store/selectors/TaskBar";
 import styles from "./Apps.module.scss";
 
-const Apps = ({ apps }: AppsProps) => {
+const Apps = () => {
     const dispatch = useAppDispatch();
     const openedWindowsLength = useAppSelector(selectOpenedWindowLength);
+    const taskBarApps = useAppSelector(selectTaskBarApps);
 
     const onAppClick = (name: string, icon: string) => {
         openFile({
@@ -21,48 +21,37 @@ const Apps = ({ apps }: AppsProps) => {
             isSelected: false,
             type: FILE_TYPE.BROWSER,
         }, dispatch, openedWindowsLength);
-        // dispatch(openingApp(name));
-        // dispatch(changeApp(name));
     };
 
     return (
         <Box sx={{ display: "flex", width: "fit-content", blockSize: "fit-content", cursor: "pointer" }}>
-            {apps &&
-                map(
-                    apps,
-                    ({
-                        name,
-                        isOpen,
-                        isFocused,
-                        icon,
-                    }: PinnedAppsProps) => {
-                        return (
+            {taskBarApps.map((app) => {
+                return (
+                    <div
+                        key={app.id}
+                        className={cn(styles.taskPanelAppUnit, {
+                            [styles.appIsActive]: app.isFocused,
+                        })}
+                        data-tooltip-content={app.name}
+                        data-tooltip-id='taskPanelTooltips'
+                        data-tooltip-delay-show={500}
+                        onClick={() => onAppClick(app.name, app.icon)}
+                    >
+                        <Icon
+                            className={styles.taskPanelAppIcon}
+                            name={app.icon}
+                        />
+                        {app.isOpen && (
                             <div
-                                key={name}
-                                className={cn(styles.taskPanelAppUnit, {
-                                    [styles.appIsActive]: isFocused,
-                                })}
-                                data-tooltip-content={name}
-                                data-tooltip-id='taskPanelTooltips'
-                                data-tooltip-delay-show={500}
-                                onClick={() => onAppClick(name, icon)}
-                            >
-                                <Icon
-                                    className={styles.taskPanelAppIcon}
-                                    name={icon}
-                                />
-                                {isOpen && (
-                                    <div
-                                        className={cn(
-                                            styles.isAppOpen,
-                                            isFocused && styles.appInFocus,
-                                        )}
-                                    ></div>
+                                className={cn(
+                                    styles.isAppOpen,
+                                    app.isFocused && styles.appInFocus,
                                 )}
-                            </div>
-                        );
-                    },
-                )}
+                            ></div>
+                        )}
+                    </div>
+                );
+            })}
         </Box>
     );
 };

@@ -5,6 +5,7 @@ import { FILE_TYPE, WINDOW_KIND } from "Types/Desktop";
 import { useAppSelector } from "Store/index";
 import { selectFolder } from "Store/selectors/Desktop";
 import { CONTEXT_MENU_TYPES } from "Constants/System";
+import EmptyFolder from "Containers/Desktop/Components/Windows/Components/EmptyFolder/EmptyFolder";
 import { FolderWindowWrapper } from "./FolderWindow.styled";
 import type { FolderWindowProps } from "./FolderWindow.types";
 
@@ -25,9 +26,9 @@ const FolderWindow = ({
                 data-name={window.title}
                 data-context={CONTEXT_MENU_TYPES.FOLDER}
             >
-                {folder &&
+                {(folder &&
                     'innerContent' in folder &&
-                    Array.isArray(folder.innerContent) &&
+                    Array.isArray(folder.innerContent) && folder.innerContent.length) ?
                     folder.innerContent.map(file => (
                         <DraggableFile
                             targetFolderHandle={targetFolderHandle}
@@ -39,7 +40,7 @@ const FolderWindow = ({
                             renameFileId={renameFileId}
                             setRenameFileId={setRenameFileId}
                         />
-                    ))}
+                    )) : <EmptyFolder />}
             </FolderWindowWrapper>
         </WindowBasic>
     );

@@ -6,13 +6,14 @@ import { useAppDispatch, useAppSelector } from "Store/index";
 import { selectBinFiles, selectWindowZindex } from "Store/selectors/Desktop";
 import WindowBasic from "Containers/Desktop/Components/Windows/WindowBasic/WindowBasic";
 import { getColumns, getRows } from "Containers/Desktop/Components/Windows/BinWindow/BinWindow.helpers";
-import {
-    BinEmptyTitle,
-} from "Containers/Desktop/Components/Windows/BinWindow/BinWindow.styled";
 import { removeFileForever, restoreFileFromBin } from "Store/slices/Desktop";
+import { TRANSLATION_KEYS } from "Constants/Translation";
+import { useLanguage } from "Hooks/useLanguage";
+import EmptyFolder from "Containers/Desktop/Components/Windows/Components/EmptyFolder/EmptyFolder";
 
 const BinWindow = () => {
     const zIndex = useAppSelector(selectWindowZindex(WINDOW_META.BIN.id));
+    const { translate } = useLanguage();
     const binFiles = useAppSelector(selectBinFiles);
     const dispatch = useAppDispatch();
 
@@ -32,7 +33,7 @@ const BinWindow = () => {
     return (
         <WindowBasic
             zIndex={zIndex}
-            title={WINDOW_META.BIN.title}
+            title={translate(TRANSLATION_KEYS.BIN)}
             id={WINDOW_META.BIN.id}
             kind={WINDOW_KIND.BIN}
         >
@@ -122,7 +123,7 @@ const BinWindow = () => {
                         backgroundColor: "transparent",
                     },
                 }}
-            /> : <BinEmptyTitle>Folder is empty</BinEmptyTitle>}
+            /> : <EmptyFolder />}
 
         </WindowBasic>
     );

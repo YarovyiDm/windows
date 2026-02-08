@@ -49,7 +49,7 @@ export const WINDOW_META = {
     [WINDOW_KIND.SETTINGS]: { title: "Settings", id: WINDOW_KIND.SETTINGS },
     [WINDOW_KIND.TEXT]: { title: "", id: WINDOW_KIND.TEXT },
     [WINDOW_KIND.FOLDER]: { title: "", id: WINDOW_KIND.FOLDER },
-    [WINDOW_KIND.BIN]: { title: "Bin", id: WINDOW_KIND.BIN },
+    [WINDOW_KIND.BIN]: { title: "", id: WINDOW_KIND.BIN },
 } as const;
 
 export const DEFAULT_NOTIFICATION_DELAY = 3000;

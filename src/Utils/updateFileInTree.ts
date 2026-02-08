@@ -12,6 +12,7 @@ export const updateFileInTree = (
                 file.innerContent = newValue;
             } else if ('innerContent' in file && typeof newValue === 'string') {
                 (file as TextFile).innerContent = newValue;
+                (file as TextFile).updated_at = new Date().toISOString();
             }
 
             if (size !== undefined) file.size = size;

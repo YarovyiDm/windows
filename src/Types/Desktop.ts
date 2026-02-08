@@ -12,16 +12,14 @@ export type BinWindowPayload = {
     files: DesktopFile[];
 }
 
-export type BrowserTab = {
-    id: string;
-    title: string;
-    url: string;
-};
-
-export type BrowserWindowPayload = {
-    // tabs: BrowserTab[];
-    // activeTabId: string;
-};
+export type PropertiesPayload = {
+    fileName: string;
+    updated_at: string;
+    created_at: string;
+    content: DesktopFile[] | string;
+    fileType: string;
+    icon?: string;
+}
 
 export type SettingsWindowPayload = Record<string, never>;
 
@@ -31,6 +29,7 @@ export enum WINDOW_KIND {
     BROWSER = "BROWSER",
     SETTINGS = "SETTINGS",
     BIN = "BIN",
+    PROPERTIES = "PROPERTIES",
 }
 
 export type DesktopWindow =
@@ -57,7 +56,7 @@ export type DesktopWindow =
     title: string;
     zIndex: number;
     position?: BasicCoordinates;
-    payload: BrowserWindowPayload;
+    payload: {};
 }
     | {
     id: string;
@@ -74,6 +73,14 @@ export type DesktopWindow =
     zIndex: number;
     position?: BasicCoordinates;
     payload: BinWindowPayload;
+}
+    | {
+    id: string;
+    kind: WINDOW_KIND.PROPERTIES;
+    title: string;
+    zIndex: number;
+    position?: BasicCoordinates;
+    payload: PropertiesPayload;
 };
 
 export enum FILE_TYPE {
@@ -94,6 +101,7 @@ export type BaseDesktopFile = {
     isSelected: boolean;
     parentId?: string;
     created_at?: string;
+    updated_at?: string;
 };
 
 export type TextFile = BaseDesktopFile & {

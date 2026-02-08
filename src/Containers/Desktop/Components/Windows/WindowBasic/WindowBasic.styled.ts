@@ -36,7 +36,7 @@ export const WindowBasicButtonsWrapper = styled(Box)(({
     height: "100%",
     display: "flex",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-end",
 }));
 
 export const WindowBasicButtonsIconWrapper = styled(Box)(({

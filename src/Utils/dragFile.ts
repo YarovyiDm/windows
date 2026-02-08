@@ -57,6 +57,8 @@ export const dragFile = (
         state.desktopFiles.splice(fileIndex, 1);
     }
 
+    targetFolder.updated_at = new Date().toISOString();
+
     targetFolder.innerContent.push({
         ...file,
         parentId: folderId,

@@ -13,7 +13,7 @@ import { ReactComponent as Windows } from "Icons/windowsIcon.svg";
 import { ReactComponent as Arrow } from "Icons/upArrowIcon.svg";
 import { ReactComponent as TextFile } from "Icons/TextFileIcon.svg";
 import { ReactComponent as Folder } from "Icons/folderIcon.svg";
-import { ReactComponent as Bin } from "Icons/binIcon.svg";
+import { ReactComponent as Bin } from "Icons/bin.svg";
 import { ReactComponent as Settings } from "Icons/winSettings.svg";
 import { ReactComponent as Cross } from "Icons/crossIcon.svg";
 import { ReactComponent as PlusCircle } from "Icons/plusCircleIcon.svg";

@@ -18,6 +18,7 @@ export const Header = ({
     toggleFullscreen,
     borderRadius,
     isFullscreen,
+    resizable,
 }: HeaderProps) => {
     return (
         <WindowBasicHeader
@@ -29,17 +30,21 @@ export const Header = ({
                 <Box>{title}</Box>
             </Box>
             <WindowBasicButtonsWrapper>
-                <WindowBasicButtonsIconWrapper>
-                    <Icon name={ICONS.LINE} style={{ width: "15px" }} />
-                </WindowBasicButtonsIconWrapper>
-                <WindowBasicButtonsIconWrapper
-                    onClick={toggleFullscreen}
-                >
-                    <Icon
-                        name={isFullscreen ? ICONS.SQUARE_IN_SQUARE : ICONS.SQUARE_OUTLINE}
-                        style={{ width: "12px", height: "12px" }}
-                    />
-                </WindowBasicButtonsIconWrapper>
+                {resizable
+                    && <>
+                        <WindowBasicButtonsIconWrapper>
+                            <Icon name={ICONS.LINE} style={{ width: "15px" }} />
+                        </WindowBasicButtonsIconWrapper>
+                        <WindowBasicButtonsIconWrapper
+                            onClick={toggleFullscreen}
+                        >
+                            <Icon
+                                name={isFullscreen ? ICONS.SQUARE_IN_SQUARE : ICONS.SQUARE_OUTLINE}
+                                style={{ width: "12px", height: "12px" }}
+                            />
+                        </WindowBasicButtonsIconWrapper>
+                    </>
+                }
                 <WindowBasicButtonsIconWrapper
                     style={{
                         borderTopRightRadius: borderRadius,

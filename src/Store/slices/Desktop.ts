@@ -17,9 +17,10 @@ const initialDesktopState: Desktop = {
             isSelected: false,
             parentId: FILE_TYPE.DESKTOP,
             created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
         },
         {
-            name: "Check what I have",
+            name: "Empty folder",
             icon: ICONS.FOLDER,
             type: FILE_TYPE.FOLDER,
             innerContent: [],
@@ -27,6 +28,7 @@ const initialDesktopState: Desktop = {
             isSelected: false,
             parentId: FILE_TYPE.DESKTOP,
             created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
         },
         {
             name: "Github",
@@ -37,6 +39,7 @@ const initialDesktopState: Desktop = {
             link: "https://github.com/YarovyiDm/windows",
             parentId: FILE_TYPE.DESKTOP,
             created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
         },
         {
             name: "LinkedIn",
@@ -47,6 +50,7 @@ const initialDesktopState: Desktop = {
             link: "https://www.linkedin.com/in/dmytro-yarovyi-31072b152/",
             parentId: FILE_TYPE.DESKTOP,
             created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
         },
         {
             name: "Кошик",
@@ -57,6 +61,7 @@ const initialDesktopState: Desktop = {
             isSelected: false,
             parentId: FILE_TYPE.DESKTOP,
             created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
         },
     ],
     selectedFiles: [],
@@ -72,7 +77,10 @@ const desktopSlice = createSlice({
             const removed = removeFileFromTree(state.desktopFiles, action.payload);
             const bin = state.desktopFiles.find(file => file.id === WINDOW_META.BIN.id);
 
-            if (removed && bin && isFolder(bin)) bin.innerContent.push(removed);
+            if (removed && bin && isFolder(bin)) {
+                bin.innerContent.push(removed);
+                bin.updated_at = new Date().toISOString();
+            }
         },
         removeFileForever(state: Desktop, action: PayloadAction<string>) {
             const bin = state.desktopFiles.find(file => file.id === WINDOW_META.BIN.id);
@@ -197,6 +205,7 @@ const desktopSlice = createSlice({
 
             if (file) {
                 file.name = action.payload.newName;
+                file.updated_at = new Date().toISOString();
             }
         },
     },

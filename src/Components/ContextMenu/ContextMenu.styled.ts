@@ -48,6 +48,11 @@ export const MenuItem = styled(Box)({
 export const MenuItemMain = styled(Box)({
     display: "flex",
     alignItems: "center",
+    "& svg": {
+        width: "16px",
+        height: "16px",
+        fill: "#fff",
+    },
 });
 
 export const SubMenuItemMain = styled(Box)({

@@ -9,4 +9,9 @@ export type WindowBasicProps = {
     system?: boolean;
     title: string;
     wishSidePadding?: boolean;
+    defaultSize?: {
+        width: number;
+        height: number;
+    };
+    resizable?: boolean;
 } & HTMLAttributes<HTMLDivElement>;

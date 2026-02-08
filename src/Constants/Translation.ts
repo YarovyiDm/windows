@@ -52,4 +52,12 @@ export const TRANSLATION_KEYS = {
         SELECTION_AREA_COLOR: "SELECTION_AREA_COLOR",
 
     },
+    PROPERTIES: "PROPERTIES",
+    PROPERTIES_WINDOW: {
+        TYPE: "TYPE",
+        SIZE: "SIZE",
+        UPDATED_AT: "UPDATED_AT",
+        CREATED_AT: "CREATED_AT",
+    },
+    BIN: "BIN",
 } as const;

@@ -10,4 +10,5 @@ export type HeaderProps = {
     borderRadius: string;
     onCloseCallback?: false | (() => void);
     onWindowClose: () => void;
+    resizable: boolean;
 }

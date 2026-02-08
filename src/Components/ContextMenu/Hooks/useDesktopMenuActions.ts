@@ -26,6 +26,7 @@ export const useDesktopMenuActions = ({
                     type,
                     position: contextMenuPosition,
                     created_at: new Date().toISOString(),
+                    updated_at: new Date().toISOString(),
                 }),
             ),
         );

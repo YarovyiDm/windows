@@ -22,6 +22,8 @@ const WindowBasic = ({
     zIndex,
     onCloseCallback,
     wishSidePadding,
+    defaultSize,
+    resizable = true,
     ...rest
 }: WindowBasicProps) => {
     const [newSize, setNewSize] = useState<BasicSize | null>(null);
@@ -62,8 +64,8 @@ const WindowBasic = ({
             style={{
                 left: position.x,
                 top: position.y,
-                width: size.width,
-                height: size.height,
+                width: defaultSize ? defaultSize.width : size.width,
+                height: defaultSize ? defaultSize.height : size.height,
                 borderRadius,
                 zIndex,
                 padding: wishSidePadding ? "0 10px" : 0,
@@ -81,11 +83,12 @@ const WindowBasic = ({
                 toggleFullscreen={toggleFullscreen}
                 isFullscreen={isFullscreen}
                 borderRadius={borderRadius}
+                resizable={resizable}
             />
             <WindowContent>
                 {children}
             </WindowContent>
-            <Resize handleResizeMouseDown={handleResizeMouseDown} />
+            {resizable && <Resize handleResizeMouseDown={handleResizeMouseDown} />}
         </WindowBasicWrapper>
     );
 };

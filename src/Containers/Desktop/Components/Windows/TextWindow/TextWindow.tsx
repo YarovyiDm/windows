@@ -25,7 +25,7 @@ const TextWindow = ({
         setFileValue,
         isFileChanged,
         commitSave,
-    } = useTextWindowState(initialValue);
+    } = useTextWindowState(initialValue as string);
 
     const {
         handleSave,

@@ -21,7 +21,7 @@ const DesktopWindowsRenderer = ({
             {windows.map(win => {
                 switch (win.kind) {
                 case WINDOW_KIND.PROPERTIES:
-                    return <PropertiesWindow desktopWindow={win}/>;
+                    return <PropertiesWindow key={win.id} desktopWindow={win}/>;
                 case WINDOW_KIND.TEXT:
                     return <TextWindow key={win.id} desktopWindow={win} />;
                 case WINDOW_KIND.BIN:

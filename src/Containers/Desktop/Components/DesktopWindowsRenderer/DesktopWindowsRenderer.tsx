@@ -5,9 +5,8 @@ import ChromeWindow from "Containers/Desktop/Components/Windows/ChromeWindow/Chr
 import SettingsWindow from "Containers/Desktop/Components/Windows/SettingsWindow/SettingsWindow";
 import BinWindow from "Containers/Desktop/Components/Windows/BinWindow/BinWindow";
 import PropertiesWindow from "Containers/Desktop/Components/Windows/PropertiesWindow/PropertiesWindow";
-import {
-    DesktopWindowsRendererProps,
-} from "./DesktopWindowsRenderer.types";
+import PDFWindow from "Containers/Desktop/Components/Windows/PDFWindow/PDFWindow";
+import { DesktopWindowsRendererProps } from "./DesktopWindowsRenderer.types";
 
 const DesktopWindowsRenderer = ({
     windows,
@@ -22,6 +21,8 @@ const DesktopWindowsRenderer = ({
                 switch (win.kind) {
                 case WINDOW_KIND.PROPERTIES:
                     return <PropertiesWindow key={win.id} desktopWindow={win}/>;
+                case WINDOW_KIND.PDF:
+                    return <PDFWindow key={win.id} desktopWindow={win}/>;
                 case WINDOW_KIND.TEXT:
                     return <TextWindow key={win.id} desktopWindow={win} />;
                 case WINDOW_KIND.BIN:

@@ -28,6 +28,7 @@ import { ReactComponent as Edit } from "Icons/edit.svg";
 import { ReactComponent as Stash } from "Icons/delete.svg";
 import { ReactComponent as Github } from "Icons/github.svg";
 import { ReactComponent as Linkedin } from "Icons/linkedin.svg";
+import { ReactComponent as PDF } from "Icons/pdf.svg";
 import { ICONS } from "Constants/Icons";
 import type { IconProps } from "./Icon.types";
 
@@ -62,6 +63,7 @@ const Icons = {
     [ICONS.STASH]: Stash,
     [ICONS.GITHUB]: Github,
     [ICONS.LINKEDIN]: Linkedin,
+    [ICONS.PDF]: PDF,
 };
 
 const Icon = (props: IconProps) => {

@@ -29,4 +29,5 @@ export const ICONS = {
     STEAM: "STEAM",
     POSTMAN: "POSTMAN",
     WEBSTORM: "WEBSTORM",
+    PDF: "PDF",
 } as const;

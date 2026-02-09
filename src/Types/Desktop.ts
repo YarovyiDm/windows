@@ -16,7 +16,7 @@ export type PropertiesPayload = {
     fileName: string;
     updated_at: string;
     created_at: string;
-    content: DesktopFile[] | string;
+    content: DesktopFile[] | string | PDFFile["innerContent"];
     fileType: string;
     icon?: string;
 }
@@ -30,6 +30,7 @@ export enum WINDOW_KIND {
     SETTINGS = "SETTINGS",
     BIN = "BIN",
     PROPERTIES = "PROPERTIES",
+    PDF = "PDF",
 }
 
 export type DesktopWindow =
@@ -81,6 +82,14 @@ export type DesktopWindow =
     zIndex: number;
     position?: BasicCoordinates;
     payload: PropertiesPayload;
+}
+    | {
+    id: string;
+    kind: WINDOW_KIND.PDF;
+    title: string;
+    zIndex: number;
+    position?: BasicCoordinates;
+    payload: PDFFile["innerContent"];
 };
 
 export enum FILE_TYPE {
@@ -91,6 +100,7 @@ export enum FILE_TYPE {
     DESKTOP = "DESKTOP",
     BROWSER = "BROWSER",
     BIN = "BIN",
+    PDF = "PDF",
 }
 
 export type BaseDesktopFile = {
@@ -132,13 +142,59 @@ export type BinFile = BaseDesktopFile & {
     innerContent: DesktopFile[];
 }
 
+export type PDFFile = BaseDesktopFile & {
+    type: FILE_TYPE.PDF;
+    innerContent: {
+        title: string;
+        info:{
+            name: string;
+            email: string;
+            location: string;
+        };
+        summary: {
+            title: string;
+            text: string;
+        };
+        techSkills: {
+            title: string;
+            frontend: {
+                title: string;
+                list: string[];
+            };
+            backend: {
+                title: string;
+                list: string[];
+            };
+            engineeringPractice: {
+                title: string;
+                list: string[];
+            };
+            tools: {
+                title: string;
+                list: string[];
+            };
+        };
+        experience: {
+            title: string;
+            jobs: {
+                companyName: string;
+                period: string;
+                position: string;
+                techStack: string;
+                list: string[];
+            }[];
+        };
+    };
+}
+
 export type DesktopFile =
     | TextFile
     | FolderFile
     | SettingsFile
     | LinkFile
     | BrowserFile
-    | BinFile;
+    | BinFile
+    | PDFFile;
 
 export type Desktop = {
     desktopFiles: DesktopFile[];

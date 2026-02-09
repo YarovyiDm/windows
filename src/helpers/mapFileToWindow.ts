@@ -62,6 +62,14 @@ export const mapFileToWindow = (
             zIndex,
             payload: {},
         };
+    case FILE_TYPE.PDF:
+        return {
+            id: WINDOW_META.PDF.id,
+            kind: WINDOW_KIND.PDF,
+            title: file.name,
+            zIndex,
+            payload: file.innerContent,
+        };
 
     default:
         throw new Error("Unsupported file type");

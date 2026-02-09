@@ -50,6 +50,7 @@ export const WINDOW_META = {
     [WINDOW_KIND.TEXT]: { title: "", id: WINDOW_KIND.TEXT },
     [WINDOW_KIND.FOLDER]: { title: "", id: WINDOW_KIND.FOLDER },
     [WINDOW_KIND.BIN]: { title: "", id: WINDOW_KIND.BIN },
+    [WINDOW_KIND.PDF]: { title: "Yarovyi_CV", id: WINDOW_KIND.PDF },
 } as const;
 
 export const DEFAULT_NOTIFICATION_DELAY = 3000;

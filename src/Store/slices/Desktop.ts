@@ -5,6 +5,7 @@ import { ICONS } from "Constants/Icons";
 import { SYSTEM_SLICES, WINDOW_META } from "Constants/System";
 import { findFolder } from "Utils/findFolder";
 import { isFolder } from "Utils/isFolder";
+import { CV_PDF_FILE } from "Constants/Desktop";
 
 const initialDesktopState: Desktop = {
     desktopFiles: [
@@ -51,6 +52,17 @@ const initialDesktopState: Desktop = {
             parentId: FILE_TYPE.DESKTOP,
             created_at: new Date().toISOString(),
             updated_at: new Date().toISOString(),
+        },
+        {
+            name: "Yarovyi_CV",
+            icon: ICONS.PDF,
+            isSelected: false,
+            type: FILE_TYPE.PDF,
+            id: "PDF",
+            parentId: FILE_TYPE.DESKTOP,
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+            innerContent: CV_PDF_FILE,
         },
         {
             name: "Кошик",

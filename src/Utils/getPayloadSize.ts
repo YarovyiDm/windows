@@ -1,4 +1,4 @@
-import { DesktopFile, FILE_TYPE } from "Types/Desktop";
+import { DesktopFile, FILE_TYPE, PDFFile } from "Types/Desktop";
 import {
     TextWindowPayload,
     FolderWindowPayload,
@@ -28,6 +28,7 @@ type PayloadSizeInput =
     | SettingsWindowPayload
     | DesktopFile
     | DesktopFile[]
+    | PDFFile["innerContent"]
     | string
     | undefined;
 

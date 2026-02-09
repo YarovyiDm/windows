@@ -19,6 +19,7 @@ import { useUserLocation } from "Hooks/Api";
 import { DOM_EVENTS } from "Constants/Events";
 import { TRANSLATION_KEYS } from "Constants/Translation";
 import { SYSTEM_SCENARIOS } from "Constants/System";
+import MobilePlaceholder from "Components/MobilePlaceholder/MobilePlaceholder";
 import { useAppSelector } from "./Store";
 import styles from "./App.module.scss";
 
@@ -76,6 +77,14 @@ function App() {
             document.removeEventListener(DOM_EVENTS.CONTEXT_MENU, handleContextMenu);
         };
     }, []);
+
+    const isMobileDevice = () => {
+        return window.matchMedia('(max-width: 768px)').matches;
+    };
+
+    if (typeof window !== 'undefined' && isMobileDevice()) {
+        return <MobilePlaceholder />;
+    }
 
     return (
         <ErrorBoundary>

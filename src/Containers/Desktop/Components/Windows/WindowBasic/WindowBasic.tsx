@@ -24,6 +24,7 @@ const WindowBasic = ({
     wishSidePadding,
     defaultSize,
     resizable = true,
+    fullscreen,
     ...rest
 }: WindowBasicProps) => {
     const [newSize, setNewSize] = useState<BasicSize | null>(null);
@@ -40,7 +41,12 @@ const WindowBasic = ({
         size,
         toggleFullscreen,
         isFullscreen,
-    } = useResize(DEFAULT_DESKTOP_MODAL_SIZE, setPosition, position);
+    } = useResize(
+        defaultSize ?? DEFAULT_DESKTOP_MODAL_SIZE,
+        setPosition,
+        position,
+        fullscreen,
+    );
 
     const borderRadius = useMemo(
         () =>
@@ -64,8 +70,8 @@ const WindowBasic = ({
             style={{
                 left: position.x,
                 top: position.y,
-                width: defaultSize ? defaultSize.width : size.width,
-                height: defaultSize ? defaultSize.height : size.height,
+                width: size.width,
+                height: size.height,
                 borderRadius,
                 zIndex,
                 padding: wishSidePadding ? "0 10px" : 0,

@@ -61,6 +61,9 @@ export const WindowBasicButtonsIconWrapper = styled(Box)(({
             },
         },
     },
+    "&:first-of-type": {
+        cursor: "not-allowed",
+    },
 }));
 
 export const ResizeHandleRight = styled(Box)({

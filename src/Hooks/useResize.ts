@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { BasicCoordinates, BasicSize } from "Types/System";
 import { TASK_PANEL_HEIGHT, ZERO_POSITION } from "Constants/System";
 import { MIN_WINDOW_HEIGHT, MIN_WINDOW_WIDTH } from "Constants/Desktop";
@@ -9,50 +9,64 @@ export const useResize = (
     initialSize: BasicSize,
     setPosition: ({ x, y }: BasicCoordinates) => void,
     position: BasicCoordinates,
+    initialFullscreen = false,
 ) => {
-    const [size, setSize] = useState({
-        width: initialSize.width,
-        height: initialSize.height,
-    });
+    const [size, setSize] = useState<BasicSize>(() =>
+        initialFullscreen
+            ? {
+                width: window.innerWidth,
+                height: window.innerHeight - TASK_PANEL_HEIGHT,
+            }
+            : initialSize,
+    );
+
     const [isResizing, setIsResizing] = useState(false);
     const [resizeDirection, setResizeDirection] = useState("");
     const [startPos, setStartPos] = useState(ZERO_POSITION);
     const [startSize, setStartSize] = useState(size);
-    const [prevSize, setPrevSize] = useState(size);
-    const [prevPosition, setPrevPosition] = useState(position);
-    const [isFullscreen, setIsFullscreen] = useState(false);
+    const [isFullscreen, setIsFullscreen] = useState(initialFullscreen);
 
-    const handleResizeMouseUp = () => {
-        setIsResizing(false);
-        setResizeDirection("");
-    };
+    const prevSizeRef = useRef<BasicSize>(initialSize);
+    const prevPositionRef = useRef<BasicCoordinates>(position);
 
+    /* ---------- fullscreen init ---------- */
+    useEffect(() => {
+        if (initialFullscreen) {
+            setPosition(ZERO_POSITION);
+        }
+    }, []);
+
+    /* ---------- fullscreen toggle ---------- */
     const toggleFullscreen = () => {
         if (isFullscreen) {
-            setSize(prevSize);
-            setPosition(prevPosition);
+            setSize(prevSizeRef.current);
+            setPosition(prevPositionRef.current);
         } else {
-            setPrevSize(size);
-            setPrevPosition(position);
+            prevSizeRef.current = size;
+            prevPositionRef.current = position;
+
             setPosition(ZERO_POSITION);
             setSize({
                 width: window.innerWidth,
                 height: window.innerHeight - TASK_PANEL_HEIGHT,
             });
         }
-        setIsFullscreen(!isFullscreen);
+
+        setIsFullscreen(prev => !prev);
     };
 
+    /* ---------- resize ---------- */
     const handleResizeMouseDown = (e: React.MouseEvent, direction: string) => {
         e.preventDefault();
+
+        if (isFullscreen) {
+            setIsFullscreen(false);
+        }
+
         setIsResizing(true);
         setResizeDirection(direction);
         setStartPos({ x: e.clientX, y: e.clientY });
         setStartSize(size);
-    };
-
-    const handleDoubleClick = () => {
-        toggleFullscreen();
     };
 
     const handleResizeMouseMove = (e: MouseEvent) => {
@@ -61,49 +75,51 @@ export const useResize = (
         const deltaX = e.clientX - startPos.x;
         const deltaY = e.clientY - startPos.y;
 
-        setSize(prevSize => {
+        setSize(() => {
             let newWidth = startSize.width;
             let newHeight = startSize.height;
 
             if (resizeDirection.includes(DIRECTIONS.RIGHT)) {
-                const windowWidth = window.innerWidth;
-
                 newWidth = Math.max(
                     MIN_WINDOW_WIDTH,
-                    Math.min(windowWidth, startSize.width + deltaX),
+                    Math.min(window.innerWidth, startSize.width + deltaX),
                 );
             }
+
             if (resizeDirection.includes(DIRECTIONS.BOTTOM)) {
-                const windowHeight = window.innerHeight;
+                const maxHeight = window.innerHeight - TASK_PANEL_HEIGHT;
 
                 newHeight = Math.max(
                     MIN_WINDOW_HEIGHT,
-                    Math.min(
-                        windowHeight - TASK_PANEL_HEIGHT,
-                        startSize.height + deltaY,
-                    ),
+                    Math.min(maxHeight, startSize.height + deltaY),
                 );
-
-                if (newHeight + position.y > windowHeight - TASK_PANEL_HEIGHT) {
-                    newHeight = windowHeight - TASK_PANEL_HEIGHT - position.y;
-                }
             }
 
             return { width: newWidth, height: newHeight };
         });
     };
 
+    const handleResizeMouseUp = () => {
+        setIsResizing(false);
+        setResizeDirection("");
+    };
+
+    const handleDoubleClick = () => {
+        toggleFullscreen();
+    };
+
+    /* ---------- listeners ---------- */
     useEffect(() => {
-        if (isResizing) {
-            document.addEventListener(
-                DOM_EVENTS.MOUSE_MOVE,
-                handleResizeMouseMove as EventListener,
-            );
-            document.addEventListener(
-                DOM_EVENTS.MOUSE_UP,
-                handleResizeMouseUp as EventListener,
-            );
-        }
+        if (!isResizing) return;
+
+        document.addEventListener(
+            DOM_EVENTS.MOUSE_MOVE,
+            handleResizeMouseMove as EventListener,
+        );
+        document.addEventListener(
+            DOM_EVENTS.MOUSE_UP,
+            handleResizeMouseUp as EventListener,
+        );
 
         return () => {
             document.removeEventListener(
@@ -118,10 +134,10 @@ export const useResize = (
     }, [isResizing]);
 
     return {
+        size,
+        isFullscreen,
+        toggleFullscreen,
         handleResizeMouseDown,
         handleDoubleClick,
-        size,
-        toggleFullscreen,
-        isFullscreen,
     };
 };

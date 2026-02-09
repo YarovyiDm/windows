@@ -14,4 +14,5 @@ export type WindowBasicProps = {
         height: number;
     };
     resizable?: boolean;
+    fullscreen?: boolean;
 } & HTMLAttributes<HTMLDivElement>;

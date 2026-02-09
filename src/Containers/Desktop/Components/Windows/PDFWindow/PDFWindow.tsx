@@ -19,6 +19,11 @@ const PDFWindow = ({ desktopWindow }: PDFWindowProps) => {
             id={desktopWindow.id}
             kind={WINDOW_KIND.PDF}
             zIndex={desktopWindow.zIndex}
+            defaultSize={{
+                width: 900,
+                height: 600,
+            }}
+            fullscreen
         >
             <PDFWindowWrapper>
                 <GeneralPaper payload={payload}/>

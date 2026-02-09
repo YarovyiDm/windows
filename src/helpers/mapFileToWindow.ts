@@ -67,7 +67,7 @@ export const mapFileToWindow = (
             id: WINDOW_META.PDF.id,
             kind: WINDOW_KIND.PDF,
             title: file.name,
-            zIndex,
+            zIndex: 10,
             payload: file.innerContent,
         };
 

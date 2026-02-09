@@ -32,7 +32,7 @@ export const Header = ({
             <WindowBasicButtonsWrapper>
                 {resizable
                     && <>
-                        <WindowBasicButtonsIconWrapper>
+                        <WindowBasicButtonsIconWrapper title='In progress'>
                             <Icon name={ICONS.LINE} style={{ width: "15px" }} />
                         </WindowBasicButtonsIconWrapper>
                         <WindowBasicButtonsIconWrapper

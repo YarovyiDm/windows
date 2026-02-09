@@ -29,14 +29,12 @@ export const useResize = (
     const prevSizeRef = useRef<BasicSize>(initialSize);
     const prevPositionRef = useRef<BasicCoordinates>(position);
 
-    /* ---------- fullscreen init ---------- */
     useEffect(() => {
         if (initialFullscreen) {
             setPosition(ZERO_POSITION);
         }
     }, []);
 
-    /* ---------- fullscreen toggle ---------- */
     const toggleFullscreen = () => {
         if (isFullscreen) {
             setSize(prevSizeRef.current);
@@ -55,7 +53,6 @@ export const useResize = (
         setIsFullscreen(prev => !prev);
     };
 
-    /* ---------- resize ---------- */
     const handleResizeMouseDown = (e: React.MouseEvent, direction: string) => {
         e.preventDefault();
 
@@ -108,7 +105,6 @@ export const useResize = (
         toggleFullscreen();
     };
 
-    /* ---------- listeners ---------- */
     useEffect(() => {
         if (!isResizing) return;
 

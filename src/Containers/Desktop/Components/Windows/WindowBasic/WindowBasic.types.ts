@@ -15,4 +15,5 @@ export type WindowBasicProps = {
     };
     resizable?: boolean;
     fullscreen?: boolean;
+    disableFullscreenOnDoubleClick?: boolean;
 } & HTMLAttributes<HTMLDivElement>;

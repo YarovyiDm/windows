@@ -61,7 +61,7 @@ export const WindowBasicButtonsIconWrapper = styled(Box)(({
             },
         },
     },
-    "&:first-of-type": {
+    "&.first-button": {
         cursor: "not-allowed",
     },
 }));

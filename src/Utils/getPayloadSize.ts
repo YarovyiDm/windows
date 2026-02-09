@@ -78,6 +78,21 @@ export const getPayloadSize = (input: PayloadSizeInput): string => {
         if ("content" in value) {
             walk(value.content);
         }
+        if ("title" in value) walk(value.title);
+        if ("summary" in value) walk(value.summary.text);
+        if ("techSkills" in value) {
+            Object.values(value.techSkills).forEach((section: any) => { //Remove any or refactor
+                walk(section.title);
+                if (section.list) section.list.forEach(walk);
+            });
+        }
+        if ("experience" in value && value.experience.jobs) {
+            value.experience.jobs.forEach((job: any) => { //Remove any or refactor
+                walk(job.position);
+                walk(job.techStack);
+                job.list.forEach(walk);
+            });
+        }
     };
 
     walk(input);

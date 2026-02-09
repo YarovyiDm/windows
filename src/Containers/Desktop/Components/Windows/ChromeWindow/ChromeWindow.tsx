@@ -24,6 +24,7 @@ const ChromeWindow = () => {
             title={WINDOW_META.BROWSER.title}
             id={WINDOW_META.BROWSER.id}
             kind={WINDOW_KIND.BROWSER}
+            fullscreen
         >
             <Tabs setTabs={setTabs} tabs={tabs} setActiveTabId={setActiveTabId} activeTabId={activeTabId}/>
             <Box sx={{ position: "relative", width: "100%", height: "calc(100% - 50px)" }}>

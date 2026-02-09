@@ -10,6 +10,7 @@ export const useResize = (
     setPosition: ({ x, y }: BasicCoordinates) => void,
     position: BasicCoordinates,
     initialFullscreen = false,
+    disableFullscreenOnDoubleClick?: boolean,
 ) => {
     const [size, setSize] = useState<BasicSize>(() =>
         initialFullscreen
@@ -102,7 +103,9 @@ export const useResize = (
     };
 
     const handleDoubleClick = () => {
-        toggleFullscreen();
+        if (!disableFullscreenOnDoubleClick) {
+            toggleFullscreen();
+        }
     };
 
     useEffect(() => {

@@ -32,6 +32,7 @@ const PropertiesWindow = ({ desktopWindow }: PropertiesProps) => {
             id={desktopWindow.id}
             kind={WINDOW_KIND.TEXT}
             zIndex={desktopWindow.zIndex}
+            disableFullscreenOnDoubleClick
         >
             <PropertiesFileWrapper>
                 {icon && <Icon name={icon} />}

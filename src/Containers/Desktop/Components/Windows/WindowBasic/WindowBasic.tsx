@@ -25,6 +25,7 @@ const WindowBasic = ({
     defaultSize,
     resizable = true,
     fullscreen,
+    disableFullscreenOnDoubleClick,
     ...rest
 }: WindowBasicProps) => {
     const [newSize, setNewSize] = useState<BasicSize | null>(null);
@@ -46,6 +47,7 @@ const WindowBasic = ({
         setPosition,
         position,
         fullscreen,
+        disableFullscreenOnDoubleClick,
     );
 
     const borderRadius = useMemo(

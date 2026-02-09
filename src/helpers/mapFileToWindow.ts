@@ -50,7 +50,7 @@ export const mapFileToWindow = (
             id: file.id,
             kind: WINDOW_KIND.BROWSER,
             title: "Chrome",
-            zIndex,
+            zIndex: 10,
             payload: {},
         };
 

@@ -11,7 +11,7 @@ const ExperiencePaper = ({ payload }: {payload: PDFFile["innerContent"];}) => {
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', gap: '50px' }}>
                 {payload.experience.jobs.map(job => {
                     return (
-                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: "10px" }}>
+                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: "10px" }} key={job.period}>
                             <Box sx={{ fontSize: '18px', fontWeight: 'bold' }}>{job.companyName} ({job.period})</Box>
                             <Box sx={{ fontSize: '14px', display: 'flex', textDecoration: 'underline' }}>Position: {job.position}</Box>
                             <Box sx={{ fontSize: '14px', display: 'flex' }}>Tech stack: {job.techStack}</Box>

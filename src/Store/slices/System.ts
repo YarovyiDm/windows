@@ -13,7 +13,7 @@ const initialSystemState = {
     systemLanguage: SYSTEM_LANGUAGES_SHORTCUT.UA,
     isWindowsUnlock: false,
     desktopFileSize: DESKTOP_FILE_SIZE[DESKTOP_FILE_SIZE_KEYS.MEDIUM],
-    wallpaper: WALLPAPERS[3],
+    wallpaper: WALLPAPERS[2],
     systemScenario: SYSTEM_SCENARIOS.START,
     brightness: 1,
     isNightMode: false,

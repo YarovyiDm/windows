@@ -1,7 +1,8 @@
 import { createSelector } from "@reduxjs/toolkit";
-import { Desktop, FILE_TYPE } from "Types/Desktop";
+import { Desktop } from "Types/Desktop";
 import { WINDOW_META } from "Constants/System";
 import { isFolder } from "Utils/isFolder";
+import { findFolder } from "Utils/findFolder";
 import { RootState } from "..";
 
 const selectDesktop = (state: RootState) => state.desktop;
@@ -32,9 +33,10 @@ export const selectWindowZindex = (id: string) =>
             state.openedWindows.filter(item => item.id === id)[0].zIndex,
     );
 
-export const selectFolder = (id: string) => (state: RootState) =>
-    state.desktop.desktopFiles.find(
-        file => file.id === id && file.type === FILE_TYPE.FOLDER,
+export const selectFolder = (id: string) =>
+    createSelector(
+        (state: RootState) => state.desktop.desktopFiles,
+        desktopFiles => findFolder(desktopFiles, id),
     );
 
 export const selectDraggableFile = () =>

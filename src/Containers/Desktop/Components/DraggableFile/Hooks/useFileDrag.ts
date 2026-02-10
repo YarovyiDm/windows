@@ -21,6 +21,11 @@ export const useFileDrag = ({
     const mouseDownRef = useRef({ x: 0, y: 0, isDown: false });
     const dragStartedRef = useRef(false);
     const draggingFile = useAppSelector(selectDraggableFile());
+    const targetFolderRef = useRef<string>("");
+
+    useEffect(() => {
+        targetFolderRef.current = targetFolderId;
+    }, [targetFolderId]);
 
     const onMouseDown = (e: React.MouseEvent) => {
         e.stopPropagation();
@@ -65,10 +70,12 @@ export const useFileDrag = ({
             mouseDownRef.current.isDown = false;
             dragStartedRef.current = false;
 
-            if (targetFolderId) {
+            const folderId = targetFolderRef.current;
+
+            if (folderId) {
                 dispatch(dragFileToFolder({
                     fileId: file.id,
-                    folderId: targetFolderId,
+                    folderId,
                 }));
             }
 

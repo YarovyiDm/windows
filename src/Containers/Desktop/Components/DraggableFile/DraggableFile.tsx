@@ -24,6 +24,7 @@ const DraggableFile = ({
     setRenameFileId,
     targetFolderHandle,
     targetFolderId,
+    onOpen,
 }: DraggableFileProps) => {
     const dispatch = useAppDispatch();
     const fileRef = useRef<HTMLDivElement | null>(null);
@@ -46,8 +47,16 @@ const DraggableFile = ({
     useClickOutside(fileRef, commitRename);
 
     const handleOpen = () => {
-        if (file.type === FILE_TYPE.LINK && file.link) window.open(file.link, "_blank");
-        else openFile(file, dispatch, openedWindowsLength);
+        if (onOpen) {
+            onOpen(file);
+            return;
+        }
+
+        if (file.type === FILE_TYPE.LINK && file.link) {
+            window.open(file.link, "_blank");
+        } else {
+            openFile(file, dispatch, openedWindowsLength);
+        }
     };
 
     return (

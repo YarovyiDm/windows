@@ -17,4 +17,5 @@ export type DraggableFileProps = {
     file: DesktopFile;
     targetFolderHandle?: (id: string) => void;
     targetFolderId: string;
+    onOpen?: (file: DesktopFile) => void;
 }

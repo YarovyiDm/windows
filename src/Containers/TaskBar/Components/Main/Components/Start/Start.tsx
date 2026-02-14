@@ -1,12 +1,11 @@
-import React from "react";
+import { ICONS } from "constants/icons";
+import { TASKBAR_MODALS } from "constants/taskBar";
+import { useAppDispatch, useAppSelector } from "store/index";
+import { selectModalStack } from "store/selectors/taskBar";
+import { openModal } from "store/slices/taskBar";
 import { Icon } from "Components/index";
 import WindowsModal from "Components/Modals/WindowsModal/WindowsModal";
-import { ICONS } from "Constants/Icons";
-import { useAppDispatch, useAppSelector } from "Store/index";
-import { selectModalStack } from "Store/selectors/TaskBar";
-import { TASKBAR_MODALS } from "Constants/Taskbar";
-import { openModal } from "Store/slices/TaskBar";
-import { StartProps } from "./Start.types";
+import { type StartProps } from "./Start.types";
 import { StartWrapper } from "./Start.styled";
 
 const Start = ({ refs }: StartProps) => {

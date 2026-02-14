@@ -1,4 +1,4 @@
-import { DesktopFile } from "Types/Desktop";
+import type { DesktopFile } from "types/desktop";
 import type { Dispatch, SetStateAction, MouseEvent } from "react";
 
 export type checkDropTargetByCursorProps = {

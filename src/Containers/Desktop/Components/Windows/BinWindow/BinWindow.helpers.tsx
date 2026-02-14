@@ -1,8 +1,9 @@
+import { getPayloadBytes } from "domain/desktop/queries/getPayloadBytes";
 import { GridColDef } from "@mui/x-data-grid";
-import { DesktopFile } from "Types/Desktop";
-import Actions from "Containers/Desktop/Components/Windows/BinWindow/Components/Cells/Actions/Actions";
-import { getPayloadSize } from "Utils/getPayloadSize";
-import Name from "Containers/Desktop/Components/Windows/BinWindow/Components/Cells/Name/Name";
+import { formatBytes } from "utils/formatBytes";
+import Actions from "./Components/Cells/Actions/Actions";
+import Name from "./Components/Cells/Name/Name";
+import type{ DesktopFile } from "types/desktop";
 
 export type BinDataModel = {
     id: string;
@@ -71,11 +72,17 @@ export const getColumns = (
 
 export const getRows = (files: DesktopFile[]): BinDataModel[] => {
     return files.map((f: DesktopFile): BinDataModel => {
+        const size = formatBytes(getPayloadBytes(
+            "innerContent" in f && f.innerContent && Object.keys(f.innerContent).length > 0
+                ? f.innerContent
+                : undefined,
+        ));
+
         return {
             id: f.id,
             name: f.name,
             created_at: f.created_at,
-            size: getPayloadSize("innerContent" in f ? f.innerContent : {}),
+            size,
             icon: f.icon,
         };
     });

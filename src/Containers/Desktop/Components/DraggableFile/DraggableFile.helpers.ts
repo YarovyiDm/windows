@@ -1,5 +1,5 @@
-import { FILE_TYPE } from "Types/Desktop";
-import { checkDropTargetByCursorProps } from "./DraggableFile.types";
+import { FILE_TYPE } from "types/desktop";
+import type { checkDropTargetByCursorProps } from "./DraggableFile.types";
 
 export const checkDropTargetByCursor = ({
     x,

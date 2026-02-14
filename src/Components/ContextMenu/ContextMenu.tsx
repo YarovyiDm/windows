@@ -1,12 +1,12 @@
+import { SIZE_HOT_KEYS_MAP } from "constants/desktop";
+import { DOM_EVENTS } from "constants/events";
 import { useEffect, useRef } from "react";
-import MenuProvider from "Components/ContextMenu/components/MenuProvider/MenuProvider";
-import { useAppDispatch } from "Store/index";
-import { changeDesktopFileSize } from "Store/slices/System";
-import { BasicSize } from "Types/System";
-import { SIZE_HOT_KEYS_MAP } from "Constants/Desktop";
-import { DOM_EVENTS } from "Constants/Events";
-import { useClickOutside } from "Hooks/useClickOutside";
+import { changeDesktopFileSize } from "store/slices/system";
+import { useAppDispatch } from "store/index";
+import MenuProvider from "Components/ContextMenu/Components/MenuProvider/MenuProvider";
+import { useClickOutside } from "hooks/useClickOutside";
 import { ContextMenuStyled } from './ContextMenu.styled';
+import type { BasicSize } from "types/system";
 import type { ContextMenuProps } from "./ContextMenu.types";
 
 const ContextMenu = ({

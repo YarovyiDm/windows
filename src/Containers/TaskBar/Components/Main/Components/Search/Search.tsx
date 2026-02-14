@@ -1,7 +1,7 @@
+import { ICONS } from "constants/icons";
 import { ChangeEvent } from "react";
+import { useAppDispatch } from "store/index";
 import { Icon } from "Components/index";
-import { useAppDispatch } from "Store/index";
-import { ICONS } from "Constants/Icons";
 import styles from "./Search.module.scss";
 
 const Search = () => {

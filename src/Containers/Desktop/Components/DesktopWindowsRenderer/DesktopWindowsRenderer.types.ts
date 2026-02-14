@@ -1,4 +1,4 @@
-import type { DesktopWindow } from "Types/Desktop";
+import type { DesktopWindow } from "types/desktop";
 import type { Dispatch, SetStateAction } from "react";
 
 export type DesktopWindowsRendererProps = {

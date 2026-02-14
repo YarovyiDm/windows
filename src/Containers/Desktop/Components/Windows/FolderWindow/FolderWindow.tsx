@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { Box } from '@mui/material';
+import { openFile } from "domain/desktop/mutations/openFile";
+import { CONTEXT_MENU_TYPES } from "constants/system";
+import { useState } from "react";
+import { type DesktopFile, FILE_TYPE, WINDOW_KIND } from "types/desktop";
+import { useAppDispatch, useAppSelector } from "store/index";
+import { selectFolder, selectOpenedWindowLength } from "store/selectors/desktop";
 import WindowBasic from "Containers/Desktop/Components/Windows/WindowBasic/WindowBasic";
 import { DraggableFile } from "Components/index";
-import { DesktopFile, FILE_TYPE, FolderFile, WINDOW_KIND } from "Types/Desktop";
-import { useAppDispatch, useAppSelector } from "Store/index";
-import { selectFolder, selectOpenedWindowLength } from "Store/selectors/Desktop";
-import { CONTEXT_MENU_TYPES } from "Constants/System";
 import EmptyFolder from "Containers/Desktop/Components/Windows/Components/EmptyFolder/EmptyFolder";
-import { openFile } from "Utils/openFile";
-import { BreadcrumbWrapper, FolderWindowWrapper, IconWrapper, PathWrapper } from "./FolderWindow.styled";
+import Breadcrumbs from "Containers/Desktop/Components/Windows/FolderWindow/Components/Breadcrumbs/Breadcrumbs";
+import { FolderWindowWrapper } from "./FolderWindow.styled";
 import type { FolderWindowProps } from "./FolderWindow.types";
 
 const FolderWindow = ({
@@ -24,12 +24,6 @@ const FolderWindow = ({
     const dispatch = useAppDispatch();
     const openedWindowsLength = useAppSelector(selectOpenedWindowLength);
     const [path, setPath] = useState<string[]>([window.id]);
-    const pathFolders = useAppSelector(state =>
-        path
-            .map(id => selectFolder(id)(state))
-            .filter((f): f is FolderFile => Boolean(f)),
-    );
-
     const folder = useAppSelector(selectFolder(currentFolderId));
 
     const handleOpenFile = (file: DesktopFile) => {
@@ -44,55 +38,24 @@ const FolderWindow = ({
         openFile(file, dispatch, openedWindowsLength);
     };
 
-    const goBack = () => {
-        if (!history.length) return;
-        const prev = history[history.length - 1];
-
-        setHistory(h => h.slice(0, -1));
-        setFuture(f => [currentFolderId, ...f]);
-        setCurrentFolderId(prev);
-        setPath(p => p.slice(0, -1));
-    };
-
-    const goForward = () => {
-        if (!future.length) return;
-        const next = future[0];
-
-        setFuture(f => f.slice(1));
-        setHistory(h => [...h, currentFolderId]);
-        setCurrentFolderId(next);
-        setPath(p => [...p, next]);
-    };
-
     return (
         <WindowBasic zIndex={window.zIndex} title={window.title} id={window.id} kind={WINDOW_KIND.FOLDER}>
-            <Box sx={{ display: "flex", alignItems: "center", gap: '20px', width: '100%' }}>
-                <Box sx={{ display: 'flex' }}>
-                    <IconWrapper onClick={goBack} isDisabled={history.length <= 0}/>
-                    <IconWrapper onClick={goForward} isDisabled={future.length <= 0}/>
-                </Box>
-                <BreadcrumbWrapper>
-                    {pathFolders.map((folder, index) => (
-                        <PathWrapper
-                            key={folder.id}
-                            onClick={() => {
-                                setCurrentFolderId(folder.id);
-                                setPath(path.slice(0, index + 1));
-                                setHistory(path.slice(0, index));
-                                setFuture([]);
-                            }}
-                        >
-                            {folder.name} /
-                        </PathWrapper>
-                    ))}
-                </BreadcrumbWrapper>
-            </Box>
+            <Breadcrumbs
+                path={path}
+                future={future}
+                history={history}
+                currentFolderId={currentFolderId}
+                setHistory={setHistory}
+                setFuture={setFuture}
+                setCurrentFolderId={setCurrentFolderId}
+                setPath={setPath}
+            />
             <FolderWindowWrapper
                 data-file={FILE_TYPE.FOLDER}
                 data-id={currentFolderId}
                 data-name={window.title}
                 data-context={CONTEXT_MENU_TYPES.FOLDER}
-            >
+            >`
                 {(folder &&
                     'innerContent' in folder &&
                     Array.isArray(folder.innerContent) && folder.innerContent.length) ?

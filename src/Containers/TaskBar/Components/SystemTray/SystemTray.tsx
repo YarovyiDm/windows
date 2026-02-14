@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
-import { SystemTrayProps } from "Containers/TaskBar/Components/SystemTray/SystemTray.types";
-import Apps from "Containers/TaskBar/Components/SystemTray/Components/Apps/Apps";
-import Languages from "Containers/TaskBar/Components/SystemTray/Components/Languages/Languages";
+import Apps from "./Components/Apps/Apps";
+import Languages from "./Components/Languages/Languages";
+import type { SystemTrayProps } from "./SystemTray.types";
 
 const SystemTray = ({
     systemLanguageIndex,

@@ -1,23 +1,23 @@
-import React, { useRef, useState } from "react";
-import { useContextMenu, useLanguage } from "Hooks";
-import { useAppSelector } from "Store/index";
+import { CONTEXT_MENU_TYPES } from "constants/system";
+import { TRANSLATION_KEYS } from "constants/translation";
+import { useRef, useState } from "react";
+import { useContextMenu, useLanguage } from "hooks";
+import { type DesktopFile, FILE_TYPE } from "types/desktop";
+import { useAppSelector } from "store/index";
 import {
     selectDraggableFile,
     selectFiles,
     selectOpenedWindows,
-} from "Store/selectors/Desktop";
-import { selectWallpaper } from "Store/selectors/System";
+} from "store/selectors/desktop";
+import { selectWallpaper } from "store/selectors/system";
 import { DesktopWrapper } from "Containers/Desktop/Desktop.styled";
-import { DesktopFile, FILE_TYPE } from "Types/Desktop";
 import DraggableFileCopy
     from "Containers/Desktop/Components/DraggableFile/Components/DraggableFileCopy/DraggableFileCopy";
 import { ContextMenu, DraggableFile } from "Components/index";
 import Selection from "Containers/Desktop/Components/Selection/Selection";
 import Notification from 'Components/Notification/Notification';
-import { CONTEXT_MENU_TYPES } from "Constants/System";
-import { TRANSLATION_KEYS } from "Constants/Translation";
 import DesktopWindowsRenderer from "Containers/Desktop/Components/DesktopWindowsRenderer/DesktopWindowsRenderer";
-import { useFileSelection } from "./Hooks/useFileSelection";
+import { useFileSelection } from "./hooks/useFileSelection";
 import type { MouseEvent as ReactMouseEvent, DragEvent } from "react";
 
 const Desktop = () => {
@@ -90,7 +90,7 @@ const Desktop = () => {
                 />
             )}
 
-            {desktopFiles.map((file: DesktopFile) => (
+            {desktopFiles && desktopFiles.map((file: DesktopFile) => (
                 <DraggableFile
                     targetFolderId={targetFolderId}
                     targetFolderHandle={targetFolderHandle}

@@ -1,12 +1,12 @@
+import { TRANSLATION_KEYS } from "constants/translation";
 import Slider from "rc-slider";
 import Switch from "react-switch";
 import { useState } from "react";
+import { changeBrightness, changeNightMode } from "store/slices/system";
+import { useAppDispatch, useAppSelector } from "store/index";
+import { selectNightMode } from "store/selectors/system";
 import { BlockBasic } from "Containers/Desktop/Components/Windows/SettingsWindow/Components/BlockBasic/BlockBasic";
-import { changeBrightness, changeNightMode } from "Store/slices/System";
-import { useAppDispatch, useAppSelector } from "Store/index";
-import { selectNightMode } from "Store/selectors/System";
-import { useLanguage } from "Hooks/useLanguage";
-import { TRANSLATION_KEYS } from "Constants/Translation";
+import { useLanguage } from "hooks/useLanguage";
 import {
     SystemContentWrapper,
     SystemItemSubTitleStyle,

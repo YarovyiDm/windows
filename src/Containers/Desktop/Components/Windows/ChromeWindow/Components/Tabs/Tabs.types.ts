@@ -1,4 +1,4 @@
-import { ChromeTab } from "../../ChromeWindow.types";
+import type { ChromeTab } from "../../ChromeWindow.types";
 import type { Dispatch, SetStateAction } from "react";
 
 export type TabsProps = {

@@ -1,4 +1,4 @@
-import { SETTINGS_TAB } from "Constants/Settings";
+import { SETTINGS_TAB } from "constants/settings";
 import PersonalizationTab from "./PersonalizationTab/PersonalizationTab";
 import SystemTab from "./SystemTab/SystemTab";
 import type { ReactNode } from "react";

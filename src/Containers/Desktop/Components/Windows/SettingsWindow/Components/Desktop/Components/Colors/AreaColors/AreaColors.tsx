@@ -1,8 +1,8 @@
-import { rgbaToRgb } from "Utils";
-import { changeSelectionStyle } from "Store/slices/System";
+import { rgbaToRgb } from "utils/rgbaToRgb";
+import { changeSelectionStyle } from "store/slices/system";
+import { useAppDispatch, useAppSelector } from "store/index";
+import { selectSelectionStyles } from "store/selectors/system";
 import { AREA_COLORS } from "Containers/Desktop/Components/Windows/SettingsWindow/Components/Desktop/Desktop.constants";
-import { useAppDispatch, useAppSelector } from "Store/index";
-import { selectSelectionStyles } from "Store/selectors/System";
 import { Color } from "../Colors.styled";
 
 const AreaColors = () => {

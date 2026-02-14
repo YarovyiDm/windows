@@ -1,0 +1,95 @@
+import { DOM_EVENTS } from "constants/events";
+import { useEffect, useRef } from "react";
+import { useAppDispatch, useAppSelector } from "store/index";
+import { dragFileToFolder, setDraggingFile } from "store/slices/desktop";
+import { selectDraggableFile } from "store/selectors/desktop";
+import { checkDropTargetByCursor } from "Containers/Desktop/Components/DraggableFile/DraggableFile.helpers";
+import type { DesktopFile } from "types/desktop";
+
+type Props = {
+    file: DesktopFile;
+    targetFolderId: string;
+    targetFolderHandle?: (id: string) => void;
+}
+
+export const useFileDrag = ({
+    file,
+    targetFolderId,
+    targetFolderHandle,
+}: Props) => {
+    const dispatch = useAppDispatch();
+    const mouseDownRef = useRef({ x: 0, y: 0, isDown: false });
+    const dragStartedRef = useRef(false);
+    const draggingFile = useAppSelector(selectDraggableFile());
+    const targetFolderRef = useRef<string>("");
+
+    useEffect(() => {
+        targetFolderRef.current = targetFolderId;
+    }, [targetFolderId]);
+
+    const onMouseDown = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        mouseDownRef.current = { x: e.clientX, y: e.clientY, isDown: true };
+    };
+
+    useEffect(() => {
+        const onMove = (e: MouseEvent) => {
+            if (!mouseDownRef.current.isDown) return;
+
+            const dx = Math.abs(e.clientX - mouseDownRef.current.x);
+            const dy = Math.abs(e.clientY - mouseDownRef.current.y);
+
+            if (!dragStartedRef.current && (dx > 5 || dy > 5)) {
+                dragStartedRef.current = true;
+            }
+
+            if (!dragStartedRef.current) return;
+
+            dispatch(setDraggingFile({
+                ...file,
+                initialCursorPos: { x: e.clientX, y: e.clientY },
+            }));
+
+            if (targetFolderHandle) {
+                checkDropTargetByCursor({
+                    x: e.clientX,
+                    y: e.clientY,
+                    setTargetFolderId: targetFolderHandle,
+                    draggingFileId: file.id,
+                    parentId: file.parentId,
+                });
+            }
+        };
+
+        const onUp = () => {
+            if (!dragStartedRef.current) {
+                mouseDownRef.current.isDown = false;
+                return;
+            }
+
+            mouseDownRef.current.isDown = false;
+            dragStartedRef.current = false;
+
+            const folderId = targetFolderRef.current;
+
+            if (folderId) {
+                dispatch(dragFileToFolder({
+                    fileId: file.id,
+                    folderId,
+                }));
+            }
+
+            dispatch(setDraggingFile(null));
+        };
+
+        document.addEventListener(DOM_EVENTS.MOUSE_MOVE, onMove);
+        document.addEventListener(DOM_EVENTS.MOUSE_UP, onUp);
+
+        return () => {
+            document.removeEventListener(DOM_EVENTS.MOUSE_MOVE, onMove);
+            document.removeEventListener(DOM_EVENTS.MOUSE_UP, onUp);
+        };
+    }, [targetFolderId, draggingFile, dispatch, file, targetFolderHandle]);
+
+    return { onMouseDown };
+};

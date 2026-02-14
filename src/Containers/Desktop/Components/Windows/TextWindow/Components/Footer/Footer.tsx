@@ -1,11 +1,11 @@
+import { TRANSLATION_KEYS } from "constants/translation";
 import { Box } from "@mui/material";
-import { useLanguage } from "Hooks";
-import { TRANSLATION_KEYS } from "Constants/Translation";
+import { useLanguage } from "hooks";
 import {
     TextWindowFooter,
     TextWindowFileFormat,
 } from "../../TextWindow.styled";
-import { FooterProps } from "./Footer.types";
+import type { FooterProps } from "./Footer.types";
 
 const Footer = ({ title, isFileChanged }: FooterProps) => {
     const { translate } = useLanguage();

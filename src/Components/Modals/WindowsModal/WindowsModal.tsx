@@ -1,17 +1,17 @@
+import { ICONS } from "constants/icons";
+import { TRANSLATION_KEYS } from "constants/translation";
+import { TASKBAR_MODALS } from "constants/taskBar";
+import { DISK_TYPES, WINDOW_META } from "constants/system";
 import { Icon, File } from "Components";
 import { Box, Typography } from '@mui/material';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
-import { useAppDispatch, useAppSelector } from "Store/index";
-import { ICONS } from "Constants/Icons";
-import { FILE_TYPE, SettingsFile } from "Types/Desktop";
-import { WINDOW_META } from "Constants/System";
-import { useLanguage } from "Hooks/useLanguage";
-import { TRANSLATION_KEYS } from "Constants/Translation";
+import { FILE_TYPE, type SettingsFile } from "types/desktop";
+import { useAppDispatch, useAppSelector } from "store/index";
+import { openModal } from "store/slices/taskBar";
+import { selectModalStack } from "store/selectors/taskBar";
+import { useLanguage } from "hooks/useLanguage";
 import { PowerModal } from "Components/Modals";
-import { openModal } from "Store/slices/TaskBar";
-import { TASKBAR_MODALS } from "Constants/Taskbar";
-import { selectModalStack } from "Store/selectors/TaskBar";
-import { WindowsModalProps } from "Components/Modals/WindowsModal/WindowsModal.types";
+import type { WindowsModalProps } from "Components/Modals/WindowsModal/WindowsModal.types";
 import {
     WindowsModalContentHeader,
     WindowsModalContentWrapper,
@@ -25,7 +25,7 @@ import {
 const WindowsModal = ({ refs }: WindowsModalProps) => {
     const dispatch = useAppDispatch();
     const modalStack = useAppSelector(selectModalStack);
-    const isOpened = modalStack.includes(TASKBAR_MODALS.POWER);
+    const isPowerOpened = modalStack.includes(TASKBAR_MODALS.POWER);
     const { translate } = useLanguage();
 
     const settingsFile = {
@@ -35,6 +35,7 @@ const WindowsModal = ({ refs }: WindowsModalProps) => {
         icon: ICONS.SETTINGS,
         isSelected: false,
         created_at: new Date().toISOString(),
+        diskId: DISK_TYPES.C,
     } satisfies SettingsFile;
 
     return (
@@ -59,10 +60,10 @@ const WindowsModal = ({ refs }: WindowsModalProps) => {
                 </WindowsModalFooterUserWrapper>
                 <WindowsModalFooterPowerIconWrapper
                     ref={refs[TASKBAR_MODALS.POWER]}
-                    isOpened={isOpened}
+                    isOpened={isPowerOpened}
                     onClick={() => dispatch(openModal(TASKBAR_MODALS.POWER))}
                 >
-                    {isOpened && <PowerModal />}
+                    {isPowerOpened && <PowerModal />}
                     <PowerSettingsNewIcon />
                 </WindowsModalFooterPowerIconWrapper>
             </WindowsModalFooter>

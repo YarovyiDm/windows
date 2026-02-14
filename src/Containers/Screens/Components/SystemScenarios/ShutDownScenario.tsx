@@ -1,6 +1,6 @@
+import { TRANSLATION_KEYS } from "constants/translation";
 import { useEffect, useState } from "react";
 import { Box } from '@mui/material';
-import { TRANSLATION_KEYS } from "Constants/Translation";
 import OffScreen from "../../OffScreen/OffScreen";
 import SystemQuitScreen from "../../SystemQuitScreen/SystemQuitScreen";
 import StartScreen from "../../StartScreen/StartScreen";

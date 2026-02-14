@@ -1,10 +1,13 @@
+import { SYSTEM_PASSWORD } from 'constants/system';
+import { ICONS } from "constants/icons";
+import { KEY_CODES } from "constants/keyCodes";
+import { DOM_EVENTS } from "constants/events";
 import { useEffect, useState } from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { useAppDispatch } from "store/index";
+import { toggleWindowsUnlock, updateSystemScenario } from "store/slices/system";
 import DateTimeDisplay from "Components/DateTimeDisplay/DateTimeDisplay";
 import Icon from "Components/Icon/Icon";
-import { SYSTEM_PASSWORD } from 'Constants/System';
-import { useAppDispatch } from "Store/index";
-import { toggleWindowsUnlock, updateSystemScenario } from "Store/slices/System";
 import {
     AvatarWrapper,
     DateTimeContainer,
@@ -15,9 +18,6 @@ import {
     UserNameStyled,
     IconWrapper,
 } from "Containers/Screens/LockScreen/LockScreen.styled";
-import { ICONS } from "Constants/Icons";
-import { KEY_CODES } from "Constants/KeyCodes";
-import { DOM_EVENTS } from "Constants/Events";
 
 type FormValues = {
     password: string;

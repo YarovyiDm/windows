@@ -1,8 +1,8 @@
 import { Box } from "@mui/material";
 import WaterDropIcon from '@mui/icons-material/WaterDrop';
-import { TodayIconWrapper } from "Containers/TaskBar/Components/Weather/Components/Widget/Components/Today/Today.styled";
 import { getIconUrl } from "Containers/TaskBar/Components/Weather/Weather.helpers";
-import { TodayProps } from "./Today.types";
+import { TodayIconWrapper } from "./Today.styled";
+import type { TodayProps } from "./Today.types";
 
 const Today = ({ weather }: TodayProps) => {
     const iconUrl = getIconUrl(weather.current.condition.icon);

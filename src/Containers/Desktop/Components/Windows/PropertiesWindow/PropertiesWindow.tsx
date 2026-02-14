@@ -1,16 +1,18 @@
+import { getPayloadBytes } from "domain/desktop/queries/getPayloadBytes";
+import { TRANSLATION_KEYS } from "constants/translation";
 import { Typography } from '@mui/material';
-import { WINDOW_KIND } from "Types/Desktop";
+import { Box } from "@mui/material";
+import { dateToLocaleString } from "utils/dateToLocaleString";
+import { formatBytes } from "utils/formatBytes";
+import { WINDOW_KIND } from "types/desktop";
 import WindowBasic from "Containers/Desktop/Components/Windows/WindowBasic/WindowBasic";
-import { PropertiesProps } from "Containers/Desktop/Components/Windows/PropertiesWindow/PropertiesWindow.types";
-import { dateToLocaleString } from "Utils/dateToLocaleString";
 import { Icon } from "Components/index";
 import {
     PropertiesFileWrapper,
     PropertiesInfoWrapper,
 } from "Containers/Desktop/Components/Windows/PropertiesWindow/PropertiesWindow.styled";
-import { getPayloadSize } from "Utils/getPayloadSize";
-import { TRANSLATION_KEYS } from "Constants/Translation";
-import { useLanguage } from "Hooks/useLanguage";
+import { useLanguage } from "hooks/useLanguage";
+import type { PropertiesProps } from "./PropertiesWindow.types";
 
 const PropertiesWindow = ({ desktopWindow }: PropertiesProps) => {
     const name = 'fileName' in desktopWindow.payload ? desktopWindow.payload.fileName : "";
@@ -19,7 +21,11 @@ const PropertiesWindow = ({ desktopWindow }: PropertiesProps) => {
     const icon = "icon" in desktopWindow.payload && desktopWindow.payload.icon;
     const type = "fileType" in desktopWindow.payload && desktopWindow.payload.fileType;
     const { translate } = useLanguage();
-    const size = getPayloadSize(desktopWindow.payload);
+
+    const sizeBytes = getPayloadBytes("content" in desktopWindow.payload
+        ? desktopWindow.payload.content
+        : undefined);
+    const size = formatBytes(sizeBytes);
 
     return (
         <WindowBasic
@@ -36,7 +42,7 @@ const PropertiesWindow = ({ desktopWindow }: PropertiesProps) => {
         >
             <PropertiesFileWrapper>
                 {icon && <Icon name={icon} />}
-                <div>{name}</div>
+                <Box>{name}</Box>
             </PropertiesFileWrapper>
             <PropertiesInfoWrapper>
                 <Typography sx={{ fontSize: "14px" }}>{translate(TRANSLATION_KEYS.PROPERTIES_WINDOW.TYPE)}: {type}</Typography>

@@ -10,14 +10,13 @@
           "pathGroups": [
             { "pattern": "Components/**", "group": "internal" },
             { "pattern": "Containers/**", "group": "internal" },
-            { "pattern": "Constants/**", "group": "internal" },
-            { "pattern": "Store/**", "group": "internal" },
-            { "pattern": "Hooks/**", "group": "internal" },
-            { "pattern": "Types/**", "group": "internal" },
+            { "pattern": "constants/**", "group": "internal" },
+            { "pattern": "store/**", "group": "internal" },
+            { "pattern": "hooks/**", "group": "internal" },
+            { "pattern": "types/**", "group": "internal" },
             { "pattern": "Icons/**", "group": "internal" },
             { "pattern": "Modals/**", "group": "internal" },
-            { "pattern": "Utils/**", "group": "internal" },
-            { "pattern": "Scss/**", "group": "internal" },
+            { "pattern": "utils/**", "group": "internal" },
             { "pattern": "**/*.types", "group": "type", "position": "after" }
           ],
           "pathGroupsExcludedImportTypes": ["builtin"]

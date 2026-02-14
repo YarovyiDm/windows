@@ -1,4 +1,4 @@
-import { TRANSLATION_KEYS } from "Constants/Translation";
+import { TRANSLATION_KEYS } from "constants/translation";
 
 const translations = {
     ENG: {

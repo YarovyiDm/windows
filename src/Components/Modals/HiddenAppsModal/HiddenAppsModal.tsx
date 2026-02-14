@@ -1,5 +1,5 @@
+import { HIDDEN_APPS } from "constants/desktop";
 import { Icon } from "Components";
-import { HIDDEN_APPS } from "Constants/Desktop";
 import { HiddenAppsItem, HiddenAppsModalWrapper } from "./HiddenAppsModal.styled";
 
 const HiddenAppsModal = () => {

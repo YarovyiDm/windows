@@ -1,5 +1,5 @@
-import type { BasicCoordinates } from "Types/System";
-import { CONTEXT_MENU_TYPES } from "Constants/System";
+import { CONTEXT_MENU_TYPES } from "constants/system";
+import type { BasicCoordinates } from "types/system";
 import type { Dispatch, SetStateAction } from "react";
 
 export type ContextMenuProps = {

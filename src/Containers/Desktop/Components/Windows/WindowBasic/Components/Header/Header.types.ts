@@ -1,4 +1,4 @@
-import { WINDOW_KIND } from "Types/Desktop";
+import { WINDOW_KIND } from "types/desktop";
 
 export type HeaderProps = {
     handleMouseDown: (e: React.MouseEvent) => void;

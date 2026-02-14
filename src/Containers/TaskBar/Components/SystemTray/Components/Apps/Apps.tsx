@@ -1,11 +1,11 @@
+import { ICONS } from "constants/icons";
+import { TASKBAR_MODALS } from "constants/taskBar";
+import { useAppDispatch, useAppSelector } from "store/index";
+import { selectModalStack } from "store/selectors/taskBar";
+import { openModal } from "store/slices/taskBar";
 import { HiddenAppsModal } from "Components/Modals";
-import { AppsProps } from "Containers/TaskBar/Components/SystemTray/Components/Apps/Apps.types";
-import { AppsIconWrapper, AppsWrapper } from "Containers/TaskBar/Components/SystemTray/Components/Apps/Apps.styled";
-import { ICONS } from "Constants/Icons";
-import { useAppDispatch, useAppSelector } from "Store/index";
-import { selectModalStack } from "Store/selectors/TaskBar";
-import { TASKBAR_MODALS } from "Constants/Taskbar";
-import { openModal } from "Store/slices/TaskBar";
+import { AppsIconWrapper, AppsWrapper } from "./Apps.styled";
+import type { AppsProps } from "./Apps.types";
 
 const Apps = ({ refs }: AppsProps) => {
     const dispatch = useAppDispatch();

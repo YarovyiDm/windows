@@ -1,4 +1,4 @@
-import { TRANSLATION_KEYS } from "Constants/Translation";
+import { TRANSLATION_KEYS } from "constants/translation";
 
 export const FILE_SIZE = [
     { size: { width: 60, height: 50 }, iconSize: { width: 20, height: 20 }, title: TRANSLATION_KEYS.SETTINGS_WINDOW.FILE_SIZE_SMALL },

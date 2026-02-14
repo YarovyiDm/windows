@@ -1,3 +1,4 @@
+import { TRANSLATION_KEYS } from "constants/translation";
 import { AccordionSummary, AccordionDetails } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {
@@ -5,8 +6,7 @@ import {
 } from "Containers/Desktop/Components/Windows/SettingsWindow/Components/BlockBasic/BlockBasic.styled";
 import { AccordionStyled } from "Containers/Desktop/Components/Windows/SettingsWindow/SettingsWindow.styled";
 import Wallpapers from "Containers/Desktop/Components/Windows/SettingsWindow/Components/Wallpapers/Wallpapers";
-import { useLanguage } from "Hooks/useLanguage";
-import { TRANSLATION_KEYS } from "Constants/Translation";
+import { useLanguage } from "hooks/useLanguage";
 import Desktop from "../../../Components/Desktop/Desktop";
 
 const PersonalizationTab = () => {

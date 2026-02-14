@@ -1,8 +1,8 @@
+import { POWER_MODAL_UNITS } from "constants/system";
 import * as _ from "lodash";
-import { POWER_MODAL_UNITS } from "Constants/System";
-import { useAppDispatch } from "Store/index";
-import { updateSystemScenario } from "Store/slices/System";
-import { useLanguage } from "Hooks/useLanguage";
+import { useAppDispatch } from "store/index";
+import { updateSystemScenario } from "store/slices/system";
+import { useLanguage } from "hooks/useLanguage";
 import {
     PowerModalItem,
     PowerModalItemContent,

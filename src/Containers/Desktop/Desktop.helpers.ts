@@ -1,4 +1,4 @@
-import type { BasicCoordinates } from "Types/System";
+import type { BasicCoordinates } from "types/system";
 
 export const getSelectionStyles = ({ currentPosition, startPosition }:{currentPosition: BasicCoordinates; startPosition: BasicCoordinates;}) => {
     const width = Math.abs(currentPosition.x - startPosition.x);

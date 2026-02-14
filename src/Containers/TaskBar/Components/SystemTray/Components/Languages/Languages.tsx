@@ -1,11 +1,11 @@
-import { LanguagesProps } from "Containers/TaskBar/Components/SystemTray/Components/Languages/Languages.types";
+import { LANGUAGES } from "constants/languages";
+import { TASKBAR_MODALS } from "constants/taskBar";
+import { useAppDispatch, useAppSelector } from "store/index";
+import { selectModalStack } from "store/selectors/taskBar";
+import { openModal } from "store/slices/taskBar";
 import { LanguagesModal } from "Components/Modals";
-import { LanguagesWrapper } from "Containers/TaskBar/Components/SystemTray/Components/Languages/Languages.styled";
-import { LANGUAGES } from "Constants/Languages";
-import { useAppDispatch, useAppSelector } from "Store/index";
-import { selectModalStack } from "Store/selectors/TaskBar";
-import { TASKBAR_MODALS } from "Constants/Taskbar";
-import { openModal } from "Store/slices/TaskBar";
+import { LanguagesWrapper } from "./Languages.styled";
+import type { LanguagesProps } from "./Languages.types";
 
 const Languages = ({ refs, systemLanguageIndex }: LanguagesProps) => {
     const dispatch = useAppDispatch();

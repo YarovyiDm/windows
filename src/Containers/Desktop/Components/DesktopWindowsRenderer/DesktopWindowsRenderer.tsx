@@ -1,4 +1,4 @@
-import { WINDOW_KIND } from "Types/Desktop";
+import { WINDOW_KIND } from "types/desktop";
 import TextWindow from "Containers/Desktop/Components/Windows/TextWindow/TextWindow";
 import FolderWindow from "Containers/Desktop/Components/Windows/FolderWindow/FolderWindow";
 import ChromeWindow from "Containers/Desktop/Components/Windows/ChromeWindow/ChromeWindow";
@@ -6,7 +6,7 @@ import SettingsWindow from "Containers/Desktop/Components/Windows/SettingsWindow
 import BinWindow from "Containers/Desktop/Components/Windows/BinWindow/BinWindow";
 import PropertiesWindow from "Containers/Desktop/Components/Windows/PropertiesWindow/PropertiesWindow";
 import PDFWindow from "Containers/Desktop/Components/Windows/PDFWindow/PDFWindow";
-import { DesktopWindowsRendererProps } from "./DesktopWindowsRenderer.types";
+import type { DesktopWindowsRendererProps } from "./DesktopWindowsRenderer.types";
 
 const DesktopWindowsRenderer = ({
     windows,

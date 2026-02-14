@@ -1,15 +1,15 @@
+import { WINDOW_META } from "constants/system";
+import { TRANSLATION_KEYS } from "constants/translation";
 import { useMemo } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { WINDOW_META } from "Constants/System";
-import { WINDOW_KIND } from "Types/Desktop";
-import { useAppDispatch, useAppSelector } from "Store/index";
-import { selectBinFiles, selectWindowZindex } from "Store/selectors/Desktop";
+import { WINDOW_KIND } from "types/desktop";
+import { useAppDispatch, useAppSelector } from "store/index";
+import { selectBinFiles, selectWindowZindex } from "store/selectors/desktop";
+import { removeFileForever, restoreFileFromBin } from "store/slices/desktop";
 import WindowBasic from "Containers/Desktop/Components/Windows/WindowBasic/WindowBasic";
-import { getColumns, getRows } from "Containers/Desktop/Components/Windows/BinWindow/BinWindow.helpers";
-import { removeFileForever, restoreFileFromBin } from "Store/slices/Desktop";
-import { TRANSLATION_KEYS } from "Constants/Translation";
-import { useLanguage } from "Hooks/useLanguage";
+import { useLanguage } from "hooks/useLanguage";
 import EmptyFolder from "Containers/Desktop/Components/Windows/Components/EmptyFolder/EmptyFolder";
+import { getColumns, getRows } from "./BinWindow.helpers";
 
 const BinWindow = () => {
     const zIndex = useAppSelector(selectWindowZindex(WINDOW_META.BIN.id));

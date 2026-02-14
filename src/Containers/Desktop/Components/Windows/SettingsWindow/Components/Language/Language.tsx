@@ -1,8 +1,8 @@
 import { TextField } from "@mui/material";
+import { useAppDispatch, useAppSelector } from "store/index";
+import { changeSystemLanguage } from "store/slices/system";
 import { BlockBasic } from "Containers/Desktop/Components/Windows/SettingsWindow/Components/BlockBasic/BlockBasic";
 import translations from "Components/I18n/translations";
-import { useAppDispatch, useAppSelector } from "Store/index";
-import { changeSystemLanguage } from "Store/slices/System";
 import {
     LanguageAutoCompleteStyled,
 } from "Containers/Desktop/Components/Windows/SettingsWindow/Components/Language/Language.styled";

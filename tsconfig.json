@@ -4,14 +4,15 @@
         "paths": {
             "Components/*": ["Components/*"],
             "Containers/*": ["Containers/*"],
-            "Constants/*": ["Constants/*"],
-            "Store/*": ["Store/*"],
+            "constants/*": ["constants/*"],
+            "store/*": ["store/*"],
             "Icons/*": ["Icons/*"],
             "Modals/*": ["/Components/Modals/*"],
-            "Types/*": ["Types/*"],
-            "Scss/*": ["Scss/*"],
-            "Hooks/*": ["Hooks/*"],
-            "Utils/*": ["Utils/*"]
+            "types/*": ["types/*"],
+            "hooks/*": ["hooks/*"],
+            "utils/*": ["utils/*"],
+            "domain/*": ["domain/*"],
+            "api/*": ["api/*"]
         },
         "target": "es5",
         "lib": ["dom", "dom.iterable", "esnext"],

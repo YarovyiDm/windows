@@ -1,10 +1,10 @@
+import { openFile } from "domain/desktop/mutations/openFile";
 import { Typography } from '@mui/material';
-import { openFile } from "Utils";
-import { Icon } from "Components/index";
-import { useAppDispatch, useAppSelector } from "Store/index";
+import { useAppDispatch, useAppSelector } from "store/index";
+import { selectOpenedWindowLength } from "store/selectors/desktop";
+import { closeModal } from "store/slices/taskBar";
 import { FileStyled } from "Containers/Desktop/Components/File/File.styled";
-import { selectOpenedWindowLength } from "Store/selectors/Desktop";
-import { closeModal } from "Store/slices/TaskBar";
+import { Icon } from "Components/index";
 import type { FileProps } from "./FIle.types";
 
 const File = ({ file }: FileProps) => {

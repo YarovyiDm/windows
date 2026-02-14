@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { updateSystemScenario } from "Store/slices/System";
+import { updateSystemScenario } from "store/slices/system";
+import { closeAllModals } from "store/slices/taskBar";
+import { closeAllWindows } from "store/slices/desktop";
 import { ErrorContent, ErrorIcon, ErrorProgress, ErrorWrapper } from "Components/ErrorBoundary/ErrorBoundary.styled";
-import { closeAllModals } from "Store/slices/TaskBar";
-import { closeAllWindows } from "Store/slices/Desktop";
 import type { Dispatch } from "redux";
 import type { ErrorBoundaryProps, ProgressBarState } from "./ErrorBoundary.types";
 

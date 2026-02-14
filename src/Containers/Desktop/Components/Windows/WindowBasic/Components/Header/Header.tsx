@@ -1,12 +1,11 @@
+import { ICONS } from "constants/icons";
 import { Box } from "@mui/material";
-import React from "react";
 import Icon from "Components/Icon/Icon";
 import {
     WindowBasicButtonsIconWrapper,
     WindowBasicButtonsWrapper, WindowBasicHeader,
 } from "Containers/Desktop/Components/Windows/WindowBasic/WindowBasic.styled";
-import { ICONS } from "Constants/Icons";
-import { HeaderProps } from "Containers/Desktop/Components/Windows/WindowBasic/Components/Header/Header.types";
+import type { HeaderProps } from "./Header.types";
 
 export const Header = ({
     title,

@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
-import Paper from "Containers/Desktop/Components/Windows/PDFWindow/Components/Paper/Paper";
-import { PDFFile } from "Types/Desktop";
+import Paper from "../Paper/Paper";
+import type { PDFFile } from "types/desktop";
 
 const ExperiencePaper = ({ payload }: {payload: PDFFile["innerContent"];}) => {
     return (

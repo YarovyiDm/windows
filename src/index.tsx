@@ -4,8 +4,7 @@ import "./index.css";
 import { Provider } from "react-redux";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import App from "./App";
-import "react-tooltip/dist/react-tooltip.css";
-import { store } from "./Store";
+import { store } from "./store";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement,

@@ -1,4 +1,3 @@
-import React from "react";
 import { MobilePlaceholderWrapper } from "./MobilePlaceholder.styled";
 
 const MobilePlaceholder = () => {

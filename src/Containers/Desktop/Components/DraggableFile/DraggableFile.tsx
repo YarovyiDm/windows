@@ -1,19 +1,22 @@
-import React, { ChangeEvent, useRef } from "react";
-import { openFile } from "Utils";
-import { useClickOutside } from "Hooks";
-import { Icon } from "Components/index";
-import { File, FileName } from "Containers/Desktop/Components/DraggableFile/DraggableFile.styled";
-import { useAppDispatch, useAppSelector } from "Store/index";
+import { openFile } from "domain/desktop/mutations/openFile";
+import { getPayloadBytes } from "domain/desktop/queries/getPayloadBytes";
+import { CONTEXT_MENU_TYPES, DISK_CAPACITY_BYTES } from "constants/system";
+import { type ChangeEvent, useRef } from "react";
+import { useClickOutside } from "hooks";
+import { Box } from '@mui/material';
+import { formatBytes } from "utils/formatBytes";
+import { FILE_TYPE } from "types/desktop";
+import { useAppDispatch, useAppSelector } from "store/index";
 import {
     selectMultipleFiles,
-} from "Store/slices/Desktop";
-import { FILE_TYPE } from "Types/Desktop";
-import { selectFileSelectionColor, selectFileSize } from "Store/selectors/System";
-import { selectOpenedWindowLength } from "Store/selectors/Desktop";
-import { CONTEXT_MENU_TYPES } from "Constants/System";
-import { useFileRename } from "./Hooks/useFileRename";
-import { useFileKeyboard } from "./Hooks/useFileKeyboard";
-import { useFileDrag } from "./Hooks/useFileDrag";
+} from "store/slices/desktop";
+import { selectFileSelectionColor, selectFileSize } from "store/selectors/system";
+import { selectOpenedWindowLength } from "store/selectors/desktop";
+import { File, FileName } from "Containers/Desktop/Components/DraggableFile/DraggableFile.styled";
+import { Icon } from "Components/index";
+import { useFileRename } from "./hooks/useFileRename";
+import { useFileKeyboard } from "./hooks/useFileKeyboard";
+import { useFileDrag } from "./hooks/useFileDrag";
 import type { DraggableFileProps } from "./DraggableFile.types";
 
 const DraggableFile = ({
@@ -28,6 +31,7 @@ const DraggableFile = ({
 }: DraggableFileProps) => {
     const dispatch = useAppDispatch();
     const fileRef = useRef<HTMLDivElement | null>(null);
+    const isSystemFile = file.systemFile;
 
     const fileSelectionColor = useAppSelector(selectFileSelectionColor);
     const selectedSize = useAppSelector(selectFileSize);
@@ -47,17 +51,26 @@ const DraggableFile = ({
     useClickOutside(fileRef, commitRename);
 
     const handleOpen = () => {
+        if (file.type === FILE_TYPE.LINK && file.link) {
+            window.open(file.link, "_blank");
+            return;
+        }
+
         if (onOpen) {
             onOpen(file);
             return;
         }
 
-        if (file.type === FILE_TYPE.LINK && file.link) {
-            window.open(file.link, "_blank");
-        } else {
-            openFile(file, dispatch, openedWindowsLength);
-        }
+        openFile(file, dispatch, openedWindowsLength);
     };
+
+    let usedBytes = 0;
+
+    if (isSystemFile && "innerContent" in file) {
+        usedBytes = getPayloadBytes(file);
+    }
+
+    const percent = Math.min((usedBytes / DISK_CAPACITY_BYTES) * 100, 100);
 
     return (
         <File
@@ -73,19 +86,30 @@ const DraggableFile = ({
             data-context={CONTEXT_MENU_TYPES.FILE}
             data-id={file.id}
             data-name={file.name}
+            data-file={file.type}
             sx={{
-                width: selectedSize?.width,
+                width: isSystemFile ? "200px" : selectedSize?.width,
                 height: selectedSize?.height,
                 background: isSelected ? fileSelectionColor : "",
                 willChange: "transform",
             }}
         >
-            <Icon
-                name={file.icon}
-                data-file={file.type}
-                data-id={file.id}
-                style={{ width: selectedSize.width / 2, height: selectedSize.height / 2 }}
-            />
+            <Box sx={{ display: "flex", gap: '10px', alignItems: 'center' }}>
+                <Icon
+                    name={file.icon}
+                    style={{ width: selectedSize.width / 2, height: selectedSize.height / 2 }}
+                />
+                {isSystemFile && <Box sx={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                    <Box sx={{ color: 'white', fontSize: '12px' }}>Local Disk ({fileName})</Box>
+                    <Box sx={{ width: "100px", height: "10px", border: 'solid 1px white' }}>
+                        <Box sx={{ height: '100%', width: `${percent}%`, background: "#457996" }}/>
+                    </Box>
+                    <Box sx={{ color: 'white', fontSize: '11px' }}>
+                        {formatBytes(usedBytes)} / {formatBytes(DISK_CAPACITY_BYTES)}
+                    </Box>
+                </Box>}
+            </Box>
+
             {isRename ? (
                 <input
                     ref={inputRef}
@@ -96,10 +120,11 @@ const DraggableFile = ({
                     onKeyDown={handleKeyDown}
                 />
             ) : (
-                <FileName>{fileName}</FileName>
+                !isSystemFile && <FileName>{fileName}</FileName>
             )}
         </File>
     );
 };
 
 export default DraggableFile;
+

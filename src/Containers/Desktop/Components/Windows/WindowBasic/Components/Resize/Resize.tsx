@@ -1,10 +1,9 @@
-import React from "react";
+import { DIRECTIONS_RESIZE_MAP } from "constants/directions";
 import {
     ResizeHandleBottom, ResizeHandleCorner,
     ResizeHandleRight,
 } from "Containers/Desktop/Components/Windows/WindowBasic/WindowBasic.styled";
-import { DIRECTIONS_RESIZE_MAP } from "Constants/Directions";
-import { ResizeProps } from "./Resize.types";
+import type { ResizeProps } from "./Resize.types";
 
 const COMPONENT_MAP = {
     resizeHandleRight: ResizeHandleRight,

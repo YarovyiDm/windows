@@ -1,16 +1,16 @@
+import { WINDOW_META } from "constants/system";
+import { TRANSLATION_KEYS } from "constants/translation";
 import React, { useState } from "react";
 import { Box } from "@mui/material";
+import { WINDOW_KIND } from "types/desktop";
+import { useAppSelector } from "store/index";
+import { selectWindowZindex } from "store/selectors/desktop";
 import WindowBasic from "Containers/Desktop/Components/Windows/WindowBasic/WindowBasic";
-import { WINDOW_KIND } from "Types/Desktop";
-import { WINDOW_META } from "Constants/System";
-import { useLanguage } from "Hooks/useLanguage";
-import { TRANSLATION_KEYS } from "Constants/Translation";
-import { useAppSelector } from "Store/index";
-import { selectWindowZindex } from "Store/selectors/Desktop";
-import { ChromeTab } from "./ChromeWindow.types";
+import { useLanguage } from "hooks/useLanguage";
 import Tabs from "./Components/Tabs/Tabs";
 import { IFrameStyled } from "./ChromeWindow.styled";
 import { createTab } from "./ChromeWindow.helpers";
+import type{ ChromeTab } from "./ChromeWindow.types";
 
 const ChromeWindow = () => {
     const { translate } = useLanguage();

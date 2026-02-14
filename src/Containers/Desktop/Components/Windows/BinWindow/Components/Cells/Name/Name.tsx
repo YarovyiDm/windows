@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { Icon } from "Components/index";
 import { NameWrapper } from "./Name.styled";
-import { NameProps } from "./Name.types";
+import type { NameProps } from "./Name.types";
 
 const Name = ({ icon, name }: NameProps) => {
     return (

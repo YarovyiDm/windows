@@ -1,15 +1,15 @@
-import React from "react";
+import { TRANSLATION_KEYS } from "constants/translation";
+import { MAX_BROWSER_TABS_COUNT, MIN_BROWSER_TABS_COUNT } from "constants/system";
 import { Box } from '@mui/material';
-import { TRANSLATION_KEYS } from "Constants/Translation";
-import { useLanguage } from "Hooks/useLanguage";
-import { MAX_BROWSER_TABS_COUNT, MIN_BROWSER_TABS_COUNT } from "Constants/System";
+import { useLanguage } from "hooks/useLanguage";
 import { createTab } from "../../ChromeWindow.helpers";
 import {
-    TabCloseButton, TabNewButton,
+    TabCloseButton,
+    TabNewButton,
     TabStyled,
     TabsWrapper,
 } from "./Tabs.styled";
-import { TabsProps } from "./Tabs.types";
+import type { TabsProps } from "./Tabs.types";
 
 const Tabs = ({
     tabs,

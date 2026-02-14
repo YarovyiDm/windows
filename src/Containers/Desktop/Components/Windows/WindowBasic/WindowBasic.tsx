@@ -1,17 +1,17 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { useDrag, useResize } from "Hooks";
-import { DEFAULT_DESKTOP_MODAL_SIZE } from "Constants/Desktop";
-import { useAppDispatch } from "Store/index";
-import { changeWindowZindex, closeWindow } from "Store/slices/Desktop";
-import type { BasicSize } from "Types/System";
-import { TASK_PANEL_HEIGHT } from "Constants/System";
-import { getRandomCenterCoordinates } from "../../../../../helpers/getRandomCenterCoordinates";
+import { DEFAULT_DESKTOP_MODAL_SIZE } from "constants/desktop";
+import { TASK_PANEL_HEIGHT } from "constants/system";
+import { useEffect, useMemo, useState } from "react";
+import { useDrag, useResize } from "hooks";
+import { getRandomCenterCoordinates } from "utils/getRandomCenterCoordinates";
+import { useAppDispatch } from "store/index";
+import { changeWindowZindex, closeWindow } from "store/slices/desktop";
 import Header from "./Components/Header/Header";
 import {
     WindowBasicWrapper,
     WindowContent,
 } from "./WindowBasic.styled";
 import Resize from "./Components/Resize/Resize";
+import type { BasicSize } from "types/system";
 import type { WindowBasicProps } from "./WindowBasic.types";
 
 const WindowBasic = ({

@@ -1,8 +1,8 @@
 import { Box } from '@mui/material';
-import Paper from "Containers/Desktop/Components/Windows/PDFWindow/Components/Paper/Paper";
-import { PDFFile } from "Types/Desktop";
+import Paper from "../Paper/Paper";
+import type { PDFFile } from "types/desktop";
 
-const GeneralPaper = ({ payload }: {payload: PDFFile["innerContent"];}) => {
+const GeneralPaper = ({ payload }: { payload: PDFFile["innerContent"]; }) => {
     return (
         <Paper>
             <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '26px', fontWeight: 'bold', marginBottom: '50px' }}>{payload.title}</Box>

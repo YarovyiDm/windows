@@ -1,10 +1,8 @@
 import { Box } from "@mui/material";
 import RestoreIcon from "@mui/icons-material/Restore";
 import DeleteIcon from "@mui/icons-material/Delete";
-import {
-    ActionButtonWrapper,
-} from "Containers/Desktop/Components/Windows/BinWindow/Components/Cells/Actions/Actions.styled";
-import { ActionsProps } from "./Actions.types";
+import { ActionButtonWrapper } from "./Actions.styled";
+import type { ActionsProps } from "./Actions.types";
 
 const Actions = ({ fileId, onRestore, onDelete }: ActionsProps) => {
     return (

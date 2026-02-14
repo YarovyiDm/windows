@@ -1,15 +1,14 @@
+import { TRANSLATION_KEYS } from "constants/translation";
 import { Typography, Box } from "@mui/material";
+import { useAppSelector } from "store/index";
+import { selectSelectionStyles } from "store/selectors/system";
 import {
     SystemItemContentWrapper,
     SystemItemSubTitleStyle,
     SystemItemWrapper,
 } from "Containers/Desktop/Components/Windows/SettingsWindow/SettingsWindow.styled";
-import { useAppSelector } from "Store/index";
-import { selectSelectionStyles } from "Store/selectors/System";
-import { useLanguage } from "Hooks/useLanguage";
-import { TRANSLATION_KEYS } from "Constants/Translation";
-import BorderColors
-    from "../Colors/BorderColors/BorderColors";
+import { useLanguage } from "hooks/useLanguage";
+import BorderColors from "../Colors/BorderColors/BorderColors";
 import AreaColors from "../Colors/AreaColors/AreaColors";
 import { SettingsExample } from "../../Desktop.styled";
 

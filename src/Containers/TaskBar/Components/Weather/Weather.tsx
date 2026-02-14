@@ -1,12 +1,12 @@
 import { Box, Typography } from '@mui/material';
 import { useRef, useState } from "react";
-import { useClickOutside } from "Hooks";
-import { useCurrentWeather } from "Hooks/Api";
-import { WeatherIcon, WeatherTrigger, WeatherWrapper } from "Containers/TaskBar/Components/Weather/Weather.styled";
-import Widget from "Containers/TaskBar/Components/Weather/Components/Widget/Widget";
-import { getIconUrl } from "Containers/TaskBar/Components/Weather/Weather.helpers";
-import { useAppSelector } from "Store/index";
-import { selectUserLocationCity } from "Store/selectors/System";
+import { useClickOutside } from "hooks";
+import { useAppSelector } from "store/index";
+import { selectUserLocationCity } from "store/selectors/system";
+import { useCurrentWeather } from "hooks/api";
+import { WeatherIcon, WeatherTrigger, WeatherWrapper } from "./Weather.styled";
+import Widget from "./Components/Widget/Widget";
+import { getIconUrl } from "./Weather.helpers";
 
 const Weather = () => {
     const [isWidgetOpen, setIsWidgetOpen] = useState(false);

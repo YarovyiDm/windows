@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import { useSystem } from "Hooks";
+import { useSystem } from "hooks";
 import { BlockBasic } from "Containers/Desktop/Components/Windows/SettingsWindow/Components/BlockBasic/BlockBasic";
 import { SystemContentWrapper } from "../../SettingsWindow.styled";
 import {

@@ -1,3 +1,4 @@
+import { ICONS } from "constants/icons";
 import { ReactComponent as Telegram } from "Icons/telegramIcon.svg";
 import { ReactComponent as Skype } from "Icons/skypeIcon.svg";
 import { ReactComponent as Chrome } from "Icons/chromeIcon.svg";
@@ -29,7 +30,7 @@ import { ReactComponent as Stash } from "Icons/delete.svg";
 import { ReactComponent as Github } from "Icons/github.svg";
 import { ReactComponent as Linkedin } from "Icons/linkedin.svg";
 import { ReactComponent as PDF } from "Icons/pdf.svg";
-import { ICONS } from "Constants/Icons";
+import { ReactComponent as Disk } from "Icons/diskDrive.svg";
 import type { IconProps } from "./Icon.types";
 
 const Icons = {
@@ -64,6 +65,7 @@ const Icons = {
     [ICONS.GITHUB]: Github,
     [ICONS.LINKEDIN]: Linkedin,
     [ICONS.PDF]: PDF,
+    [ICONS.DISK]: Disk,
 };
 
 const Icon = (props: IconProps) => {

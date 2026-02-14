@@ -1,12 +1,12 @@
+import { ICONS } from "constants/icons";
+import { TRANSLATION_KEYS } from "constants/translation";
 import { Typography, Box } from "@mui/material";
-import { useAppDispatch, useAppSelector } from "Store/index";
-import { selectFileSelectionColor, selectFileSize } from "Store/selectors/System";
+import { useAppDispatch, useAppSelector } from "store/index";
+import { selectFileSelectionColor, selectFileSize } from "store/selectors/system";
+import { changeDesktopFileSize } from "store/slices/system";
 import { SystemItemContentWrapper } from "Containers/Desktop/Components/Windows/SettingsWindow/SettingsWindow.styled";
 import Icon from "Components/Icon/Icon";
-import { changeDesktopFileSize } from "Store/slices/System";
-import { ICONS } from "Constants/Icons";
-import { useLanguage } from "Hooks/useLanguage";
-import { TRANSLATION_KEYS } from "Constants/Translation";
+import { useLanguage } from "hooks/useLanguage";
 import {
     FILE_SIZE,
 } from "./FileSize.constants";

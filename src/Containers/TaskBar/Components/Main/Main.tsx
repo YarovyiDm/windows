@@ -1,5 +1,4 @@
 import { Box } from "@mui/material";
-import React from "react";
 import { Apps } from "Components/index";
 import Search from './Components/Search/Search';
 import Start from "./Components/Start/Start";

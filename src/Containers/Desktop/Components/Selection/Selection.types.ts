@@ -1,5 +1,5 @@
-import { RefObject } from "react";
-import { BasicCoordinates } from "Types/System";
+import type { RefObject } from "react";
+import type { BasicCoordinates } from "types/system";
 
 export type SelectionProps = {
     selectionRef: RefObject<HTMLDivElement>;

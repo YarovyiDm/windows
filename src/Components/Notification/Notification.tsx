@@ -1,9 +1,9 @@
+import { ICONS } from "constants/icons";
+import { TRANSLATION_KEYS } from "constants/translation";
+import { DEFAULT_NOTIFICATION_DELAY, DEFAULT_NOTIFICATION_DURATION } from "constants/system";
 import { useEffect, useRef, useState } from "react";
-import { useLanguage } from "Hooks";
+import { useLanguage } from "hooks";
 import Icon from "Components/Icon/Icon";
-import { ICONS } from "Constants/Icons";
-import { TRANSLATION_KEYS } from "Constants/Translation";
-import { DEFAULT_NOTIFICATION_DELAY, DEFAULT_NOTIFICATION_DURATION } from "Constants/System";
 import {
     CloseButtonWrapper,
     NotificationContent,

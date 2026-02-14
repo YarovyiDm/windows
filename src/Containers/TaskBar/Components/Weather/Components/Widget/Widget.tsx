@@ -1,9 +1,9 @@
 import { forwardRef } from "react";
+import { useAppSelector } from "store/index";
+import { selectUserLocationCity } from "store/selectors/system";
 import Today from "Containers/TaskBar/Components/Weather/Components/Widget/Components/Today/Today";
-import { useWeatherForecast } from "Hooks/Api";
+import { useWeatherForecast } from "hooks/api";
 import Forecast from "Containers/TaskBar/Components/Weather/Components/Widget/Components/Forecast/Forecast";
-import { useAppSelector } from "Store/index";
-import { selectUserLocationCity } from "Store/selectors/System";
 import { WidgetWrapper } from "./Widget.styled";
 
 type Props = {

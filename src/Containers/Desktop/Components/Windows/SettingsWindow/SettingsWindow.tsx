@@ -1,13 +1,13 @@
+import { WINDOW_META } from "constants/system";
+import { TRANSLATION_KEYS } from "constants/translation";
+import { SETTINGS_TAB } from "constants/settings";
 import { useState } from "react";
+import { WINDOW_KIND } from "types/desktop";
+import { selectWindowZindex } from "store/selectors/desktop";
+import { useAppSelector } from "store/index";
 import WindowBasic from "Containers/Desktop/Components/Windows/WindowBasic/WindowBasic";
-import { WINDOW_KIND } from "Types/Desktop";
-import { WINDOW_META } from "Constants/System";
-import { TRANSLATION_KEYS } from "Constants/Translation";
-import { useLanguage } from "Hooks/useLanguage";
-import { selectWindowZindex } from "Store/selectors/Desktop";
-import { useAppSelector } from "Store/index";
+import { useLanguage } from "hooks/useLanguage";
 import SettingsSidebar from "Containers/Desktop/Components/Windows/SettingsWindow/Components/Sidebar/SIdebar";
-import { SETTINGS_TAB } from "Constants/Settings";
 import { TAB_CONTENT } from "Containers/Desktop/Components/Windows/SettingsWindow/Components/Tabs/tabsContent";
 import {
     SettingsWrapper,

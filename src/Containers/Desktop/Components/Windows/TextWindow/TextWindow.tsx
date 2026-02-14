@@ -1,15 +1,15 @@
-import { useLanguage } from "Hooks";
+import { TRANSLATION_KEYS } from "constants/translation";
+import { useLanguage } from "hooks";
+import { WINDOW_KIND } from "types/desktop";
 import WindowBasic from "Containers/Desktop/Components/Windows/WindowBasic/WindowBasic";
 import ConfirmationWithoutSaveModal from "Components/Modals/ConfirmationWithoutSaveModal/ConfirmationWithoutSaveModal";
 import {
     TextWindowSaveMessage,
     TextWindowWrapper,
-} from "Containers/Desktop/Components/Windows/TextWindow/TextWindow.styled";
-import { WINDOW_KIND } from "Types/Desktop";
-import { TRANSLATION_KEYS } from "Constants/Translation";
-import Footer from "Containers/Desktop/Components/Windows/TextWindow/Components/Footer/Footer";
-import { useTextWindowSave } from "Containers/Desktop/Components/Windows/TextWindow/Hooks/useTextWindowSave";
-import { useTextWindowState } from "Containers/Desktop/Components/Windows/TextWindow/Hooks/useTextWindowState";
+} from "./TextWindow.styled";
+import Footer from "./Components/Footer/Footer";
+import { useTextWindowSave } from "./hooks/useTextWindowSave";
+import { useTextWindowState } from "./hooks/useTextWindowState";
 import type { TextWindowProps } from "./TextWindow.types";
 
 const TextWindow = ({

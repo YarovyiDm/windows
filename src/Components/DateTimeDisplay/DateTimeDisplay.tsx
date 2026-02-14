@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { DateTimeDisplayProps } from "./DateTimeDisplay.types";
+import type { DateTimeDisplayProps } from "./DateTimeDisplay.types";
 
 const DateTimeDisplay = ({
     format = "en",

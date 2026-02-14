@@ -1,5 +1,5 @@
-import { useLanguage } from "Hooks";
-import { TRANSLATION_KEYS } from "Constants/Translation";
+import { TRANSLATION_KEYS } from "constants/translation";
+import { useLanguage } from "hooks";
 import {
     ConfirmationButton,
     ConfirmationButtonsWrapper,

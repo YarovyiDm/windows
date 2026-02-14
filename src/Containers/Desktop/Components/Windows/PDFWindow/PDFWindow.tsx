@@ -1,9 +1,8 @@
-import { WINDOW_KIND } from "Types/Desktop";
-import GeneralPaper from "Containers/Desktop/Components/Windows/PDFWindow/Components/GeneralPaper/GeneralPaper";
-import ExperiencePaper
-    from "Containers/Desktop/Components/Windows/PDFWindow/Components/ExperiencePaper/ExperiencePaper";
+import { WINDOW_KIND } from "types/desktop";
 import { PDFWindowWrapper } from "Containers/Desktop/Components/Windows/PDFWindow/PDFWindow.styled";
 import WindowBasic from "../WindowBasic/WindowBasic";
+import GeneralPaper from "./Components/GeneralPaper/GeneralPaper";
+import ExperiencePaper from "./Components/ExperiencePaper/ExperiencePaper";
 import { PDFWindowProps } from "./PDFWindow.types";
 
 const PDFWindow = ({ desktopWindow }: PDFWindowProps) => {

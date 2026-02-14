@@ -59,8 +59,8 @@ This is not just a UI mock — it’s a **state-driven desktop system** designed
 src/
 ├── Components/        # Reusable UI components
 ├── Containers/        # Desktop, windows, system logic
-├── Constants/         # System constants, enums, tokens
-├── Hooks/             # Custom React hooks
-├── Store/             # Redux slices & selectors
-├── Types/             # Shared TypeScript types
-├── Assets/            # Wallpapers & static assets
+├── constants/         # System constants, enums, tokens
+├── hooks/             # Custom React hooks
+├── store/             # Redux slices & selectors
+├── types/             # Shared TypeScript types
+├── assets/            # Wallpapers & static assets

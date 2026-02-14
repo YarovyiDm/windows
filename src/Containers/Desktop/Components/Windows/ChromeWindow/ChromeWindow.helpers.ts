@@ -1,4 +1,4 @@
-import { ChromeTab } from "Containers/Desktop/Components/Windows/ChromeWindow/ChromeWindow.types";
+import type { ChromeTab } from "./ChromeWindow.types";
 
 export const createTab = (title: string): ChromeTab => ({
     id: crypto.randomUUID(),

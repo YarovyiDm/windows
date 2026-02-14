@@ -1,8 +1,8 @@
+import { LANGUAGES } from "constants/languages";
 import { Box } from '@mui/material';
-import { changeLanguageIndex } from "Store/slices/System";
-import { useAppDispatch, useAppSelector } from "Store/index";
-import { selectLanguageIndex } from "Store/selectors/System";
-import { LANGUAGES } from "Constants/Languages";
+import { changeLanguageIndex } from "store/slices/system";
+import { useAppDispatch, useAppSelector } from "store/index";
+import { selectLanguageIndex } from "store/selectors/system";
 import {
     LanguageModalContentItem,
     LanguageModalContentWrapper,
@@ -15,7 +15,6 @@ const LanguageModalContent = () => {
 
     const onLanguageChange = (index: number) => {
         dispatch(changeLanguageIndex(index));
-        // dispatch(toggleModal({ modalName: "isLanguagesModalOpen" }));
     };
 
     return (

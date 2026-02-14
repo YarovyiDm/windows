@@ -1,4 +1,4 @@
-import { SETTINGS_TAB } from "Constants/Settings";
+import { SETTINGS_TAB } from "constants/settings";
 
 export type SidebarProps = {
     activeTab: SETTINGS_TAB;

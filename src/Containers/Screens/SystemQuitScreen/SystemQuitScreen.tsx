@@ -1,13 +1,13 @@
-import { useLanguage } from "Hooks";
+import { useLanguage } from "hooks";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
+import { closeAllModals } from "store/slices/taskBar";
+import { closeAllWindows } from "store/slices/desktop";
 import Loader from "Components/Loader/Loader";
 import {
     SystemQuitScreenStatus,
     SystemQuitScreenWrapper,
 } from "Containers/Screens/SystemQuitScreen/SystemQuitScreen.styled";
-import { closeAllModals } from "Store/slices/TaskBar";
-import { closeAllWindows } from "Store/slices/Desktop";
 import type { SystemQuitScreenProps } from "./SystemQuitScreen.types";
 
 const SystemQuitScreen = ({ type }: SystemQuitScreenProps) => {

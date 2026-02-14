@@ -1,15 +1,15 @@
-import React, { RefObject, useRef } from "react";
-import { useAppDispatch, useAppSelector } from "Store";
-import { useClickOutside } from "Hooks";
-import { closeModal } from "Store/slices/TaskBar";
-import { TaskBarModal } from "Types/TaskBar";
-import { selectLanguageIndex } from "Store/selectors/System";
+import { TASKBAR_MODALS } from "constants/taskBar";
+import { type RefObject, useRef } from "react";
+import { useAppDispatch, useAppSelector } from "store";
+import { useClickOutside } from "hooks";
+import { closeModal } from "store/slices/taskBar";
+import { selectLanguageIndex } from "store/selectors/system";
+import { selectTopModal } from "store/selectors/taskBar";
 import { TaskBarWrapper } from "Containers/TaskBar/TaskBar.styled";
 import Main from "Containers/TaskBar/Components/Main/Main";
 import Weather from "Containers/TaskBar/Components/Weather/Weather";
-import { TASKBAR_MODALS } from "Constants/Taskbar";
-import { selectTopModal } from "Store/selectors/TaskBar";
 import { SystemTray } from "Components/index";
+import type { TaskBarModal } from "types/taskBar";
 
 const TaskBar = () => {
     const dispatch = useAppDispatch();

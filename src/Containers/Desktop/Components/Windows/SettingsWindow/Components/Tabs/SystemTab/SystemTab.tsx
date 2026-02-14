@@ -1,3 +1,4 @@
+import { TRANSLATION_KEYS } from "constants/translation";
 import { AccordionSummary, AccordionDetails } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {
@@ -6,8 +7,7 @@ import {
 import SystemInformation
     from "Containers/Desktop/Components/Windows/SettingsWindow/Components/SystemInformation/SystemInformation";
 import { AccordionStyled } from "Containers/Desktop/Components/Windows/SettingsWindow/SettingsWindow.styled";
-import { useLanguage } from "Hooks/useLanguage";
-import { TRANSLATION_KEYS } from "Constants/Translation";
+import { useLanguage } from "hooks/useLanguage";
 import Language from "../../../Components/Language/Language";
 import Display from "../../../Components/Display/Display";
 

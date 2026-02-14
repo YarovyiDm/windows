@@ -1,9 +1,8 @@
-import React from "react";
+import { useAppSelector } from "store/index";
+import { selectSelectionStyles } from "store/selectors/system";
 import { getSelectionStyles } from "Containers/Desktop/Desktop.helpers";
-import { useAppSelector } from "Store/index";
-import { selectSelectionStyles } from "Store/selectors/System";
 import { SelectionWrapper } from "./Selection.styled";
-import { SelectionProps } from "./Selection.types";
+import type { SelectionProps } from "./Selection.types";
 
 const Selection = ({
     selectionRef,

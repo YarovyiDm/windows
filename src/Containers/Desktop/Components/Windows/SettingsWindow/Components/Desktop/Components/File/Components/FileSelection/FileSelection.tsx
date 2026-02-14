@@ -1,12 +1,12 @@
+import { ICONS } from "constants/icons";
+import { TRANSLATION_KEYS } from "constants/translation";
 import { Box, Typography } from "@mui/material";
+import { useAppSelector } from "store/index";
+import { selectFileSelectionColor } from "store/selectors/system";
 import Icon from "Components/Icon/Icon";
 import { SystemItemContentWrapper } from "Containers/Desktop/Components/Windows/SettingsWindow/SettingsWindow.styled";
-import { useAppSelector } from "Store/index";
-import { selectFileSelectionColor } from "Store/selectors/System";
 import { SettingsExample } from "Containers/Desktop/Components/Windows/SettingsWindow/Components/Desktop/Desktop.styled";
-import { ICONS } from "Constants/Icons";
-import { useLanguage } from "Hooks/useLanguage";
-import { TRANSLATION_KEYS } from "Constants/Translation";
+import { useLanguage } from "hooks/useLanguage";
 import FileSelectionColors
     from "../../../../Components/Colors/FileSelectionColors/FileSelectionColors";
 

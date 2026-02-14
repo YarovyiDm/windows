@@ -64,3 +64,8 @@ src/
 ├── store/             # Redux slices & selectors
 ├── types/             # Shared TypeScript types
 ├── assets/            # Wallpapers & static assets
+```
+
+---
+
+⚠️ This project is not an official Microsoft product. All design elements and code are created by the author.

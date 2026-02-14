@@ -1,6 +1,6 @@
 import { createSelector } from "@reduxjs/toolkit";
-import type { RootState } from "..";
 import type { SystemType } from "types/system";
+import type { RootState } from "..";
 
 const selectSystem = (state: RootState) => state.system;
 

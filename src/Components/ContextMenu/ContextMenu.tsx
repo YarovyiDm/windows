@@ -5,8 +5,8 @@ import { changeDesktopFileSize } from "store/slices/system";
 import { useAppDispatch } from "store/index";
 import MenuProvider from "Components/ContextMenu/Components/MenuProvider/MenuProvider";
 import { useClickOutside } from "hooks/useClickOutside";
-import { ContextMenuStyled } from './ContextMenu.styled';
 import type { BasicSize } from "types/system";
+import { ContextMenuStyled } from './ContextMenu.styled';
 import type { ContextMenuProps } from "./ContextMenu.types";
 
 const ContextMenu = ({

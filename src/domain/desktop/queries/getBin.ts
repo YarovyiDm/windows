@@ -1,7 +1,7 @@
 import { FILE_META } from "constants/system";
 import { isFolder } from "utils/isFolder";
-import { getFileById } from "./getFileById";
 import type { Desktop } from "types/desktop";
+import { getFileById } from "./getFileById";
 
 export function getBin(state: Desktop) {
     const bin = getFileById(state.root, FILE_META.BIN.id);

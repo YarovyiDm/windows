@@ -4,8 +4,8 @@ import { getInnerContent } from "domain/desktop/queries/getInnerContent";
 import { FILE_META } from "constants/system";
 import { createSelector } from "@reduxjs/toolkit";
 import { isFolder } from "utils/isFolder";
-import type { RootState } from "..";
 import type { Desktop } from "types/desktop";
+import type { RootState } from "..";
 
 export const selectDesktop = (state: RootState) => state.desktop;
 export const selectRoot = (state: RootState) => state.desktop.root;

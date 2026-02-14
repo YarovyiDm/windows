@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
-import Paper from "../Paper/Paper";
 import type { PDFFile } from "types/desktop";
+import Paper from "../Paper/Paper";
 
 const GeneralPaper = ({ payload }: { payload: PDFFile["innerContent"]; }) => {
     return (

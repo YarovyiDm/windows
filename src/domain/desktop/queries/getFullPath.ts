@@ -1,5 +1,5 @@
-import { getFileById } from "./getFileById";
 import type { DesktopFile } from "types/desktop";
+import { getFileById } from "./getFileById";
 
 export const getFullPath = (
     root: DesktopFile,

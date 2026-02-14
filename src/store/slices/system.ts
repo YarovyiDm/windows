@@ -3,8 +3,8 @@ import { SYSTEM_LANGUAGES_SHORTCUT, SYSTEM_PASSWORD, SYSTEM_SCENARIOS, SYSTEM_SL
 import { WALLPAPERS } from 'constants/wallpapers';
 import { DESKTOP_FILE_SIZE } from "constants/desktop";
 import { DEFAULT_LANGUAGE_INDEX, LANGUAGE_CHANGE_STEP, MAX_LANGUAGES } from "constants/languages";
-import { type SystemType } from "types/system";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import { type SystemType } from "types/system";
 import translations from "Components/I18n/translations";
 
 const initialSystemState = {

@@ -5,13 +5,13 @@ import { useDrag, useResize } from "hooks";
 import { getRandomCenterCoordinates } from "utils/getRandomCenterCoordinates";
 import { useAppDispatch } from "store/index";
 import { changeWindowZindex, closeWindow } from "store/slices/desktop";
+import type { BasicSize } from "types/system";
 import Header from "./Components/Header/Header";
 import {
     WindowBasicWrapper,
     WindowContent,
 } from "./WindowBasic.styled";
 import Resize from "./Components/Resize/Resize";
-import type { BasicSize } from "types/system";
 import type { WindowBasicProps } from "./WindowBasic.types";
 
 const WindowBasic = ({

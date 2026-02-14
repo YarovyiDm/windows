@@ -1,10 +1,10 @@
 import { FILE_META } from "constants/system";
 import { isFolder } from "utils/isFolder";
+import type { Desktop } from "types/desktop";
 import { getBin } from "../queries/getBin";
 import { getFileById } from "../queries/getFileById";
 import { getFolderById } from "../queries/getFolderById";
 import { detachFile } from "./detachFile";
-import type { Desktop } from "types/desktop";
 
 export const restoreFile = (
     state: Desktop,

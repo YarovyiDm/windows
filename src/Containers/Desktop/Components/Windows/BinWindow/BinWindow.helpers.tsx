@@ -1,9 +1,9 @@
 import { getPayloadBytes } from "domain/desktop/queries/getPayloadBytes";
 import { GridColDef } from "@mui/x-data-grid";
 import { formatBytes } from "utils/formatBytes";
+import type{ DesktopFile } from "types/desktop";
 import Actions from "./Components/Cells/Actions/Actions";
 import Name from "./Components/Cells/Name/Name";
-import type{ DesktopFile } from "types/desktop";
 
 export type BinDataModel = {
     id: string;

@@ -1,5 +1,5 @@
-import { getBin } from "../queries/getBin";
 import type { Desktop } from "types/desktop";
+import { getBin } from "../queries/getBin";
 
 export const deleteFilePermanently = (state: Desktop, fileId: string)=> {
     const bin = getBin(state);

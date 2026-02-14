@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { QUERY_KEYS } from "utils/query-keys";
 import { API } from "api";
+import { QUERY_KEYS } from "utils/query-keys";
 
 export const useCurrentWeather = (city: string) =>
     useQuery({

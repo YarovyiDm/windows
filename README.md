@@ -14,6 +14,12 @@ This is not just a UI mock — it’s a **state-driven desktop system** designed
   - File selection & focus handling
   - Context menus (right-click support)
   - Desktop icon resizing (small / medium / large)
+ 
+- 📁 **Virtual file system**
+  - In-memory file structure
+  - File metadata & type modeling
+  - Selection logic independent from UI
+  - Scalable foundation for future persistence (localStorage / API)
 
 - 🪟 **Window system**
   - Open / close / focus windows
@@ -31,11 +37,6 @@ This is not just a UI mock — it’s a **state-driven desktop system** designed
   - Typed translation keys
   - Hotkey-based language switching
 
-- 🎨 **Design system & theming**
-  - Token-based color system
-  - No magic values in components
-  - Architecture prepared for light / dark themes
-
 - ⌨️ **Keyboard & mouse support**
   - System-level keyboard shortcuts
   - Typed key codes & DOM events
@@ -48,6 +49,8 @@ This is not just a UI mock — it’s a **state-driven desktop system** designed
 - **TypeScript**
 - **Redux Toolkit**
 - **MUI (styled API)**
+- **Zod**
+- **Axios**
 - **Custom design tokens**
 - **Custom desktop & window engine**
 
@@ -57,13 +60,16 @@ This is not just a UI mock — it’s a **state-driven desktop system** designed
 
 ```text
 src/
+├── api/               # API layer
+├── assets/            # Static files (images, icons, wallpapers, fonts)
 ├── Components/        # Reusable UI components
-├── Containers/        # Desktop, windows, system logic
-├── constants/         # System constants, enums, tokens
-├── hooks/             # Custom React hooks
-├── store/             # Redux slices & selectors
-├── types/             # Shared TypeScript types
-├── assets/            # Wallpapers & static assets
+├── constants/         # App-wide constants, enums
+├── Containers/        # Smart components (feature-level logic, windows, desktop orchestration)
+├── domain/            # Business logic (factory, mutations, queries)
+├── hooks/             # Custom React hooks (UI + data orchestration)
+├── store/             # Redux store, slices, selectors
+├── types/             # Global TypeScript types
+├── utils/             # Pure utility functions (formatters, helpers, validators)
 ```
 
 ---

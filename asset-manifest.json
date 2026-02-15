@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/windows/static/css/main.885071dc.css",
-    "main.js": "/windows/static/js/main.3c1f9aa5.js",
+    "main.js": "/windows/static/js/main.8174304a.js",
     "static/media/UnknownWorld.jpg": "/windows/static/media/UnknownWorld.51f5415a4718d1e92de6.jpg",
     "static/media/Starry.jpg": "/windows/static/media/Starry.a21594566864138edecb.jpg",
     "static/media/lockScreen.png": "/windows/static/media/lockScreen.d7c604959330135fb678.png",
@@ -40,10 +40,10 @@
     "static/media/rightArrow.svg": "/windows/static/media/rightArrow.3be968dabe76747fedd2f22525c93867.svg",
     "static/media/line.svg": "/windows/static/media/line.49e295bf589c9ffd48ec9b557c54b9b3.svg",
     "main.885071dc.css.map": "/windows/static/css/main.885071dc.css.map",
-    "main.3c1f9aa5.js.map": "/windows/static/js/main.3c1f9aa5.js.map"
+    "main.8174304a.js.map": "/windows/static/js/main.8174304a.js.map"
   },
   "entrypoints": [
     "static/css/main.885071dc.css",
-    "static/js/main.3c1f9aa5.js"
+    "static/js/main.8174304a.js"
   ]
 }

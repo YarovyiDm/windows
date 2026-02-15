@@ -28,7 +28,7 @@ const Apps = () => {
         <Box sx={{ display: "flex", width: "fit-content", blockSize: "fit-content", cursor: "pointer" }}>
             {taskBarApps.map((app) => {
                 return (
-                    <>
+                    <Box key={app.id}>
                         <AppWrapper
                             key={app.id}
                             onClick={() => onAppClick(app.name, app.icon, app.type)}
@@ -37,7 +37,7 @@ const Apps = () => {
                                 <Icon name={app.icon} />
                             </AppIconWrapper>
                         </AppWrapper>
-                    </>
+                    </Box>
                 );
             })}
         </Box>

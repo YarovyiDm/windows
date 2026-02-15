@@ -8,9 +8,6 @@ export const WeatherWrapper = styled(Box)({
     gap: 1,
     padding: "5px",
     borderRadius: "8px",
-    "&:has(.weather-trigger:hover)": {
-        backgroundColor: "rgba(255, 255, 255, 0.05)",
-    },
 });
 
 export const WeatherIcon = styled(Box)({

@@ -1,4 +1,5 @@
 import { forwardRef } from "react";
+import { createPortal } from "react-dom";
 import { useAppSelector } from "store/index";
 import { selectUserLocationCity } from "store/selectors/system";
 import Today from "Containers/TaskBar/Components/Weather/Components/Widget/Components/Today/Today";
@@ -26,10 +27,14 @@ const Widget = forwardRef<HTMLDivElement, Props>(
         if (!data) return <div>No weather data</div>;
 
         return (
-            <WidgetWrapper ref={ref} isOpened={isOpen}>
-                <Today weather={data}/>
-                <Forecast forecastWeather={data}/>
-            </WidgetWrapper>
+            createPortal(
+                <WidgetWrapper ref={ref} isOpened={isOpen}>
+                    <Today weather={data}/>
+                    <Forecast forecastWeather={data}/>
+                </WidgetWrapper>,
+                document.body,
+            )
+
         );
     },
 );

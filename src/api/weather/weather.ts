@@ -1,9 +1,9 @@
-import { AxiosInstance } from "axios";
 import { ZodError } from "zod";
 import { WeatherCurrentSchema, WeatherForecastSchema } from "./weather.schemas";
+import type { AxiosInstance } from "axios";
 
 export const initApi = (client: AxiosInstance) => ({
-    currentByCity: async (city: string) => {
+    getCurrentByCity: async (city: string) => {
         try {
             const res = await client.get("/current.json", { params: { q: city } });
 
@@ -14,7 +14,7 @@ export const initApi = (client: AxiosInstance) => ({
         }
     },
 
-    forecastByCity: async (city: string, days = 3) => {
+    getForecastByCity: async (city: string, days = 3) => {
         try {
             const res = await client.get("/forecast.json", {
                 params: { q: city, days },

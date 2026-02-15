@@ -1,6 +1,6 @@
 import axios from "axios";
-import * as bc from "utils/build-config";
+import { ENV } from "utils/env";
 
 export const locationClient = axios.create({
-    baseURL: bc.USER_LOCATION_API_URL,
+    baseURL: ENV.USER_LOCATION_API_URL,
 });

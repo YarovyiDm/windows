@@ -10,7 +10,7 @@ import { getIconUrl } from "./Weather.helpers";
 
 const Weather = () => {
     const [isWidgetOpen, setIsWidgetOpen] = useState(false);
-    const widgetRef = useRef<HTMLDivElement>(null);
+    const weatherRef = useRef<HTMLDivElement>(null);
     const userLocationCity = useAppSelector(selectUserLocationCity);
 
     const {
@@ -21,7 +21,7 @@ const Weather = () => {
         isFetching,
     } = useCurrentWeather(userLocationCity);
 
-    useClickOutside(widgetRef, () => {
+    useClickOutside(weatherRef, () => {
         setIsWidgetOpen(false);
     });
 
@@ -32,8 +32,8 @@ const Weather = () => {
     const iconUrl = getIconUrl(data.current.condition.icon);
 
     return (
-        <WeatherWrapper ref={widgetRef}>
-            <WeatherTrigger className='weather-trigger' onClick={() => setIsWidgetOpen(prev => !prev)}>
+        <WeatherWrapper ref={weatherRef}>
+            <WeatherTrigger onClick={() => setIsWidgetOpen(prev => !prev)}>
                 <WeatherIcon sx={{ backgroundImage: `url(${iconUrl})` }}/>
                 <Box>
                     <Typography sx={{ fontSize: "12px", color: '#fff' }}>{data.current.temp_c.toFixed()}°C</Typography>

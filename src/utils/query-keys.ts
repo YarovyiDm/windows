@@ -4,4 +4,5 @@ export const QUERY_KEYS = {
         FORECAST: (city: string) => ["weather", "forecast", city],
     },
     USER_LOCATION: ["userLocation"],
+    CURRENCY: ["currencies"],
 };

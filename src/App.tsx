@@ -10,9 +10,10 @@ import {
     selectSystemScenario,
 } from "store/selectors/system";
 import ErrorBoundary from "Components/ErrorBoundary/ErrorBoundary";
-import { useUserLocation } from "hooks/api";
 import MobilePlaceholder from "Components/MobilePlaceholder/MobilePlaceholder";
 import { useScreenFilter } from "hooks/useScreenFilter";
+import { useCurrency } from "hooks/api/useCurrency";
+import { useUserLocation } from "hooks/api";
 import { useUpdateUserCity } from "hooks/useUpdateUserCity";
 import { useAppSelector } from "./store";
 import { SCENARIOS_MAP } from "./App.constants";
@@ -34,6 +35,8 @@ const App = () => {
             dispatch(changeLanguageIndexByHotKeys());
         }
     };
+
+    useCurrency();
 
     useEffect(() => {
         const handleContextMenu = (e: Event) => {

@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/windows/static/css/main.885071dc.css",
-    "main.js": "/windows/static/js/main.c3506d44.js",
+    "main.js": "/windows/static/js/main.fac2b93c.js",
     "static/media/UnknownWorld.jpg": "/windows/static/media/UnknownWorld.51f5415a4718d1e92de6.jpg",
     "static/media/Starry.jpg": "/windows/static/media/Starry.a21594566864138edecb.jpg",
     "static/media/lockScreen.png": "/windows/static/media/lockScreen.d7c604959330135fb678.png",
@@ -22,6 +22,7 @@
     "static/media/crossIcon.svg": "/windows/static/media/crossIcon.1ef132d43f7244aa8a228c1141f31bf9.svg",
     "static/media/squareOutline.svg": "/windows/static/media/squareOutline.fd9934ea254c804ce91e892f632ce56f.svg",
     "static/media/viewBoxesIcon.svg": "/windows/static/media/viewBoxesIcon.75b106e3f8acf62a96e084319a9a0155.svg",
+    "static/media/brush.svg": "/windows/static/media/brush.604e1b1fdffb07c7bd22f0e0155af004.svg",
     "static/media/squareOnSquare.svg": "/windows/static/media/squareOnSquare.404d7f7fb8b7f54798eefc540bbc667d.svg",
     "static/media/edit.svg": "/windows/static/media/edit.c395a6a39f5aac53d0f45fe9640f4e3b.svg",
     "static/media/userIcon.svg": "/windows/static/media/userIcon.a28000d87f1ea97f43603d365de64387.svg",
@@ -40,10 +41,10 @@
     "static/media/rightArrow.svg": "/windows/static/media/rightArrow.3be968dabe76747fedd2f22525c93867.svg",
     "static/media/line.svg": "/windows/static/media/line.49e295bf589c9ffd48ec9b557c54b9b3.svg",
     "main.885071dc.css.map": "/windows/static/css/main.885071dc.css.map",
-    "main.c3506d44.js.map": "/windows/static/js/main.c3506d44.js.map"
+    "main.fac2b93c.js.map": "/windows/static/js/main.fac2b93c.js.map"
   },
   "entrypoints": [
     "static/css/main.885071dc.css",
-    "static/js/main.c3506d44.js"
+    "static/js/main.fac2b93c.js"
   ]
 }

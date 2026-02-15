@@ -36,6 +36,7 @@ const WindowsModal = ({ refs }: WindowsModalProps) => {
         isSelected: false,
         created_at: new Date().toISOString(),
         diskId: DISK_TYPES.C,
+        draggable: false,
     } satisfies SettingsFile;
 
     return (

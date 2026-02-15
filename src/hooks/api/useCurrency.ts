@@ -7,4 +7,8 @@ export const useCurrency = () =>
         queryKey: QUERY_KEYS.CURRENCY,
         queryFn: () => API.currency.getCurrency(),
         retry: false,
+        staleTime: Infinity,
+        refetchOnMount: false,
+        refetchOnWindowFocus: false,
+        refetchOnReconnect: false,
     });

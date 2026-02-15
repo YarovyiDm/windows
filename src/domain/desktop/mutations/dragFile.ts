@@ -15,7 +15,7 @@ export const dragFile = (
 
     if (!found) return;
 
-    const { file, parent, index } = found;
+    const { file, parent, index, draggable } = found;
 
     const targetFolder = getFileById(state.root, folderId);
 
@@ -25,14 +25,16 @@ export const dragFile = (
 
     if (file.id === folderId) return;
 
-    if(parent && isFolder(parent)){
+    if(parent && isFolder(parent) && draggable) {
         parent.innerContent.splice(index, 1);
     }
 
-    targetFolder.innerContent.push({
-        ...file,
-        parentId: folderId,
-        isSelected: false,
-        updated_at: new Date().toISOString(),
-    });
+    if(draggable) {
+        targetFolder.innerContent.push({
+            ...file,
+            parentId: folderId,
+            isSelected: false,
+            updated_at: new Date().toISOString(),
+        });
+    }
 };

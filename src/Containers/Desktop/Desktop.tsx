@@ -40,7 +40,7 @@ const Desktop = () => {
         targetId,
     } = useContextMenu();
     const { translate } = useLanguage();
-    const { isSelecting, startPositionRef, currentPositionRef, startSelection } = useFileSelection();
+    const { isSelecting, startSelection } = useFileSelection(selectionRef);
 
     const targetFolderHandle = (id: string) => {
         setTargetFolderId(id);
@@ -83,11 +83,7 @@ const Desktop = () => {
             />
 
             {isSelecting && (
-                <Selection
-                    selectionRef={selectionRef}
-                    startPosition={startPositionRef.current}
-                    currentPosition={currentPositionRef.current}
-                />
+                <Selection selectionRef={selectionRef} />
             )}
 
             {desktopFiles && desktopFiles.map((file: DesktopFile) => (

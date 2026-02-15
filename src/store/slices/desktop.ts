@@ -24,6 +24,7 @@ const initialDesktopState: Desktop = {
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
         diskId: DISK_TYPES.ROOT,
+        draggable: false,
     },
     selectedFiles: [],
     openedWindows: [],

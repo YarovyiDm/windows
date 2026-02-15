@@ -15,6 +15,7 @@ const DesktopInitialContent: DesktopFile[] = [
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
         diskId: DISK_TYPES.C,
+        draggable: true,
     },
     {
         name: FILE_META.DEFAULT_EMPTY_FOLDER.name,
@@ -27,6 +28,7 @@ const DesktopInitialContent: DesktopFile[] = [
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
         diskId: DISK_TYPES.C,
+        draggable: true,
     },
     {
         name: FILE_META.GITHUB.name,
@@ -39,6 +41,7 @@ const DesktopInitialContent: DesktopFile[] = [
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
         diskId: DISK_TYPES.C,
+        draggable: true,
     },
     {
         name: FILE_META.LINKEDIN.name,
@@ -51,6 +54,7 @@ const DesktopInitialContent: DesktopFile[] = [
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
         diskId: DISK_TYPES.C,
+        draggable: true,
     },
     {
         name: FILE_META.DEFAULT_PDF_FILE.name,
@@ -63,6 +67,7 @@ const DesktopInitialContent: DesktopFile[] = [
         updated_at: new Date().toISOString(),
         innerContent: CV_PDF_FILE,
         diskId: DISK_TYPES.C,
+        draggable: true,
     },
     {
         name: FILE_META.BIN.name,
@@ -75,6 +80,7 @@ const DesktopInitialContent: DesktopFile[] = [
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
         diskId: DISK_TYPES.C,
+        draggable: true,
     },
 ];
 
@@ -90,6 +96,7 @@ const UserInitialContent: DesktopFile[] = [
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
         diskId: DISK_TYPES.C,
+        draggable: false,
     },
 ];
 
@@ -105,6 +112,7 @@ const UsersInitialContent: DesktopFile[] = [
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
         diskId: DISK_TYPES.C,
+        draggable: false,
     },
 ];
 
@@ -120,6 +128,7 @@ const DiskCInitialContent: DesktopFile[] = [
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
         diskId: DISK_TYPES.C,
+        draggable: false,
     },
     {
         name: FILE_META.PROGRAM_FILES.name,
@@ -132,6 +141,7 @@ const DiskCInitialContent: DesktopFile[] = [
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
         diskId: DISK_TYPES.C,
+        draggable: true,
     },
     {
         name: FILE_META.MICROSOFT.name,
@@ -144,6 +154,7 @@ const DiskCInitialContent: DesktopFile[] = [
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
         diskId: DISK_TYPES.C,
+        draggable: true,
     },
 ];
 
@@ -160,6 +171,7 @@ export const RootInitialContent: DesktopFile[] = [
         diskId: DISK_TYPES.C,
         systemFile: true,
         parentId: FILE_META.ROOT.id,
+        draggable: false,
     },
     {
         name: FILE_META.DISK_D.name,
@@ -173,5 +185,6 @@ export const RootInitialContent: DesktopFile[] = [
         diskId: DISK_TYPES.D,
         systemFile: true,
         parentId: FILE_META.ROOT.id,
+        draggable: false,
     },
 ];

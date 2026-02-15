@@ -22,6 +22,7 @@ export const createFile = ({
         size: 1,
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
+        draggable: true,
     };
 
     switch (type) {

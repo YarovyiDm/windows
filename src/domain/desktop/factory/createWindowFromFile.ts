@@ -25,7 +25,7 @@ export const createWindowFromFile = (
             id: file.id,
             kind: WINDOW_KIND.FOLDER,
             title: file.name,
-            zIndex,
+            zIndex: zIndex || 10,
             position: getRandomCenterCoordinates(),
             payload: {
                 files: file.innerContent,

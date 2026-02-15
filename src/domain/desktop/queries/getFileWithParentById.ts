@@ -4,7 +4,7 @@ import type { DesktopFile } from "types/desktop";
 export const getFileWithParentById = (
     file: DesktopFile,
     id: string,
-): { file: DesktopFile; parent: DesktopFile; index: number; } | null => {
+): { file: DesktopFile; parent: DesktopFile; index: number; draggable: boolean; } | null => {
 
     if (!isFolder(file)) {
         return null;
@@ -17,6 +17,7 @@ export const getFileWithParentById = (
             file: file.innerContent[index],
             parent: file,
             index,
+            draggable: file.innerContent[index].draggable,
         };
     }
 

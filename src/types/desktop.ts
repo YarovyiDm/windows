@@ -117,6 +117,7 @@ export type BaseDesktopFile = {
     updated_at?: string;
     diskId: typeof DISK_TYPES[keyof typeof DISK_TYPES];
     systemFile?: boolean;
+    draggable: boolean;
 };
 
 export type TextFile = BaseDesktopFile & {

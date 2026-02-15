@@ -23,6 +23,7 @@ export const getFileData = ({ type, name, icon, root }:  BaseProps & {
             innerContent: getInnerContent(root),
             created_at: new Date().toISOString(),
             updated_at: new Date().toISOString(),
+            draggable: false,
         };
 
         return folder;
@@ -37,6 +38,7 @@ export const getFileData = ({ type, name, icon, root }:  BaseProps & {
         diskId: DISK_TYPES.C,
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
+        draggable: false,
     };
 
     return browser;

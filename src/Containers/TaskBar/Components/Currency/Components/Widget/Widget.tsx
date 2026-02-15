@@ -26,8 +26,8 @@ const Widget = forwardRef<HTMLDivElement, Props>(
 
         return createPortal(
             <WidgetWrapper ref={ref} isOpened={isOpen} onMouseDown={e => e.stopPropagation()}>
-                {humanReadable(data).map(item => {
-                    return <Box key='ds' display='flex' justifyContent='space-between' alignItems='center'>
+                {humanReadable(data).map((item, index) => {
+                    return <Box key={`${index} + ${item.date}`} display='flex' justifyContent='space-between' alignItems='center'>
                         <Box display='flex' alignItems='center' gap={1}>{item.from} <EastOutlinedIcon /> {item.to}</Box>
                         <Box >{item.rateBuy} UAH</Box>
                         <Box >{item.date}</Box>

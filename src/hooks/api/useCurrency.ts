@@ -6,4 +6,5 @@ export const useCurrency = () =>
     useQuery({
         queryKey: QUERY_KEYS.CURRENCY,
         queryFn: () => API.currency.getCurrency(),
+        retry: false,
     });

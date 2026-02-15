@@ -12,7 +12,6 @@ import {
 import ErrorBoundary from "Components/ErrorBoundary/ErrorBoundary";
 import MobilePlaceholder from "Components/MobilePlaceholder/MobilePlaceholder";
 import { useScreenFilter } from "hooks/useScreenFilter";
-import { useCurrency } from "hooks/api/useCurrency";
 import { useUserLocation } from "hooks/api";
 import { useUpdateUserCity } from "hooks/useUpdateUserCity";
 import { useAppSelector } from "./store";
@@ -35,8 +34,6 @@ const App = () => {
             dispatch(changeLanguageIndexByHotKeys());
         }
     };
-
-    useCurrency();
 
     useEffect(() => {
         const handleContextMenu = (e: Event) => {

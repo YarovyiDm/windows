@@ -60,6 +60,7 @@ export const createWindowFromFile = (
             title: file.name,
             zIndex,
             payload: {},
+            initialTab: file.initialTab,
         };
     case FILE_TYPE.PDF:
         return {

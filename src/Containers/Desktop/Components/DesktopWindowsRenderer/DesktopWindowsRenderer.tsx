@@ -39,7 +39,7 @@ const DesktopWindowsRenderer = ({
                 case WINDOW_KIND.BROWSER:
                     return <ChromeWindow key={win.id} />;
                 case WINDOW_KIND.SETTINGS:
-                    return <SettingsWindow key={win.id} />;
+                    return <SettingsWindow key={win.id} initialTab={win.initialTab}/>;
                 default:
                     return null;
                 }

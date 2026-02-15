@@ -31,4 +31,5 @@ export const ICONS = {
     WEBSTORM: "WEBSTORM",
     PDF: "PDF",
     DISK: "DISK",
+    BRUSH: "BRUSH",
 } as const;

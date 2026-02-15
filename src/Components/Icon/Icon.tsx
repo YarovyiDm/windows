@@ -31,6 +31,7 @@ import { ReactComponent as Github } from "Icons/github.svg";
 import { ReactComponent as Linkedin } from "Icons/linkedin.svg";
 import { ReactComponent as PDF } from "Icons/pdf.svg";
 import { ReactComponent as Disk } from "Icons/diskDrive.svg";
+import { ReactComponent as Brush } from "Icons/brush.svg";
 import type { IconProps } from "./Icon.types";
 
 const Icons = {
@@ -66,6 +67,7 @@ const Icons = {
     [ICONS.LINKEDIN]: Linkedin,
     [ICONS.PDF]: PDF,
     [ICONS.DISK]: Disk,
+    [ICONS.BRUSH]: Brush,
 };
 
 const Icon = (props: IconProps) => {

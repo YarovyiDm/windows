@@ -16,9 +16,9 @@ import {
     ContentInner,
 } from "./SettingsWindow.styled";
 
-const SettingsWindow = () => {
+const SettingsWindow = ({ initialTab }:{initialTab?: (typeof SETTINGS_TAB)[keyof typeof SETTINGS_TAB];}) => {
     const { translate } = useLanguage();
-    const [activeTab, setActiveTab] = useState<SETTINGS_TAB>(SETTINGS_TAB.PERSONALIZATION);
+    const [activeTab, setActiveTab] = useState<SETTINGS_TAB>(initialTab ?? SETTINGS_TAB.PERSONALIZATION);
     const zIndex = useAppSelector(selectWindowZindex(WINDOW_META.SETTINGS.id));
 
     return (

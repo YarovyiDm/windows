@@ -1,8 +1,12 @@
 import { ICONS } from "constants/icons";
 import { TRANSLATION_KEYS } from "constants/translation";
+import { DISK_TYPES, WINDOW_META } from "constants/system";
+import { openFile } from "domain/desktop/mutations/openFile";
+import { SETTINGS_TAB } from "constants/settings";
 import { useLanguage } from "hooks";
-import { FILE_TYPE } from "types/desktop";
-import { useAppSelector } from "store/index";
+import { Box } from '@mui/material';
+import { FILE_TYPE, type SettingsFile } from "types/desktop";
+import { useAppDispatch, useAppSelector } from "store/index";
 import { selectFileSize } from "store/selectors/system";
 import FileSize from "Components/ContextMenu/Components/FileSize/FileSize";
 import { useDesktopMenuActions } from "Components/ContextMenu/hooks/useDesktopMenuActions";
@@ -27,9 +31,22 @@ const DesktopMenu = ({
     const { translate } = useLanguage();
 
     const { createNewFile } = useDesktopMenuActions({ contextMenuPosition, setContextMenuVisible });
+    const dispatch = useAppDispatch();
+
+    const settingsFile = {
+        type: FILE_TYPE.SETTINGS,
+        id: WINDOW_META.SETTINGS.id,
+        name: WINDOW_META.SETTINGS.title,
+        icon: ICONS.SETTINGS,
+        isSelected: false,
+        created_at: new Date().toISOString(),
+        diskId: DISK_TYPES.C,
+        draggable: false,
+        initialTab: SETTINGS_TAB.PERSONALIZATION,
+    } satisfies SettingsFile;
 
     return (
-        <>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "5px" }}>
             <MenuItem>
                 <MenuItemMain>
                     <IconStyled name={ICONS.VIEW_BOXES} />
@@ -82,7 +99,18 @@ const DesktopMenu = ({
                     </SubMenuItemMain>
                 </SubMenuWrapper>
             </MenuItem>
-        </>
+            <MenuItem onClick={() => (
+                openFile(settingsFile, dispatch, 10),
+                setContextMenuVisible(false))
+            }>
+                <MenuItemMain>
+                    <IconStyled name={ICONS.BRUSH} />
+                    <ItemTitle>
+                        {translate(TRANSLATION_KEYS.SETTINGS_WINDOW.PERSONALIZATION)}
+                    </ItemTitle>
+                </MenuItemMain>
+            </MenuItem>
+        </Box>
     );
 };
 

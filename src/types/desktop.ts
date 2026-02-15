@@ -1,4 +1,5 @@
 import { DISK_TYPES } from "constants/system";
+import { SETTINGS_TAB } from "constants/settings";
 import type { BasicCoordinates } from "types/system";
 
 export type TextWindowPayload = {
@@ -69,6 +70,7 @@ export type DesktopWindow =
     zIndex: number;
     position?: BasicCoordinates;
     payload: SettingsWindowPayload;
+    initialTab?: (typeof SETTINGS_TAB)[keyof typeof SETTINGS_TAB];
 }
     | {
     id: string;
@@ -137,6 +139,7 @@ export type LinkFile = BaseDesktopFile & {
 
 export type SettingsFile = BaseDesktopFile & {
     type: FILE_TYPE.SETTINGS;
+    initialTab?: SETTINGS_TAB;
 };
 
 export type BrowserFile = BaseDesktopFile & {

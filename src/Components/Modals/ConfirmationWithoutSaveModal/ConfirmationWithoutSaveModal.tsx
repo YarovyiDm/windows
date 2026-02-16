@@ -34,7 +34,7 @@ const ConfirmationWithoutSaveModal = ({
                         {translate(TRANSLATION_KEYS.UNSAVE)}
                     </ConfirmationButton>
                     <ConfirmationButton onClick={onConfirmationModalChange}>
-                        {translate(TRANSLATION_KEYS.CANSEL)}
+                        {translate(TRANSLATION_KEYS.CANCEL)}
                     </ConfirmationButton>
                 </ConfirmationButtonsWrapper>
             </ConfirmationModal>

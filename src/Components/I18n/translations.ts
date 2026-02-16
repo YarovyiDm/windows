@@ -20,7 +20,7 @@ const translations = {
         [TRANSLATION_KEYS.UNSAVE_SUBTITLE]: "You have unsaved changes.",
         [TRANSLATION_KEYS.SAVE]: "Save",
         [TRANSLATION_KEYS.UNSAVE]: "Do not store",
-        [TRANSLATION_KEYS.CANSEL]: "Cancel",
+        [TRANSLATION_KEYS.CANCEL]: "Cancel",
         [TRANSLATION_KEYS.KEYBOARD_LAYOUT]: "Keyboard layout",
         [TRANSLATION_KEYS.READ_ME]: "",
         [TRANSLATION_KEYS.SHUT_DOWN_TITLE]: "Shutting down...",
@@ -77,7 +77,7 @@ const translations = {
         [TRANSLATION_KEYS.UNSAVE_SUBTITLE]: "У вас є незбережені зміни.",
         [TRANSLATION_KEYS.SAVE]: "Зберегти",
         [TRANSLATION_KEYS.UNSAVE]: "Не зберігати",
-        [TRANSLATION_KEYS.CANSEL]: "Скасувати",
+        [TRANSLATION_KEYS.CANCEL]: "Скасувати",
         [TRANSLATION_KEYS.KEYBOARD_LAYOUT]: "Розкладка клавіатури",
         [TRANSLATION_KEYS.READ_ME]: `                                 ----- Система -----
         
@@ -200,7 +200,7 @@ const translations = {
         [TRANSLATION_KEYS.UNSAVE_SUBTITLE]: "Masz niezapisane zmiany.",
         [TRANSLATION_KEYS.SAVE]: "Ratować",
         [TRANSLATION_KEYS.UNSAVE]: "Nie przechowywać",
-        [TRANSLATION_KEYS.CANSEL]: "Anulować",
+        [TRANSLATION_KEYS.CANCEL]: "Anulować",
         [TRANSLATION_KEYS.KEYBOARD_LAYOUT]: "Układ klawiatury",
         [TRANSLATION_KEYS.READ_ME]: "",
         [TRANSLATION_KEYS.SHUT_DOWN_TITLE]: "Wyłączanie...",

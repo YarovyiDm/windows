@@ -50,7 +50,7 @@ This is not just a UI mock — it’s a **state-driven desktop system** designed
 - **Redux Toolkit**
 - **MUI (styled API)**
 - **Zod**
-- **Axios**
+- **React Query**
 - **Custom design tokens**
 - **Custom desktop & window engine**
 

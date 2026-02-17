@@ -1,6 +1,6 @@
 import { DISK_TYPES, FILE_META } from "constants/system";
 import { ICONS } from "constants/icons";
-import { CV_PDF_FILE, DEFAULT_README_TEXT } from "constants/desktop";
+import { DEFAULT_README_TEXT } from "constants/desktop";
 import { type DesktopFile, FILE_TYPE } from "types/desktop";
 
 const DesktopInitialContent: DesktopFile[] = [
@@ -53,19 +53,6 @@ const DesktopInitialContent: DesktopFile[] = [
         parentId: FILE_META.DESKTOP.id,
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
-        diskId: DISK_TYPES.C,
-        draggable: true,
-    },
-    {
-        name: FILE_META.DEFAULT_PDF_FILE.name,
-        icon: ICONS.PDF,
-        isSelected: false,
-        type: FILE_TYPE.PDF,
-        id: FILE_META.DEFAULT_PDF_FILE.id,
-        parentId: FILE_META.DESKTOP.id,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
-        innerContent: CV_PDF_FILE,
         diskId: DISK_TYPES.C,
         draggable: true,
     },
